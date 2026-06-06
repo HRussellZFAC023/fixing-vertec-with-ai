@@ -12,11 +12,11 @@ strategy.
 | ---: | --- | --- |
 | 0-5 min | Opening and audience check | 1-3 |
 | 5-11 min | Fieldwork and why time recording matters | 4-6 |
-| 11-20 min | UI audit and empathy map | 7-10 |
-| 20-32 min | ChatGPT-only workflow and naive browser agents | 11-15 |
-| 32-49 min | Prototype ladder | 16-23 |
-| 49-57 min | Subagents, Codex workbench, trade-offs | 24-27 |
-| 57-60 min | Participant kit, sources, close | 28-30 |
+| 11-21 min | UI audit, empathy map, and CDM lens | 7-11 |
+| 21-35 min | ChatGPT-only workflow, naive browser agents, and the live V1 wall | 12-17 |
+| 35-51 min | Prototype ladder | 18-25 |
+| 51-58 min | Subagents, Codex workbench, trade-offs | 26-29 |
+| 58-60 min | Participant kit, sources, close | 30-32 |
 
 ## Presenter Setup
 
@@ -24,8 +24,8 @@ strategy.
 - Open speaker notes with `s` in Reveal if presenting from the browser.
 - Keep the prototype studio ready at `/#/prototype-studio`.
 - Do not show live Vertec row data unless the room and data path have been
-  explicitly cleared. Use the redacted screenshots and synthetic fixture.
-- For the live demo, use `/#/demo-v1`, click a synthetic row, click `Fill 8h`,
+  explicitly cleared. Use the redacted screenshots and local workshop copy.
+- For the repeatable V1 demo, use `/#/demo-v1`, click a workshop-copy row, click `Fill service row`,
   then stop before it starts pretending to be a product launch.
 
 ## Slide Notes
@@ -41,11 +41,11 @@ Set the promise: the hour starts with diagnosis, moves through a ChatGPT-only
 workflow, then uses Codex and small prototypes to show increasing capability and
 increasing responsibility.
 
-### 2. Today Is Not A Vertec Roast - 2 min
+### 2. What You Will Learn Today - 2 min
 
-Walk through the four beats: fieldwork, first AI pass, prototype ladder, and
-judgement. Make the room safe for sceptics: nobody has to believe in agent
-theatre; every artifact is inspectable.
+Walk through the four beats: name the pain precisely, show why enterprise UI
+fights humans and agents, use cybernetic delivery as a loop, then practise
+agentic engineering without donating judgement to the machine.
 
 Use the phrase "workflow evidence" early. It makes the session feel practical
 rather than ideological.
@@ -65,8 +65,8 @@ Let the redacted screenshot breathe. Point out the main shapes: side navigation,
 week controls, attendance grid, services grid, tiny text, empty space, and
 horizontal scrolling.
 
-Do not dunk on the people who bought or maintain the tool. Say: "This is not a
-disaster. This is normal enterprise software. That is the disturbing part."
+Do not dunk on the people who bought or maintain the tool. The joke is that this
+is normal enterprise software. That is the disturbing part.
 
 ### 5. The Enemy Is Not Time Recording - 2 min
 
@@ -85,7 +85,7 @@ Show the cropped guidance. The key line is that the delivery lead decides. That
 means a correct entry can depend on local context that is not in the UI.
 
 This is the first big agent lesson: "fill 8 hours" is not a complete
-requirement. It omits comments, holidays, absences, half days, and project
+requirement. It omits service Text, holidays, absences, half days, and project
 policy.
 
 ### 7. Thirteen Small Frictions - 3 min
@@ -119,20 +119,39 @@ Ask the room: "Which of these are you on a Friday?" Keep it quick.
 
 ### 10. Cybernetic Delivery - 2 min
 
-Frame this as structured fieldwork. The point is not "try random tools first".
-The point is to observe the loop, find where people compensate for the system,
-prototype a small change, and validate before expanding the boundary.
+Use the Camp template framing, but translate it into workshop language. This is
+not a tool rollout, not a Scrum replacement, and not an AI campaign. It is a way
+to improve how a delivery system learns and adapts.
 
-### 11. ChatGPT, No Codex - 3 min
+The serious line: make artefact flow visible, shorten feedback loops, measure
+the system, and keep humans accountable for judgement.
+
+The less serious line: "Buy a tool and hope morale improves" has already had a
+fair trial. It went about as well as the Vertec date picker.
+
+### 11. CDM Translated For Vertec - 3 min
+
+Walk the room through the two graphics.
+
+Artefact flow: screenshot, DOM slice, network trace, prompt, script, test,
+speaker note. These are the things moving through the system. If they are
+invisible, people compensate with memory and guesswork.
+
+CDM cycle: tools, delivery, experiences, patterns, platform, community. For this
+talk, that becomes: try a tiny helper, observe the wall, capture the lesson,
+turn it into a reusable workshop step, and feed that back into the next
+prototype.
+
+### 12. ChatGPT, No Codex - 3 min
 
 Teach the first mini-workshop. Use a redacted screenshot or a tiny DOM slice.
 Ask ChatGPT to critique from three views: tired human, assistive-tech user, and
 automation script.
 
-Stress the data boundary: no real names, clients, comments, URLs, tokens, or
+Stress the data boundary: no real names, clients, row Text, URLs, tokens, or
 hidden values.
 
-### 12. DOM Slice - 3 min
+### 13. DOM Slice - 3 min
 
 Explain why the snippet is tiny. It is small enough to paste safely and rich
 enough for critique. ChatGPT can help name repetition, missing labels, risky
@@ -140,7 +159,7 @@ assumptions, and acceptance criteria.
 
 The win is not code yet. The win is a better sentence describing the first fix.
 
-### 13. Browser Agent Attempt - 3 min
+### 14. Browser Agent Attempt - 3 min
 
 Tell the story: a browser agent can sometimes grind through the workflow, but it
 inherits the page's confusion. If the page makes humans zoom, scroll, guess, and
@@ -150,9 +169,9 @@ token meter attached.
 Line to use if it fits the room: "A browser agent is a lot of confidence wrapped
 around a mouse cursor."
 
-### 14. The Callback - 2 min
+### 15. The Callback - 2 min
 
-Show the synthetic bank-holiday message. The punchline is:
+Show the bank-holiday callback. The punchline is:
 
 ```text
 The agent did what we asked. That was the problem.
@@ -161,48 +180,66 @@ The agent did what we asked. That was the problem.
 Do not overplay it. The serious lesson is that policy context has to be made
 explicit before an automation boundary moves toward writing data.
 
-### 15. Current Agent Reality - 2 min
+### 16. Live V1 Finding - 3 min
+
+This is where you earn credibility with the sceptics. Say plainly: we tried the
+obvious thing on the signed-in Services page. Text and Hours could be driven
+through the visible grid editor. Project, Phase, and Service type are Vertec
+object-reference fields. Typing a label is not the same as binding the object.
+
+Use the line:
+
+```text
+"Make no mistakes" met a field that was not really a field.
+```
+
+The lesson is not "AI failed, everyone go home". The lesson is that V1 should
+report the wall instead of hallucinating success. V6 exists because the honest
+answer is sometimes API discovery, authentication, permissions, and audit.
+
+### 17. Current Agent Reality - 2 min
 
 Keep this factual and sourced. ChatGPT agent can use a visual browser, apps,
 files, and confirmations. Atlas brings agent mode into the browser with page
 visibility and privacy controls. Those are useful. They also make data and
 permission boundaries more important.
 
-### 16. The Prototype Ladder - 1 min
+### 18. The Prototype Ladder - 1 min
 
 Transition from diagnosis to build. Explain that the ladder is not a maturity
 model where everyone must reach V8. It is a set of stops. The skill is knowing
 where to get off.
 
-### 17. V1 Live Demo - 4 min
+### 19. V1 Live Demo - 4 min
 
-Show the synthetic fixture. Click a row and use the helper. Keep the demo
-deliberately small.
+Show the local workshop copy after explaining that the userscript has already
+been tried against the signed-in Services page. Click a row and use the helper.
+Keep the demo deliberately small.
 
-Say: "This is the first useful button. It does one thing. That makes it
-explainable, reviewable, and easy to throw away."
+Say: "This is a button. Revolutionary. It does one thing, which is why we can
+review it without needing a lie down."
 
-### 18. Why Userscripts - 2 min
+### 20. Why Userscripts - 2 min
 
 Connect console snippet, userscript, harness, and extension. Bring in your
 UchiDb/userscript-compiler story here. The important lesson is taste: not every
 workflow pain needs a six-month platform project.
 
-### 19. V2 And V3 - 2 min
+### 21. V2 And V3 - 2 min
 
-Templates make comment policy visible. Holiday review handles the callback
+Templates make service Text policy visible. Holiday review handles the callback
 problem before it happens. Vacation balance belongs near the decision, not in a
 separate mental tab.
 
 Ask: "What would you want this panel to warn you about before it filled a week?"
 
-### 20. V4 And V5 - 2 min
+### 22. V4 And V5 - 2 min
 
 This is the credibility bit. Tests and packaging are not glamorous, and nobody
 was ever promoted for writing a fixture, but they make the demo shareable. Once
 it becomes extension-shaped, permissions, deployment, and ownership become real.
 
-### 21. V6 And V8 - 2 min
+### 23. V6 And V8 - 2 min
 
 Direct API calls can be the robust path, if policy allows it. MCP turns the same
 idea into chat-native tools. Both need gates: read, draft, validate, confirm,
@@ -211,31 +248,43 @@ write.
 Make clear that bypassing the UI removes accidental friction. We then need to
 add intentional friction in the right places.
 
-### 22. Prototype Studio - 2 min
+For this tenant, the webapp traffic observed during the experiment was
+SignalR/WebSocket-shaped, and a read-only probe of the obvious REST path returned
+404. That is not a blocker for the talk; it is the talk. "Use the API" is
+discovery work, not a spell.
 
-Show the links. Explain that each version uses the same synthetic fixture so
+Add the second live finding: a later attempt to capture a temporary Services
+Text edit hit Vertec's own login page before the grid loaded. That gives the MCP
+story its first real tool: `vertec.checkSession`. Zühlke SSO, Vertec's app
+session, and supported API credentials are separate concerns. Copying browser
+cookies into a server is not "agentic engineering"; it is just making the
+incident report more contemporary.
+
+### 24. Prototype Studio - 2 min
+
+Show the links. Explain that each version uses the same local workshop copy so
 participants can compare boundaries. This makes the demos reproducible and
 safe.
 
-### 23. Architecture - 2 min
+### 25. Architecture - 2 min
 
 Explain the five pieces: userscript UI, Vertec DOM adapter, core rules,
 integrations, tests. This is how the work becomes delegable to agents without
 turning into a blob.
 
-### 24. Evidence Chain - 2 min
+### 26. Evidence Chain - 2 min
 
 Use the "check my commit messages" idea. Git, calendar, tickets, and chat can
-produce a draft comment. The human approves. This is a better request than
+produce draft service Text. The human approves. This is a better request than
 "fill my timesheet" because it starts read-only and produces reviewable text.
 
-### 25. Subagents - 2 min
+### 27. Subagents - 2 min
 
 Frame subagents as a delivery-management pattern. Research, fixtures, scripts,
 holiday rules, tests, docs, and integration can run in parallel. The human lead
 keeps taste, risk calls, and the story.
 
-### 26. Superapp Question - 2 min
+### 28. Superapp Question - 2 min
 
 Ask: "Is Codex signed into everything the future?"
 
@@ -243,23 +292,23 @@ Answer: maybe, but only if "signed in" means scoped tools, permissions,
 confirmations, and traces. The silly version is an assistant with vague
 authority. The useful version is a workbench.
 
-### 27. Pros And Cons - 2 min
+### 29. Pros And Cons - 2 min
 
 Use the table as the decision guide. No approach wins forever. The right rung
 depends on blast radius, maintenance, proof, permissions, and policy.
 
-### 28. Participant Kit - 1 min
+### 30. Participant Kit - 1 min
 
 Point to the handouts and demos. This is what participants can take away and
 adapt.
 
-### 29. Sources - 1 min
+### 31. Sources - 1 min
 
 Mention that the deck follows accessible presentation guidance: large readable
 visuals, consistent structure, speaker notes, and shareable material. The AI
 product claims are linked to current OpenAI pages.
 
-### 30. Close - 1 min
+### 32. Close - 1 min
 
 End with: "Find the hidden integration work."
 

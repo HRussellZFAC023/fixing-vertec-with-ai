@@ -6,7 +6,7 @@ const demos = {
   },
   v2: {
     title: "V2 - Templates",
-    summary: "Apply a local project/comment template to one day or a reviewable week.",
+    summary: "Apply a local Project/Phase/Service type/Text template to one day or a reviewable week.",
     script: "/prototypes/v2/templates-helper.user.js",
   },
   v3: {

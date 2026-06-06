@@ -1,72 +1,123 @@
-# V2: Timesheet Templates And Comments
+# 02 - Templates And Service Text
 
 ## Goal
 
-Turn the repeated "same project, same service type, usually 8 hours, sometimes a required comment" pattern into a reusable local template.
+Turn the repeated "same project, same phase, same service type, usually 8 hours,
+always the right Text" pattern into a local template.
 
-This is the version where the helper becomes more personal, but still not clever enough to be dangerous.
+This is not intelligence. It is a named default with a review button, which is
+already more honest than pretending the human enjoys typing the same thing for
+five days.
 
 ## What Participants Build
 
-- A fictional timesheet template for one current project.
-- A comment template that can be changed per project or lead preference.
-- A short acceptance checklist that proves the helper prepares entries without submitting them.
+- Two local templates: client delivery and internal enablement.
+- A `Fill week` action that drafts five training Services rows.
+- A `Clear` action so nobody mistakes the draft for an act of fate.
+- A checklist for what a human must review before saving.
 
-Runnable demo:
+## Run It
+
+```sh
+npm run dev
+```
+
+Open:
 
 ```text
 http://127.0.0.1:5173/prototypes/runner.html?demo=v2
 ```
 
-## Suggested Prompt/Tool Interaction
+Choose a template and click `Fill week`.
 
-1. Ask the AI to interview you before proposing changes:
+Expected result:
 
-   ```text
-   You are helping improve an internal Vertec timesheet workflow. Ask up to five clarifying questions about repeat entries, comments, holidays, and approval constraints. Do not write code yet.
-   ```
+- Five workday rows receive draft values.
+- Each drafted row has `data-vt-drafted="true"`.
+- Project, Phase, Service type, Hours, and service Text are visible before any
+  human save.
 
-2. Provide only sanitized details:
+## Inspect
 
-   ```text
-   The usual pattern is: [fictional project], [service type], [hours], [comment rule].
-   Exceptions are: [public holiday], [vacation], [sick day], [project switch].
-   Success looks like: [reviewable draft, no auto-submit].
-   Constraints: [browser-only, local data, no production secrets].
-   ```
+Open:
 
-3. Ask for a repeatable output:
+```text
+public/prototypes/v2/templates-helper.user.js
+src/prototypes/v1/vertec-helper.test.ts
+```
 
-   ```text
-   Convert this into a local template design. Include editable defaults, acceptance criteria, and the risks a human must check before using it.
-   ```
+Check:
 
-## Safety/Privacy Notes
+- The `templates` object is local and readable.
+- `applyTemplate()` skips absence and public-holiday rows.
+- `clearDrafts()` resets draft values.
+- No persistence, token, API call, or auto-submit is present.
 
-- Do not paste live Vertec records, client names, employee details, credentials, tokens, screenshots with identifiers, or internal URLs that reveal sensitive context.
-- Sanitize or abstract live Vertec/internal data before using it in any AI tool.
-- Keep the first version low-stakes: process notes, UI labels, fake records, and mock examples are enough.
-- Treat AI output as a draft. A human still owns the decision and verification.
+## Prompt On Screen
 
-## Pros/Cons
+```text
+You are helping design a local Vertec Services template helper.
 
-Pros:
+Ask up to five questions before proposing defaults. Focus on:
+- Project
+- Phase
+- Service type
+- Text required by the project lead
+- Normal hours
+- Exceptions: public holiday, vacation, sick day, project switch
 
-- Helps sceptics see that AI can structure a repeated task without taking control.
-- Works for non-technical participants because it starts with their real admin pattern.
-- Makes project-specific comments and exceptions explicit instead of tribal knowledge.
+Do not ask for live records, client names, credentials, or internal URLs.
+Do not write code yet.
+Make no mistakes, and then assume Vertec will still find something weird.
+```
 
-Cons:
+Then:
 
-- Templates can encode the wrong habit if nobody reviews them.
-- Still needs holiday and absence awareness.
-- Some project leads may require comments that cannot be guessed safely.
+```text
+Convert the answers into a local template design.
 
-## Reproducibility Checklist
+Output:
+- Template fields and editable defaults
+- Which rows are fillable
+- Which rows must be skipped
+- What the helper shows before a human saves
+- Acceptance checks for the fixture
+- Risks a human must review
+```
 
-- [ ] The example contains no live Vertec/internal personal or commercial data.
-- [ ] The template uses fictional or sanitized defaults.
-- [ ] The prompt asks the AI to clarify before solving.
-- [ ] The output includes acceptance criteria a human can test.
-- [ ] The helper prepares a draft but does not submit it.
-- [ ] Participants can explain what they would check before trusting the template.
+## Verification
+
+```sh
+npm run test
+```
+
+Expected result: the v2 test clicks `Fill week`, finds five `[data-vt-row]`
+items, and verifies each drafted workday has `8.00` hours.
+
+## Safety Notes
+
+- Use fictional template names and service Text.
+- Do not encode real client names, commercial terms, rates, or sensitive project
+  notes.
+- A template is a draft. The save button remains a human problem, as tradition
+  demands.
+
+## Pros
+
+- Makes repeat work explicit and reviewable.
+- Exposes service Text policy instead of leaving it in Slack folklore.
+- Teaches that "automation" can mean "prepare a draft".
+
+## Cons
+
+- Bad defaults scale bad habits.
+- Holidays and absences need data, not optimism.
+- Project-specific Text rules can be subtle.
+
+## Checklist
+
+- [ ] Template values are training records, not production payloads.
+- [ ] Fillable and skipped rows are defined.
+- [ ] Draft rows are visibly marked.
+- [ ] The helper can clear local drafts.
+- [ ] Participants can name what they would inspect before saving.

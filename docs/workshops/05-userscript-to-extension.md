@@ -1,96 +1,143 @@
-# V5: From Userscript To Browser Extension
+# 05 - Userscript To Browser Extension
 
 ## Goal
 
-Decide when the helpful little script has outgrown a sticky note and needs packaging, permissions, and adult supervision.
+Decide when a userscript has grown out of "personal helper" and into
+"browser-installed thing that needs review before it starts wearing a blazer".
 
-The demo stays toy-sized: compile a tiny sanitized userscript into an extension-shaped folder people can inspect. It does not need Vertec access. If the packaged helper includes the V3 public bank-holiday fetch, review that visible network behaviour as part of the content-script discussion.
+The lab packages a sanitized userscript into an extension-shaped folder. It does
+not need live Vertec access.
 
 ## What Participants Build
 
-- A migration brief comparing userscript and extension approaches.
-- A permissions list written in plain English.
-- A small risk register for browser automation around Vertec.
-- A local demo output showing how a userscript could be packaged into a browser-extension shape.
+- A migration note: userscript vs extension.
+- A permissions review in plain English.
+- A generated `manifest.json` and `content-script.js`.
+- A checklist for a small internal pilot.
 
-Runnable demo:
+## Run It
+
+```sh
+npm run build:extension
+npm run dev
+```
+
+Open:
 
 ```text
 http://127.0.0.1:5173/prototypes/runner.html?demo=v5
 ```
 
-The real package command is `npm run build:extension`.
+Expected result:
 
-## Suggested Prompt/Tool Interaction
+- `dist-extension/vertec-helper/manifest.json` exists.
+- `dist-extension/vertec-helper/content-script.js` exists.
+- The v5 panel prints the manifest review JSON.
+- Permissions are empty in the demo.
 
-1. Frame the decision:
+## Inspect
 
-   ```text
-   We have a browser-based helper for an internal Vertec workflow. Using the sanitized description below, compare keeping it as a userscript versus turning it into a browser extension.
-   ```
+Open:
 
-2. Ask for a permissions review:
+```text
+scripts/build-extension.mjs
+dist-extension/vertec-helper/manifest.json
+dist-extension/vertec-helper/content-script.js
+public/prototypes/v5/extension-review.user.js
+```
 
-   ```text
-   List the minimum browser permissions an extension might need for this flow. For each permission, explain why it is needed, what could go wrong, and whether there is a safer alternative.
-   ```
+Check:
 
-3. Ask for a migration plan:
+- The generated manifest is Manifest V3.
+- `content_scripts.matches` is narrow.
+- The userscript and extension examples use `https://vertec.zuehlke.com/webapp/*`.
+- The workshop still runs against a local workshop copy; the match pattern is
+  there because this is the real internal target, not because the demo writes
+  live data.
+- There is no `<all_urls>`.
+- There are no powerful permissions unless someone can defend them in front of
+  another adult.
+- If the packaged helper fetches public GOV.UK bank holidays, the request sends
+  no Services row data.
 
-   ```text
-   Produce a staged migration plan: preserve behaviour, isolate Vertec-specific logic, add tests, review permissions, then package for a small pilot.
-   ```
+## Metadata Contrast
 
-4. Connect it to the local demo:
+Userscript shape:
 
-   ```text
-   For a workshop demo, design a local compiler that accepts a small sanitized userscript and writes an extension-style manifest plus content script. Keep the output easy to inspect, and explain which generated files would need human review before use.
-   ```
+```text
+// @match https://vertec.zuehlke.com/webapp/*
+// @grant none
+```
 
-5. Optional facilitator move:
+Extension shape:
 
-- Ask participants to vote on whether each permission is justified.
-- Rewrite any technical permission into a sentence a manager could understand.
-- Open the generated manifest and ask: "Would we approve this permission for a pilot?"
+```json
+{
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["https://vertec.zuehlke.com/webapp/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": []
+}
+```
 
-## Safety/Privacy Notes
+## Prompt On Screen
 
-- Do not include production Vertec URLs, credentials, cookies, internal selectors, or screenshots with identifiable data in prompts.
-- Live Vertec/internal data must be sanitized or abstracted.
-- Browser extensions can see powerful context. Keep permissions narrow and explain them.
-- Pilot with fictional or non-sensitive examples before any real workflow.
-- The local demo should use fictional selectors, fake host names, and toy data only.
-- If the content script fetches public reference data, it must send no page or fixture data and must have a local fallback.
-- Treat generated extension files as draft artefacts. A person still reviews the manifest, permissions, and behaviour.
+```text
+We have a browser userscript for a sanitized Vertec Services helper.
 
-## Pros/Cons
+Compare:
+- Keeping it as a Tampermonkey userscript
+- Packaging it as a Chrome extension content script
 
-Pros:
+For each option, list:
+- Page scope
+- Permissions
+- Update/deployment path
+- Review burden
+- Failure mode
+- Who approves a pilot
 
-- Turns a "clever hack" into something easier to review and support.
-- Makes browser permissions visible instead of mysterious.
-- Creates a useful governance conversation for non-technical stakeholders.
-- Gives AI sceptics something inspectable: files on disk, not just a persuasive chat answer.
-
-Cons:
-
-- Extension packaging adds friction.
-- Review and deployment may involve IT or security teams.
-- A bad extension can create more risk than a simple manual process.
-- A generated manifest can look official even when it still needs careful review.
-
-## Reproducibility Checklist
-
-- [ ] The migration brief names the current behaviour without exposing sensitive details.
-- [ ] Every proposed permission has a plain-English justification.
-- [ ] The plan includes a pilot stage before broader rollout.
-- [ ] The team has identified who approves extension use.
-- [ ] Participants can state when a userscript is still the simpler choice.
-- [ ] The local demo runs without real Vertec data and still works if public reference data is unavailable.
-- [ ] Generated manifest and script output are small enough for participants to read during the workshop.
+Assume the real allowed URL would be:
+https://vertec.zuehlke.com/webapp/*
+Do not use broad host permissions.
+```
 
 ## References
 
-- [Chrome Extensions: Manifest V3](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
+- [Tampermonkey documentation](https://www.tampermonkey.net/documentation.php)
+- [Chrome Extensions: get started](https://developer.chrome.com/docs/extensions/get-started)
 - [Chrome Extensions: content scripts](https://developer.chrome.com/docs/extensions/reference/manifest/content-scripts)
-- [Chrome Extensions: declare permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)
+- [Chrome Extensions: permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)
+
+## Safety Notes
+
+- Never include production credentials, cookies, tokens, or copied Vertec rows in
+  generated extension files.
+- Browser extensions can read powerful page context. Keep the host match narrow.
+- Treat generated extension output as draft review material, not approved
+  software.
+
+## Pros
+
+- Permissions become visible.
+- Packaging and review are repeatable.
+- The script can move toward managed deployment.
+
+## Cons
+
+- Review and IT involvement increase.
+- A bad extension scales risk faster than a bad local note.
+- Manifest files look official even when the idea is still half cooked.
+
+## Checklist
+
+- [ ] Host match is narrow.
+- [ ] Permissions are justified or absent.
+- [ ] Generated files are readable in the workshop.
+- [ ] The pilot approver is named.
+- [ ] Participants can explain when a userscript is still the better answer.

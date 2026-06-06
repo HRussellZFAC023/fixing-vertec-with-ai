@@ -1,74 +1,122 @@
-# V4: Harness With Vite And E2E Tests
+# 04 - Harness With Vite, Vitest, And Playwright
 
 ## Goal
 
-Show how AI can help create a small, local test harness around a Vertec improvement so participants can verify behaviour without touching production.
+Stop accepting "it worked in the chat window" as evidence. Build the small local
+harness that proves a Vertec helper against a local workshop copy.
 
 ## What Participants Build
 
-- A local-only test plan for the chosen flow.
-- A mock data set that resembles the Vertec scenario without exposing real data.
-- An end-to-end checklist for proving the happy path and one or two failure paths.
+- A Vite-served fixture and prototype runner.
+- Vitest/JSDOM checks for userscript behavior.
+- Playwright checks for the browser path.
+- A concise verification contract participants can inspect.
 
-Runnable demo:
+## Run It
+
+```sh
+npm run dev
+```
+
+Open:
 
 ```text
 http://127.0.0.1:5173/prototypes/runner.html?demo=v4
 ```
 
-The real proof command is `npm run check`.
+Click `Show verification contract`.
 
-## Suggested Prompt/Tool Interaction
+Expected result: the panel prints JSON naming the command, fixture, unit tests,
+e2e tests, and checks such as `five workday rows available`.
 
-1. Ask for a testable slice:
+## Commands
 
-   ```text
-   Given this sanitized Vertec workflow, identify the smallest local web prototype we could test with Vite and an end-to-end tool. Do not connect to real Vertec.
-   ```
+Focused unit proof:
 
-2. Ask for mock data:
+```sh
+npm run test
+```
 
-   ```text
-   Create fictional test records for this flow. Include normal, missing-data, and conflict cases. Do not use real names, real clients, or production identifiers.
-   ```
+Full local proof:
 
-3. Ask for E2E scenarios:
+```sh
+npm run check
+```
 
-   ```text
-   Write human-readable end-to-end scenarios for the prototype. Each scenario should say: setup, action, expected result, and what a facilitator should observe.
-   ```
+What `npm run check` does:
 
-4. If using a coding agent later, keep the implementation prompt narrow:
+```text
+vitest run
+node scripts/build-extension.mjs
+vite build && node scripts/copy-docs.mjs
+playwright test
+```
 
-   ```text
-   Implement only the local harness and tests described here. No live APIs, no credentials, no production URLs.
-   ```
+The package script spells this slightly differently, because npm scripts enjoy
+being a tiny pipeline language.
 
-## Safety/Privacy Notes
+## Inspect
 
-- Live Vertec/internal data must be sanitized or abstracted before it becomes a fixture.
-- Local harnesses should use fake records and fake identifiers only.
-- Do not store credentials, cookies, exports, or screenshots from production in the repo.
-- Make sure participants understand that passing local tests does not prove production integration is safe.
+Open:
 
-## Pros/Cons
+```text
+package.json
+vitest.config.ts
+playwright.config.ts
+public/prototypes/v4/harness-report.user.js
+src/prototypes/v1/vertec-helper.test.ts
+tests/e2e/site.spec.ts
+```
 
-Pros:
+Check:
 
-- Turns "the AI says it works" into a thing people can run, break, and rerun.
-- Makes regressions easier to discuss in plain language.
-- Separates "does the idea work?" from "can we safely integrate it?"
+- Vitest runs `src/**/*.test.ts` in Node with JSDOM.
+- Playwright serves the built site at `http://127.0.0.1:5187`.
+- The e2e test enters the iframe and clicks `Fill service row`.
+- The test asserts the visible Services row value, not a private implementation
+  variable.
+- No test needs live Vertec access.
 
-Cons:
+## Prompt On Screen
 
-- A local harness can drift from the real system.
-- E2E tests need maintenance when the prototype changes.
-- Mock data can miss messy real-world cases if nobody reviews it carefully.
+```text
+Given this sanitized Vertec Services helper, design the smallest local harness.
 
-## Reproducibility Checklist
+Use:
+- Vite for the local site
+- Vitest with JSDOM for userscript DOM behavior
+- Playwright for the browser click path
 
-- [ ] The harness plan avoids live Vertec access.
-- [ ] Mock data is fictional and safe to commit.
-- [ ] Scenarios cover happy path, missing data, and an error or conflict.
-- [ ] Expected results are observable by a non-technical participant.
-- [ ] The limits of local testing are stated clearly.
+Output:
+- Fixture file
+- Unit test scenarios
+- E2E scenario
+- Expected command
+- What to inspect when a test fails
+
+Do not connect to live Vertec. Do not use credentials. Do not invent an API.
+```
+
+## Failure Drill
+
+Ask participants where they would look if:
+
+- The helper does not mount: check fixture guard and metadata scope.
+- `Fill service row` does nothing: check selectors and event dispatch.
+- Playwright cannot see the row: check iframe locator and Vite preview port.
+- The fixture passes but production would fail: congratulations, local tests are
+  not prophecy.
+
+## References
+
+- [Vite guide](https://vite.dev/guide/)
+- [Vitest guide](https://vitest.dev/guide/)
+- [Playwright getting started](https://playwright.dev/docs/intro)
+
+## Checklist
+
+- [ ] Harness data is local workshop-copy data.
+- [ ] Unit and e2e tests cover observable behavior.
+- [ ] Commands are explicit.
+- [ ] The harness states what it does not prove.
+- [ ] Participants can trace a failure from browser symptom to file.

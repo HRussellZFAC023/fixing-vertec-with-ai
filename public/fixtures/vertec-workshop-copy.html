@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Synthetic Vertec Fixture</title>
+    <title>Vertec Services Workshop Copy</title>
     <style>
       :root {
         color: #1d252b;
@@ -107,7 +107,7 @@
       .vt-row,
       .vt-grid-header {
         display: grid;
-        grid-template-columns: 94px 190px 130px 120px 82px minmax(240px, 1fr);
+        grid-template-columns: 94px 190px 130px 120px minmax(240px, 1fr) 82px;
       }
 
       .vt-grid-header {
@@ -173,12 +173,33 @@
         margin-bottom: 12px;
         padding: 9px;
       }
+
+      .vt-attendance-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+        padding: 10px;
+      }
+
+      .vt-attendance-grid label {
+        color: #4c606d;
+        display: grid;
+        font-weight: bold;
+        gap: 4px;
+      }
+
+      .vt-attendance-grid input {
+        border: 1px solid #b7c4cd;
+        border-radius: 1px;
+        font: inherit;
+        min-height: 24px;
+      }
     </style>
   </head>
   <body>
     <div class="vt-app">
-      <nav class="vt-sidebar" aria-label="Synthetic Vertec sections">
-        <div class="vt-logo">Synthetic Vertec</div>
+      <nav class="vt-sidebar" aria-label="Vertec sections">
+        <div class="vt-logo">Vertec</div>
         <div class="vt-nav-item" data-active="true">Services</div>
         <div class="vt-nav-item">Expenses</div>
         <div class="vt-nav-item">Activities</div>
@@ -198,95 +219,124 @@
         </div>
 
         <div class="vt-warning">
-          Fixture only: names, projects, balances, and comments are invented for the workshop.
+          Workshop copy: based on the live Services workflow, resettable local data for the room.
         </div>
 
-        <section class="vt-panel vt-timesheet" data-vt-timesheet>
-          <div class="vt-panel-heading">Weekly Table</div>
+        <section class="vt-panel vt-timesheet" data-vt-timesheet data-vt-services>
+          <div class="vt-panel-heading">Services - Weekly Table</div>
           <div class="vt-grid" data-vt-grid>
             <div class="vt-grid-header">
               <div class="vt-cell">Date</div>
               <div class="vt-cell">Project</div>
               <div class="vt-cell">Phase</div>
               <div class="vt-cell">Service type</div>
+              <div class="vt-cell">Text</div>
               <div class="vt-cell">Hours</div>
-              <div class="vt-cell">Comment</div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-01" data-vt-row-kind="workday" data-selected="true">
+            <div
+              class="vt-row"
+              data-vt-row
+              data-vt-services-row
+              data-date="2026-06-01"
+              data-vt-row-kind="workday"
+              data-selected="true"
+            >
               <div class="vt-cell">Mon 01 Jun</div>
               <div class="vt-cell">
-                <select name="project">
+                <select name="project" data-vt-service-field="project">
                   <option value="">Choose...</option>
-                  <option>Client Delivery Project</option>
+                  <option>C34157, Barclaycard Website Re</option>
                   <option>Internal Enablement</option>
                 </select>
               </div>
-              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
-              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
-              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
-              <div class="vt-cell"><input name="comment" /></div>
+              <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+              <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+              <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+              <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-02" data-vt-row-kind="workday">
+            <div class="vt-row" data-vt-row data-vt-services-row data-date="2026-06-02" data-vt-row-kind="workday">
               <div class="vt-cell">Tue 02 Jun</div>
               <div class="vt-cell">
-                <select name="project">
+                <select name="project" data-vt-service-field="project">
                   <option value="">Choose...</option>
-                  <option>Client Delivery Project</option>
+                  <option>C34157, Barclaycard Website Re</option>
                   <option>Internal Enablement</option>
                 </select>
               </div>
-              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
-              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
-              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
-              <div class="vt-cell"><input name="comment" /></div>
+              <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+              <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+              <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+              <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-03" data-vt-row-kind="workday">
+            <div class="vt-row" data-vt-row data-vt-services-row data-date="2026-06-03" data-vt-row-kind="workday">
               <div class="vt-cell">Wed 03 Jun</div>
               <div class="vt-cell">
-                <select name="project">
+                <select name="project" data-vt-service-field="project">
                   <option value="">Choose...</option>
-                  <option>Client Delivery Project</option>
+                  <option>C34157, Barclaycard Website Re</option>
                   <option>Internal Enablement</option>
                 </select>
               </div>
-              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
-              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
-              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
-              <div class="vt-cell"><input name="comment" /></div>
+              <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+              <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+              <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+              <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-04" data-vt-row-kind="workday">
+            <div class="vt-row" data-vt-row data-vt-services-row data-date="2026-06-04" data-vt-row-kind="workday">
               <div class="vt-cell">Thu 04 Jun</div>
               <div class="vt-cell">
-                <select name="project">
+                <select name="project" data-vt-service-field="project">
                   <option value="">Choose...</option>
-                  <option>Client Delivery Project</option>
+                  <option>C34157, Barclaycard Website Re</option>
                   <option>Internal Enablement</option>
                 </select>
               </div>
-              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
-              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
-              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
-              <div class="vt-cell"><input name="comment" /></div>
+              <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+              <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+              <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+              <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-05" data-vt-row-kind="workday">
+            <div class="vt-row" data-vt-row data-vt-services-row data-date="2026-06-05" data-vt-row-kind="workday">
               <div class="vt-cell">Fri 05 Jun</div>
               <div class="vt-cell">
-                <select name="project">
+                <select name="project" data-vt-service-field="project">
                   <option value="">Choose...</option>
-                  <option>Client Delivery Project</option>
+                  <option>C34157, Barclaycard Website Re</option>
                   <option>Internal Enablement</option>
                 </select>
               </div>
-              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
-              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
-              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
-              <div class="vt-cell"><input name="comment" /></div>
+              <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+              <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+              <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+              <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
             </div>
+          </div>
+        </section>
+
+        <section class="vt-panel" data-vt-attendance>
+          <div class="vt-panel-heading">Attendance punch-in fields</div>
+          <div class="vt-attendance-grid">
+            <label>
+              From
+              <input name="from" data-vt-attendance-field="from" inputmode="numeric" />
+            </label>
+            <label>
+              To
+              <input name="to" data-vt-attendance-field="to" inputmode="numeric" />
+            </label>
+            <label>
+              Break
+              <input name="break" data-vt-attendance-field="break" inputmode="numeric" />
+            </label>
+            <label>
+              Difference
+              <input name="difference" data-vt-attendance-field="difference" readonly />
+            </label>
           </div>
         </section>
 

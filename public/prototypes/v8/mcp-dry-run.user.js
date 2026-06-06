@@ -3,7 +3,7 @@
 // @namespace    https://github.com/HRussellZFAC023/fixing-vertec-with-ai
 // @version      0.8.0
 // @description  Workshop demo: chat request to MCP-shaped tool calls with confirmation.
-// @match        https://vertec.example.invalid/*
+// @match        https://vertec.zuehlke.com/webapp/*
 // @grant        none
 // ==/UserScript==
 
@@ -15,15 +15,15 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
-  function isSyntheticFixture() {
+  function isWorkshopCopy() {
     return Boolean(
       document.querySelector("[data-vt-timesheet]") &&
-        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+        document.querySelector(".vt-warning")?.textContent.includes("Workshop copy"),
     );
   }
 
-  if (!isSyntheticFixture()) {
-    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+  if (!isWorkshopCopy()) {
+    console.warn("Vertec workshop helper refused to run outside the local workshop copy.");
     return;
   }
 
@@ -40,8 +40,10 @@
     const draft = workdays.map((row) => ({
       date: row.dataset.date,
       hours: 8,
-      project: "Client Delivery Project",
-      comment: "Project delivery",
+      project: "C34157, Barclaycard Website Re",
+      phase: "10_DELIVERY",
+      serviceType: "003_DAILY RATE",
+      text: "Project delivery",
     }));
 
     return [
@@ -51,15 +53,31 @@
       },
       {
         role: "assistant",
-        content: "I will prepare a draft and stop before any live write.",
+        content: "I will check the Vertec session, prepare a draft, and stop before any live write.",
+      },
+      {
+        tool: "vertec.checkSession",
+        input: {
+          target: "Services",
+          month: monthKey(),
+        },
+        output: {
+          workspaceAccess: "browser-dependent",
+          vertecSession: "workshop-copy-only",
+          canReadServices: true,
+          canWriteServices: false,
+          note: "The live network check showed Vertec can fall back to its own login page; cookie replay is not an MCP auth model.",
+        },
       },
       {
         tool: "vertec.prepareTimesheetDraft",
         input: {
           month: monthKey(),
           defaultHours: 8,
-          project: "Client Delivery Project",
-          commentPolicy: "required",
+          project: "C34157, Barclaycard Website Re",
+          phase: "10_DELIVERY",
+          serviceType: "003_DAILY RATE",
+          textPolicy: "required",
         },
         output: {
           entries: draft,
@@ -75,13 +93,13 @@
         },
         output: {
           ok: true,
-          warnings: ["Synthetic fixture has no real Vertec state.", "Human approval required."],
+          warnings: ["Workshop copy has no real Vertec state.", "Human approval required."],
         },
       },
       {
         tool: "vertec.applyDraft",
         input: {
-          draftId: "synthetic-draft-001",
+          draftId: "workshop-draft-001",
           confirmedByHuman: confirmed,
         },
         output: confirmed

@@ -1,86 +1,172 @@
-# V8: MCP Automation
+# 08 - MCP Automation Dry Run
 
 ## Goal
 
-Show how an agent can be given a toolbelt with labels, locks, and a logbook.
+Show how an agent gets a toolbelt without being handed the building keys.
 
-The demo behaves like an MCP-shaped wrapper around a fictional workflow: tools can inspect synthetic data and propose changes, but the default path is dry-run with human confirmation before anything is applied.
+The lab uses an MCP-shaped transcript over local workshop-copy Services data. Tools
+can read copied rows, prepare a draft, validate it, and stop at confirmation.
+The default state is blocked. Very unromantic. Very good.
 
 ## What Participants Build
 
-- A candidate automation map for one Vertec-related workflow.
-- A boundary list showing what the AI may read, propose, or change.
-- A human approval checkpoint for any action that could affect real records.
-- A local dry-run wrapper that shows proposed tool calls, evidence, and approval prompts against toy data.
+- A boundary map: read-only, draft-only, approval required, never automate.
+- Tool definitions for a Vertec-like Services workflow.
+- A dry-run transcript with proposed changes and human confirmation.
+- A rejection path.
 
-## Suggested Prompt/Tool Interaction
+## Run It
 
-1. Start with boundaries:
+```sh
+npm run dev
+```
 
-   ```text
-   We are exploring MCP-style automation for an internal Vertec workflow. Based on this sanitized workflow, classify each step as: read-only, draft-only, human approval required, or never automate.
-   ```
+Open:
 
-2. Ask for a tool design:
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v8
+```
 
-   ```text
-   Propose a small set of MCP tools for this workflow. For each tool, define input, output, allowed data, blocked data, audit log fields, and when human approval is required.
-   ```
+Expected result:
 
-3. Ask for a dry-run protocol:
+- The first transcript ends with `status: "blocked"`.
+- `vertec.applyDraft` reports `liveWrite: false`.
+- Clicking `Simulate approved apply (no write)` changes the transcript to
+  `would-apply-in-demo-only`, still with `liveWrite: false`.
 
-   ```text
-   Design a dry-run mode that proves the automation path without changing live Vertec data. Include what evidence a facilitator should capture.
-   ```
+## Inspect
 
-4. Connect it to the local demo:
+Open:
 
-   ```text
-   Sketch an MCP-shaped local wrapper for this fictional workflow. Define tools for reading synthetic records, preparing a proposed change, showing a dry-run diff, and asking a human to confirm before apply. Make the confirmation step explicit and easy to decline.
-   ```
+```text
+public/prototypes/v8/mcp-dry-run.user.js
+src/prototypes/v1/vertec-helper.test.ts
+```
 
-5. Optional discussion:
+Check the tool sequence:
 
-- Compare "AI suggests, human acts" with "AI acts after approval".
-- Decide which steps should stay manual even if automation is possible.
-- Ask participants what evidence would make them comfortable approving a dry-run result.
+```text
+vertec.checkSession
+vertec.prepareTimesheetDraft
+vertec.validateDraft
+vertec.applyDraft
+```
 
-## Safety/Privacy Notes
+Check the boundary:
 
-- Live Vertec/internal data must be sanitized or abstracted for workshop prompts and examples.
-- Any tool that can change real records needs explicit human approval, logging, and rollback planning.
-- Do not expose broad credentials to an AI agent. Prefer narrowly scoped tools.
-- Keep sensitive reasoning local when it involves people, payroll, contracts, or commercially sensitive records.
-- The local wrapper should default to dry-run and synthetic data. "Apply" should be a deliberate workshop action, never an invisible side effect.
-- Human confirmation should include the proposed change, why it was suggested, what data was used, and how to cancel.
+- `prepareTimesheetDraft` reads workshop-copy workdays.
+- `checkSession` must pass before any real Vertec read/write tool can run.
+- `validateDraft` checks public holidays and absences in concept.
+- `applyDraft` stays blocked until `confirmedByHuman` is true.
+- Even after simulated confirmation, `liveWrite` remains false.
 
-## Pros/Cons
+## Prompt On Screen
 
-Pros:
+```text
+We are designing MCP-style tools for a sanitized Vertec Services workflow.
 
-- Gives AI a clear operating boundary instead of vague access.
-- Supports audit logs and human approval points.
-- Helps non-technical stakeholders discuss automation in concrete terms.
-- Makes automation inspectable: participants can see the tool call, proposed diff, and approval gate.
+Classify each action:
+- Read-only
+- Draft-only
+- Human approval required
+- Never automate
 
-Cons:
+Then define tools with:
+- Name
+- Inputs
+- Outputs
+- Allowed data
+- Blocked data
+- Auth/session precondition
+- Audit fields
+- Confirmation rule
+- Dry-run behavior
+```
 
-- Requires careful tool design and governance.
-- Bad boundaries can make automation risky at scale.
-- More setup is needed than a prompt template or local prototype.
-- A dry-run wrapper can still create false confidence if the evidence is thin or the approval screen is rushed.
+Then:
 
-## Reproducibility Checklist
+```text
+Write a dry-run transcript for the request:
+"Fill this month with 8h project delivery entries, but only as a draft."
 
-- [ ] The automation map distinguishes read, draft, approve, and block actions.
-- [ ] Every proposed tool has input, output, audit, and approval rules.
-- [ ] Dry-run mode avoids live writes.
-- [ ] Sensitive data categories are named and excluded from prompts.
-- [ ] The team has agreed who can approve real automation.
-- [ ] The local demo shows the proposed change before any apply step.
-- [ ] The human confirmation step can reject or cancel the automation cleanly.
+The transcript must show evidence, proposed entries, validation warnings, and a
+blocked apply step unless a human confirms. No live writes.
+```
+
+## Boundary Example
+
+| Action | Classification | Reason |
+| --- | --- | --- |
+| Check Vertec session/capabilities | Read-only | Blocks if the browser is at Vertec login or API access is unavailable. |
+| Read workshop-copy Services rows | Read-only | Local training records only. |
+| Prepare draft entries | Draft-only | No record mutation. |
+| Validate missing Text/hours | Draft-only | Uses proposed entries. |
+| Apply to live Vertec | Human approval required | Consequence-bearing write. |
+| Infer absence reason | Never automate | Sensitive and unsupported. |
+
+## Auth Boundary
+
+The live experiment found two separate gates:
+
+- Zühlke access/SSO can launch the app.
+- Vertec's own app session can still fall back to a `vertec_username` and
+  `password` login page.
+
+An MCP server should not treat copied browser cookies as infrastructure. A real
+tool boundary needs one of these:
+
+- A supported scoped API/service account.
+- A browser helper that runs in the user's active session and stops at draft.
+- A clear blocked response that says Vertec login/API capability is missing.
+
+Useful tool output:
+
+```json
+{
+  "tool": "vertec.checkSession",
+  "output": {
+    "workspaceAccess": "unknown",
+    "vertecSession": "missing",
+    "canReadServices": false,
+    "canWriteServices": false,
+    "reason": "Vertec app session is at login page"
+  }
+}
+```
+
+That is not a failed demo. That is the demo becoming honest.
 
 ## References
 
-- [Model Context Protocol: authorization](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
-- [Model Context Protocol: security best practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
+- [Model Context Protocol introduction](https://modelcontextprotocol.io/docs/getting-started/intro)
+- [Model Context Protocol authorization](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+- [Model Context Protocol security best practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
+
+## Safety Notes
+
+- Do not expose broad credentials to an agent.
+- Do not replay Vertec browser cookies as a server auth model.
+- Prefer narrow, task-specific tools over generic browser access.
+- Every write-capable tool needs approval, logging, and rollback planning.
+- Dry-run output must include what data was used, what would change, and how to
+  cancel.
+
+## Pros
+
+- Tool boundaries are inspectable.
+- Human confirmation is part of the design, not a guilty afterthought.
+- Non-technical stakeholders can review the transcript.
+
+## Cons
+
+- Bad boundaries scale quickly.
+- More setup is required than a prompt or userscript.
+- A neat transcript can still hide weak evidence if nobody reads it.
+
+## Checklist
+
+- [ ] Actions are classified before tools are designed.
+- [ ] Every tool has input, output, audit, and approval rules.
+- [ ] Dry-run is the default.
+- [ ] Apply can be declined.
+- [ ] Participants can explain what would be forbidden in a real integration.

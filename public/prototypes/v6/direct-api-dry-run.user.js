@@ -3,7 +3,7 @@
 // @namespace    https://github.com/HRussellZFAC023/fixing-vertec-with-ai
 // @version      0.6.0
 // @description  Workshop demo: prepare direct API payloads without touching live Vertec.
-// @match        https://vertec.example.invalid/*
+// @match        https://vertec.zuehlke.com/webapp/*
 // @grant        none
 // ==/UserScript==
 
@@ -15,15 +15,15 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
-  function isSyntheticFixture() {
+  function isWorkshopCopy() {
     return Boolean(
       document.querySelector("[data-vt-timesheet]") &&
-        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+        document.querySelector(".vt-warning")?.textContent.includes("Workshop copy"),
     );
   }
 
-  if (!isSyntheticFixture()) {
-    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+  if (!isWorkshopCopy()) {
+    console.warn("Vertec workshop helper refused to run outside the local workshop copy.");
     return;
   }
 
@@ -42,11 +42,11 @@
       .filter((row) => row.dataset.vtRowKind === "workday")
       .map((row) => ({
         date: row.dataset.date,
-        project: field(row, "project") || "Client Delivery Project",
-        phase: field(row, "phase") || "Delivery",
-        serviceType: field(row, "serviceType") || "Consulting",
+        project: field(row, "project") || "C34157, Barclaycard Website Re",
+        phase: field(row, "phase") || "10_DELIVERY",
+        serviceType: field(row, "serviceType") || "003_DAILY RATE",
         hours: Number(field(row, "hours") || 8),
-        comment: field(row, "comment") || "Project delivery",
+        text: field(row, "text") || "Project delivery",
         mode: "draft-only",
       }));
 
@@ -57,7 +57,11 @@
       month: monthKey(),
       entries,
       audit: {
-        source: "synthetic-fixture",
+        source: "workshop-copy",
+        observedWebappTransport: "SignalR/WebSocket via /uisync, not a friendly POST /timesheet",
+        authBoundary:
+          "Zuehlke access and Vertec app session are separate; cookie replay is not an MCP auth model.",
+        supportedApiAccessRequired: true,
         humanConfirmationRequired: true,
         liveWrite: false,
       },
@@ -72,7 +76,7 @@
       if (!Number.isFinite(entry.hours) || entry.hours <= 0) {
         errors.push(`Invalid hours for ${entry.date}`);
       }
-      if (!entry.comment) errors.push(`Missing comment for ${entry.date}`);
+      if (!entry.text) errors.push(`Missing service Text for ${entry.date}`);
     });
 
     return {
@@ -156,7 +160,7 @@
     root.setAttribute("aria-label", "Vertec helper v6 direct API dry run");
     root.innerHTML = `
       <strong>v6 direct API dry run</strong>
-      <p>Prepare a synthetic request payload without clicking through the UI or writing to a real endpoint.</p>
+      <p>Prepare a local dry-run request payload without clicking through the UI or writing to a real endpoint.</p>
       <button type="button" data-action="dry-run">Build mock API request</button>
       <pre data-v6-output>{ "status": "waiting" }</pre>
     `;

@@ -7,10 +7,19 @@ test("website loads the v1 fixture and userscript helper", async ({ page }) => {
   await page.goto("/#/demo-v1");
 
   const frame = page.frameLocator("#demo-frame");
-  await expect(frame.getByText("v1 timesheet helper")).toBeVisible();
-  await frame.getByRole("button", { name: "Fill 8h" }).click();
+  await expect(frame.getByText("v1 Services helper")).toBeVisible();
+  await frame.getByRole("button", { name: "Fill service row" }).click();
 
-  await expect(frame.locator("[data-vt-row][data-selected='true'] [name='hours']")).toHaveValue("8.00");
+  const selectedRow = frame.locator("[data-vt-row][data-selected='true']");
+  await expect(selectedRow.locator("[data-vt-service-field='project']")).toHaveValue(
+    "C34157, Barclaycard Website Re",
+  );
+  await expect(selectedRow.locator("[data-vt-service-field='phase']")).toHaveValue("10_DELIVERY");
+  await expect(selectedRow.locator("[data-vt-service-field='serviceType']")).toHaveValue("003_DAILY RATE");
+  await expect(selectedRow.locator("[data-vt-service-field='text']")).toHaveValue("Project delivery");
+  await expect(selectedRow.locator("[data-vt-service-field='hours']")).toHaveValue("8.00");
+  await expect(frame.locator("[data-vt-attendance-field='from']")).toHaveValue("");
+  await expect(frame.locator("[data-vt-attendance-field='to']")).toHaveValue("");
 });
 
 test("prototype runner exposes later local demos", async ({ page }) => {

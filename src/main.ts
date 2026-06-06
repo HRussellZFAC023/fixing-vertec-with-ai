@@ -38,6 +38,6 @@ if (frame?.contentDocument?.readyState && frame.contentDocument.readyState !== "
 }
 reloadButton?.addEventListener("click", () => {
   if (frame) {
-    frame.src = "/fixtures/vertec-synthetic.html";
+    frame.src = "/fixtures/vertec-workshop-copy.html";
   }
 });

@@ -3,7 +3,7 @@
 // @namespace    https://github.com/HRussellZFAC023/fixing-vertec-with-ai
 // @version      0.3.0
 // @description  Workshop demo: vacation balance, missing days, and UK public holiday review.
-// @match        https://vertec.example.invalid/*
+// @match        https://vertec.zuehlke.com/webapp/*
 // @grant        none
 // ==/UserScript==
 
@@ -15,15 +15,15 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
-  function isSyntheticFixture() {
+  function isWorkshopCopy() {
     return Boolean(
       document.querySelector("[data-vt-timesheet]") &&
-        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+        document.querySelector(".vt-warning")?.textContent.includes("Workshop copy"),
     );
   }
 
-  if (!isSyntheticFixture()) {
-    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+  if (!isWorkshopCopy()) {
+    console.warn("Vertec workshop helper refused to run outside the local workshop copy.");
     return;
   }
 

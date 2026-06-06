@@ -3,7 +3,7 @@
 // @namespace    https://github.com/HRussellZFAC023/fixing-vertec-with-ai
 // @version      0.2.0
 // @description  Workshop demo: local templates for repeated timesheet entries.
-// @match        https://vertec.example.invalid/*
+// @match        https://vertec.zuehlke.com/webapp/*
 // @grant        none
 // ==/UserScript==
 
@@ -13,12 +13,12 @@
   const ROOT_ID = "vertec-helper-v2";
   const templates = {
     delivery: {
-      label: "Client delivery",
-      project: "Client Delivery Project",
-      phase: "Delivery",
-      serviceType: "Consulting",
+      label: "Barclays delivery",
+      project: "C34157, Barclaycard Website Re",
+      phase: "10_DELIVERY",
+      serviceType: "003_DAILY RATE",
       hours: "8.00",
-      comment: "Project delivery",
+      text: "Project delivery",
     },
     enablement: {
       label: "Internal enablement",
@@ -26,21 +26,21 @@
       phase: "Enablement",
       serviceType: "Internal",
       hours: "8.00",
-      comment: "Workshop preparation",
+      text: "Workshop preparation",
     },
   };
 
   if (document.getElementById(ROOT_ID)) return;
 
-  function isSyntheticFixture() {
+  function isWorkshopCopy() {
     return Boolean(
       document.querySelector("[data-vt-timesheet]") &&
-        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+        document.querySelector(".vt-warning")?.textContent.includes("Workshop copy"),
     );
   }
 
-  if (!isSyntheticFixture()) {
-    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+  if (!isWorkshopCopy()) {
+    console.warn("Vertec workshop helper refused to run outside the local workshop copy.");
     return;
   }
 
@@ -95,9 +95,9 @@
     setValue(field(row, "serviceType"), template.serviceType);
     setValue(field(row, "hours"), template.hours);
 
-    const comment = field(row, "comment");
-    if (comment && !comment.value.trim()) {
-      setValue(comment, template.comment);
+    const text = field(row, "text");
+    if (text && !text.value.trim()) {
+      setValue(text, template.text);
     }
 
     row.dataset.vtDrafted = "true";
@@ -118,9 +118,7 @@
 
   function clearDrafts() {
     rows().forEach((row) => {
-      ["project", "hours", "comment"].forEach((name) => setValue(field(row, name), ""));
-      setValue(field(row, "phase"), "Delivery");
-      setValue(field(row, "serviceType"), "Consulting");
+      ["project", "phase", "serviceType", "hours", "text"].forEach((name) => setValue(field(row, name), ""));
       delete row.dataset.vtDrafted;
     });
     updateStatus("Cleared local draft values.");

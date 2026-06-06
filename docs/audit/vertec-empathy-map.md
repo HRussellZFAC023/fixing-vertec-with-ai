@@ -7,7 +7,7 @@ rates, and real entries.
 ## What people are trying to do
 
 - Record normal working days, often as 8 hours on the current project.
-- Add the right comment when a project lead requires one.
+- Add the right service Text when a project lead requires specific wording.
 - Keep absences and holidays aligned with the services view.
 - Understand remaining vacation balance without digging through separate tabs.
 - Backfill a week or month without making a billing or approval mistake.
@@ -26,7 +26,7 @@ rates, and real entries.
 - "I know what I did, why am I acting as the integration layer?"
 - "Can I copy yesterday without accidentally copying the wrong thing?"
 - "Have I handled holidays and absences, or only services?"
-- "Will this be rejected because the comment is not specific enough?"
+- "Will this be rejected because the service Text is not specific enough?"
 
 ## What they feel
 

@@ -5,17 +5,22 @@ painful enterprise workflows with AI-assisted engineering. The front page is a
 one-hour Reveal.js web deck styled from the provided Zühlke PowerPoint template
 and assets.
 
-The running example is a Vertec-like timesheet flow. The demo fixture is
-synthetic on purpose: it preserves the shape of the workflow without exposing
-client names, people, rates, or real entries.
+The running example is the real Vertec Services workflow, informed by a live
+structural audit and real workshop screenshots. The hands-on demos use a local
+workshop copy so participants can repeat the steps without writing to production
+or publishing sensitive rows.
 
 ## What is included
 
 - A Reveal.js web deck that brings the workshop steps together.
-- Redacted Vertec screenshots and recreated synthetic examples from the source
-  camp deck.
+- Redacted real Vertec screenshots and workflow evidence from the source camp
+  deck.
+- A sanitized live V1 smoke check showing the helper mounted against the real
+  signed-in Services grid.
+- A sanitized network/auth note showing the webapp uses `/uisync` and that
+  Vertec's own app session can still block automation at login.
 - Speaker notes for a 60-minute delivery.
-- A synthetic Vertec-style fixture for safe local demos.
+- A local Vertec Services workshop copy for safe local demos.
 - Runnable local prototypes for v1, v2, v3, v4, v5, v6, and v8.
 - v4 verification and v5 packaging via local commands.
 - Markdown mini-workshops for the progressive versions of the flow.
