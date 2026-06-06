@@ -2,9 +2,9 @@
 
 ## Goal
 
-Move the conversation from browser assistance to direct system integration, showing how AI can help map an API workflow while keeping access, privacy, and governance central.
+Ask the grown-up question: should this stop poking the page and talk to a proper boundary instead?
 
-This version is also moving toward a self-contained local runnable demo. The demo should present a mock direct API backed by synthetic records only, so participants can inspect requests, responses, validation, and failure handling without touching a real Vertec system.
+The demo uses a mock API because the grown-up question is about boundaries before access. Participants inspect requests, responses, validation, and failure handling without touching a real Vertec system.
 
 ## What Participants Build
 
@@ -80,3 +80,8 @@ Cons:
 - [ ] The team has documented who must approve direct API access.
 - [ ] The local demo can be reset to its original synthetic dataset.
 - [ ] Participants can explain what would change before a real API pilot.
+
+## References
+
+- [Vertec REST API](https://www.vertec.com/en-gb/kb/vertec-rest-api/)
+- [Vertec XML interface note](https://www.vertec.com/en-at/kb/vertec-xml-interface/)

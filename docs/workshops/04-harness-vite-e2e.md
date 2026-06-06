@@ -10,6 +10,14 @@ Show how AI can help create a small, local test harness around a Vertec improvem
 - A mock data set that resembles the Vertec scenario without exposing real data.
 - An end-to-end checklist for proving the happy path and one or two failure paths.
 
+Runnable demo:
+
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v4
+```
+
+The real proof command is `npm run check`.
+
 ## Suggested Prompt/Tool Interaction
 
 1. Ask for a testable slice:
@@ -47,7 +55,7 @@ Show how AI can help create a small, local test harness around a Vertec improvem
 
 Pros:
 
-- Gives sceptics something concrete to inspect.
+- Turns "the AI says it works" into a thing people can run, break, and rerun.
 - Makes regressions easier to discuss in plain language.
 - Separates "does the idea work?" from "can we safely integrate it?"
 

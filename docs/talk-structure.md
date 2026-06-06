@@ -29,6 +29,10 @@ Good lines to keep:
 - "Not smart, just humane."
 - "Make the work visible. Then make the improvement boring."
 
+Avoid making the first segment sound like casual experimentation. The stronger
+framing is fieldwork: observe the ritual, name the hidden policy, and only then
+choose whether AI should critique, draft, test, or stay out of the way.
+
 ## Why This Shape Works For Sceptics
 
 - It starts with a familiar pain rather than abstract AI optimism.

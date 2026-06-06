@@ -15,6 +15,18 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
+  function isSyntheticFixture() {
+    return Boolean(
+      document.querySelector("[data-vt-timesheet]") &&
+        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+    );
+  }
+
+  if (!isSyntheticFixture()) {
+    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+    return;
+  }
+
   function rows() {
     return Array.from(document.querySelectorAll("[data-vt-row]"));
   }
@@ -164,8 +176,8 @@
       <strong>v8 MCP-shaped dry run</strong>
       <p class="chat-request">${requestText}</p>
       <div class="v8-actions">
-        <button type="button" data-action="plan">Plan only</button>
-        <button type="button" data-primary data-action="confirm">Confirm demo apply</button>
+        <button type="button" data-action="plan">Decline / keep blocked</button>
+        <button type="button" data-primary data-action="confirm">Simulate approved apply (no write)</button>
       </div>
       <pre data-v8-output>{ "status": "waiting" }</pre>
     `;

@@ -479,17 +479,17 @@ body {
 
 .studio-grid {
   display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(5, 1fr);
-  margin-top: 28px;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 22px;
 }
 
 .studio-grid a {
   border-left: 14px solid var(--z-blue);
   color: var(--z-dark);
   display: grid;
-  min-height: 250px;
-  padding: 24px;
+  min-height: 150px;
+  padding: 16px 18px;
   text-decoration: none;
 }
 
@@ -504,14 +504,14 @@ body {
 .studio-grid strong {
   color: var(--z-purple);
   font-family: var(--z-font-medium);
-  font-size: 64px;
+  font-size: 44px;
   line-height: 0.95;
 }
 
 .studio-grid span {
   align-self: end;
   font-family: var(--z-font-medium);
-  font-size: 30px;
+  font-size: 21px;
   line-height: 1.08;
 }
 

@@ -16,7 +16,7 @@ Runnable demo:
 http://127.0.0.1:5173/prototypes/runner.html?demo=v3
 ```
 
-The demo uses the public [GOV.UK bank holidays JSON](https://www.gov.uk/bank-holidays.json) when available and falls back to a tiny local 2026 list so the exercise still works offline.
+The demo uses invented Vertec records. It may fetch the public [GOV.UK bank holidays JSON](https://www.gov.uk/bank-holidays.json) when available, sends no fixture data with that request, and falls back to a tiny local 2026 list so the exercise still works offline.
 
 ## Suggested Prompt/Tool Interaction
 

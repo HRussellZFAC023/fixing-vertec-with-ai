@@ -14,6 +14,16 @@ const demos = {
     summary: "Add a humane review panel for missing days, vacation balance, and UK public holidays.",
     script: "/prototypes/v3/holiday-review.user.js",
   },
+  v4: {
+    title: "V4 - Harness, Vite, and e2e tests",
+    summary: "Show the local verification harness that makes the workshop demos reproducible.",
+    script: "/prototypes/v4/harness-report.user.js",
+  },
+  v5: {
+    title: "V5 - Userscript to extension",
+    summary: "Review the extension-shaped package and permissions before any real deployment.",
+    script: "/prototypes/v5/extension-review.user.js",
+  },
   v6: {
     title: "V6 - Direct API dry run",
     summary: "Bypass the UI in a mock API draft without writing to a real system.",

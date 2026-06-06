@@ -95,6 +95,26 @@ describe("later prototype helpers", () => {
     expect(output).toContain("\"wouldCreate\": 5");
   });
 
+  it("v4 exposes the local verification contract", async () => {
+    const dom = await loadDemo("public/prototypes/v4/harness-report.user.js");
+    const document = dom.window.document;
+
+    const output = document.querySelector("[data-v4-output]")?.textContent || "";
+    expect(output).toContain("npm run check");
+    expect(output).toContain("five workday rows available");
+    expect(output).toContain("\"ok\": true");
+  });
+
+  it("v5 exposes the extension package review", async () => {
+    const dom = await loadDemo("public/prototypes/v5/extension-review.user.js");
+    const document = dom.window.document;
+
+    const output = document.querySelector("[data-v5-output]")?.textContent || "";
+    expect(output).toContain("npm run build:extension");
+    expect(output).toContain("https://vertec.example.invalid/*");
+    expect(output).toContain("Does the match pattern avoid production Vertec?");
+  });
+
   it("v8 blocks MCP-shaped apply until human confirmation", async () => {
     const dom = await loadDemo("public/prototypes/v8/mcp-dry-run.user.js");
     const document = dom.window.document;

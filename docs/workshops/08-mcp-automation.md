@@ -2,9 +2,9 @@
 
 ## Goal
 
-Introduce Model Context Protocol automation as a controlled way for AI tools to interact with approved systems, while making boundaries, approvals, and observability clear.
+Show how an agent can be given a toolbelt with labels, locks, and a logbook.
 
-This version is also moving toward a self-contained local runnable demo. The demo should behave like an MCP-shaped wrapper around a fictional workflow: tools can inspect synthetic data and propose changes, but the default path is dry-run with human confirmation before anything is applied.
+The demo behaves like an MCP-shaped wrapper around a fictional workflow: tools can inspect synthetic data and propose changes, but the default path is dry-run with human confirmation before anything is applied.
 
 ## What Participants Build
 
@@ -79,3 +79,8 @@ Cons:
 - [ ] The team has agreed who can approve real automation.
 - [ ] The local demo shows the proposed change before any apply step.
 - [ ] The human confirmation step can reject or cancel the automation cleanly.
+
+## References
+
+- [Model Context Protocol: authorization](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
+- [Model Context Protocol: security best practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)

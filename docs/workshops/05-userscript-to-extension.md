@@ -2,9 +2,9 @@
 
 ## Goal
 
-Explore when a quick browser userscript should become a more maintainable browser extension, and how AI can help plan that migration safely.
+Decide when the helpful little script has outgrown a sticky note and needs packaging, permissions, and adult supervision.
 
-This version is also moving toward a self-contained local runnable demo. The demo should not need Vertec access: it can take a tiny example userscript, run a local "compiler" step, and output an extension-style folder with a manifest, content script, and review notes.
+The demo stays toy-sized: compile a tiny sanitized userscript into an extension-shaped folder people can inspect. It does not need Vertec access. If the packaged helper includes the V3 public bank-holiday fetch, review that visible network behaviour as part of the content-script discussion.
 
 ## What Participants Build
 
@@ -12,6 +12,14 @@ This version is also moving toward a self-contained local runnable demo. The dem
 - A permissions list written in plain English.
 - A small risk register for browser automation around Vertec.
 - A local demo output showing how a userscript could be packaged into a browser-extension shape.
+
+Runnable demo:
+
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v5
+```
+
+The real package command is `npm run build:extension`.
 
 ## Suggested Prompt/Tool Interaction
 
@@ -52,6 +60,7 @@ This version is also moving toward a self-contained local runnable demo. The dem
 - Browser extensions can see powerful context. Keep permissions narrow and explain them.
 - Pilot with fictional or non-sensitive examples before any real workflow.
 - The local demo should use fictional selectors, fake host names, and toy data only.
+- If the content script fetches public reference data, it must send no page or fixture data and must have a local fallback.
 - Treat generated extension files as draft artefacts. A person still reviews the manifest, permissions, and behaviour.
 
 ## Pros/Cons
@@ -77,5 +86,11 @@ Cons:
 - [ ] The plan includes a pilot stage before broader rollout.
 - [ ] The team has identified who approves extension use.
 - [ ] Participants can state when a userscript is still the simpler choice.
-- [ ] The local demo runs without network access or real Vertec data.
+- [ ] The local demo runs without real Vertec data and still works if public reference data is unavailable.
 - [ ] Generated manifest and script output are small enough for participants to read during the workshop.
+
+## References
+
+- [Chrome Extensions: Manifest V3](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
+- [Chrome Extensions: content scripts](https://developer.chrome.com/docs/extensions/reference/manifest/content-scripts)
+- [Chrome Extensions: declare permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)

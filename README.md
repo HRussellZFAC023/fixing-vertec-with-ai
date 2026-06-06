@@ -13,8 +13,8 @@ client names, people, rates, or real entries.
 
 - A Reveal.js web deck that brings the workshop steps together.
 - A synthetic Vertec-style fixture for safe local demos.
-- Runnable local prototypes for v1, v2, v3, v6, and v8.
-- v5 packaging via a local extension build command.
+- Runnable local prototypes for v1, v2, v3, v4, v5, v6, and v8.
+- v4 verification and v5 packaging via local commands.
 - Markdown mini-workshops for the progressive versions of the flow.
 - Vitest and Playwright checks so the demos stay reproducible.
 
@@ -34,6 +34,8 @@ Direct prototype links:
 - <http://127.0.0.1:5173/prototypes/runner.html?demo=v1>
 - <http://127.0.0.1:5173/prototypes/runner.html?demo=v2>
 - <http://127.0.0.1:5173/prototypes/runner.html?demo=v3>
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v4>
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v5>
 - <http://127.0.0.1:5173/prototypes/runner.html?demo=v6>
 - <http://127.0.0.1:5173/prototypes/runner.html?demo=v8>
 
@@ -59,6 +61,8 @@ npm run check
 - [05 - Userscript to extension](docs/workshops/05-userscript-to-extension.md)
 - [06 - Direct API calls](docs/workshops/06-direct-api.md)
 - [08 - MCP server and automation](docs/workshops/08-mcp-automation.md)
+- [Facilitator field guide](docs/facilitation/facilitator-field-guide.md)
+- [Subagent facilitation guide](docs/facilitation/subagents.md)
 - [Talk structure notes](docs/talk-structure.md)
 - [Talk pattern sources](docs/research/talk-pattern-sources.md)
 - [Live Vertec structural audit](docs/audit/live-vertec-structural-audit.md)
@@ -67,4 +71,6 @@ npm run check
 
 When working with a real enterprise system, use AI to discuss structure,
 friction, and interaction patterns. Do not paste live client data, personal
-details, rates, comments, or timesheet rows into a public model or a public repo.
+details, rates, comments, timesheet rows, credentials, or internal URLs into any
+AI tool unless the organisation has explicitly approved that data path. Never
+commit them to a public repo.

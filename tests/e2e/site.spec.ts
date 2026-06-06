@@ -23,7 +23,23 @@ test("prototype runner exposes later local demos", async ({ page }) => {
   await frame.getByRole("button", { name: "Fill week" }).click();
   await expect(frame.locator("[data-vt-row][data-vt-drafted='true']")).toHaveCount(5);
 
+  await page.goto("/prototypes/runner.html?demo=v4");
+  await expect(page.getByRole("heading", { name: "V4 - Harness, Vite, and e2e tests" })).toBeVisible();
+  await expect(page.frameLocator("#prototype-frame").getByText("v4 harness report")).toBeVisible();
+
+  await page.goto("/prototypes/runner.html?demo=v5");
+  await expect(page.getByRole("heading", { name: "V5 - Userscript to extension" })).toBeVisible();
+  await expect(page.frameLocator("#prototype-frame").getByText("v5 extension package review")).toBeVisible();
+
   await page.goto("/prototypes/runner.html?demo=v8");
   await expect(page.getByRole("heading", { name: "V8 - MCP-shaped automation" })).toBeVisible();
   await expect(page.frameLocator("#prototype-frame").getByText("v8 MCP-shaped dry run")).toBeVisible();
+});
+
+test("built site serves participant markdown handouts", async ({ page }) => {
+  const response = await page.goto("/docs/facilitation/facilitator-field-guide.md");
+
+  expect(response?.ok()).toBe(true);
+  await expect(page.getByText("Facilitator Field Guide")).toBeVisible();
+  await expect(page.getByText("ChatGPT Without Codex")).toBeVisible();
 });

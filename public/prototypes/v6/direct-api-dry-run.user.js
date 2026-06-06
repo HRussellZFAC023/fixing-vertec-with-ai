@@ -15,6 +15,18 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
+  function isSyntheticFixture() {
+    return Boolean(
+      document.querySelector("[data-vt-timesheet]") &&
+        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+    );
+  }
+
+  if (!isSyntheticFixture()) {
+    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+    return;
+  }
+
   const rows = () => Array.from(document.querySelectorAll("[data-vt-row]"));
 
   function field(row, name) {

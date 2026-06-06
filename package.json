@@ -6,7 +6,7 @@
   "description": "Workshop prototypes for improving a Vertec-like timesheet flow with AI-assisted development.",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-docs.mjs",
     "build:extension": "node scripts/build-extension.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
