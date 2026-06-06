@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixing Vertec With AI - Prototype Runner</title>
+    <link rel="stylesheet" href="/prototypes/runner.css" />
+  </head>
+  <body>
+    <main class="runner-shell">
+      <header class="runner-header">
+        <div>
+          <p class="runner-kicker">Synthetic fixture runner</p>
+          <h1 id="runner-title">Prototype</h1>
+          <p id="runner-summary">Loading...</p>
+        </div>
+        <nav class="runner-nav" aria-label="Prototype versions">
+          <a href="/prototypes/runner.html?demo=v1">V1</a>
+          <a href="/prototypes/runner.html?demo=v2">V2</a>
+          <a href="/prototypes/runner.html?demo=v3">V3</a>
+          <a href="/prototypes/runner.html?demo=v6">V6</a>
+          <a href="/prototypes/runner.html?demo=v8">V8</a>
+        </nav>
+      </header>
+
+      <section class="runner-note" aria-label="Privacy note">
+        These demos use invented records only. They do not connect to live Vertec, do not submit time,
+        and do not send page content to an external service.
+      </section>
+
+      <iframe
+        id="prototype-frame"
+        title="Synthetic Vertec prototype fixture"
+        src="/fixtures/vertec-synthetic.html"
+      ></iframe>
+    </main>
+
+    <script type="module" src="/prototypes/runner.js"></script>
+  </body>
+</html>

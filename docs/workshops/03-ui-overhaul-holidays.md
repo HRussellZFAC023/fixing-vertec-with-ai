@@ -10,6 +10,14 @@ Use AI to redesign a clunky holiday-review flow into a clearer interface concept
 - A simple UI brief for a cleaner review screen.
 - A checklist of the information a reviewer needs before approving or querying a holiday entry.
 
+Runnable demo:
+
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v3
+```
+
+The demo uses the public [GOV.UK bank holidays JSON](https://www.gov.uk/bank-holidays.json) when available and falls back to a tiny local 2026 list so the exercise still works offline.
+
 ## Suggested Prompt/Tool Interaction
 
 1. Start with the human workflow:

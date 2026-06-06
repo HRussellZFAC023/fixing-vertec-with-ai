@@ -12,6 +12,12 @@ This is the version where the helper becomes more personal, but still not clever
 - A comment template that can be changed per project or lead preference.
 - A short acceptance checklist that proves the helper prepares entries without submitting them.
 
+Runnable demo:
+
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v2
+```
+
 ## Suggested Prompt/Tool Interaction
 
 1. Ask the AI to interview you before proposing changes:

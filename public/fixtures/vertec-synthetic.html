@@ -187,7 +187,7 @@
         <div class="vt-nav-item">Working hours</div>
       </nav>
 
-      <main class="vt-main">
+      <main class="vt-main" data-vt-month="2026-06" data-vt-country="england-and-wales">
         <div class="vt-titlebar">
           <h1>Services overview - June 2026</h1>
           <div class="vt-toolbar">
@@ -213,7 +213,7 @@
               <div class="vt-cell">Comment</div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-01" data-selected="true">
+            <div class="vt-row" data-vt-row data-date="2026-06-01" data-vt-row-kind="workday" data-selected="true">
               <div class="vt-cell">Mon 01 Jun</div>
               <div class="vt-cell">
                 <select name="project">
@@ -228,7 +228,7 @@
               <div class="vt-cell"><input name="comment" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-02">
+            <div class="vt-row" data-vt-row data-date="2026-06-02" data-vt-row-kind="workday">
               <div class="vt-cell">Tue 02 Jun</div>
               <div class="vt-cell">
                 <select name="project">
@@ -243,7 +243,7 @@
               <div class="vt-cell"><input name="comment" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-03">
+            <div class="vt-row" data-vt-row data-date="2026-06-03" data-vt-row-kind="workday">
               <div class="vt-cell">Wed 03 Jun</div>
               <div class="vt-cell">
                 <select name="project">
@@ -258,7 +258,7 @@
               <div class="vt-cell"><input name="comment" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-04">
+            <div class="vt-row" data-vt-row data-date="2026-06-04" data-vt-row-kind="workday">
               <div class="vt-cell">Thu 04 Jun</div>
               <div class="vt-cell">
                 <select name="project">
@@ -273,7 +273,7 @@
               <div class="vt-cell"><input name="comment" /></div>
             </div>
 
-            <div class="vt-row" data-vt-row data-date="2026-06-05">
+            <div class="vt-row" data-vt-row data-date="2026-06-05" data-vt-row-kind="workday">
               <div class="vt-cell">Fri 05 Jun</div>
               <div class="vt-cell">
                 <select name="project">
@@ -290,11 +290,17 @@
           </div>
         </section>
 
-        <section class="vt-panel" data-vt-absences>
+        <section
+          class="vt-panel"
+          data-vt-absences
+          data-vt-vacation-allowance="25"
+          data-vt-vacation-used="11.5"
+          data-vt-vacation-planned="2"
+        >
           <div class="vt-panel-heading">Absences and balance</div>
           <div class="vt-summary">
             <div>Vacation remaining<strong data-vt-vacation-balance>11.5 days</strong></div>
-            <div>UK public holidays this month<strong>0</strong></div>
+            <div>UK public holidays this month<strong data-vt-public-holidays-count>0</strong></div>
             <div>Missing work days<strong data-vt-missing-days>5</strong></div>
             <div>Approval status<strong>Not submitted</strong></div>
           </div>

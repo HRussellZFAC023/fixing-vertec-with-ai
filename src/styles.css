@@ -223,6 +223,7 @@ body {
 .z-slide--grid,
 .z-slide--evidence,
 .z-slide--ladder,
+.z-slide--studio,
 .z-slide--workshops,
 .z-slide--pros,
 .z-slide--timeline {
@@ -474,6 +475,44 @@ body {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(2, 1fr);
+}
+
+.studio-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 28px;
+}
+
+.studio-grid a {
+  border-left: 14px solid var(--z-blue);
+  color: var(--z-dark);
+  display: grid;
+  min-height: 250px;
+  padding: 24px;
+  text-decoration: none;
+}
+
+.studio-grid a:nth-child(2n) {
+  border-left-color: var(--z-purple);
+}
+
+.studio-grid a:nth-child(3n) {
+  border-left-color: var(--z-bright-green);
+}
+
+.studio-grid strong {
+  color: var(--z-purple);
+  font-family: var(--z-font-medium);
+  font-size: 64px;
+  line-height: 0.95;
+}
+
+.studio-grid span {
+  align-self: end;
+  font-family: var(--z-font-medium);
+  font-size: 30px;
+  line-height: 1.08;
 }
 
 .workshop-list a {

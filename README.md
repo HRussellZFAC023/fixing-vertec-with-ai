@@ -13,7 +13,8 @@ client names, people, rates, or real entries.
 
 - A Reveal.js web deck that brings the workshop steps together.
 - A synthetic Vertec-style fixture for safe local demos.
-- v1: a basic userscript with Fill, Previous, and Next controls.
+- Runnable local prototypes for v1, v2, v3, v6, and v8.
+- v5 packaging via a local extension build command.
 - Markdown mini-workshops for the progressive versions of the flow.
 - Vitest and Playwright checks so the demos stay reproducible.
 
@@ -27,6 +28,20 @@ npm run dev
 Open the local URL printed by Vite, usually <http://127.0.0.1:5173>.
 
 Use arrow keys to move through the deck. The v1 demo is embedded as a slide.
+
+Direct prototype links:
+
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v1>
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v2>
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v3>
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v6>
+- <http://127.0.0.1:5173/prototypes/runner.html?demo=v8>
+
+Build the local extension demo:
+
+```sh
+npm run build:extension
+```
 
 ## Verify it
 
