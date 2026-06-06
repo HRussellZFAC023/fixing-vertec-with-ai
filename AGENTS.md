@@ -40,11 +40,30 @@ it's nervous framing and relax it.
 
 ## Voice
 
-Dry, concise, keynote-style (think Frontend Masters), subtly sarcastic. Don't
-pretend Vertec is redeemable — it isn't, and that's the joke. Avoid limp AI
-filler ("not smart, just humane", "not X, but Y"). "Make no mistakes" is an
+Dry, concise, keynote style (think Frontend Masters) with the warmth of "How to
+Win Friends and Influence People". Subtly sarcastic. Do not pretend Vertec is
+redeemable; it isn't, and that's the joke. Tell it as a real story: the personal
+journey (JPDB userscripts, ChatGPT Automator, UserScript-Compiler, Yomu) and the
+repeated "can we do better?" question are the spine. "Make no mistakes" is an
 intentional running gag; keep it. Prefer real screenshots/assets already in
-`public/assets/` over invented ones — never fabricate a screenshot.
+`public/assets/` over invented ones; never fabricate a screenshot.
+
+Ground everything in reality: how people actually work and actually prompt. No
+ceremony, no rubrics, no idealized workshop scaffolding. The repo is a takeaway,
+not a lecture.
+
+### Humanizer checklist (apply to every slide and doc)
+
+From the "Signs of AI writing" guide. The prose must pass all of this:
+
+- No em dashes or en dashes. Use a period, comma, colon, or parentheses.
+- No "it's not X, it's Y" or "not only ... but" negative parallelism.
+- No rule-of-three padding ("innovation, inspiration, and insights").
+- Prefer "is/are/has" over copula avoidance ("serves as", "boasts", "represents").
+- No boldface-header bullet lists, no emojis, no curly quotes, no Title Case headings.
+- No significance inflation ("marks a pivotal moment", "stands as a testament").
+- No filler ("in order to", "it is important to note") or signposting ("let's dive in").
+- Vary sentence length. Keep concrete, specific detail. Sound like a person talking.
 
 ## Don't break
 
