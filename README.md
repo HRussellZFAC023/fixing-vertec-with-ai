@@ -17,6 +17,8 @@ or publishing sensitive rows.
   deck.
 - A sanitized live V1 smoke check showing the helper mounted against the real
   signed-in Services grid.
+- A sanitized network/auth note showing the webapp uses `/uisync` and that
+  Vertec's own app session can still block automation at login.
 - Speaker notes for a 60-minute delivery.
 - A local Vertec Services workshop copy for safe local demos.
 - Runnable local prototypes for v1, v2, v3, v4, v5, v6, and v8.

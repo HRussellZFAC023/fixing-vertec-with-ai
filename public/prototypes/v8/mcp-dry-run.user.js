@@ -53,7 +53,21 @@
       },
       {
         role: "assistant",
-        content: "I will prepare a draft and stop before any live write.",
+        content: "I will check the Vertec session, prepare a draft, and stop before any live write.",
+      },
+      {
+        tool: "vertec.checkSession",
+        input: {
+          target: "Services",
+          month: monthKey(),
+        },
+        output: {
+          workspaceAccess: "browser-dependent",
+          vertecSession: "workshop-copy-only",
+          canReadServices: true,
+          canWriteServices: false,
+          note: "The live network check showed Vertec can fall back to its own login page; cookie replay is not an MCP auth model.",
+        },
       },
       {
         tool: "vertec.prepareTimesheetDraft",

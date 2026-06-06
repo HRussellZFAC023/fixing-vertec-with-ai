@@ -46,6 +46,7 @@ src/prototypes/v1/vertec-helper.test.ts
 Check the tool sequence:
 
 ```text
+vertec.checkSession
 vertec.prepareTimesheetDraft
 vertec.validateDraft
 vertec.applyDraft
@@ -54,6 +55,7 @@ vertec.applyDraft
 Check the boundary:
 
 - `prepareTimesheetDraft` reads workshop-copy workdays.
+- `checkSession` must pass before any real Vertec read/write tool can run.
 - `validateDraft` checks public holidays and absences in concept.
 - `applyDraft` stays blocked until `confirmedByHuman` is true.
 - Even after simulated confirmation, `liveWrite` remains false.
@@ -75,6 +77,7 @@ Then define tools with:
 - Outputs
 - Allowed data
 - Blocked data
+- Auth/session precondition
 - Audit fields
 - Confirmation rule
 - Dry-run behavior
@@ -94,11 +97,44 @@ blocked apply step unless a human confirms. No live writes.
 
 | Action | Classification | Reason |
 | --- | --- | --- |
+| Check Vertec session/capabilities | Read-only | Blocks if the browser is at Vertec login or API access is unavailable. |
 | Read workshop-copy Services rows | Read-only | Local training records only. |
 | Prepare draft entries | Draft-only | No record mutation. |
 | Validate missing Text/hours | Draft-only | Uses proposed entries. |
 | Apply to live Vertec | Human approval required | Consequence-bearing write. |
 | Infer absence reason | Never automate | Sensitive and unsupported. |
+
+## Auth Boundary
+
+The live experiment found two separate gates:
+
+- Zühlke access/SSO can launch the app.
+- Vertec's own app session can still fall back to a `vertec_username` and
+  `password` login page.
+
+An MCP server should not treat copied browser cookies as infrastructure. A real
+tool boundary needs one of these:
+
+- A supported scoped API/service account.
+- A browser helper that runs in the user's active session and stops at draft.
+- A clear blocked response that says Vertec login/API capability is missing.
+
+Useful tool output:
+
+```json
+{
+  "tool": "vertec.checkSession",
+  "output": {
+    "workspaceAccess": "unknown",
+    "vertecSession": "missing",
+    "canReadServices": false,
+    "canWriteServices": false,
+    "reason": "Vertec app session is at login page"
+  }
+}
+```
+
+That is not a failed demo. That is the demo becoming honest.
 
 ## References
 
@@ -109,6 +145,7 @@ blocked apply step unless a human confirms. No live writes.
 ## Safety Notes
 
 - Do not expose broad credentials to an agent.
+- Do not replay Vertec browser cookies as a server auth model.
 - Prefer narrow, task-specific tools over generic browser access.
 - Every write-capable tool needs approval, logging, and rollback planning.
 - Dry-run output must include what data was used, what would change, and how to

@@ -67,6 +67,35 @@ Sanitized result:
 No live row values, project values, rates, fees, or service Text were copied into
 this repository. The smoke check did not click a live write path.
 
+## Live Network/Auth Check
+
+A later attempt tried to capture a temporary Services `Text` edit and immediate
+restore while recording only sanitized network metadata. That attempt did not
+reach the Services grid. It landed on `Vertec Web App Login`.
+
+Sanitized result:
+
+- The request reached `vertec.zuehlke.com/webapp/`, not the Workspace ONE launch
+  URL.
+- Vertec served its own login page with `vertec_username`, `password`, and
+  `save_credentials` fields.
+- The login page loaded Vertec assets including `login.css` and `autologin.js`.
+- No `/uisync/connect` WebSocket was opened during that attempt.
+- No edit frame, POST body, row value, service Text, token, cookie, rate, fee, or
+  project data was stored.
+
+Implication: replaying browser cookies is not a reliable automation strategy.
+There are at least two boundaries to design for:
+
+1. Zühlke access/SSO launches the Vertec application.
+2. Vertec's own application session decides whether the Services grid is usable.
+
+For MCP or direct API work, the first tool should be a session/capability check,
+not `applyDraft`. If the system is at the Vertec login page, the correct output
+is blocked with instructions for a supported auth path. This is not a UX nicety;
+it is the difference between engineering and stealing a biscuit from your own
+browser.
+
 ## Privacy Note
 
 The audit intentionally did not preserve live text content beyond known generic

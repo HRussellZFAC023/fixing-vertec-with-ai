@@ -62,8 +62,32 @@ Live discovery from the workshop account:
 - A read-only probe of the documented REST base path returned `404` on this
   installation, which likely means the REST web service is not enabled at that
   URL here.
-- Translation: "use the API" is a discovery task, not a magic spell. Make no
-  mistakes, and then still check the tenant.
+- A later attempt to capture a temporary Services `Text` edit did not reach the
+  Services grid. Vertec served its own login page with `vertec_username`,
+  `password`, and `save_credentials` fields instead.
+- Translation: "use the API" is a discovery task, not a magic spell. "Reuse the
+  browser cookies" is also not a plan. Make no mistakes, and then still check
+  the tenant.
+
+## Auth Reality
+
+The live system has at least two gates:
+
+| Gate | What It Proves | Why It Matters |
+| --- | --- | --- |
+| Zühlke access / SSO launch | The user can reach the Vertec app entry point. | This is not the same as an active Vertec app session. |
+| Vertec app session | The Services grid is loaded and `/uisync` can connect. | Without this, automation is staring at a login form in a nice suit. |
+| Supported API credential | A service/API caller is allowed to read or write records. | MCP should not scrape private browser cookies and call that architecture. |
+
+For a real pilot, the integration should ask system owners which supported
+surface exists:
+
+- REST web service enabled for a scoped technical user.
+- XML/SOAP-style interface if that is the supported installation path.
+- A browser helper that stays human-confirmed and never pretends it is an API.
+
+The demo therefore uses a dry-run contract. It shows the shape of the request a
+proper integration would need, not the captured webapp transport.
 
 ## Prompt On Screen
 
@@ -117,6 +141,9 @@ No live endpoints, no credentials, no copied payloads.
 - System owners approve real API access.
 - Browser helpers and API integrations have different risk profiles. Do not
   smuggle one into the other because the mock looked tidy.
+- Do not store or replay `vertec_auth_token`, `vertec_session_id`, or access
+  gateway cookies as the basis of an MCP server. That is how a demo becomes a
+  security incident wearing a lanyard.
 
 ## Pros
 

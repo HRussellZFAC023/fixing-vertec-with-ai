@@ -253,6 +253,13 @@ SignalR/WebSocket-shaped, and a read-only probe of the obvious REST path returne
 404. That is not a blocker for the talk; it is the talk. "Use the API" is
 discovery work, not a spell.
 
+Add the second live finding: a later attempt to capture a temporary Services
+Text edit hit Vertec's own login page before the grid loaded. That gives the MCP
+story its first real tool: `vertec.checkSession`. Zühlke SSO, Vertec's app
+session, and supported API credentials are separate concerns. Copying browser
+cookies into a server is not "agentic engineering"; it is just making the
+incident report more contemporary.
+
 ### 24. Prototype Studio - 2 min
 
 Show the links. Explain that each version uses the same local workshop copy so

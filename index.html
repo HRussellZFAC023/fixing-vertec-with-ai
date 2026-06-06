@@ -585,12 +585,12 @@ npm run test:e2e
             <article>
               <span>V6</span>
               <strong>Direct API draft</strong>
-              <p>Stable workflow, if the tenant exposes the API and audit exists.</p>
+              <p>Stable workflow, if the tenant exposes a supported API. The webapp itself is `/uisync`, not a friendly POST.</p>
             </article>
             <article>
               <span>V8</span>
               <strong>MCP wrapper</strong>
-              <p>Chat-native tool calls with dry-run output and confirmation.</p>
+              <p>Chat-native tools start with session checks. Vertec login is not infrastructure.</p>
             </article>
           </div>
           <div class="approval-strip">
@@ -606,8 +606,9 @@ npm run test:e2e
             remove the accidental friction of the UI. That means we must add intentional friction:
             dry runs, diffs, source citations, confirmations, logs, and permission scopes. In the
             live capture, the webapp used /uisync SignalR/WebSocket traffic, and the documented REST
-            path returned 404 in a read-only probe. So "just use the API" is discovery work, not a
-            spell.
+            path returned 404 in a read-only probe. A later edit-capture attempt reached Vertec's own
+            login page instead of the Services grid. So "just use the API" is discovery work, not a
+            spell, and "reuse my browser cookies" is how demos grow teeth.
           </aside>
         </section>
 

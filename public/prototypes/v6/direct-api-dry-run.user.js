@@ -58,6 +58,10 @@
       entries,
       audit: {
         source: "workshop-copy",
+        observedWebappTransport: "SignalR/WebSocket via /uisync, not a friendly POST /timesheet",
+        authBoundary:
+          "Zuehlke access and Vertec app session are separate; cookie replay is not an MCP auth model.",
+        supportedApiAccessRequired: true,
         humanConfirmationRequired: true,
         liveWrite: false,
       },

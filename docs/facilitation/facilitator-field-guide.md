@@ -190,6 +190,10 @@ Live Vertec finding to mention:
 - The HAR captured `boot/index.js` and `/uisync` SignalR/WebSocket traffic, not a
   neat REST write request. A read-only probe of the documented REST base path
   returned `404` on this tenant.
+- A later temporary-edit capture landed on Vertec's own login page rather than
+  the Services grid. That means MCP must check session/capabilities before
+  reading or drafting, and copied browser cookies are not a supportable auth
+  model.
 - That is the running joke and the lesson: "make no mistakes" is not enough
   when the system hides the structure.
 
