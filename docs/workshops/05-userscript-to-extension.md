@@ -5,7 +5,7 @@
 Decide when a userscript has grown out of "personal helper" and into
 "browser-installed thing that needs review before it starts wearing a blazer".
 
-The lab packages a sanitized userscript into an extension-shaped folder. It does
+The lab packages a userscript into an extension-shaped folder. It does
 not need live Vertec access.
 
 ## What Participants Build
@@ -57,8 +57,8 @@ Check:
 - There is no `<all_urls>`.
 - There are no powerful permissions unless someone can defend them in front of
   another adult.
-- If the packaged helper fetches public GOV.UK bank holidays, the request sends
-  no Services row data.
+- If the packaged helper fetches public GOV.UK bank holidays, that's the only
+  thing the request needs to send.
 
 ## Metadata Contrast
 
@@ -88,7 +88,7 @@ Extension shape:
 ## Prompt On Screen
 
 ```text
-We have a browser userscript for a sanitized Vertec Services helper.
+We have a browser userscript for a Vertec Services helper.
 
 Compare:
 - Keeping it as a Tampermonkey userscript
@@ -114,10 +114,8 @@ Do not use broad host permissions.
 - [Chrome Extensions: content scripts](https://developer.chrome.com/docs/extensions/reference/manifest/content-scripts)
 - [Chrome Extensions: permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)
 
-## Safety Notes
+## Notes
 
-- Never include production credentials, cookies, tokens, or copied Vertec rows in
-  generated extension files.
 - Browser extensions can read powerful page context. Keep the host match narrow.
 - Treat generated extension output as draft review material, not approved
   software.

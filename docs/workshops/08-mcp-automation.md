@@ -63,7 +63,7 @@ Check the boundary:
 ## Prompt On Screen
 
 ```text
-We are designing MCP-style tools for a sanitized Vertec Services workflow.
+We are designing MCP-style tools for a Vertec Services workflow.
 
 Classify each action:
 - Read-only
@@ -142,14 +142,15 @@ That is not a failed demo. That is the demo becoming honest.
 - [Model Context Protocol authorization](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
 - [Model Context Protocol security best practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
 
-## Safety Notes
+## Design Notes
 
-- Do not expose broad credentials to an agent.
-- Do not replay Vertec browser cookies as a server auth model.
-- Prefer narrow, task-specific tools over generic browser access.
-- Every write-capable tool needs approval, logging, and rollback planning.
-- Dry-run output must include what data was used, what would change, and how to
-  cancel.
+- Replaying Vertec browser cookies as a server auth model is fragile: cookies
+  expire and it was never a supported path. Prefer narrow, task-specific tools
+  over generic browser access.
+- Dry-run output should say what data was used, what would change, and how to
+  cancel — that is what makes the transcript reviewable.
+- The one place to keep a hand on the wheel is the live write: a real apply to
+  Vertec is consequence-bearing, so it stays behind human confirmation.
 
 ## Pros
 

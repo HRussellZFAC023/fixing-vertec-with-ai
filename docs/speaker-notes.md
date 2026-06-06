@@ -23,8 +23,8 @@ strategy.
 - Open the deck at `http://127.0.0.1:5173/`.
 - Open speaker notes with `s` in Reveal if presenting from the browser.
 - Keep the prototype studio ready at `/#/prototype-studio`.
-- Do not show live Vertec row data unless the room and data path have been
-  explicitly cleared. Use the redacted screenshots and local workshop copy.
+- Show real Vertec rows and screenshots freely. The local workshop copy keeps the
+  demo repeatable across machines.
 - For the repeatable V1 demo, use `/#/demo-v1`, click a workshop-copy row, click `Fill service row`,
   then stop before it starts pretending to be a product launch.
 
@@ -61,7 +61,7 @@ acts.
 
 ### 4. The Vertec Interface - 2 min
 
-Let the redacted screenshot breathe. Point out the main shapes: side navigation,
+Let the screenshot breathe. Point out the main shapes: side navigation,
 week controls, attendance grid, services grid, tiny text, empty space, and
 horizontal scrolling.
 
@@ -144,17 +144,14 @@ prototype.
 
 ### 12. ChatGPT, No Codex - 3 min
 
-Teach the first mini-workshop. Use a redacted screenshot or a tiny DOM slice.
-Ask ChatGPT to critique from three views: tired human, assistive-tech user, and
-automation script.
-
-Stress the data boundary: no real names, clients, row Text, URLs, tokens, or
-hidden values.
+Teach the first mini-workshop. Paste a real screenshot or a tiny DOM slice from
+your own Services page. Ask ChatGPT to critique from three views: tired human,
+assistive-tech user, and automation script.
 
 ### 13. DOM Slice - 3 min
 
-Explain why the snippet is tiny. It is small enough to paste safely and rich
-enough for critique. ChatGPT can help name repetition, missing labels, risky
+Explain why the snippet is tiny. It is small enough to read in one screen and
+rich enough for critique. ChatGPT can help name repetition, missing labels, risky
 assumptions, and acceptance criteria.
 
 The win is not code yet. The win is a better sentence describing the first fix.
@@ -263,8 +260,8 @@ incident report more contemporary.
 ### 24. Prototype Studio - 2 min
 
 Show the links. Explain that each version uses the same local workshop copy so
-participants can compare boundaries. This makes the demos reproducible and
-safe.
+participants can compare boundaries. This makes the demos reproducible across
+machines.
 
 ### 25. Architecture - 2 min
 

@@ -66,7 +66,7 @@ Ask up to five questions before proposing defaults. Focus on:
 - Normal hours
 - Exceptions: public holiday, vacation, sick day, project switch
 
-Do not ask for live records, client names, credentials, or internal URLs.
+Paste in a real row from your own current-month timesheet if it helps.
 Do not write code yet.
 Make no mistakes, and then assume Vertec will still find something weird.
 ```
@@ -94,11 +94,10 @@ npm run test
 Expected result: the v2 test clicks `Fill week`, finds five `[data-vt-row]`
 items, and verifies each drafted workday has `8.00` hours.
 
-## Safety Notes
+## Notes
 
-- Use fictional template names and service Text.
-- Do not encode real client names, commercial terms, rates, or sensitive project
-  notes.
+- Use your own real projects and service Text. That is the point.
+- Apply normal judgement to genuinely sensitive client contract terms or rates.
 - A template is a draft. The save button remains a human problem, as tradition
   demands.
 
@@ -116,7 +115,7 @@ items, and verifies each drafted workday has `8.00` hours.
 
 ## Checklist
 
-- [ ] Template values are training records, not production payloads.
+- [ ] Template values reflect your own real timesheet patterns.
 - [ ] Fillable and skipped rows are defined.
 - [ ] Draft rows are visibly marked.
 - [ ] The helper can clear local drafts.

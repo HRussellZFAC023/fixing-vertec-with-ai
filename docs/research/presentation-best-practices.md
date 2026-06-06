@@ -32,7 +32,8 @@ teachable.
 
 - [OpenAI Academy: Working with files in ChatGPT](https://openai.com/academy/working-with-files/)
   - Used for the ChatGPT-only exercise: participants can bring small supporting
-    artifacts into chat, such as a redacted screenshot, PDF, or DOM snippet.
+    artifacts into chat, such as a screenshot, PDF, or DOM snippet from their own
+    Vertec timesheet.
 
 - [OpenAI Help: ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent)
   - Used to keep browser-agent claims current. The deck reflects that agent mode
@@ -54,7 +55,7 @@ teachable.
 
 ## Design Decisions
 
-- Use redacted screenshots from the source PowerPoint as proof objects instead
+- Use real screenshots from the source PowerPoint as proof objects instead
   of generic diagrams.
 - Keep slide text short and put the real explanation in speaker notes and
   markdown handouts.

@@ -33,7 +33,6 @@ Expected result:
 - If the public fetch fails, it falls back to a local 2026 list.
 
 The demo may fetch [GOV.UK bank holidays JSON](https://www.gov.uk/bank-holidays.json).
-It sends no fixture row data with that request.
 
 ## Inspect
 
@@ -55,7 +54,7 @@ Check:
 ## Prompt On Screen
 
 ```text
-We are improving a sanitized Vertec month-review flow.
+We are improving a Vertec month-review flow.
 
 The user needs to compare:
 - Services rows with hours
@@ -93,11 +92,9 @@ balance, and text mentioning UK public holidays.
 
 ## Safety Notes
 
-- Do not use live absence records, medical details, team-capacity notes, or real
-  names.
-- Do not ask a model to infer why somebody was absent.
-- Policy interpretation belongs to the organisation. The panel can point; it
-  cannot bless.
+- Your own timesheet is fair game. Keep colleagues' absence *reasons* (the HR
+  bits) out of it, and remember the panel can point but not bless: policy
+  interpretation still belongs to the organisation.
 
 ## Pros
 
@@ -115,6 +112,5 @@ balance, and text mentioning UK public holidays.
 
 - [ ] Missing Services, absences, balance, and public holidays are separated.
 - [ ] External fetch behavior is visible and has a fallback.
-- [ ] Sensitive people data is excluded.
 - [ ] Unsupported assumptions are named.
 - [ ] Participants know what needs stakeholder approval.

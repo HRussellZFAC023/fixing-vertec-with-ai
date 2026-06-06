@@ -137,6 +137,39 @@
           </aside>
         </section>
 
+        <section class="z-slide z-slide--source">
+          <div>
+            <p class="kicker">Why drag AI into this?</p>
+            <h2>To get our evenings back.</h2>
+          </div>
+          <div class="source-grid">
+            <article>
+              <strong>Catch my mistakes</strong>
+              <p>Booked 8 hours on a bank holiday? Flag it before my people-lead does.</p>
+            </article>
+            <article>
+              <strong>Do the boring parts</strong>
+              <p>The repeated rows, the day-to-hours maths, the holiday arithmetic on another tab.</p>
+            </article>
+            <article>
+              <strong>Remember what I did</strong>
+              <p>It is already in my commits, calendar, and tickets. I should not re-derive Tuesday.</p>
+            </article>
+          </div>
+          <p class="quiet">
+            And, yes: token-maxxing. If the tokens are sitting there, spending them so I never touch
+            this grid again is a deeply respectable use of company resources.
+          </p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            From the source deck: as a Zühlke engineer I want AI to check my errors, automate the
+            repetitive work, remember what I did, and do the holiday day/hours maths, so I can go
+            home early, cook, study, enjoy my holidays, and ideally get a profit share. The job here
+            is not cleverness; it is giving us our evenings back. Ask the room for their own funniest
+            reason to want it.
+          </aside>
+        </section>
+
         <section class="z-slide z-slide--policy">
           <div class="slide-heading slide-heading--compact">
             <p class="kicker">Hidden policy</p>
@@ -304,13 +337,13 @@
             <p class="kicker">Step zero: ChatGPT, no Codex</p>
             <h2>Paste evidence. Ask for critique.</h2>
             <p>
-              Start with a redacted screenshot or tiny DOM slice. Ask ChatGPT to separate evidence
-              from guesses, then propose the smallest requirement.
+              Take a screenshot or grab a slice of the DOM. It is your own timesheet on a
+              Zühlke-approved tool, so just paste it in. Ask ChatGPT to separate evidence from
+              guesses, then propose the smallest requirement.
             </p>
           </div>
           <pre><code data-trim>
-I am reviewing a sanitized internal UI.
-No real names, clients, URLs, or row data are included.
+Here is a Vertec Services row from my own timesheet.
 
 Make no mistakes.
 
@@ -472,23 +505,24 @@ Then propose the first tiny helper.
         <section class="z-slide z-slide--chapter">
           <img src="/assets/zuehlke/light-trails.jpeg" alt="" aria-hidden="true" />
           <div>
-            <p class="kicker">Now build</p>
-            <h2>The prototype ladder</h2>
-            <p>Capability only earns its place when evidence and control move with it.</p>
+            <p class="kicker">The question we keep asking</p>
+            <h2>Can we do better?</h2>
+            <p>Not "can AI click it for us?" More like: can we make the work visible, safer, and less insulting to everyone involved?</p>
           </div>
           <aside class="notes">
             Timing: 1 minute.
-            This is the turn from diagnosis to engineering. Say that the versions are deliberately
-            uneven: some are throwaway, some are product-shaped, some are governance-shaped. The
-            learning is choosing the right rung, not worshipping the top rung.
+            This is the turn from diagnosis into the chronological journey. The repeated question is
+            "can we do better?" It starts with browser agents, then console scripts, then userscripts,
+            then something shareable, then something governed. Keep it fast. This is not a product
+            roadmap. It is a way to think.
           </aside>
         </section>
 
         <section id="demo-v1" class="z-slide z-slide--demo">
           <div class="demo-topline">
             <div>
-              <p class="kicker">V1: real userscript</p>
-              <h2>A button. Revolutionary.</h2>
+              <p class="kicker">First useful cut</p>
+              <h2>Fill. Next. Fill. Next.</h2>
             </div>
             <button id="reload-demo" type="button">Reload</button>
           </div>
@@ -499,98 +533,137 @@ Then propose the first tiny helper.
           ></iframe>
           <aside class="notes">
             Timing: 4 minutes.
-            Demo the same userscript shape on the local workshop copy, then show the live Vertec
-            finding on the previous slide. The script was tried against signed-in Vertec; the copy is
-            only so everyone in the room can repeat the motion without writing to production. The
-            restraint is the point: no save, no API call, no pretend intelligence.
+            Demo the same userscript shape on the local workshop copy, after saying it was also tried
+            against signed-in Vertec. The copy is there so the room can repeat the movement without
+            writing to production. This is deliberately unglamorous: one button that turns a repeated
+            manual motion into a visible thing we can inspect.
           </aside>
         </section>
 
         <section class="z-slide z-slide--userscript">
           <div class="slide-heading">
-            <p class="kicker">Why userscripts?</p>
-            <h2>A power-user bridge between complaint and product.</h2>
+            <p class="kicker">Before agents were fashionable</p>
+            <h2>"Great, but could be better" was already enough.</h2>
           </div>
           <div class="bridge-ladder">
-            <article><span>1</span><strong>Console snippet</strong><p>Proves the page can be helped.</p></article>
-            <article><span>2</span><strong>Userscript</strong><p>Runs locally, scoped to the page.</p></article>
-            <article><span>3</span><strong>Harness</strong><p>Makes behaviour reproducible.</p></article>
-            <article><span>4</span><strong>Extension</strong><p>Makes permissions inspectable.</p></article>
+            <article><span>1</span><strong>JPDB</strong><p>Add the missing learning context where you need it.</p></article>
+            <article><span>2</span><strong>Console</strong><p>Paste one sharp little script and see if the idea has legs.</p></article>
+            <article><span>3</span><strong>Userscript</strong><p>Make the tweak return tomorrow without asking politely.</p></article>
+            <article><span>4</span><strong>Vertec</strong><p>Same pattern. Worse opponent. Excellent teaching material.</p></article>
           </div>
           <aside class="notes">
             Timing: 2 minutes.
-            Bring in your UchiDb / userscript-compiler origin story here. It matters because it
-            shows taste: not every pain deserves a platform team. Sometimes a tiny local layer is the
-            right way to learn, share, and decide if the idea deserves more structure.
+            Bring in the Japanese-study origin story. You had a useful site that was great, but could
+            be better, so you added the missing context with a userscript. This is the transferable
+            idea: many workflows are not broken enough to justify a platform programme, but annoying
+            enough to deserve a tiny local layer.
           </aside>
         </section>
 
         <section class="z-slide z-slide--versions">
           <div class="slide-heading">
-            <p class="kicker">V2 and V3</p>
-            <h2>Templates and holidays: where the mistakes actually live.</h2>
+            <p class="kicker">Make it stick</p>
+            <h2>A script becomes useful when someone else can run it.</h2>
           </div>
           <div class="version-visuals">
             <article>
-              <span>V2</span>
-              <strong>Project templates</strong>
-              <p>Turn service Text folklore into visible defaults that can be challenged.</p>
+              <span>Install</span>
+              <strong>Tampermonkey</strong>
+              <p>A URL, a metadata block, and suddenly the tweak belongs to the page.</p>
             </article>
             <article>
-              <span>V3</span>
-              <strong>Holiday review</strong>
-              <p>Flag missing days, absences, vacation balance, and UK public holidays before filling.</p>
+              <span>Share</span>
+              <strong>Extension-shaped</strong>
+              <p>Permissions, manifests, and rollout make the conversation real.</p>
             </article>
           </div>
           <aside class="notes">
             Timing: 2 minutes.
-            Explain that V2 and V3 are not "more features because features". They move the system
-            closer to the actual work: service Text is policy, holidays are data, and absences are not a
-            decorative tab. This is where the bank-holiday callback gets designed out.
+            Use the userscript-compiler story here. The point is not "look, packaging". The point is
+            that a throwaway local fix can become a shareable artifact. Once someone else can install
+            it, permissions and ownership stop being theoretical. That is usually where the grown-ups
+            re-enter the room, carrying governance.
           </aside>
         </section>
 
         <section class="z-slide z-slide--engineering">
           <div class="slide-heading">
-            <p class="kicker">V4 and V5</p>
-            <h2>The boring bit is what makes it teachable.</h2>
+            <p class="kicker">Make it less wrong</p>
+            <h2>The mistakes are mostly outside the row.</h2>
           </div>
-          <div class="terminal-proof">
-            <pre><code data-trim>
-npm run test
-npm run build:extension
-npm run test:e2e
-            </code></pre>
-            <div>
-              <strong>V4: Harness</strong>
-              <p>Fixture, Vitest, Playwright, repeatable failure.</p>
-              <strong>V5: Extension-shaped</strong>
-              <p>Permissions, packaging, and deployment questions become visible.</p>
-            </div>
+          <div class="api-flow">
+            <article>
+              <span>Policy</span>
+              <strong>Service Text</strong>
+              <p>Some projects need specific wording. "Project delivery" is not a personality.</p>
+            </article>
+            <article>
+              <span>Calendar</span>
+              <strong>Holidays and absence</strong>
+              <p>The bank-holiday callback is funny once. After that it is just an expensive reminder.</p>
+            </article>
+            <article>
+              <span>Balance</span>
+              <strong>Vacation maths</strong>
+              <p>Hours, days, allowance, approvals. Naturally, all on different mental tabs.</p>
+            </article>
           </div>
           <aside class="notes">
             Timing: 2 minutes.
-            This is where we make the demo less shiny and more credible. A sceptical participant
-            should be able to run the same thing after lunch. The moment you package it as an
-            extension, permissions and rollout stop being abstract governance words and become files.
+            This replaces feature-chatter with the actual product thought. Filling a row is not the
+            job. The job is knowing whether the row should exist, what Text belongs in it, whether a
+            bank holiday or absence changes it, and what the approver expects. This is why the first
+            agent failed in a useful way: it did what we asked, not what we meant.
           </aside>
         </section>
 
         <section class="z-slide z-slide--api">
           <div class="slide-heading">
-            <p class="kicker">V6 and V8</p>
-            <h2>Bypassing the UI is powerful. That is why it needs gates.</h2>
+            <p class="kicker">Make it provable</p>
+            <h2>AI confidence is not a test strategy.</h2>
+          </div>
+          <div class="terminal-proof">
+            <pre><code data-trim>
+npm run test
+npm run build
+npm run test:e2e
+            </code></pre>
+            <div>
+              <strong>Spec first, not prompt soup</strong>
+              <p>Write the behaviour down before asking the model to be clever.</p>
+              <strong>Deep modules</strong>
+              <p>Small interface, lots of messy Vertec hidden behind it. As nature intended.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            This is where the talk becomes engineering rather than vibes. Explain that a harness is
+            not there because we love ceremony. It lets sceptics run the same thing and see the same
+            result. Use the deep-module idea: the interface can be simple, but the implementation can
+            hide Vertec's custom grid, holidays, policy, and test fixtures.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--api">
+          <div class="slide-heading">
+            <p class="kicker">Make it responsible</p>
+            <h2>Bypassing the UI is not the same as being safe.</h2>
           </div>
           <div class="api-flow">
             <article>
-              <span>V6</span>
-              <strong>Direct API draft</strong>
-              <p>Stable workflow, if the tenant exposes a supported API. The webapp itself is `/uisync`, not a friendly POST.</p>
+              <span>Observed</span>
+              <strong>/uisync</strong>
+              <p>The webapp traffic is SignalR-shaped. There was no friendly POST called please-save-my-timesheet.</p>
             </article>
             <article>
-              <span>V8</span>
-              <strong>MCP wrapper</strong>
-              <p>Chat-native tools start with session checks. Vertec login is not infrastructure.</p>
+              <span>Auth</span>
+              <strong>Two gates</strong>
+              <p>Zuhlke access can launch Vertec. Vertec can still ask for its own login.</p>
+            </article>
+            <article>
+              <span>MCP</span>
+              <strong>checkSession first</strong>
+              <p>The first useful tool says whether the agent is allowed to do anything at all.</p>
             </article>
           </div>
           <div class="approval-strip">
@@ -599,68 +672,44 @@ npm run test:e2e
             <span>Validate</span>
             <span>Confirm</span>
             <span>Write</span>
+            <span>Audit</span>
           </div>
           <aside class="notes">
             Timing: 2 minutes.
-            Make the trade-off explicit. Direct APIs are often the right technical answer, but they
-            remove the accidental friction of the UI. That means we must add intentional friction:
-            dry runs, diffs, source citations, confirmations, logs, and permission scopes. In the
-            live capture, the webapp used /uisync SignalR/WebSocket traffic, and the documented REST
-            path returned 404 in a read-only probe. A later edit-capture attempt reached Vertec's own
-            login page instead of the Services grid. So "just use the API" is discovery work, not a
-            spell, and "reuse my browser cookies" is how demos grow teeth.
-          </aside>
-        </section>
-
-        <section id="prototype-studio" class="z-slide z-slide--studio">
-          <p class="kicker">Runnable prototype studio</p>
-          <h2>Every rung is self-contained.</h2>
-          <div class="studio-grid">
-            <a href="/prototypes/runner.html?demo=v1"><strong>V1</strong><span>Basic userscript</span></a>
-            <a href="/prototypes/runner.html?demo=v2"><strong>V2</strong><span>Templates</span></a>
-            <a href="/prototypes/runner.html?demo=v3"><strong>V3</strong><span>Holidays</span></a>
-            <a href="/prototypes/runner.html?demo=v4"><strong>V4</strong><span>Harness</span></a>
-            <a href="/prototypes/runner.html?demo=v5"><strong>V5</strong><span>Extension</span></a>
-            <a href="/prototypes/runner.html?demo=v6"><strong>V6</strong><span>Mock API</span></a>
-            <a href="/prototypes/runner.html?demo=v8"><strong>V8</strong><span>MCP dry run</span></a>
-          </div>
-          <p class="quiet">
-            The scripts and findings come from real Vertec work. The runnable copies exist so the room can repeat them without writing to production.
-          </p>
-          <aside class="notes">
-            Timing: 2 minutes.
-            Point participants at the runnable links. The reason this matters pedagogically: people
-            can inspect the same fixture across versions and see the automation boundary move. That
-            is much easier to reason about than a single heroic live demo.
+            This is the API/MCP lesson without pretending we captured a neat production POST. The
+            honest outcome is better: the UI transport is awkward, the REST path needs tenant/system
+            owner discovery, and copied browser cookies are not an auth model. This is where we add
+            intentional friction: read, draft, validate, confirm, write, audit.
           </aside>
         </section>
 
         <section class="z-slide z-slide--architecture">
           <div class="slide-heading">
-            <p class="kicker">Under the covers</p>
-            <h2>Split the awkwardness into parts agents can actually help with.</h2>
+            <p class="kicker">What we actually want</p>
+            <h2>A timesheet co-pilot, not a faster finger.</h2>
           </div>
           <div class="architecture-map">
-            <div>userscript UI</div>
-            <div>vertec-dom</div>
-            <div>core rules</div>
-            <div>integrations</div>
-            <div>tests</div>
+            <div>collect evidence</div>
+            <div>draft entries</div>
+            <div>check policy</div>
+            <div>ask for approval</div>
+            <div>write with audit</div>
           </div>
           <p class="quiet">
-            The architecture is not there to impress anyone. It is there so one change does not become a soup incident.
+            The human stays accountable. The tool does the remembering, checking, and boring little moves.
           </p>
           <aside class="notes">
             Timing: 2 minutes.
-            Explain why this matters for subagents and Codex. If the work is split into DOM adapters,
-            core rules, UI, integrations, and tests, you can delegate pieces and still review the
-            whole. If everything is one blob, the agent has to be lucky and tasteful at the same time.
+            Replace "more prototypes" with the desired end state. We do not want an agent randomly
+            clicking Vertec. We want evidence from calendar, Git, tickets, and chat; draft entries;
+            policy checks for holidays and absences; human confirmation; then a supported write path
+            with audit. That is the thing worth building properly.
           </aside>
         </section>
 
         <section class="z-slide z-slide--evidence-chain">
           <div>
-            <p class="kicker">The service Text problem</p>
+            <p class="kicker">Memory aid</p>
             <h2>"What did I do today?" is already in your tools.</h2>
           </div>
           <div class="evidence-chain">
@@ -682,80 +731,81 @@ npm run test:e2e
 
         <section class="z-slide z-slide--subagents">
           <div>
-            <p class="kicker">Manager mode</p>
-            <h2>Use subagents like a delivery team, not a séance.</h2>
+            <p class="kicker">Agentic engineering skills</p>
+            <h2>How to steer without becoming the passenger.</h2>
           </div>
           <div class="agent-map">
-            <span>Research</span>
-            <span>Fixture</span>
-            <span>V1 script</span>
-            <span>Holiday rules</span>
-            <span>Tests</span>
-            <span>Docs</span>
-            <span>Integration</span>
+            <span>Just talk to it</span>
+            <span>Spec first</span>
+            <span>Subagents</span>
+            <span>Issues as queues</span>
+            <span>Reasoning levels</span>
+            <span>Local models</span>
+            <span>Grill me</span>
           </div>
           <p class="quiet">
-            The human keeps taste, risk calls, and the final story. Delegation is not abdication.
+            The trick is not knowing every command. The trick is knowing when the output smells wrong.
           </p>
           <aside class="notes">
             Timing: 2 minutes.
-            Connect this to the way the workshop/repo was made. Multiple agents can research,
-            prototype, test, and write docs in parallel. The manager role is to set boundaries,
-            inspect outputs, remove slop, and keep the audience in mind. This is a learnable
-            consultancy skill.
+            This is the knowledge-sharing slide from Claude's notes. Mention Codex app, subagents,
+            goals, GitHub issues as work queues, local models for privacy-constrained experiments,
+            and "grill me" style prompting. The key teaching point is not tool trivia; it is
+            steering. The human keeps taste, risk calls, and the final story.
           </aside>
         </section>
 
         <section class="z-slide z-slide--superapp">
           <img src="/assets/zuehlke/robot-hand.png" alt="" aria-hidden="true" />
           <div class="superapp-panel">
-            <p class="kicker">The superapp question</p>
-            <h2>Is Codex signed into everything the future?</h2>
+            <p class="kicker">AI literacy</p>
+            <h2>Learn to smell the slop.</h2>
             <p>
-              Maybe. The useful version is a scoped workbench: tools, permissions, traces, and
-              confirmations. The silly version is "please operate my life" and a shrug.
+              The tells: "it's not X, it's Y", em dashes everywhere, ASCII arrows, rule-of-three
+              lists, cards and gradient fog (Codex's signature look), image defects, and, at Zühlke,
+              an umlaut someone clearly typed by hand. Output is raw material. Make it yours before
+              it makes you look haunted.
             </p>
           </div>
           <aside class="notes">
             Timing: 2 minutes.
-            Use the current Codex direction carefully: plugins, Sites, annotations, and tool
-            workflows point toward more work happening inside one agentic workspace. But the
-            workshop stance is not "let it do everything". It is "make the boundary explicit enough
-            that a sceptical teammate can inspect it".
+            This is where you teach the meta skill. AI text has tells: generic contrast phrases,
+            over-explaining, em dashes everywhere, cards and gradients in UI, weird image defects,
+            confident paragraphs that nobody asked for. Link it back to CDM: feedback loops only
+            work if humans inspect the artefacts and improve them.
           </aside>
         </section>
 
         <section class="z-slide z-slide--tradeoffs">
-          <p class="kicker">Pros and cons</p>
-          <h2>Different rungs, different failure modes.</h2>
+          <p class="kicker">Consultancy angle</p>
+          <h2>Forward-deployed taste beats slideware.</h2>
           <table class="tradeoff-table">
             <thead>
               <tr>
-                <th>Approach</th>
-                <th>Good at</th>
-                <th>Watch out for</th>
+                <th>Move</th>
+                <th>What it proves</th>
+                <th>Why clients care</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>ChatGPT critique</td><td>Naming friction and requirements</td><td>No behavioural proof</td></tr>
-              <tr><td>Userscript</td><td>Fast local improvement</td><td>Brittle DOM coupling</td></tr>
-              <tr><td>Harness</td><td>Reproducible learning</td><td>Mock data drift</td></tr>
-              <tr><td>Extension</td><td>Inspectable permissions</td><td>Rollout overhead</td></tr>
-              <tr><td>Direct API</td><td>Stable workflow</td><td>Access, policy, audit</td></tr>
-              <tr><td>MCP automation</td><td>Chat-native operations</td><td>Bad tools scale bad judgement</td></tr>
+              <tr><td>Observe the pain</td><td>You understand the real workflow</td><td>Less theatre, more trust</td></tr>
+              <tr><td>Build a tiny thing</td><td>The idea survives contact with reality</td><td>They can feel the future</td></tr>
+              <tr><td>Test the boundary</td><td>You know what is safe to automate</td><td>Risk becomes discussable</td></tr>
+              <tr><td>Package the pattern</td><td>The fix can travel</td><td>A pilot becomes a proposition</td></tr>
             </tbody>
           </table>
           <aside class="notes">
             Timing: 2 minutes.
-            This is the decision slide. Say plainly: there is no universal best approach. The right
-            answer depends on blast radius, permissions, how often the workflow changes, who will
-            maintain it, and what evidence the organisation needs before trusting it.
+            This is where you connect it to forward-deployed engineering and consultancy. We are not
+            selling "a Vertec button". We are showing a way to walk into a messy workflow, make the
+            hidden integration work visible, build something small, and turn that learning into a
+            client conversation. Slideware says "transformation". This lets them press the button.
           </aside>
         </section>
 
         <section class="z-slide z-slide--workshops">
-          <p class="kicker">Participant kit</p>
-          <h2>Mini-workshops, not just slides.</h2>
+          <p class="kicker">Yours to keep</p>
+          <h2>The whole repo, if you want it.</h2>
           <div class="workshop-list">
             <a href="/docs/workshops/00-chatgpt-dom-workflow.md">00 ChatGPT + DOM</a>
             <a href="/docs/workshops/01-basic-userscript.md">01 Basic userscript</a>
@@ -770,9 +820,9 @@ npm run test:e2e
           </div>
           <aside class="notes">
             Timing: 1 minute.
-            Make clear that the website is the workshop pack. Participants can run the demos, read
-            the handouts, and reuse the prompts. This is why the deck is in HTML: it is both
-            presentation and shareable artifact.
+            This is not a workshop you have to sit through; it is a repo you can walk away with.
+            The deck, the runnable userscript, the prototypes, the prompts, and the notes are all in
+            one place. Take what is useful, ignore the rest, and go fix something on your own project.
           </aside>
         </section>
 
@@ -792,6 +842,31 @@ npm run test:e2e
             Do not read the links. Explain what they influenced: accessible materials, larger visual
             slides, clear sectioning, the ChatGPT-only workflow, the caution around browser agents,
             and the idea of Codex as an increasingly broad workbench rather than only a coding tool.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--statement">
+          <div class="statement-lockup">
+            <p class="kicker">One more thing</p>
+            <h2>I made this talk in my sleep.</h2>
+            <p class="statement-line">One prompt before bed. A deep-research-and-coding agent overnight. This deck and the prototypes were waiting in the morning. Then I made it mine.</p>
+          </div>
+          <div class="side-proof">
+            <span>The actual work</span>
+            <ul>
+              <li>dump the shower-thoughts</li>
+              <li>let it research and build</li>
+              <li>wake up, read all of it</li>
+              <li>cut the slop</li>
+              <li>own the result</li>
+            </ul>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            The meta-reveal, and it should land near the end. Be honest: the first draft of this
+            talk and its prototypes came from one long overnight agent run. That is the whole point
+            of the hour. AI raises the floor; the judgement, taste, and editing are still the job.
+            What you are looking at is the edited version, not the raw output.
           </aside>
         </section>
 

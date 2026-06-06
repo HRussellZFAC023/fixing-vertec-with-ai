@@ -82,7 +82,7 @@ Check these details:
 ## Prompt On Screen
 
 ```text
-Write a browser userscript for a sanitized Vertec Services fixture.
+Write a browser userscript for a Vertec Services fixture.
 
 Make no mistakes.
 
@@ -119,15 +119,14 @@ npm run check
 Expected result: Vitest verifies the DOM helper in JSDOM, and Playwright clicks
 `Fill service row` through the local browser fixture.
 
-## Safety Notes
+## Notes
 
-- Use the local workshop copy in the workshop.
+- The fixture is there so everyone hits the same DOM. Pasting a real row,
+  screenshot, or DOM slice from your own current-month timesheet into
+  ChatGPT, Claude, or Codex is fine — that's the whole point.
 - The live-page experiment showed the joke in useful detail: Vertec accepted
   typed Text and Hours, but object-reference columns need real object selection
   or an API boundary.
-- Do not paste production row values, service Text, rates, or project names into
-  prompts.
-- Start any real adaptation in observation mode.
 - Keep auto-save out of the first version. Vertec already has enough confidence.
 
 ## Pros

@@ -1,33 +1,33 @@
 # AI workflow sources for browser/UI improvement work
 
-Current as of 2026-06-06. Scope: public sources that help explain how someone can use ChatGPT, without Codex, to understand a web UI problem, inspect a page, paste sanitized DOM or screenshots, ask for critique, and turn the finding into a first userscript requirement.
+Current as of 2026-06-06. Scope: public sources that help explain how someone can use ChatGPT, without Codex, to understand a web UI problem, inspect a page, paste a DOM slice or screenshot, ask for critique, and turn the finding into a first userscript requirement.
 
 ## Main arc for the workshop
 
 The useful story for "Fixing Vertec With AI" is not "the AI fixes the app while everyone claps." It is:
 
 1. A person spots friction in a real UI.
-2. They capture a small, sanitized slice of evidence: screenshot, DOM, labels, selectors, and the exact task that feels awkward.
+2. They capture a small slice of evidence: screenshot, DOM, labels, selectors, and the exact task that feels awkward.
 3. ChatGPT helps critique the evidence and turn vague irritation into a testable requirement.
 4. A developer, userscript author, or coding agent can then implement against that requirement.
 
-This keeps the first workshop step safe for internal data and approachable for AI sceptics. It also shows how the field has evolved: from manual copy/paste context, to multimodal files and screenshots, to browser agents that can inspect and act, and finally to AI built into the browser itself.
+This keeps the first workshop step approachable for AI sceptics. It also shows how the field has evolved: from manual copy/paste context, to multimodal files and screenshots, to browser agents that can inspect and act, and finally to AI built into the browser itself.
 
 ## Annotated sources
 
 ### OpenAI: ChatGPT files, screenshots, and editing context
 
 - [Working with files in ChatGPT](https://openai.com/academy/working-with-files/) - OpenAI Academy, 2026-04-10.
-  - Educational usefulness: A gentle public reference that says ordinary users can upload files, images, PDFs, and other artifacts to ChatGPT and ask questions about them. Useful for explaining that a screenshot or sanitized HTML snippet is enough to start a UI critique.
+  - Educational usefulness: A gentle public reference that says ordinary users can upload files, images, PDFs, and other artifacts to ChatGPT and ask questions about them. Useful for explaining that a screenshot or an HTML snippet is enough to start a UI critique.
   - Workflow evolution: ChatGPT is no longer only a blank text box. It can sit with supporting artifacts in the conversation.
 
 - [File Uploads FAQ](https://help.openai.com/en/articles/8555545-file-uploads-faq/) - OpenAI Help Center.
-  - Educational usefulness: Useful for practical constraints and retention framing. It documents supported file categories, image limits, and how uploaded files relate to chats.
-  - Workflow evolution: Uploads make it normal to bring a small design artifact, screenshot, CSV, or text snippet into a chat instead of describing everything from memory.
+  - Educational usefulness: Useful for practical constraints. It documents supported file categories, image limits, and how uploaded files relate to chats.
+  - Workflow evolution: Uploads make it normal to bring a design artifact, screenshot, CSV, or text snippet into a chat instead of describing everything from memory.
 
 - [How to launch the Chat Bar](https://help.openai.com/en/articles/9295241-how-to-launch-the-chat-bar) - OpenAI Help Center.
   - Educational usefulness: Shows that on macOS the ChatGPT app can take screenshots from the chat bar. This is relevant for a low-friction "capture what you see" workflow.
-  - Workshop caution: Do not use this on confidential screens unless the organization has approved the data handling path. Prefer mock data or redacted screenshots.
+  - Workshop use: Point it at the Vertec screen that annoys you and let it grab the shot. That is the whole step.
 
 - [What is the canvas feature in ChatGPT and how do I use it?](https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt-and-how-do-i-use-it) - OpenAI Help Center.
   - Educational usefulness: Canvas is useful after the first critique, because participants can ask ChatGPT to organize requirements, draft code snippets, or review a small HTML/JS idea in a side-by-side editing space.
@@ -37,11 +37,11 @@ This keeps the first workshop step safe for internal data and approachable for A
 
 - [Temporary Chat FAQ](https://help.openai.com/en/articles/8914046-temporary-chat-faq/) - OpenAI Help Center.
   - Educational usefulness: Good source for explaining Temporary Chat in simple terms: not in history, no memories, not used for model improvement, with limited retention for safety.
-  - Workshop caution: Temporary Chat is not a license to paste secrets. It is a safety layer, not a data classification decision.
+  - Workshop use: Handy if you want a throwaway session for a quick Vertec critique.
 
 - [How your data is used to improve model performance](https://help.openai.com/en/articles/5722486-data-controls-faq) - OpenAI Help Center.
-  - Educational usefulness: Clear contrast between individual services and business products. It is useful when explaining why the workshop avoids customer data and asks participants to follow their company's approved workspace policy.
-  - Workshop caution: Personal ChatGPT and business/enterprise ChatGPT have different default data handling. Participants should use only the tool path approved by their organization.
+  - Educational usefulness: Clear contrast between individual services and business products, and how the model-improvement toggles work.
+  - Workshop use: Useful background for explaining what the Zühlke workspace settings do under the hood.
 
 ### OpenAI: browser agents and Atlas
 
@@ -54,16 +54,16 @@ This keeps the first workshop step safe for internal data and approachable for A
   - Workflow evolution: Browser use moved from a separate research preview into ChatGPT itself.
 
 - [ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent) - OpenAI Help Center.
-  - Educational usefulness: Current explanation of agent mode, including visual browser use, connected apps, files, confirmations, and safety concerns.
-  - Workshop caution: The safety section is essential. For this workshop, agent mode should be discussed as evolution and used only on public/mock pages unless the company has explicitly approved internal use.
+  - Educational usefulness: Current explanation of agent mode, including visual browser use, connected apps, files, and confirmations.
+  - Workshop use: Discuss agent mode as the next rung on the ladder. Letting an agent drive Vertec for you is the obvious endgame.
 
 - [Introducing ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/) - OpenAI, 2025-10-21.
   - Educational usefulness: Useful for explaining the next step in the arc: ChatGPT integrated into the browser, with page context and an agent mode in preview.
-  - Workflow evolution: Atlas reduces copy/paste by letting ChatGPT work alongside pages directly. That is powerful, but for internal systems it makes data visibility rules more important, not less.
+  - Workflow evolution: Atlas reduces copy/paste by letting ChatGPT work alongside pages directly, including a Vertec tab.
 
 - [ChatGPT Atlas - Data Controls and Privacy](https://help.openai.com/en/articles/12574142-chatgpt-atlas-data-controls-and-privacy) - OpenAI Help Center.
   - Educational usefulness: Important companion source for Atlas. It covers page visibility, browser memories, browsing data controls, shared links, and training-related toggles.
-  - Workshop caution: If participants ever try Atlas on sensitive tools, page visibility and workspace controls must be understood before the session.
+  - Workshop use: Reference for what the Atlas controls actually do, if someone wants to tune them.
 
 ### Browser inspection and UI evidence
 
@@ -95,7 +95,7 @@ This keeps the first workshop step safe for internal data and approachable for A
 
 - [Tampermonkey documentation](https://www.tampermonkey.net/documentation.php?locale=en) - Tampermonkey.
   - Educational usefulness: Primary reference for userscript metadata such as `@match`, `@grant`, `@run-at`, and helper APIs.
-  - Workshop use: The first requirement should include a safe `@match` scope, minimal permissions, and a clear "does not send data externally" constraint.
+  - Workshop use: The first requirement should pin a tight `@match` scope and minimal permissions, so the script only touches the Vertec page it is meant to fix.
 
 ### Accessibility and critique rubrics
 
@@ -120,7 +120,7 @@ This keeps the first workshop step safe for internal data and approachable for A
 ## Suggested takeaways for the talk
 
 - "AI needs evidence" lands better with sceptics than "AI knows UI." Screenshots show what people see; DOM snippets show what scripts can change.
-- The safe beginner workflow is deliberately manual: inspect, copy a small sanitized slice, ask for critique, write a requirement.
-- ChatGPT Agent and Atlas matter as evolution, but they should not be the first step on internal systems. Browser control increases convenience and risk at the same time.
-- A good userscript requirement is specific about page scope, target element, desired behavior, privacy constraints, dynamic-page behavior, and acceptance criteria.
+- The beginner workflow is deliberately manual: inspect, copy a small slice, ask for critique, write a requirement. Paste a real Vertec row in and get on with it.
+- ChatGPT Agent and Atlas matter as evolution: the same loop, with the browser handling more of it for you.
+- A good userscript requirement is specific about page scope, target element, desired behavior, dynamic-page behavior, and acceptance criteria.
 - The highest-value workshop moment is when a vague complaint becomes a small, testable sentence.

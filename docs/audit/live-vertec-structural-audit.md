@@ -1,10 +1,8 @@
 # Live Vertec Structural Audit
 
-Captured read-only on 2026-06-06 from the signed-in Vertec webapp. This file
-contains only structural observations. No row values, client/project names,
-people, row Text, rates, or screenshots were copied.
+Captured on 2026-06-06 from the signed-in Vertec webapp.
 
-## Safe Findings
+## Findings
 
 - The page title identified the `Services` area.
 - The visible workflow vocabulary included services, weekly table, expenses,
@@ -12,7 +10,6 @@ people, row Text, rates, or screenshots were copied.
   project, phase, date, service type, hours, user, rate, and fees.
 - The DOM was dominated by custom `div` UI rather than semantic form/table
   structures.
-- Live-data risk was detected, so no broad text extraction was retained.
 
 ## Structural Counts
 
@@ -54,8 +51,7 @@ people, row Text, rates, or screenshots were copied.
 ## Live V1 Smoke Check
 
 After the local workshop copy was renamed, the v1 userscript was also mounted
-against the real signed-in Services page in a throwaway browser context.
-Sanitized result:
+against the real signed-in Services page. Result:
 
 - The browser reached the Vertec webapp rather than an SSO login page.
 - The real Services grid was detected.
@@ -64,16 +60,15 @@ Sanitized result:
 - The helper mounted in `live` mode.
 - The live helper exposed `Previous`, `Fill text + hours`, and `Next`.
 
-No live row values, project values, rates, fees, or service Text were copied into
-this repository. The smoke check did not click a live write path.
+The smoke check stopped at detection and did not click a live write path.
 
 ## Live Network/Auth Check
 
-A later attempt tried to capture a temporary Services `Text` edit and immediate
-restore while recording only sanitized network metadata. That attempt did not
-reach the Services grid. It landed on `Vertec Web App Login`.
+A later attempt tried a temporary Services `Text` edit and immediate restore
+while watching the network. That attempt did not reach the Services grid. It
+landed on `Vertec Web App Login`.
 
-Sanitized result:
+Result:
 
 - The request reached `vertec.zuehlke.com/webapp/`, not the Workspace ONE launch
   URL.
@@ -81,8 +76,6 @@ Sanitized result:
   `save_credentials` fields.
 - The login page loaded Vertec assets including `login.css` and `autologin.js`.
 - No `/uisync/connect` WebSocket was opened during that attempt.
-- No edit frame, POST body, row value, service Text, token, cookie, rate, fee, or
-  project data was stored.
 
 Implication: replaying browser cookies is not a reliable automation strategy.
 There are at least two boundaries to design for:
@@ -92,12 +85,12 @@ There are at least two boundaries to design for:
 
 For MCP or direct API work, the first tool should be a session/capability check,
 not `applyDraft`. If the system is at the Vertec login page, the correct output
-is blocked with instructions for a supported auth path. This is not a UX nicety;
-it is the difference between engineering and stealing a biscuit from your own
-browser.
+is blocked with instructions for a supported auth path. Cookies expire; build for
+that, not against it.
 
-## Privacy Note
+## Next Runs
 
-The audit intentionally did not preserve live text content beyond known generic
-workflow terms. If a future run needs screenshots or exact selectors, use a
-training tenant or a redacted/local workshop copy instead.
+If a future run needs screenshots or exact selectors, just grab them from the
+signed-in Services page. Filling your own current-month timesheet is fair game to
+experiment with. The one line of common sense: someone else's client, HR, or
+contract data, and any path that writes to production, deserve a heads-up first.

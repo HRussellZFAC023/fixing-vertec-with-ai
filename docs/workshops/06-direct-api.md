@@ -77,7 +77,7 @@ The live system has at least two gates:
 | --- | --- | --- |
 | Zühlke access / SSO launch | The user can reach the Vertec app entry point. | This is not the same as an active Vertec app session. |
 | Vertec app session | The Services grid is loaded and `/uisync` can connect. | Without this, automation is staring at a login form in a nice suit. |
-| Supported API credential | A service/API caller is allowed to read or write records. | MCP should not scrape private browser cookies and call that architecture. |
+| Supported API credential | A service/API caller is allowed to read or write records. | Scraping browser cookies and calling that an integration is not an architecture; cookies expire and it is unsupported. |
 
 For a real pilot, the integration should ask system owners which supported
 surface exists:
@@ -94,7 +94,7 @@ proper integration would need, not the captured webapp transport.
 ```text
 We are considering a direct API integration for a Vertec Services workflow.
 
-Using only sanitized data, define a dry-run contract.
+Define a dry-run contract.
 
 Read inputs:
 - Month
@@ -117,7 +117,7 @@ Output:
 - Human approval point
 - Rollback or correction path
 
-No live endpoints, no credentials, no copied payloads.
+The demo stays on the mock endpoint. No live writes yet.
 ```
 
 ## Dry-Run Rules
@@ -134,16 +134,15 @@ No live endpoints, no credentials, no copied payloads.
 - [Vertec REST API](https://www.vertec.com/en-gb/kb/vertec-rest-api/)
 - [Vertec XML interface note](https://www.vertec.com/en-at/kb/vertec-xml-interface/)
 
-## Safety Notes
+## Notes
 
-- Never paste API keys, bearer tokens, cookies, database exports, or live Vertec
-  payloads into AI tools.
-- System owners approve real API access.
+- System owners approve real API access. A live pilot that writes to production
+  Vertec gets a heads-up first; the dry run does not.
 - Browser helpers and API integrations have different risk profiles. Do not
   smuggle one into the other because the mock looked tidy.
-- Do not store or replay `vertec_auth_token`, `vertec_session_id`, or access
-  gateway cookies as the basis of an MCP server. That is how a demo becomes a
-  security incident wearing a lanyard.
+- Cookie replay is a fragile auth model: cookies expire, and it is not a
+  supported path. Building an MCP server on top of `vertec_auth_token` or
+  `vertec_session_id` is an engineering dead end, not a foundation.
 
 ## Pros
 
@@ -163,7 +162,6 @@ No live endpoints, no credentials, no copied payloads.
 
 ## Checklist
 
-- [ ] Payloads use fake identifiers and training entries.
 - [ ] Read, draft write, validation, and audit are separated.
 - [ ] Live writes are impossible in the demo.
 - [ ] Permission and approval owners are named.

@@ -19,7 +19,7 @@ For sceptics:
 - No uninspectable magic demo.
 - Every artifact can be opened: Markdown, fixture HTML, userscript, tests, mock
   payload, extension manifest.
-- The first interaction is critique from sanitized evidence, not delegation.
+- The first interaction is critique from real evidence, not delegation.
 - The more capable the workflow gets, the narrower the tool boundary becomes.
 
 For technical participants:
@@ -37,7 +37,7 @@ For technical participants:
 | 0-5 min | Opening | Name the enterprise ritual without mocking the person stuck doing it. | Reveal opening |
 | 5-15 min | Fieldwork | Observe what the human remembers, checks, translates, or worries about. | [Empathy map](../audit/vertec-empathy-map.md) |
 | 15-25 min | Evidence and CDM lens | Show structural audit, then map it to artefact flow and feedback loops. | [Live audit](../audit/live-vertec-structural-audit.md) |
-| 25-35 min | DOM to requirement | Use sanitized DOM to produce a bounded userscript requirement. | [00 workshop](../workshops/00-chatgpt-dom-workflow.md) |
+| 25-35 min | DOM to requirement | Use a real DOM slice to produce a bounded userscript requirement. | [00 workshop](../workshops/00-chatgpt-dom-workflow.md) |
 | 35-50 min | Prototype ladder | Walk V1 to V8. Ask after each rung: what got safer, what got riskier? | Local demos |
 | 50-56 min | Subagents | Discuss managed delegation, Codex as workbench, confirmations, and logs. | [Subagent guide](subagents.md) |
 | 56-60 min | Close | Return to judgement, evidence, and narrow tools. | Reveal closing |
@@ -106,8 +106,7 @@ Use [00 - DOM Evidence To A Userscript Requirement](../workshops/00-chatgpt-dom-
 Prompt:
 
 ```text
-I am reviewing a sanitized Vertec Services row.
-Bracketed values are fake. Do not ask for real data.
+I am reviewing a Vertec Services row.
 
 Make no mistakes.
 
@@ -117,10 +116,8 @@ Critique the interaction from the perspective of:
 3. a userscript that needs reliable selectors.
 
 Separate DOM evidence from guesses. Then propose the smallest userscript-friendly
-improvement. It must not submit, save, call APIs, or send page data externally.
-Use the internal page scope https://vertec.zuehlke.com/webapp/* only as an
-allowlist example; use example.invalid if the material leaves the internal
-context.
+improvement. It must not submit, save, or call APIs. Scope it to the Vertec webapp
+page https://vertec.zuehlke.com/webapp/*.
 ```
 
 Inspect with participants:
@@ -130,7 +127,6 @@ Inspect with participants:
   `[name="text"]`, `[name="hours"]`, and `[data-vt-service-field]`.
 - Whether the implementation needs `MutationObserver` for dynamic redraws.
 - Tampermonkey metadata: `@match`, `@grant`, `@run-at` if needed.
-- The privacy boundary.
 
 References:
 
@@ -148,7 +144,7 @@ Good instruction:
 Build the smallest helper for the local Vertec Services workshop copy.
 It should fill only the selected Services row with Project, Phase, Service type,
 Text, and Hours.
-Do not save, submit, call APIs, or use live data.
+Do not save, submit, or call APIs.
 Add a local fixture and tests so participants can inspect the behavior.
 
 Then adapt it to the live Vertec page in observation-first mode. If Project,
@@ -261,31 +257,29 @@ Use this contrast:
 The useful future is a workbench, not one giant assistant with a master key and a
 motivational poster.
 
-## Privacy Rules For The Live Vertec Tab
+## Working With The Live Vertec Tab
 
-- Use live Vertec only for structural observation unless explicit approval says
-  otherwise.
-- Do not copy row values, client names, people, rates, fees, service Text,
-  screenshots, tokens, cookies, internal URLs, or hidden values into workshop
-  artifacts.
-- Prefer local workshop copies for demos, tests, screenshots, and public repo files.
+These are Zühlke tools on your own timesheet. Pasting a real Services row, a
+screenshot, or a DOM slice into ChatGPT, Claude, or Codex is fine, and filling
+your own current-month timesheet is fine to experiment with.
+
+- Use local workshop copies for demos, tests, and committed repo files so the
+  prototypes stay reproducible.
 - The V3 public GOV.UK bank-holiday fetch sends no Vertec fixture data and has a
   local fallback.
-- Any future API/MCP version needs policy, permission, audit, and rollback before
-  code.
+- Anything that writes to production Vertec, or touches client / HR / contract
+  data, deserves a heads-up and real controls before code runs.
 
 ## Completion Checklist
 
 - [ ] The opening makes fun of the ritual, not the participants.
 - [ ] Lab 1 uses Services rows: Project, Phase, Service type, Text, Hours.
 - [ ] No lab describes attendance `From`/`To` punch-in fields as the main path.
-- [ ] Userscript scope mentions `https://vertec.zuehlke.com/webapp/*` for the
-      real allowlist and `example.invalid` for non-internal copies.
+- [ ] Userscript scope mentions `https://vertec.zuehlke.com/webapp/*`.
 - [ ] DOM inspection, selectors, metadata, and dynamic redraws are explicit.
 - [ ] Vite, Vitest, Playwright, extension packaging, API dry run, and MCP dry run
       each have an inspectable artifact.
-- [ ] Credentials, tokens, cookies, live rows, and screenshots remain out of
-      prompts and repo artifacts.
+- [ ] No lab writes to production Vertec without a heads-up.
 - [ ] The close returns to judgement, evidence, and narrow tools.
 
 ## Links To Have Ready

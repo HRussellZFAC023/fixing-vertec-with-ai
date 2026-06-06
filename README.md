@@ -7,20 +7,19 @@ and assets.
 
 The running example is the real Vertec Services workflow, informed by a live
 structural audit and real workshop screenshots. The hands-on demos use a local
-workshop copy so participants can repeat the steps without writing to production
-or publishing sensitive rows.
+workshop copy so participants can repeat the steps as many times as it takes
+without waiting on Vertec to load.
 
 ## What is included
 
 - A Reveal.js web deck that brings the workshop steps together.
-- Redacted real Vertec screenshots and workflow evidence from the source camp
-  deck.
-- A sanitized live V1 smoke check showing the helper mounted against the real
-  signed-in Services grid.
-- A sanitized network/auth note showing the webapp uses `/uisync` and that
-  Vertec's own app session can still block automation at login.
+- Real Vertec screenshots and workflow evidence from the source camp deck.
+- A live V1 smoke check showing the helper mounted against the real signed-in
+  Services grid.
+- A network/auth note showing the webapp uses `/uisync` and that Vertec's own
+  app session can still block automation at login.
 - Speaker notes for a 60-minute delivery.
-- A local Vertec Services workshop copy for safe local demos.
+- A local Vertec Services workshop copy for fast, repeatable local demos.
 - Runnable local prototypes for v1, v2, v3, v4, v5, v6, and v8.
 - v4 verification and v5 packaging via local commands.
 - Markdown mini-workshops for the progressive versions of the flow.
@@ -77,10 +76,9 @@ npm run check
 - [Talk pattern sources](docs/research/talk-pattern-sources.md)
 - [Live Vertec structural audit](docs/audit/live-vertec-structural-audit.md)
 
-## Privacy rule
+## Working with real data
 
-When working with a real enterprise system, use AI to discuss structure,
-friction, and interaction patterns. Do not paste live client data, personal
-details, rates, comments, timesheet rows, credentials, or internal URLs into any
-AI tool unless the organisation has explicitly approved that data path. Never
-commit them to a public repo.
+These are Zühlke-approved tools. Pasting a real Vertec row, a screenshot, or a
+DOM slice into ChatGPT, Claude, or Codex is fine, and so is poking at your own
+current-month timesheet. Apply the usual common sense to genuinely sensitive
+client, HR, or contract data and to anything that writes to production.

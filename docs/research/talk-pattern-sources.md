@@ -42,7 +42,7 @@ The talk should not be "eight demos in a row." A stronger shape is:
 1. Field note: the small ritual everyone recognises.
 2. Diagnosis: why the human is acting as integration middleware.
 3. First evidence: screenshots, DOM, accessibility, and workflow observations.
-4. Low-stakes AI critique: paste a sanitized slice into ChatGPT.
+4. Low-stakes AI critique: paste a real Vertec slice into ChatGPT.
 5. Agentic engineering: use Codex/annotate to turn critique into a bounded fix.
 6. Prototype ladder: increase capability only when verification and governance
    increase with it.

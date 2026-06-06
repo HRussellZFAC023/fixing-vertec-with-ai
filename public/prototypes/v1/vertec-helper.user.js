@@ -18,7 +18,7 @@
     text: "Project delivery",
     hours: "8.00",
   };
-  const WORKSHOP_COPY_FIELD_SELECTORS = {
+  const SYNTHETIC_FIELD_SELECTORS = {
     project: ['[data-vt-service-field="project"]', '[name="project"]'],
     phase: ['[data-vt-service-field="phase"]', '[name="phase"]'],
     serviceType: ['[data-vt-service-field="serviceType"]', '[name="serviceType"]'],
@@ -70,14 +70,14 @@
     dispatchInput(element);
   }
 
-  function makeWorkshopCopyAdapter() {
+  function makeSyntheticAdapter() {
     const rows = () =>
       Array.from(document.querySelectorAll("[data-vt-services-row], [data-vt-row]")).filter(
-        hasWorkshopCopyServiceFields,
+        hasSyntheticServiceFields,
       );
 
-    function workshopField(row, name) {
-      const selectors = WORKSHOP_COPY_FIELD_SELECTORS[name] || [];
+    function requestField(row, name) {
+      const selectors = SYNTHETIC_FIELD_SELECTORS[name] || [];
       for (const selector of selectors) {
         const element = row.querySelector(selector);
         if (element) return element;
@@ -85,14 +85,14 @@
       return null;
     }
 
-    function hasWorkshopCopyServiceFields(row) {
-      return Object.keys(WORKSHOP_COPY_FIELD_SELECTORS).every((name) => workshopField(row, name));
+    function hasSyntheticServiceFields(row) {
+      return Object.keys(SYNTHETIC_FIELD_SELECTORS).every((name) => requestField(row, name));
     }
 
     function selectedRow() {
       return (
         rows().find((row) => row.dataset.selected === "true") ||
-        rows().find((row) => !workshopField(row, "hours")?.value) ||
+        rows().find((row) => !requestField(row, "hours")?.value) ||
         rows()[0] ||
         null
       );
@@ -107,7 +107,7 @@
     }
 
     return {
-      mode: "workshop-copy",
+      mode: "request",
       title: "v1 Services helper",
       fillLabel: "Fill service row",
       available() {
@@ -131,11 +131,11 @@
           return;
         }
 
-        setValue(workshopField(row, "project"), CONFIG.project);
-        setValue(workshopField(row, "phase"), CONFIG.phase);
-        setValue(workshopField(row, "serviceType"), CONFIG.serviceType);
-        setValue(workshopField(row, "text"), CONFIG.text);
-        setValue(workshopField(row, "hours"), CONFIG.hours);
+        setValue(requestField(row, "project"), CONFIG.project);
+        setValue(requestField(row, "phase"), CONFIG.phase);
+        setValue(requestField(row, "serviceType"), CONFIG.serviceType);
+        setValue(requestField(row, "text"), CONFIG.text);
+        setValue(requestField(row, "hours"), CONFIG.hours);
 
         updateStatus(`Filled service row ${row.dataset.date || "selected day"} with ${CONFIG.hours}h.`);
       },
@@ -337,16 +337,12 @@
     };
   }
 
-  const workshopCopyAdapter = makeWorkshopCopyAdapter();
+  const requestAdapter = makeSyntheticAdapter();
   const liveAdapter = makeLiveVertecAdapter();
-  const adapter = workshopCopyAdapter.available()
-    ? workshopCopyAdapter
-    : liveAdapter.available()
-      ? liveAdapter
-      : null;
+  const adapter = requestAdapter.available() ? requestAdapter : liveAdapter.available() ? liveAdapter : null;
 
   if (!adapter) {
-    console.warn("Vertec workshop helper found neither the workshop-copy Services rows nor the live Services grid.");
+    console.warn("Vertec workshop helper found neither the fixture Services rows nor the live Services grid.");
     return;
   }
 

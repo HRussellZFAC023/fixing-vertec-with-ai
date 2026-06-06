@@ -80,7 +80,7 @@ Check:
 ## Prompt On Screen
 
 ```text
-Given this sanitized Vertec Services helper, design the smallest local harness.
+Given this Vertec Services helper, design the smallest local harness.
 
 Use:
 - Vite for the local site
@@ -94,7 +94,7 @@ Output:
 - Expected command
 - What to inspect when a test fails
 
-Do not connect to live Vertec. Do not use credentials. Do not invent an API.
+Don't invent an API: Vertec has no friendly REST POST, so the harness drives the DOM.
 ```
 
 ## Failure Drill

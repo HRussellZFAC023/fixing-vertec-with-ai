@@ -2,17 +2,16 @@
 
 ## Purpose
 
-Subagents can help a workshop manager divide the "Fixing Vertec With AI" flow into small, reviewable workstreams. The manager stays responsible for scope, privacy, and final judgement; subagents help gather, draft, test, and critique.
+Subagents can help a workshop manager divide the "Fixing Vertec With AI" flow into small, reviewable workstreams. The manager stays responsible for scope and final judgement; subagents help gather, draft, test, and critique.
 
 This is especially useful for AI sceptics because it makes the process visible. Each agent has a job, a boundary, and an output that humans can inspect.
 
 ## Manager Responsibilities
 
 - Define the objective in plain English.
-- Keep live Vertec/internal data local unless it has been sanitized or abstracted.
 - Decide which tools are allowed.
 - Review every output before it becomes a workshop instruction, code change, or operational recommendation.
-- Stop delegation when the task involves credentials, personal data, contracts, HR information, commercial sensitivity, or production writes.
+- Use common sense before delegating anything genuinely sensitive — real client, HR, or contract data, or anything that writes to production.
 
 ## Suggested Agent Assignments
 
@@ -20,26 +19,24 @@ This is especially useful for AI sceptics because it makes the process visible. 
 
 Delegate:
 
-- Turn a sanitized issue into a reusable prompt template.
+- Turn a real Vertec issue into a reusable prompt template.
 - Produce acceptance criteria and facilitator questions.
 - Identify where the prompt could produce misleading answers.
 
 Keep local:
 
-- Real examples, names, screenshots, URLs, credentials, and internal policy details.
 - Final choice of wording for the workshop audience.
 
 ### V3: UI Overhaul For Holiday Review
 
 Delegate:
 
-- Summarise the sanitized workflow.
+- Summarise the holiday review workflow.
 - Propose layout options and review states.
-- Critique accessibility, privacy, and missing information risks.
+- Critique accessibility and missing information risks.
 
 Keep local:
 
-- Live holiday records, absence reasons, employee names, team capacity data, and HR policy interpretation.
 - Stakeholder judgement about whether the design supports the real approval process.
 
 ### V4: Harness With Vite And E2E Tests
@@ -47,12 +44,11 @@ Keep local:
 Delegate:
 
 - Draft mock records and test scenarios.
-- Suggest local-only verification steps.
+- Suggest local verification steps.
 - Review the harness plan for gaps and confusing assumptions.
 
 Keep local:
 
-- Production exports, Vertec credentials, real browser sessions, and screenshots with identifiable data.
 - The decision to connect anything to a real environment.
 
 ### V5: Userscript To Browser Extension
@@ -65,21 +61,19 @@ Delegate:
 
 Keep local:
 
-- Exact production selectors, internal URLs, cookies, extension signing details, and deployment channels.
 - Approval from IT, security, or system owners.
 
 ### V6: Direct API Integration
 
 Delegate:
 
-- Map read/write boundaries from sanitized examples.
+- Map read/write boundaries from real examples.
 - Draft a plain-English API contract.
 - Identify failure cases, audit requirements, and rollback questions.
 
 Keep local:
 
-- API keys, tokens, sample live payloads, account IDs, customer data, and production endpoint details.
-- Any decision to request or use write access.
+- Any decision to request or use write access. Vertec gives you `/uisync` over SignalR and no friendly REST POST, so write paths are worth a deliberate decision rather than an accident.
 
 ### V8: MCP Automation
 
@@ -87,65 +81,63 @@ Delegate:
 
 - Classify steps as read-only, draft-only, approval-required, or never automate.
 - Draft candidate tool definitions and dry-run protocols.
-- Review proposed boundaries for privacy and operational risk.
+- Review proposed boundaries for operational risk.
 
 Keep local:
 
-- Broad credentials, live data, high-risk approval decisions, and anything that could change real Vertec records.
+- High-risk approval decisions and anything that could change real Vertec records without a heads-up.
 - Final governance rules for who can run or approve automation.
 
 ## Delegation Pattern
 
-1. Manager writes a sanitized brief.
+1. Manager writes the brief.
 2. Subagent produces one narrow artifact.
-3. A second subagent critiques the artifact for privacy, clarity, and assumptions.
+3. A second subagent critiques the artifact for clarity and assumptions.
 4. Manager reviews, edits, and decides what enters the workshop.
-5. Nothing touches live Vertec data unless the manager has explicit approval and a safe operational plan.
+5. Production writes get an explicit decision, not a surprise.
 
 ## Practical Prompts
 
 Manager to drafting subagent:
 
 ```text
-Using only the sanitized brief below, draft the requested workshop artifact. Do not invent live system details. Mark assumptions clearly.
+Using the brief below, draft the requested workshop artifact. Mark assumptions clearly.
 ```
 
 Manager to review subagent:
 
 ```text
-Review this artifact for privacy risk, unsupported assumptions, confusing wording for non-technical participants, and missing human approval points.
+Review this artifact for unsupported assumptions, confusing wording for non-technical participants, and missing human approval points.
 ```
 
 Manager to implementation subagent, only when implementation is in scope:
 
 ```text
-Implement only the approved local prototype. Do not connect to live Vertec, do not use credentials, and do not modify files outside the assigned scope.
+Implement only the approved local prototype. Do not modify files outside the assigned scope.
 ```
 
 ## What To Delegate Vs Keep Local
 
 Good to delegate:
 
-- Summaries of sanitized workflows.
+- Summaries of real workflows — pasting a real Vertec row, screenshot, or DOM slice into ChatGPT, Claude, or Codex is fine.
 - Prompt templates.
 - Mock data design.
 - Test scenario drafting.
-- Accessibility and privacy critique.
+- Accessibility critique.
 - Plain-English explanations of technical choices.
 
 Keep local:
 
-- Live Vertec records and exports.
-- Credentials, tokens, cookies, and session data.
-- Personal, HR, payroll, client, contract, or commercially sensitive information.
+- Genuinely sensitive client, contract, payroll, or HR data — apply common sense.
 - Production writes or irreversible actions.
 - Final sign-off and accountability.
 
 ## Facilitator Checklist
 
 - [ ] Every agent has a narrow job and an explicit output.
-- [ ] Sanitization happened before delegation.
 - [ ] The manager knows which files or artifacts each agent may edit.
-- [ ] A separate review step checks privacy and assumptions.
-- [ ] Human approval is required before any real integration or automation.
+- [ ] A separate review step checks assumptions.
+- [ ] Production writes have an owner who said yes.
 - [ ] The final workshop material is understandable without trusting hidden AI work.
+- [ ] Make no mistakes.
