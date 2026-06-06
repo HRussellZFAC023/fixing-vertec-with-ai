@@ -1,87 +1,143 @@
-# V6: Direct API Integration
+# 06 - Direct API Dry Run
 
 ## Goal
 
-Ask the grown-up question: should this stop poking the page and talk to a proper boundary instead?
+Ask whether the helper should stop poking the DOM and use a proper boundary.
 
-The demo uses a mock API because the grown-up question is about boundaries before access. Participants inspect requests, responses, validation, and failure handling without touching a real Vertec system.
+The answer might be "yes, eventually". It is not "give the browser a token and
+hope Vertec develops a conscience".
 
 ## What Participants Build
 
-- A sanitized API interaction map for one Vertec-related task.
-- A list of required inputs, outputs, permissions, and failure cases.
-- A decision note on whether direct API access is justified.
-- A local mock API exercise using fictional data and clear read/write boundaries.
+- A contract-first map for reading and drafting Services entries.
+- A mock direct API payload with training data.
+- Validation and audit fields.
+- A decision note on whether real API access is justified.
 
-## Suggested Prompt/Tool Interaction
+## Run It
 
-1. Define the task without secrets:
+```sh
+npm run dev
+```
 
-   ```text
-   We are considering direct API integration for this internal Vertec workflow. Based only on the sanitized description below, identify the data we would need to read, write, validate, and log.
-   ```
+Open:
 
-2. Ask for a contract-first plan:
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v6
+```
 
-   ```text
-   Draft an API contract in plain English. Include request fields, response fields, validation rules, audit needs, rate limits to consider, and error handling.
-   ```
+Click `Build mock API request`.
 
-3. Ask for an integration risk review:
+Expected result: the panel prints JSON with:
 
-   ```text
-   Review this plan for privacy, security, operational risk, and whether browser-based or manual review would be safer.
-   ```
+- `endpoint: "mock://vertec.local/services/bulk-draft"`
+- `method: "POST"`
+- `mode: "dry-run"`
+- Services entries containing `date`, `project`, `phase`, `serviceType`,
+  `hours`, and `text`.
+- `humanConfirmationRequired: true`
+- `liveWrite: false`
 
-4. Connect it to the local demo:
+## Inspect
 
-   ```text
-   Design a mock direct API demo using synthetic Vertec-like records only. Include one safe read endpoint, one draft write endpoint, example JSON, validation failures, and the audit log fields a human would expect to see.
-   ```
+Open:
 
-5. Optional tool interaction:
+```text
+public/prototypes/v6/direct-api-dry-run.user.js
+src/prototypes/v1/vertec-helper.test.ts
+```
 
-- Use mock JSON with fake IDs.
-- Use a diagram or table to show read/write boundaries.
-- Keep any code generation out of scope unless the facilitator explicitly moves to implementation.
-- Run the local mock API and compare the request log with the plain-English contract.
+Check:
 
-## Safety/Privacy Notes
+- `buildDraftPayload()` reads workshop-copy DOM rows.
+- `validatePayload()` fails missing date, project, hours, or service Text.
+- The endpoint is `mock://`, not a live Vertec URL.
+- The response says what would be created, not what was created.
+- No API token is present. Tiny miracles do happen.
 
-- Never paste API keys, bearer tokens, session cookies, database exports, or live Vertec payloads into AI tools.
-- Live Vertec/internal data must be sanitized or abstracted before discussion.
-- Direct integrations need access control, audit trails, and rollback thinking.
-- AI can help draft a plan, but system owners must approve real API access.
-- The runnable V6 demo must use synthetic data only. No copied payloads, no exported records, and no production-like secrets.
-- Keep mock writes reversible and clearly labelled as drafts.
+Live discovery from the workshop account:
 
-## Pros/Cons
+- The captured webapp boot traffic loads `boot/index.js`, negotiates
+  `/uisync/negotiate`, and then opens `/uisync/connect` over WebSockets.
+- A read-only probe of the documented REST base path returned `404` on this
+  installation, which likely means the REST web service is not enabled at that
+  URL here.
+- Translation: "use the API" is a discovery task, not a magic spell. Make no
+  mistakes, and then still check the tenant.
 
-Pros:
+## Prompt On Screen
 
-- Can remove fragile browser automation.
-- Makes data contracts and failure handling explicit.
-- Encourages a mature conversation about ownership and auditability.
-- Lets sceptical participants test the shape of an integration without granting access to anything real.
+```text
+We are considering a direct API integration for a Vertec Services workflow.
 
-Cons:
+Using only sanitized data, define a dry-run contract.
 
-- Higher risk than a local prototype or userscript.
-- Requires reliable API documentation and system-owner approval.
-- Mistakes can affect real records if write access is not tightly controlled.
-- A mock API proves the conversation, not the production integration.
+Read inputs:
+- Month
+- Existing Services rows
+- Absence/public-holiday context if approved
 
-## Reproducibility Checklist
+Draft write fields:
+- Date
+- Project
+- Phase
+- Service type
+- Text
+- Hours
 
-- [ ] All example payloads use fake identifiers and fictional records.
-- [ ] Read operations, write operations, and audit logs are separated clearly.
-- [ ] Required permissions are named and justified.
-- [ ] Failure cases include validation errors, unavailable service, and partial success.
-- [ ] The team has documented who must approve direct API access.
-- [ ] The local demo can be reset to its original synthetic dataset.
-- [ ] Participants can explain what would change before a real API pilot.
+Output:
+- Request JSON
+- Validation rules
+- Audit log fields
+- Permission needed
+- Human approval point
+- Rollback or correction path
+
+No live endpoints, no credentials, no copied payloads.
+```
+
+## Dry-Run Rules
+
+- The dry run should use the same field names and validation logic a real
+  integration would need.
+- It must never mutate live records.
+- It must log what evidence was used.
+- It must show the exact proposed entries before any apply step.
+- It must make approval boring, explicit, and cancellable. Boring is a feature.
 
 ## References
 
 - [Vertec REST API](https://www.vertec.com/en-gb/kb/vertec-rest-api/)
 - [Vertec XML interface note](https://www.vertec.com/en-at/kb/vertec-xml-interface/)
+
+## Safety Notes
+
+- Never paste API keys, bearer tokens, cookies, database exports, or live Vertec
+  payloads into AI tools.
+- System owners approve real API access.
+- Browser helpers and API integrations have different risk profiles. Do not
+  smuggle one into the other because the mock looked tidy.
+
+## Pros
+
+- Reduces fragile DOM automation if the API is supported.
+- Makes contracts, validation, and audit visible.
+- Creates a clean discussion with system owners.
+
+## Cons
+
+- Write access can affect real records.
+- The documented REST API may not be enabled on the tenant, may sit behind a
+  different base URL, or may need a separate web-service/API-token setup.
+- The live webapp may use SignalR/WebSocket state rather than a friendly JSON
+  `POST /timesheet` endpoint.
+- Access control, audit, rollback, and rate limits become mandatory.
+- A mock proves the shape of the conversation, not production safety.
+
+## Checklist
+
+- [ ] Payloads use fake identifiers and training entries.
+- [ ] Read, draft write, validation, and audit are separated.
+- [ ] Live writes are impossible in the demo.
+- [ ] Permission and approval owners are named.
+- [ ] Participants can state what changes before a real pilot.

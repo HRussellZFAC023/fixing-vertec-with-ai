@@ -1,74 +1,120 @@
-# V3: UI Overhaul For Holiday Review
+# 03 - Holiday Review UI
 
 ## Goal
 
-Use AI to redesign a clunky holiday-review flow into a clearer interface concept, while keeping the discussion grounded in real user needs and sanitized examples.
+Design a small review panel that catches the obvious timesheet trap: Services are
+not the whole month. Public holidays, absences, and vacation balance exist, even
+when Vertec politely hides the plot in another corner.
 
 ## What Participants Build
 
-- A plain-English description of the current holiday-review pain points.
-- A simple UI brief for a cleaner review screen.
-- A checklist of the information a reviewer needs before approving or querying a holiday entry.
+- A compact review brief for missing workdays, planned leave, and public
+  holidays.
+- A local panel that summarizes training Services and absence context.
+- A critique of what the panel must not infer.
 
-Runnable demo:
+## Run It
+
+```sh
+npm run dev
+```
+
+Open:
 
 ```text
 http://127.0.0.1:5173/prototypes/runner.html?demo=v3
 ```
 
-The demo uses invented Vertec records. It may fetch the public [GOV.UK bank holidays JSON](https://www.gov.uk/bank-holidays.json) when available, sends no fixture data with that request, and falls back to a tiny local 2026 list so the exercise still works offline.
+Expected result:
 
-## Suggested Prompt/Tool Interaction
+- The panel shows missing workdays.
+- It shows remaining vacation balance from fixture attributes.
+- It lists UK public holidays for the fixture month.
+- If the public fetch fails, it falls back to a local 2026 list.
 
-1. Start with the human workflow:
+The demo may fetch [GOV.UK bank holidays JSON](https://www.gov.uk/bank-holidays.json).
+It sends no fixture row data with that request.
 
-   ```text
-   We are improving an internal holiday-review flow connected to Vertec. Using only the sanitized workflow below, identify what a reviewer needs to see, decide, and do. Do not mention implementation yet.
-   ```
+## Inspect
 
-2. Ask for a compact screen design:
+Open:
 
-   ```text
-   Propose a practical UI layout for this flow. Optimise for a busy manager checking several requests quickly. Include states for approved, queried, missing information, and conflict.
-   ```
+```text
+public/prototypes/v3/holiday-review.user.js
+public/fixtures/vertec-workshop-copy.html
+```
 
-3. Ask the AI to critique its own design:
+Check:
 
-   ```text
-   Now challenge this layout for accessibility, privacy, error handling, and whether it makes hidden assumptions about Vertec data.
-   ```
+- `missingWorkDays()` reads `[data-vt-row-kind="workday"]`.
+- `vacationBalance()` reads `data-vt-vacation-*` attributes.
+- `loadBankHolidays()` fetches a public reference URL and has a local fallback.
+- The panel reports context; it does not approve, reject, or judge anyone's
+  health, performance, or character. Revolutionary restraint.
 
-4. Optional tool interaction:
+## Prompt On Screen
 
-- Use a design canvas, whiteboard, or markdown table to sketch the interface.
-- Use fake employee names, fake dates, and fictional holiday balances.
-- If using a coding tool, ask for design notes only in this version.
+```text
+We are improving a sanitized Vertec month-review flow.
 
-## Safety/Privacy Notes
+The user needs to compare:
+- Services rows with hours
+- Missing workdays
+- Planned absences
+- Remaining vacation balance
+- Public holidays from an approved public source
 
-- Live Vertec/internal holiday records must be sanitized or abstracted before sharing.
-- Avoid real names, absence reasons, medical details, team capacity notes, or screenshots from production.
-- Do not ask AI to infer employee performance, health, or sensitive personal context from holiday data.
-- Keep policy interpretation with the organisation, not the model.
+Design a compact review panel for a busy manager. Include states for:
+- OK
+- Missing Services entry
+- Public holiday
+- Planned absence
+- Needs human policy review
 
-## Pros/Cons
+Separate fields visible in the fixture from assumptions that would need Vertec
+API or HR approval.
+```
 
-Pros:
+Then:
 
-- Makes the value of AI visible to non-technical participants.
-- Encourages practical product thinking before code.
-- Surfaces privacy risks early, before anyone builds the wrong thing.
+```text
+Critique the design for accessibility, privacy, selector brittleness, failure
+handling, and unsupported Vertec assumptions.
+```
 
-Cons:
+## Verification
 
-- A polished mockup can feel more certain than it is.
-- AI may invent fields that Vertec does not expose.
-- Approval flows often need policy and HR review beyond the workshop.
+```sh
+npm run test
+```
 
-## Reproducibility Checklist
+Expected result: the v3 test reports `5` missing days, `11.5 days` vacation
+balance, and text mentioning UK public holidays.
 
-- [ ] The workflow is described with fictional or abstracted records.
-- [ ] The proposed UI lists required fields and missing-data states.
-- [ ] Accessibility and privacy are explicitly reviewed.
-- [ ] The design avoids unsupported assumptions about Vertec.
-- [ ] Participants can explain which parts would need stakeholder approval.
+## Safety Notes
+
+- Do not use live absence records, medical details, team-capacity notes, or real
+  names.
+- Do not ask a model to infer why somebody was absent.
+- Policy interpretation belongs to the organisation. The panel can point; it
+  cannot bless.
+
+## Pros
+
+- Connects Services to the context that makes Services safe.
+- Makes failure modes visible early.
+- Gives non-technical participants a concrete review artifact.
+
+## Cons
+
+- Public holiday data is not the same as employment policy.
+- The fixture can miss messy real cases.
+- A polished panel can look more authoritative than it is.
+
+## Checklist
+
+- [ ] Missing Services, absences, balance, and public holidays are separated.
+- [ ] External fetch behavior is visible and has a fallback.
+- [ ] Sensitive people data is excluded.
+- [ ] Unsupported assumptions are named.
+- [ ] Participants know what needs stakeholder approval.

@@ -2,81 +2,153 @@
 
 ## Goal
 
-Build the smallest useful helper: a floating toolbar with `Previous`, `Fill 8h`,
-and `Next` controls.
+Build the smallest useful helper for the Vertec Services grid: `Previous`,
+`Fill service row`, and `Next`.
 
-This version is intentionally modest. It does not infer your week, submit
-anything, call private APIs, or pretend to understand project policy. It removes
-one bit of repetitive manual work and gives participants a safe pattern they can
-inspect.
+The helper edits one selected Services row in the local fixture. On the real
+Vertec page it can detect the live Services grid and show the first hard limit:
+Text and Hours behave like editable cells, but Project, Phase, and Service type
+are object references. Typing their labels is not the same as selecting the
+underlying Vertec objects. This is where "make no mistakes" has its little sit
+down.
 
-## What participants build
+## What Participants Build
 
-- A synthetic Vertec-style fixture.
-- A userscript that adds a small control surface.
-- A fill action that writes a default project, hours, and comment into the
-  selected day.
-- Navigation actions that move between rows.
-- Tests that prove the helper mounts and edits only the selected row.
+- A userscript-style control surface mounted over the fixture.
+- Row selection using `[data-vt-row]` and `data-selected`.
+- A fill action for the selected row only.
+- Tests proving the helper mounts, fills the expected fields, and moves row
+  selection.
 
-## Suggested interaction with AI tools
-
-Start by asking for a critique, not code:
-
-```text
-I have a legacy timesheet UI with repeated rows for date, project, phase,
-service type, hours, and comment. The task is to fill 8 hours for each normal
-working day. What are the smallest useful improvements we can make without
-changing the backend?
-```
-
-Then narrow the ask:
+The real workflow is Services rows:
 
 ```text
-Write a browser userscript that only works on rows marked with data-vt-row.
-It should add Previous, Fill 8h, and Next buttons. The fill action should update
-the selected row and dispatch input/change events.
+Project | Phase | Service type | Text | Hours
 ```
 
-Review the generated code before running it. The key checks are:
+This lab is not about attendance `From`/`To` punch-in fields.
 
-- Does it target only the intended page or fixture?
-- Does it avoid submitting or saving automatically?
-- Does it dispatch the same events a human edit would trigger?
-- Does it fail quietly when it cannot find the expected rows?
-
-## Run the demo
+## Run It
 
 ```sh
 npm install
 npm run dev
 ```
 
-Open the local Vite URL, go to the v1 demo, and click `Fill 8h`.
+Open:
 
-## Safety notes
+```text
+http://127.0.0.1:5173/prototypes/runner.html?demo=v1
+```
 
-Use the synthetic fixture for the workshop. If adapting this to a real system,
-start in read-only observation mode and avoid auto-save behavior until the team
-has reviewed the implementation.
+Click `Fill service row`.
+
+Expected result:
+
+- The selected row stays selected.
+- `[name="project"]` becomes `C34157, Barclaycard Website Re`.
+- `[name="phase"]` becomes `10_DELIVERY`.
+- `[name="serviceType"]` becomes `003_DAILY RATE`.
+- `[name="text"]` becomes `Project delivery`.
+- `[name="hours"]` becomes `8.00`.
+- Nothing is submitted or saved.
+
+## Inspect
+
+Open:
+
+```text
+public/fixtures/vertec-workshop-copy.html
+public/prototypes/v1/vertec-helper.user.js
+src/prototypes/v1/vertec-helper.test.ts
+tests/e2e/site.spec.ts
+```
+
+Check these details:
+
+- Metadata contains `@match` and `@grant none`.
+- The v1 metadata uses the narrow internal allowlist
+  `https://vertec.zuehlke.com/webapp/*`, not the internet with a moustache.
+- The script refuses to run unless it can find Services rows with the expected
+  fields.
+- On live Vertec it detects the `.qx-vertec-table` Services grid, but refuses to
+  claim success when Project, Phase, or Service type are blank object fields.
+- Programmatic edits dispatch both `input` and `change`.
+- Selectors are structural: `[data-vt-services-row]`, `[data-vt-row]`,
+  `[data-vt-service-field="project"]`, `[data-vt-service-field="phase"]`,
+  `[data-vt-service-field="serviceType"]`, `[data-vt-service-field="text"]`,
+  and `[data-vt-service-field="hours"]`.
+
+## Prompt On Screen
+
+```text
+Write a browser userscript for a sanitized Vertec Services fixture.
+
+Make no mistakes.
+
+Scope:
+- It must run only on rows marked [data-vt-row].
+- It must add Previous, Fill service row, and Next controls.
+- Fill service row updates only the selected row.
+- The row fields are Project, Phase, Service type, Text, and Hours.
+- The fixture field names are project, phase, serviceType, text, and hours.
+- After setting values, dispatch input and change events.
+- Do not save, submit, call APIs, or infer policy.
+- Fail quietly if the expected fixture is missing.
+
+Then critique the answer: where would this break on the real Vertec grid?
+Look specifically for object-reference fields, custom div tables, redraws, and
+places where a value can appear typed but not actually become a valid Vertec
+object.
+```
+
+## Verification
+
+For the focused unit test:
+
+```sh
+npm run test
+```
+
+For the full local proof, when there is time:
+
+```sh
+npm run check
+```
+
+Expected result: Vitest verifies the DOM helper in JSDOM, and Playwright clicks
+`Fill service row` through the local browser fixture.
+
+## Safety Notes
+
+- Use the local workshop copy in the workshop.
+- The live-page experiment showed the joke in useful detail: Vertec accepted
+  typed Text and Hours, but object-reference columns need real object selection
+  or an API boundary.
+- Do not paste production row values, service Text, rates, or project names into
+  prompts.
+- Start any real adaptation in observation mode.
+- Keep auto-save out of the first version. Vertec already has enough confidence.
 
 ## Pros
 
-- Fast to understand and easy to delete.
-- Keeps the user in control.
-- Works as a teaching bridge for non-specialists.
-- Gives agents a small, testable target.
+- Easy to read, run, and delete.
+- Gives participants a concrete userscript shape.
+- Keeps the human in control of saving.
 
 ## Cons
 
-- DOM selectors can break when the app changes.
-- It still depends on the UI being loaded and usable.
-- It does not understand policy, holidays, approvals, or project-specific
-  comments.
+- Selectors can break when the page changes.
+- It cannot know holidays, absences, approval rules, or project-specific text.
+- It cannot safely invent Vertec object references. That is a product fact, not
+  a prompt-engineering failure.
+- Without a dynamic mount strategy, SPA redraws can remove the helper.
 
-## Reproducibility checklist
+## Checklist
 
-- The fixture uses synthetic data.
-- The userscript is a standalone file in `public/prototypes/v1/`.
-- Unit tests cover mount, fill, and row navigation.
-- Playwright opens the site, enters the iframe, and verifies the visible result.
+- [ ] Training records stay in the local workshop copy.
+- [ ] Page scope is narrow.
+- [ ] Services fields are Project, Phase, Service type, Text, and Hours.
+- [ ] The script edits only the selected row.
+- [ ] It dispatches `input` and `change`.
+- [ ] It does not submit or call APIs.

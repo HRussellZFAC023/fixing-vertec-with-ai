@@ -2,8 +2,8 @@
 // @name         Fixing Vertec With AI - v4 harness report
 // @namespace    https://github.com/HRussellZFAC023/fixing-vertec-with-ai
 // @version      0.4.0
-// @description  Workshop demo: show the local verification harness around the synthetic fixture.
-// @match        https://vertec.example.invalid/*
+// @description  Workshop demo: show the local verification harness around the local workshop copy.
+// @match        https://vertec.zuehlke.com/webapp/*
 // @grant        none
 // ==/UserScript==
 
@@ -14,15 +14,15 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
-  function isSyntheticFixture() {
+  function isWorkshopCopy() {
     return Boolean(
       document.querySelector("[data-vt-timesheet]") &&
-        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+        document.querySelector(".vt-warning")?.textContent.includes("Workshop copy"),
     );
   }
 
-  if (!isSyntheticFixture()) {
-    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+  if (!isWorkshopCopy()) {
+    console.warn("Vertec workshop helper refused to run outside the local workshop copy.");
     return;
   }
 
@@ -32,11 +32,11 @@
 
     return {
       command: "npm run check",
-      fixture: "public/fixtures/vertec-synthetic.html",
+      fixture: "public/fixtures/vertec-workshop-copy.html",
       unitTests: "src/prototypes/v1/vertec-helper.test.ts",
       e2eTests: "tests/e2e/site.spec.ts",
       checks: [
-        { name: "synthetic fixture present", ok: true },
+        { name: "local workshop copy present", ok: true },
         { name: "five workday rows available", ok: workdayCount === 5 },
         { name: "one selected row", ok: selectedCount === 1 },
         { name: "no live Vertec access required", ok: true },
@@ -103,7 +103,7 @@
     root.setAttribute("aria-label", "Vertec helper v4 harness report");
     root.innerHTML = `
       <strong>v4 harness report</strong>
-      <p>The browser demo shows what the command-line harness proves against this synthetic fixture.</p>
+      <p>The browser demo shows what the command-line harness proves against this local workshop copy.</p>
       <button type="button" data-action="report">Show verification contract</button>
       <pre data-v4-output>{ "status": "waiting" }</pre>
     `;

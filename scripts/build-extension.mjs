@@ -12,10 +12,10 @@ const manifest = {
   name: "Fixing Vertec With AI - Workshop Helper",
   version: "0.3.0",
   description:
-    "Workshop-only extension build of the synthetic Vertec helper. Uses no live permissions by default.",
+    "Workshop-only extension build of the Vertec Services helper. Uses no live permissions by default.",
   content_scripts: [
     {
-      matches: ["https://vertec.example.invalid/*"],
+      matches: ["https://vertec.zuehlke.com/webapp/*"],
       js: ["content-script.js"],
       run_at: "document_idle",
     },

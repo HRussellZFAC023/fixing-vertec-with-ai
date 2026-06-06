@@ -3,7 +3,7 @@
 // @namespace    https://github.com/HRussellZFAC023/fixing-vertec-with-ai
 // @version      0.5.0
 // @description  Workshop demo: review the extension-shaped package before deployment.
-// @match        https://vertec.example.invalid/*
+// @match        https://vertec.zuehlke.com/webapp/*
 // @grant        none
 // ==/UserScript==
 
@@ -14,15 +14,15 @@
 
   if (document.getElementById(ROOT_ID)) return;
 
-  function isSyntheticFixture() {
+  function isWorkshopCopy() {
     return Boolean(
       document.querySelector("[data-vt-timesheet]") &&
-        document.querySelector(".vt-warning")?.textContent.includes("Fixture only"),
+        document.querySelector(".vt-warning")?.textContent.includes("Workshop copy"),
     );
   }
 
-  if (!isSyntheticFixture()) {
-    console.warn("Vertec workshop helper refused to run outside the synthetic fixture.");
+  if (!isWorkshopCopy()) {
+    console.warn("Vertec workshop helper refused to run outside the local workshop copy.");
     return;
   }
 
@@ -33,12 +33,12 @@
       manifest: {
         manifest_version: 3,
         name: "Fixing Vertec With AI - Workshop Helper",
-        matches: ["https://vertec.example.invalid/*"],
+        matches: ["https://vertec.zuehlke.com/webapp/*"],
         permissions: [],
         content_scripts: ["content-script.js"],
       },
       reviewQuestions: [
-        "Does the match pattern avoid production Vertec?",
+        "Does the match pattern only target the Vertec webapp?",
         "Are there any powerful browser permissions?",
         "Does the content script send page data anywhere?",
         "Who would approve a pilot if this were real?",

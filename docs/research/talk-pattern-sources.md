@@ -14,7 +14,7 @@ prototypes toward governed automation.
 - [The Knowledge Gap: Why AI Agents Fail in Real Life](https://www.case-conf.com/session/the-knowledge-gap-why-ai-agents-fail-in-real-life)
   - Useful pattern: follow a broken demo agent into real workflows and explain
     the missing context humans carry. This maps well to Vertec: the hidden work
-    is project policy, comments, holidays, approvals, and memory.
+    is project policy, service Text, holidays, approvals, and memory.
 
 - [Stop Typing, Start Orchestrating](https://busse.github.io/workshop-2601/)
   - Useful pattern: a workshop structure that explicitly teaches multi-agent

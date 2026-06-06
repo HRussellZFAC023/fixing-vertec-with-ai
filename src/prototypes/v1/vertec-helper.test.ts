@@ -5,11 +5,11 @@ import { describe, expect, it } from "vitest";
 
 async function loadDemo(scriptPath = "public/prototypes/v1/vertec-helper.user.js") {
   const root = process.cwd();
-  const html = await readFile(resolve(root, "public/fixtures/vertec-synthetic.html"), "utf8");
+  const html = await readFile(resolve(root, "public/fixtures/vertec-workshop-copy.html"), "utf8");
   const script = await readFile(resolve(root, scriptPath), "utf8");
   const dom = new JSDOM(html, {
     runScripts: "outside-only",
-    url: "http://127.0.0.1:5173/fixtures/vertec-synthetic.html",
+    url: "http://127.0.0.1:5173/fixtures/vertec-workshop-copy.html",
   });
 
   dom.window.eval(script);
@@ -17,28 +17,60 @@ async function loadDemo(scriptPath = "public/prototypes/v1/vertec-helper.user.js
   return dom;
 }
 
+async function userscriptText(scriptPath = "public/prototypes/v1/vertec-helper.user.js") {
+  return readFile(resolve(process.cwd(), scriptPath), "utf8");
+}
+
+function serviceField(row: Element | null | undefined, name: string) {
+  return row?.querySelector<HTMLInputElement | HTMLSelectElement>(
+    `[data-vt-service-field='${name}']`,
+  );
+}
+
 describe("v1 userscript helper", () => {
+  it("targets the real Vertec webapp path in userscript metadata", async () => {
+    const script = await userscriptText();
+
+    expect(script).toContain("// @match        https://vertec.zuehlke.com/webapp/*");
+    expect(script).not.toContain("vertec.example.invalid");
+  });
+
   it("mounts the helper controls", async () => {
     const dom = await loadDemo();
 
     expect(dom.window.document.querySelector("#vertec-helper-v1")).not.toBeNull();
-    expect(dom.window.document.querySelector("[data-action='fill']")?.textContent).toContain("Fill 8h");
+    expect(dom.window.document.querySelector("#vertec-helper-v1")?.textContent).toContain(
+      "v1 Services helper",
+    );
+    expect(dom.window.document.querySelector("[data-action='fill']")?.textContent).toContain(
+      "Fill service row",
+    );
   });
 
-  it("fills the selected row with default workshop values", async () => {
+  it("fills the selected Services row with default workshop values", async () => {
     const dom = await loadDemo();
     const document = dom.window.document;
 
     document.querySelector<HTMLButtonElement>("[data-action='fill']")?.click();
 
     const selected = document.querySelector<HTMLElement>("[data-vt-row][data-selected='true']");
-    expect(selected?.querySelector<HTMLInputElement>("[name='hours']")?.value).toBe("8.00");
-    expect(selected?.querySelector<HTMLSelectElement>("[name='project']")?.value).toBe(
-      "Client Delivery Project",
-    );
-    expect(selected?.querySelector<HTMLInputElement>("[name='comment']")?.value).toBe(
-      "Project delivery",
-    );
+    expect(serviceField(selected, "project")?.value).toBe("C34157, Barclaycard Website Re");
+    expect(serviceField(selected, "phase")?.value).toBe("10_DELIVERY");
+    expect(serviceField(selected, "serviceType")?.value).toBe("003_DAILY RATE");
+    expect(serviceField(selected, "text")?.value).toBe("Project delivery");
+    expect(serviceField(selected, "hours")?.value).toBe("8.00");
+  });
+
+  it("does not present or fill attendance From/To fields", async () => {
+    const dom = await loadDemo();
+    const document = dom.window.document;
+
+    document.querySelector<HTMLButtonElement>("[data-action='fill']")?.click();
+
+    const helperText = document.querySelector("#vertec-helper-v1")?.textContent || "";
+    expect(helperText).not.toMatch(/\bFrom\b|\bTo\b|punch/i);
+    expect(document.querySelector<HTMLInputElement>("[data-vt-attendance-field='from']")?.value).toBe("");
+    expect(document.querySelector<HTMLInputElement>("[data-vt-attendance-field='to']")?.value).toBe("");
   });
 
   it("moves selection to the next and previous rows", async () => {
@@ -111,8 +143,8 @@ describe("later prototype helpers", () => {
 
     const output = document.querySelector("[data-v5-output]")?.textContent || "";
     expect(output).toContain("npm run build:extension");
-    expect(output).toContain("https://vertec.example.invalid/*");
-    expect(output).toContain("Does the match pattern avoid production Vertec?");
+    expect(output).toContain("https://vertec.zuehlke.com/webapp/*");
+    expect(output).toContain("Does the match pattern only target the Vertec webapp?");
   });
 
   it("v8 blocks MCP-shaped apply until human confirmation", async () => {

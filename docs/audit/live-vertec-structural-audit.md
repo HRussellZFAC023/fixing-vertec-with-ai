@@ -2,7 +2,7 @@
 
 Captured read-only on 2026-06-06 from the signed-in Vertec webapp. This file
 contains only structural observations. No row values, client/project names,
-people, comments, rates, or screenshots were copied.
+people, row Text, rates, or screenshots were copied.
 
 ## Safe Findings
 
@@ -35,6 +35,15 @@ people, comments, rates, or screenshots were copied.
 - The human pain and agent pain are related: weak semantics make the UI harder
   to scan, harder to navigate by keyboard, and harder for browser automation to
   target safely.
+- The live Services list is not a normal HTML table or form. It behaves like a
+  custom grid with positioned headers, rows, cells, and a floating editor.
+- Text and Hours can be driven through the visible grid editor. Project, Phase,
+  and Service type are object-reference fields: typing a visible label can leave
+  the underlying Vertec object blank or invalid.
+- The captured webapp traffic used `boot/index.js` plus `/uisync` SignalR /
+  WebSocket endpoints. The documented REST API base path returned `404` in a
+  read-only probe on this tenant, so "just use the API" requires installation
+  discovery and system-owner involvement.
 - A userscript helper should start with visible, reviewable assistance rather
   than writes or submissions.
 - Any direct API or MCP version needs stronger governance than a browser helper:
@@ -42,8 +51,24 @@ people, comments, rates, or screenshots were copied.
 - The absences/working-hours context belongs in the product story because
   services alone are not the whole timesheet job.
 
+## Live V1 Smoke Check
+
+After the local workshop copy was renamed, the v1 userscript was also mounted
+against the real signed-in Services page in a throwaway browser context.
+Sanitized result:
+
+- The browser reached the Vertec webapp rather than an SSO login page.
+- The real Services grid was detected.
+- Headers included Project, Project description, Phase, Date, User, Service
+  type, Text, Hours, Rate, Fees, and cost.
+- The helper mounted in `live` mode.
+- The live helper exposed `Previous`, `Fill text + hours`, and `Next`.
+
+No live row values, project values, rates, fees, or service Text were copied into
+this repository. The smoke check did not click a live write path.
+
 ## Privacy Note
 
 The audit intentionally did not preserve live text content beyond known generic
 workflow terms. If a future run needs screenshots or exact selectors, use a
-training tenant or a redacted/synthetic fixture instead.
+training tenant or a redacted/local workshop copy instead.
