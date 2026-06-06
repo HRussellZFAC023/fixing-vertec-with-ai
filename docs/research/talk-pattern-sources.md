@@ -46,5 +46,5 @@ The talk should not be "eight demos in a row." A stronger shape is:
 5. Agentic engineering: use Codex/annotate to turn critique into a bounded fix.
 6. Prototype ladder: increase capability only when verification and governance
    increase with it.
-7. Closing: the future is less about autonomous magic and more about designing
+7. Closing: the future is less about autonomous demos and more about designing
    accountable operating surfaces.

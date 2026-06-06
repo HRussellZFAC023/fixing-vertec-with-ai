@@ -4,7 +4,7 @@ Current as of 2026-06-06. Scope: public sources that help explain how someone ca
 
 ## Main arc for the workshop
 
-The useful story for "Fixing Vertec With AI" is not "the AI magically fixes the app." It is:
+The useful story for "Fixing Vertec With AI" is not "the AI fixes the app while everyone claps." It is:
 
 1. A person spots friction in a real UI.
 2. They capture a small, sanitized slice of evidence: screenshot, DOM, labels, selectors, and the exact task that feels awkward.

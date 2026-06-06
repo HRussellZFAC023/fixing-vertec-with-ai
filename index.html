@@ -8,165 +8,418 @@
   <body>
     <div class="reveal zuehlke-deck">
       <div class="slides">
-        <section
-          id="opening"
-          class="z-slide z-slide--hero"
-          data-background-image="/assets/zuehlke/hero-portrait.png"
-          data-background-size="cover"
-        >
+        <section id="opening" class="z-slide z-slide--hero">
+          <img
+            class="hero-image"
+            src="/assets/camp/hero-ai-glass.png"
+            alt="Zühlke brand image of a person interacting with a translucent digital interface."
+          />
           <div class="z-brandbar">
             <img src="/assets/zuehlke/zuehlke-mark.svg" alt="Zühlke" />
-            <span>Zühlke Camp</span>
+            <span>Zühlke Camp 2026</span>
           </div>
           <div class="hero-copy">
-            <p class="kicker">A tiny enterprise ritual, taken seriously</p>
-            <h1>Fixing Vertec with AI</h1>
-            <p class="subtitle">
-              From grumbling at a timesheet to agentic engineering patterns people can actually use.
-            </p>
+            <p class="kicker">A small enterprise ritual, performed under duress</p>
+            <h1>Fixing Vertec With AI</h1>
+            <p class="subtitle">Can we do better?</p>
+            <p class="byline">Henry Russell</p>
           </div>
           <div class="stripe-block" aria-hidden="true"></div>
           <aside class="notes">
-            Open with the joke, but keep the empathy: nobody came here because timesheets are thrilling.
-            The claim is that small admin rituals reveal the shape of future human-AI work.
+            Timing: 2 minutes.
+            Open with the recognisable groan, then refuse the cheap shot. The joke is not "people
+            hate admin". The joke is that a serious organisation pays clever, expensive people to act
+            as copy, paste, long-term memory, policy engine, and QA team for a grid of tiny fields,
+            every Friday, until retirement or death, whichever the calendar widget permits first. Say
+            the running example is Vertec, but the real subject is redesigning awkward enterprise
+            workflows with AI without switching our brains off.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--agenda">
+          <div class="z-brandbar z-brandbar--dark">
+            <img src="/assets/zuehlke/zuehlke-mark.svg" alt="Zühlke" />
+            <span>One-hour workshop</span>
+          </div>
+          <h2>Today is not a Vertec roast.</h2>
+          <div class="agenda-track" aria-label="Session structure">
+            <article>
+              <span>01</span>
+              <strong>Fieldwork</strong>
+              <p>What is the human actually doing?</p>
+            </article>
+            <article>
+              <span>02</span>
+              <strong>First AI pass</strong>
+              <p>Use ChatGPT to critique evidence before code.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <strong>Prototype ladder</strong>
+              <p>Move from userscript to tests, extension, API, and MCP.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <strong>Judgement</strong>
+              <p>Know when to automate, when to draft, and when to stop.</p>
+            </article>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Give the audience a map so sceptics know this is not an hour of "look, AI clicked a
+            thing". Emphasise that we start with observation, then use AI as a critic, then build
+            small inspectable prototypes. The end state is not blind autonomy, which is mostly a data
+            breach with better branding. The end state is better work with boundaries you can point at.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--prompt">
+          <div class="prompt-panel">
+            <p class="kicker">Audience check</p>
+            <h2>Hands up.</h2>
+            <p class="prompt-question">Who has filled in their Vertec this week?</p>
+          </div>
+          <div class="prompt-footnote">
+            <span>This is a safe space. The calendar widget is not, and never has been.</span>
+          </div>
+          <aside class="notes">
+            Timing: 1 minute.
+            Ask for hands and narrate the response for accessibility: "about half the room", "nearly
+            everyone", or "a brave minority". This is also the first bit of fieldwork: the workflow is
+            familiar, quietly resented, and usually done at the last survivable minute before the weekend.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--screenshot">
+          <div class="slide-heading">
+            <p class="kicker">The proof object</p>
+            <h2>The Vertec interface.</h2>
+          </div>
+          <figure class="screenshot-frame">
+            <img
+              src="/assets/camp/vertec-services-redacted.png"
+              alt="Redacted Vertec Services page showing a navigation tree, week controls, attendance fields, and a wide services grid."
+            />
+            <figcaption>Isn&apos;t she beautiful? Real shape, redacted details. The private data is not the lesson; the shape is.</figcaption>
+          </figure>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Let the screenshot sit for a second. Do not over-explain it. Say: this looks like a
+            spreadsheet, but it behaves like a collection of custom controls. The empty space, tiny
+            text, side navigation, separate absences area, and wide services table are the actual
+            workshop material.
           </aside>
         </section>
 
         <section class="z-slide z-slide--statement">
-          <div class="z-brandbar z-brandbar--dark">
-            <img src="/assets/zuehlke/zuehlke-mark.svg" alt="Zühlke" />
-            <span>Field note</span>
+          <div class="statement-lockup">
+            <p class="kicker">The real problem</p>
+            <h2>The enemy is not time recording.</h2>
+            <p class="statement-line">The enemy is making the human act as the integration layer.</p>
           </div>
-          <h2>The enemy is not time recording.</h2>
-          <p class="statement-line">
-            The enemy is making the human act as the integration layer.
-          </p>
-          <p class="quiet">
-            The bill still has to be right. The approval still has to be fair. The human should not
-            have to become a very tired API gateway every Friday.
-          </p>
-        </section>
-
-        <section
-          class="z-slide z-slide--photo"
-          data-background-image="/assets/zuehlke/workshop-table.png"
-          data-background-size="cover"
-        >
-          <div class="photo-panel">
-            <p class="kicker">Before the build</p>
-            <h2>Do the anthropology.</h2>
-            <p>
-              Watch the task. Name the workarounds. Ask what the tool is forcing people to remember.
-              Then decide whether AI should critique, assist, test, or stay out of the way.
-            </p>
+          <div class="side-proof">
+            <span>Timesheets feed</span>
+            <ul>
+              <li>billing</li>
+              <li>approvals</li>
+              <li>project planning</li>
+              <li>fairness</li>
+              <li>vacation balance</li>
+            </ul>
           </div>
           <aside class="notes">
-            The workshop begins with noticing: what is the real job, what is policy, what is tool
-            friction, and what is just ceremony?
+            Timing: 2 minutes.
+            This line should survive the talk. Time recording matters. Accuracy matters. The human
+            should not have to remember project policy, public holidays, absences, approval tone,
+            billing implications, and which of three near-identical grids is the one that actually
+            writes the row.
           </aside>
         </section>
 
-        <section class="z-slide z-slide--grid">
-          <div>
-            <p class="kicker">The system under the microscope</p>
-            <h2>What a Vertec-like UI asks from a person</h2>
+        <section class="z-slide z-slide--policy">
+          <div class="slide-heading slide-heading--compact">
+            <p class="kicker">Hidden policy</p>
+            <h2>The tool does not contain all the rules.</h2>
           </div>
-          <div class="dense-grid dense-grid--three">
-            <article>
-              <strong>Remember</strong>
-              <p>Project, phase, service type, comment policy, holidays, absences, and what counts as done.</p>
-            </article>
-            <article>
-              <strong>Translate</strong>
-              <p>Turn messy real work into the exact fields an enterprise system expects.</p>
-            </article>
-            <article>
-              <strong>Reassure</strong>
-              <p>Check that approvals, billing, vacation balance, and public holidays still line up.</p>
-            </article>
+          <figure class="policy-frame">
+            <img
+              src="/assets/camp/timesheet-guidance-cropped.png"
+              alt="Cropped guidance document explaining timesheet basics and that delivery lead instructions take priority."
+            />
+          </figure>
+          <div class="policy-callout">
+            <strong>Delivery lead decides.</strong>
+            <p>Not a bug in the PDF. It is the job. The rule that matters most lives in someone's head, two reorgs ago.</p>
           </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Explain that "fill 8 hours" is not enough. Some projects want specific comments. Some
+            people backfill. Holidays and absences change the answer. This is why the first AI move
+            should be critique and clarification, not clicking Submit faster.
+          </aside>
         </section>
 
-        <section class="z-slide z-slide--evidence">
-          <p class="kicker">Saved snapshot, abstracted</p>
-          <h2>The UI is not malicious. It is just deeply unhelpful.</h2>
-          <div class="metric-strip">
-            <div><strong>460</strong><span>divs</span></div>
-            <div><strong>467</strong><span>inline styles</span></div>
-            <div><strong>0</strong><span>tables</span></div>
-            <div><strong>0</strong><span>role attributes</span></div>
+        <section class="z-slide z-slide--audit">
+          <div class="slide-heading slide-heading--compact">
+            <p class="kicker">UI audit</p>
+            <h2>Thirteen small frictions. One familiar Friday.</h2>
+          </div>
+          <figure class="audit-frame">
+            <img
+              src="/assets/camp/vertec-annotated-audit-redacted.png"
+              alt="Annotated redacted Vertec screenshot with callouts for page structure, tiny text, manual navigation, icon-only controls, duplicate information, table behaviour, contrast, dropdowns, hidden editing boxes, and sideways scrolling."
+            />
+          </figure>
+          <aside class="notes">
+            Timing: 3 minutes.
+            Use this as the empathy map in visual form. Pick five callouts, not all thirteen:
+            no clear page structure, manual navigation, icon-only controls, not a real table, and
+            fill everything manually. Then make the bridge: the same issues hurt humans, keyboard
+            users, screen readers, browser automation, and AI agents.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--bridge">
+          <div>
+            <p class="kicker">Accessibility is not a side quest</p>
+            <h2>Weak handles make everyone work harder.</h2>
+          </div>
+          <div class="handle-grid">
+            <article>
+              <strong>Human</strong>
+              <p>Squints, remembers, checks, scrolls sideways.</p>
+            </article>
+            <article>
+              <strong>Keyboard user</strong>
+              <p>Needs focus order, labels, and predictable controls.</p>
+            </article>
+            <article>
+              <strong>Script</strong>
+              <p>Needs stable selectors and explicit state.</p>
+            </article>
+            <article>
+              <strong>Agent</strong>
+              <p>Needs visible cues and semantics, or burns steps guessing.</p>
+            </article>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Reference the W3C guidance in spirit: describe visual information, keep slides/materials
+            accessible, use simple structure. The point here is broader: accessible structure is not
+            charity work bolted onto a product; it is the machinery that lets people and tools
+            understand what is happening.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--personas">
+          <div class="slide-heading">
+            <p class="kicker">Empathy map</p>
+            <h2>Same page, different anxieties.</h2>
+          </div>
+          <div class="persona-strip">
+            <article>
+              <span>Friday backfiller</span>
+              <p>"I know what I did. I just need the rows to stop fighting me."</p>
+            </article>
+            <article>
+              <span>Project-switcher</span>
+              <p>"Which phase was that meeting? Why are there three almost-right options?"</p>
+            </article>
+            <article>
+              <span>Approver</span>
+              <p>"Please do not make me reverse-engineer your week from a comment called work."</p>
+            </article>
+            <article>
+              <span>New joiner</span>
+              <p>"I am learning the company through a grid with no punchline."</p>
+            </article>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            This is where we replace "users are lazy" with actual human situations. Mention that the
+            new joiner and the browser agent have something in common: neither has the folklore yet.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--loop">
+          <div class="slide-heading">
+            <p class="kicker">Cybernetic delivery, in miniature</p>
+            <h2>Observe the loop before changing the loop.</h2>
+          </div>
+          <div class="loop-diagram" aria-label="Workflow loop from observe to map, prototype, validate, and govern">
+            <div>Observe</div>
+            <div>Map context</div>
+            <div>Prototype</div>
+            <div>Validate</div>
+            <div>Govern</div>
           </div>
           <p class="quiet">
-            For humans, that means squinting and memory work. For agents, it means weak semantic handles
-            and brittle action plans. The accessibility problem and the automation problem are cousins.
+            This is not "play with tools first". It is structured fieldwork with a mischievous demo budget.
           </p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Connect to cybernetic delivery without making it sound like a capital-M Method. The
+            simple version: see the current control loop, find where humans compensate for the
+            system, change the smallest part, and keep evidence when the automation boundary moves.
+          </aside>
         </section>
 
         <section class="z-slide z-slide--split">
           <div>
-            <p class="kicker">First interaction</p>
-            <h2>ChatGPT with a tiny, sanitised DOM slice</h2>
+            <p class="kicker">Step zero: ChatGPT, no Codex</p>
+            <h2>Paste evidence. Ask for critique.</h2>
             <p>
-              The first move is not "build me an app". It is "help me see what is wrong and name the
-              smallest humane fix".
+              Start with a redacted screenshot or tiny DOM slice. Ask ChatGPT to separate evidence
+              from guesses, then propose the smallest requirement.
             </p>
           </div>
           <pre><code data-trim>
-&lt;div data-vt-row data-date="2026-06-01"&gt;
-  &lt;select name="project"&gt;...&lt;/select&gt;
-  &lt;input name="hours" /&gt;
-  &lt;input name="comment" /&gt;
-&lt;/div&gt;
+I am reviewing a sanitized internal UI.
+No real names, clients, URLs, or row data are included.
 
-Ask:
-"What makes this repetitive?
- What should a tiny helper do first?"
+Critique this from three views:
+1. tired human finishing admin,
+2. keyboard or assistive-tech user,
+3. browser automation script.
+
+Separate evidence from guesses.
+Then propose the first tiny helper.
           </code></pre>
+          <aside class="notes">
+            Timing: 3 minutes.
+            This is the first mini-workshop. Emphasise that participants do not need Codex yet. They
+            need a habit: capture small safe evidence, ask better questions, and turn irritation into
+            a requirement. Mention ChatGPT file/screenshot support and Chrome DevTools DOM inspection
+            as the practical way in.
+          </aside>
         </section>
 
-        <section class="z-slide z-slide--two-col">
+        <section class="z-slide z-slide--dom">
+          <div class="slide-heading">
+            <p class="kicker">DOM slice</p>
+            <h2>Small enough to paste. Rich enough to reason about.</h2>
+          </div>
+          <div class="dom-grid">
+            <pre><code data-trim>
+&lt;tr data-vt-row data-date="2026-06-01"&gt;
+  &lt;td&gt;&lt;select name="project"&gt;...&lt;/select&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;input name="text" /&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;input name="hours" /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+            </code></pre>
+            <div class="dom-notes">
+              <strong>What ChatGPT can help name</strong>
+              <ul>
+                <li>Repeated manual choices</li>
+                <li>Missing labels and semantics</li>
+                <li>Risky assumptions</li>
+                <li>Acceptance criteria for a tiny helper</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            This slide makes the non-Codex workflow teachable. You are not asking ChatGPT to operate
+            the system. You are asking it to help reason about a safe fragment. This is a good moment
+            for sceptics because the output is inspectable: it can be right, wrong, or useful in parts.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--agent">
+          <div class="slide-heading slide-heading--compact">
+            <p class="kicker">First temptation</p>
+            <h2>Browser agents inherit the page.</h2>
+          </div>
+          <figure class="agent-frame">
+            <img
+              src="/assets/camp/browser-agent-attempt-synthetic.png"
+              alt="Synthetic split screen showing a browser agent attempting to fill a timesheet, taking many steps, and hitting an error."
+            />
+          </figure>
+          <aside class="notes">
+            Timing: 3 minutes.
+            Tell the story from the source deck: the agent sort of works, but it is slow, step-heavy,
+            and fragile. It also inherits the page's confusion: zoom, table choice, hidden controls,
+            and weak semantics. Good line: a browser agent is a lot of confidence wrapped around a
+            mouse cursor. That is funny because it is also useful.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--callback">
+          <div class="slide-heading slide-heading--compact">
+            <p class="kicker">The callback</p>
+            <h2>The agent did what we asked.</h2>
+          </div>
+          <figure class="message-frame">
+            <img
+              src="/assets/camp/bank-holiday-callback-synthetic.png"
+              alt="Synthetic chat message asking why 8 hours were booked on bank holidays, followed by an acknowledgement that it was an oversight."
+            />
+          </figure>
+          <p class="callback-line">That was the problem.</p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            This is the Easter/bank holiday moment, but anonymised. Say: "Fill the weekdays" sounds
+            obvious until you remember bank holidays, holidays, absences, half-days, and local comment
+            rules. AI did not fail because it was dumb. It failed because our instruction pretended
+            the policy context was optional.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--source">
           <div>
-            <p class="kicker">Then Codex</p>
-            <h2>Annotate the pain, not just the code.</h2>
-            <p>
-              Point at the UI or DOM and say what is bad: unclear affordance, duplicated memory,
-              missing holiday context, absent semantics, risky save behaviour.
-            </p>
+            <p class="kicker">Current agent reality</p>
+            <h2>Convenience went up. So did the boundary work.</h2>
           </div>
-          <div class="annotation-card">
-            <span>Annotate</span>
-            <p>"This row should know what a normal day is, but the user is doing the remembering."</p>
-            <p>"Fix: prepare a reviewable draft. Do not auto-submit."</p>
+          <div class="source-grid">
+            <article>
+              <strong>ChatGPT agent</strong>
+              <p>Can navigate sites, use a visual browser, connect apps, and pause for confirmations.</p>
+            </article>
+            <article>
+              <strong>Atlas</strong>
+              <p>Brings page context and agent mode into the browser, with explicit privacy controls.</p>
+            </article>
+            <article>
+              <strong>Practical lesson</strong>
+              <p>More context is useful. More context also means you must be clearer about data, permissions, and supervision.</p>
+            </article>
           </div>
+          <p class="source-links">
+            Sources:
+            <a href="https://help.openai.com/en/articles/11752874-chatgpt-agent">ChatGPT agent</a>,
+            <a href="https://openai.com/index/introducing-chatgpt-atlas/">Atlas launch</a>,
+            <a href="https://help.openai.com/en/articles/12574142-chatgpt-atlas-data-controls-and-privacy">Atlas privacy</a>
+          </p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Keep this factual. The official guidance talks about confirmations, screenshots, app
+            access, prompt injection, sensitive data, and page visibility. That supports our workshop
+            posture: browser agents are real and useful, but the right first move on internal systems
+            is still scoped evidence and explicit boundaries.
+          </aside>
         </section>
 
-        <section
-          class="z-slide z-slide--chapter"
-          data-background-image="/assets/zuehlke/light-trails.jpeg"
-          data-background-size="cover"
-        >
-          <h2>The prototype ladder</h2>
-          <p>Each step makes the work more capable, and the responsibility more explicit.</p>
-        </section>
-
-        <section class="z-slide z-slide--ladder">
-          <h2>From quick relief to governed automation</h2>
-          <ol class="ladder">
-            <li><span>V1</span> Basic userscript: Fill, Previous, Next.</li>
-            <li><span>V2</span> Templates for repeated project comments.</li>
-            <li><span>V3</span> UI overhaul with vacation and UK public holiday awareness.</li>
-            <li><span>V4</span> Vite harness and e2e tests.</li>
-            <li><span>V5</span> Userscript compiler to extension.</li>
-            <li><span>V6</span> Direct API calls, if policy and evidence allow it.</li>
-            <li><span>V8</span> MCP wrapper plus Codex automation with human confirmation.</li>
-          </ol>
+        <section class="z-slide z-slide--chapter">
+          <img src="/assets/zuehlke/light-trails.jpeg" alt="" aria-hidden="true" />
+          <div>
+            <p class="kicker">Now build</p>
+            <h2>The prototype ladder</h2>
+            <p>Capability only earns its place when evidence and control move with it.</p>
+          </div>
+          <aside class="notes">
+            Timing: 1 minute.
+            This is the turn from diagnosis to engineering. Say that the versions are deliberately
+            uneven: some are throwaway, some are product-shaped, some are governance-shaped. The
+            learning is choosing the right rung, not worshipping the top rung.
+          </aside>
         </section>
 
         <section id="demo-v1" class="z-slide z-slide--demo">
           <div class="demo-topline">
             <div>
-              <p class="kicker">V1 demo</p>
-              <h2>Not smart, just humane</h2>
+              <p class="kicker">V1 live demo</p>
+              <h2>The first useful button</h2>
             </div>
             <button id="reload-demo" type="button">Reload</button>
           </div>
@@ -176,34 +429,260 @@ Ask:
             src="/fixtures/vertec-synthetic.html"
           ></iframe>
           <aside class="notes">
-            The point is restraint. A helper that fills one selected row is easier to explain, review,
-            test, and delete than a magical agent that starts submitting time.
+            Timing: 4 minutes.
+            Demo the embedded fixture. Fill one selected row, then stop. The restraint is the point:
+            no save, no API call, no live data, no fake intelligence. A small button makes the
+            repeated movement visible and gives the room something concrete to improve.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--userscript">
+          <div class="slide-heading">
+            <p class="kicker">Why userscripts?</p>
+            <h2>A power-user bridge between complaint and product.</h2>
+          </div>
+          <div class="bridge-ladder">
+            <article><span>1</span><strong>Console snippet</strong><p>Proves the page can be helped.</p></article>
+            <article><span>2</span><strong>Userscript</strong><p>Runs locally, scoped to the page.</p></article>
+            <article><span>3</span><strong>Harness</strong><p>Makes behaviour reproducible.</p></article>
+            <article><span>4</span><strong>Extension</strong><p>Makes permissions inspectable.</p></article>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Bring in your UchiDb / userscript-compiler origin story here. It matters because it
+            shows taste: not every pain deserves a platform team. Sometimes a tiny local layer is the
+            right way to learn, share, and decide if the idea deserves more structure.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--versions">
+          <div class="slide-heading">
+            <p class="kicker">V2 and V3</p>
+            <h2>Templates and holidays: where the mistakes actually live.</h2>
+          </div>
+          <div class="version-visuals">
+            <article>
+              <span>V2</span>
+              <strong>Project templates</strong>
+              <p>Turn comment folklore into visible defaults that can be challenged.</p>
+            </article>
+            <article>
+              <span>V3</span>
+              <strong>Holiday review</strong>
+              <p>Flag missing days, absences, vacation balance, and UK public holidays before filling.</p>
+            </article>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Explain that V2 and V3 are not "more features because features". They move the system
+            closer to the actual work: comments are policy, holidays are data, and absences are not a
+            decorative tab. This is where the bank-holiday callback gets designed out.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--engineering">
+          <div class="slide-heading">
+            <p class="kicker">V4 and V5</p>
+            <h2>The boring bit is what makes it teachable.</h2>
+          </div>
+          <div class="terminal-proof">
+            <pre><code data-trim>
+npm run test
+npm run build:extension
+npm run test:e2e
+            </code></pre>
+            <div>
+              <strong>V4: Harness</strong>
+              <p>Fixture, Vitest, Playwright, repeatable failure.</p>
+              <strong>V5: Extension-shaped</strong>
+              <p>Permissions, packaging, and deployment questions become visible.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            This is where we make the demo less shiny and more credible. A sceptical participant
+            should be able to run the same thing after lunch. The moment you package it as an
+            extension, permissions and rollout stop being abstract governance words and become files.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--api">
+          <div class="slide-heading">
+            <p class="kicker">V6 and V8</p>
+            <h2>Bypassing the UI is powerful. That is why it needs gates.</h2>
+          </div>
+          <div class="api-flow">
+            <article>
+              <span>V6</span>
+              <strong>Direct API draft</strong>
+              <p>Stable workflow, if access control and audit exist.</p>
+            </article>
+            <article>
+              <span>V8</span>
+              <strong>MCP wrapper</strong>
+              <p>Chat-native tool calls with dry-run output and confirmation.</p>
+            </article>
+          </div>
+          <div class="approval-strip">
+            <span>Read</span>
+            <span>Draft</span>
+            <span>Validate</span>
+            <span>Confirm</span>
+            <span>Write</span>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Make the trade-off explicit. Direct APIs are often the right technical answer, but they
+            remove the accidental friction of the UI. That means we must add intentional friction:
+            dry runs, diffs, source citations, confirmations, logs, and permission scopes.
           </aside>
         </section>
 
         <section id="prototype-studio" class="z-slide z-slide--studio">
           <p class="kicker">Runnable prototype studio</p>
-          <h2>Same fixture, different automation boundaries</h2>
+          <h2>Every rung is self-contained.</h2>
           <div class="studio-grid">
             <a href="/prototypes/runner.html?demo=v1"><strong>V1</strong><span>Basic userscript</span></a>
-            <a href="/prototypes/runner.html?demo=v2"><strong>V2</strong><span>Templates and comments</span></a>
-            <a href="/prototypes/runner.html?demo=v3"><strong>V3</strong><span>Holiday review</span></a>
-            <a href="/prototypes/runner.html?demo=v4"><strong>V4</strong><span>Harness proof</span></a>
-            <a href="/prototypes/runner.html?demo=v5"><strong>V5</strong><span>Extension review</span></a>
-            <a href="/prototypes/runner.html?demo=v6"><strong>V6</strong><span>Mock direct API</span></a>
+            <a href="/prototypes/runner.html?demo=v2"><strong>V2</strong><span>Templates</span></a>
+            <a href="/prototypes/runner.html?demo=v3"><strong>V3</strong><span>Holidays</span></a>
+            <a href="/prototypes/runner.html?demo=v4"><strong>V4</strong><span>Harness</span></a>
+            <a href="/prototypes/runner.html?demo=v5"><strong>V5</strong><span>Extension</span></a>
+            <a href="/prototypes/runner.html?demo=v6"><strong>V6</strong><span>Mock API</span></a>
             <a href="/prototypes/runner.html?demo=v8"><strong>V8</strong><span>MCP dry run</span></a>
           </div>
           <p class="quiet">
-            V4 and V5 also have real command-line proof: <code>npm run check</code> and
-            <code>npm run build:extension</code>.
+            All demos use synthetic data. The live system is for observation, not workshop payloads. We are all rather attached to our jobs.
           </p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Point participants at the runnable links. The reason this matters pedagogically: people
+            can inspect the same fixture across versions and see the automation boundary move. That
+            is much easier to reason about than a single heroic live demo.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--architecture">
+          <div class="slide-heading">
+            <p class="kicker">Under the covers</p>
+            <h2>Split the awkwardness into parts agents can actually help with.</h2>
+          </div>
+          <div class="architecture-map">
+            <div>userscript UI</div>
+            <div>vertec-dom</div>
+            <div>core rules</div>
+            <div>integrations</div>
+            <div>tests</div>
+          </div>
+          <p class="quiet">
+            The architecture is not there to impress anyone. It is there so one change does not become a soup incident.
+          </p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Explain why this matters for subagents and Codex. If the work is split into DOM adapters,
+            core rules, UI, integrations, and tests, you can delegate pieces and still review the
+            whole. If everything is one blob, the agent has to be lucky and tasteful at the same time.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--evidence-chain">
+          <div>
+            <p class="kicker">The comment problem</p>
+            <h2>"What did I do today?" is already in your tools.</h2>
+          </div>
+          <div class="evidence-chain">
+            <article>Git commits</article>
+            <article>Calendar</article>
+            <article>Tickets</article>
+            <article>Slack / Teams</article>
+            <article>Draft comment</article>
+            <article>Human approval</article>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Use the example the user asked for: "Codex, check my commit messages from today and draft
+            what I did." This is a safer and more useful framing than "fill my timesheet". Read-only
+            evidence in, draft out, human approves. The minute it crosses into write actions, the
+            approval and audit standard rises.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--subagents">
+          <div>
+            <p class="kicker">Manager mode</p>
+            <h2>Use subagents like a delivery team, not a séance.</h2>
+          </div>
+          <div class="agent-map">
+            <span>Research</span>
+            <span>Fixture</span>
+            <span>V1 script</span>
+            <span>Holiday rules</span>
+            <span>Tests</span>
+            <span>Docs</span>
+            <span>Integration</span>
+          </div>
+          <p class="quiet">
+            The human keeps taste, risk calls, and the final story. Delegation is not abdication.
+          </p>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Connect this to the way the workshop/repo was made. Multiple agents can research,
+            prototype, test, and write docs in parallel. The manager role is to set boundaries,
+            inspect outputs, remove slop, and keep the audience in mind. This is a learnable
+            consultancy skill.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--superapp">
+          <img src="/assets/zuehlke/robot-hand.png" alt="" aria-hidden="true" />
+          <div class="superapp-panel">
+            <p class="kicker">The superapp question</p>
+            <h2>Is Codex signed into everything the future?</h2>
+            <p>
+              Maybe. The useful version is a scoped workbench: tools, permissions, traces, and
+              confirmations. The silly version is "please operate my life" and a shrug.
+            </p>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes.
+            Use the current Codex direction carefully: plugins, Sites, annotations, and tool
+            workflows point toward more work happening inside one agentic workspace. But the
+            workshop stance is not "let it do everything". It is "make the boundary explicit enough
+            that a sceptical teammate can inspect it".
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--tradeoffs">
+          <p class="kicker">Pros and cons</p>
+          <h2>Different rungs, different failure modes.</h2>
+          <table class="tradeoff-table">
+            <thead>
+              <tr>
+                <th>Approach</th>
+                <th>Good at</th>
+                <th>Watch out for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>ChatGPT critique</td><td>Naming friction and requirements</td><td>No behavioural proof</td></tr>
+              <tr><td>Userscript</td><td>Fast local improvement</td><td>Brittle DOM coupling</td></tr>
+              <tr><td>Harness</td><td>Reproducible learning</td><td>Mock data drift</td></tr>
+              <tr><td>Extension</td><td>Inspectable permissions</td><td>Rollout overhead</td></tr>
+              <tr><td>Direct API</td><td>Stable workflow</td><td>Access, policy, audit</td></tr>
+              <tr><td>MCP automation</td><td>Chat-native operations</td><td>Bad tools scale bad judgement</td></tr>
+            </tbody>
+          </table>
+          <aside class="notes">
+            Timing: 2 minutes.
+            This is the decision slide. Say plainly: there is no universal best approach. The right
+            answer depends on blast radius, permissions, how often the workflow changes, who will
+            maintain it, and what evidence the organisation needs before trusting it.
+          </aside>
         </section>
 
         <section class="z-slide z-slide--workshops">
-          <p class="kicker">Participant materials</p>
-          <h2>Every step is a mini-workshop</h2>
+          <p class="kicker">Participant kit</p>
+          <h2>Mini-workshops, not just slides.</h2>
           <div class="workshop-list">
-            <a href="/docs/facilitation/facilitator-field-guide.md">Facilitator field guide</a>
             <a href="/docs/workshops/00-chatgpt-dom-workflow.md">00 ChatGPT + DOM</a>
             <a href="/docs/workshops/01-basic-userscript.md">01 Basic userscript</a>
             <a href="/docs/workshops/02-templates.md">02 Templates</a>
@@ -212,96 +691,53 @@ Ask:
             <a href="/docs/workshops/05-userscript-to-extension.md">05 Extension</a>
             <a href="/docs/workshops/06-direct-api.md">06 Direct API</a>
             <a href="/docs/workshops/08-mcp-automation.md">08 MCP + automation</a>
+            <a href="/docs/facilitation/facilitator-field-guide.md">Facilitator guide</a>
+            <a href="/docs/speaker-notes.md">Speaker notes</a>
           </div>
+          <aside class="notes">
+            Timing: 1 minute.
+            Make clear that the website is the workshop pack. Participants can run the demos, read
+            the handouts, and reuse the prompts. This is why the deck is in HTML: it is both
+            presentation and shareable artifact.
+          </aside>
         </section>
 
-        <section class="z-slide z-slide--pros">
-          <p class="kicker">Trade-offs</p>
-          <h2>No single approach wins forever.</h2>
-          <div class="tradeoff-grid">
-            <article>
-              <strong>ChatGPT critique</strong>
-              <p>Best for finding words, structure, and first requirements. Weak at proving behaviour.</p>
-            </article>
-            <article>
-              <strong>Userscript</strong>
-              <p>Best for quick humane relief. Brittle if the DOM shifts.</p>
-            </article>
-            <article>
-              <strong>Harness + tests</strong>
-              <p>Best for reproducibility. Requires discipline before the demo feels exciting.</p>
-            </article>
-            <article>
-              <strong>Direct API</strong>
-              <p>Best for robust workflows. Needs permission, observability, and policy clarity.</p>
-            </article>
-            <article>
-              <strong>MCP + automation</strong>
-              <p>Best for chat-native work. Needs confirmations and a clean audit trail.</p>
-            </article>
-          </div>
+        <section class="z-slide z-slide--sources">
+          <p class="kicker">Design and workflow sources</p>
+          <h2>The useful bits I borrowed.</h2>
+          <ul class="source-list">
+            <li><a href="https://www.w3.org/WAI/teach-advocate/accessible-presentations/">W3C WAI: accessible presentations</a></li>
+            <li><a href="https://support.microsoft.com/en-us/office/make-your-powerpoint-presentations-accessible-to-people-with-disabilities-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25">Microsoft: accessible PowerPoint</a></li>
+            <li><a href="https://ideas.ted.com/6-dos-and-donts-for-next-level-slides-from-a-ted-presentation-expert/">TED Ideas: one idea per slide</a></li>
+            <li><a href="https://openai.com/academy/working-with-files/">OpenAI Academy: working with files</a></li>
+            <li><a href="https://help.openai.com/en/articles/11752874-chatgpt-agent">OpenAI Help: ChatGPT agent</a></li>
+            <li><a href="https://openai.com/index/codex-for-every-role-tool-workflow/">OpenAI: Codex for every role, tool, and workflow</a></li>
+          </ul>
+          <aside class="notes">
+            Timing: 1 minute.
+            Do not read the links. Explain what they influenced: accessible materials, larger visual
+            slides, clear sectioning, the ChatGPT-only workflow, the caution around browser agents,
+            and the idea of Codex as an increasingly broad workbench rather than only a coding tool.
+          </aside>
         </section>
 
-        <section
-          class="z-slide z-slide--photo"
-          data-background-image="/assets/zuehlke/robot-hand.png"
-          data-background-size="cover"
-        >
-          <div class="photo-panel photo-panel--wide">
-            <p class="kicker">The superapp question</p>
-            <h2>Is Codex signed into everything the future?</h2>
-            <p>
-              Maybe. But the useful version is not "the AI does whatever it wants".
-              It is a trusted workbench with tools, memory, browser context, Git history,
-              approvals, and boring evidence.
-            </p>
-          </div>
-        </section>
-
-        <section class="z-slide z-slide--two-col">
-          <div>
-            <p class="kicker">Subagents</p>
-            <h2>Manage the swarm. Do not become the swarm.</h2>
-            <p>
-              Give each agent a bounded lane: research, fixture, v1, tests, docs, API investigation.
-              Keep integration, risk calls, and taste with the human lead.
-            </p>
-          </div>
-          <div class="agent-map">
-            <span>Research</span>
-            <span>Fixture</span>
-            <span>Userscript</span>
-            <span>Tests</span>
-            <span>Docs</span>
-            <span>Integration</span>
-          </div>
-        </section>
-
-        <section class="z-slide z-slide--timeline">
-          <p class="kicker">What changed over time</p>
-          <h2>From prompts to delivery systems</h2>
-          <div class="era-line">
-            <div><strong>2022</strong><span>Ask a chatbot.</span></div>
-            <div><strong>2023</strong><span>Paste code, get snippets.</span></div>
-            <div><strong>2024</strong><span>IDE agents and repo context.</span></div>
-            <div><strong>2025</strong><span>Browser agents and tool calling.</span></div>
-            <div><strong>2026</strong><span>Superapp workflows, MCP, automations, governed traces.</span></div>
-          </div>
-        </section>
-
-        <section
-          class="z-slide z-slide--closing"
-          data-background-image="/assets/zuehlke/data-wave.jpeg"
-          data-background-size="cover"
-        >
+        <section class="z-slide z-slide--closing">
+          <img src="/assets/zuehlke/data-wave.jpeg" alt="" aria-hidden="true" />
           <div class="closing-copy">
             <p class="kicker">Takeaway</p>
-            <h2>Make the work visible. Then make the improvement boring.</h2>
+            <h2>Find the hidden integration work.</h2>
             <p>
-              The best AI demo is not the one that looks most autonomous. It is the one a sceptical
-              teammate can inspect, run, question, and safely adapt.
+              Then decide the smallest thing that makes it visible, testable, and safe enough for a
+              sceptical colleague to run after lunch.
             </p>
           </div>
+          <aside class="notes">
+            Timing: 1 minute.
+            Close on consultancy craft. The Vertec joke gets people in the room, but the transferable
+            skill is spotting where humans are bridging systems, policy, and memory. AI helps when it
+            sharpens that picture and gives us inspectable tools. It hurts when we use it to bury the
+            mess under a faster clicker and a confident tone.
+          </aside>
         </section>
       </div>
     </div>

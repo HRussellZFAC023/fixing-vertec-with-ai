@@ -2,8 +2,8 @@
 
 This repo is a shareable workshop kit for a Zühlke Camp session about improving
 painful enterprise workflows with AI-assisted engineering. The front page is a
-Reveal.js web deck styled from the provided Zühlke PowerPoint template and
-assets.
+one-hour Reveal.js web deck styled from the provided Zühlke PowerPoint template
+and assets.
 
 The running example is a Vertec-like timesheet flow. The demo fixture is
 synthetic on purpose: it preserves the shape of the workflow without exposing
@@ -12,6 +12,9 @@ client names, people, rates, or real entries.
 ## What is included
 
 - A Reveal.js web deck that brings the workshop steps together.
+- Redacted Vertec screenshots and recreated synthetic examples from the source
+  camp deck.
+- Speaker notes for a 60-minute delivery.
 - A synthetic Vertec-style fixture for safe local demos.
 - Runnable local prototypes for v1, v2, v3, v4, v5, v6, and v8.
 - v4 verification and v5 packaging via local commands.
@@ -62,8 +65,10 @@ npm run check
 - [06 - Direct API calls](docs/workshops/06-direct-api.md)
 - [08 - MCP server and automation](docs/workshops/08-mcp-automation.md)
 - [Facilitator field guide](docs/facilitation/facilitator-field-guide.md)
+- [Speaker notes](docs/speaker-notes.md)
 - [Subagent facilitation guide](docs/facilitation/subagents.md)
 - [Talk structure notes](docs/talk-structure.md)
+- [Presentation best-practice sources](docs/research/presentation-best-practices.md)
 - [Talk pattern sources](docs/research/talk-pattern-sources.md)
 - [Live Vertec structural audit](docs/audit/live-vertec-structural-audit.md)
 

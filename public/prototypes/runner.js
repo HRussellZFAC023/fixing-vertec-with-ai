@@ -11,7 +11,7 @@ const demos = {
   },
   v3: {
     title: "V3 - UI overhaul and holiday calculator",
-    summary: "Add a humane review panel for missing days, vacation balance, and UK public holidays.",
+    summary: "Add a practical review panel for missing days, vacation balance, and UK public holidays.",
     script: "/prototypes/v3/holiday-review.user.js",
   },
   v4: {

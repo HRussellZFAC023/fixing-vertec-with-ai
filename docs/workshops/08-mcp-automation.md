@@ -61,7 +61,7 @@ Pros:
 - Gives AI a clear operating boundary instead of vague access.
 - Supports audit logs and human approval points.
 - Helps non-technical stakeholders discuss automation in concrete terms.
-- Makes automation less magical: participants can see the tool call, proposed diff, and approval gate.
+- Makes automation inspectable: participants can see the tool call, proposed diff, and approval gate.
 
 Cons:
 

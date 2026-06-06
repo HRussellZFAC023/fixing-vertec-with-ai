@@ -18,16 +18,20 @@ small investigation that gradually becomes engineering.
 
 ## Tone
 
-Warm, mischievous, practical. The joke is never "people are bad at admin". The
-joke is that serious organisations still ask humans to perform tiny ceremonies
-that computers could at least prepare for review.
+Warm, mischievous, practical, with a streak of gallows humour. The joke is never
+"people are bad at admin". The joke is that serious organisations still ask clever
+humans to perform tiny weekly ceremonies of data entry that a computer could at
+least prepare for review, and that we have all quietly agreed to find this normal.
 
 Good lines to keep:
 
 - "The enemy is not time recording. The enemy is making the human act as the
   integration layer."
-- "Not smart, just humane."
-- "Make the work visible. Then make the improvement boring."
+- "The agent did what we asked. That was the problem."
+- "A browser agent is a lot of confidence wrapped around a mouse cursor."
+- "Normal enterprise software. That is the disturbing part."
+- "The first useful button."
+- "Find the hidden integration work."
 
 Avoid making the first segment sound like casual experimentation. The stronger
 framing is fieldwork: observe the ritual, name the hidden policy, and only then

@@ -4,16 +4,17 @@ This guide is the day-of path through the "Fixing Vertec with AI" workshop. It
 connects the Reveal deck, live-system audit, markdown exercises, local
 prototypes, and subagent workflow into one teachable story.
 
-The point is not that Vertec is uniquely terrible. The point is that many
-enterprise systems quietly make people act as translators between policy,
-memory, approval, billing, HR, and a grid of tiny fields. That is exactly the
-kind of work AI can help make visible before anyone starts automating it.
+The point is not that Vertec is uniquely terrible. It is that a great many
+enterprise systems quietly conscript clever people into acting as translators
+between policy, memory, approval, billing, HR, and a grid of tiny fields, then act
+surprised when the numbers come in late. That is exactly the kind of work AI can
+help make visible before anyone starts automating it.
 
 ## Audience Promise
 
 For AI sceptics:
 
-- You will not be asked to trust a magic demo.
+- You will not be asked to trust a demo that cannot be inspected.
 - Every artifact is inspectable: markdown, HTML, userscripts, tests, and mock
   payloads.
 - The first useful AI interaction is critique and clarification, not control.
@@ -25,25 +26,25 @@ For technical participants:
 - Do not rush to the final MCP/API idea.
 - The craft is in making each rung of the ladder easier to reason about than the
   one after it.
-- Keep the phrase "not smart, just humane" in your head while building.
+- Keep the first fix small enough that a sceptical teammate can read it, run it,
+  and delete it.
 
 ## Running Order
 
 | Time | Segment | What happens | Artifact |
 | ---: | --- | --- | --- |
 | 0-5 min | Opening | Name the tiny enterprise ritual without sneering at the people doing it. | Reveal opening |
-| 5-12 min | Fieldwork | Observe the workflow: what does the human remember, translate, reassure, or double-check? | [Empathy map](../audit/vertec-empathy-map.md) |
-| 12-22 min | Evidence | Show the structural audit: custom div UI, weak semantics, hidden context. | [Live audit](../audit/live-vertec-structural-audit.md) |
-| 22-35 min | ChatGPT only | Paste a sanitized DOM slice and ask for critique, assumptions, and a first requirement. | [00 workshop](../workshops/00-chatgpt-dom-workflow.md) |
-| 35-45 min | Codex annotate | Point at the awkward UI/DOM and turn "this is bad" into a small fix. | Deck annotate slide |
-| 45-75 min | Prototype ladder | Walk V1 to V8. Stop after each rung to ask what got better and what got riskier. | Local demos |
-| 75-85 min | Subagents | Explain the manager role: delegate narrow artifacts, review everything, keep judgement human. | [Subagent guide](subagents.md) |
-| 85-95 min | Superapp discussion | Discuss Codex signed into tools as a workbench, not a blank cheque. | Discussion prompts below |
-| 95-100 min | Close | "Make the work visible. Then make the improvement boring." | Reveal closing |
+| 5-15 min | Fieldwork | Observe the workflow: what does the human remember, translate, reassure, or double-check? | [Empathy map](../audit/vertec-empathy-map.md) |
+| 15-25 min | Evidence | Show screenshots and structural audit: custom div UI, weak semantics, hidden context. | [Live audit](../audit/live-vertec-structural-audit.md) |
+| 25-35 min | ChatGPT only | Paste a sanitized DOM slice and ask for critique, assumptions, and a first requirement. | [00 workshop](../workshops/00-chatgpt-dom-workflow.md) |
+| 35-50 min | Prototype ladder | Walk V1 to V8. Stop after each rung to ask what got better and what got riskier. | Local demos |
+| 50-56 min | Subagents and superapp | Discuss managed delegation, Codex as workbench, confirmations, and audit trails. | [Subagent guide](subagents.md) |
+| 56-60 min | Close | Return to judgement, evidence, and useful boundaries. | Reveal closing |
 
 ## The First Move: Fieldwork
 
-Do not call this a warm-up. Treat it like product anthropology.
+Do not call this a warm-up. Treat it like product anthropology. You are studying a
+tribe that has built elaborate survival rituals around a grid of tiny fields.
 
 Ask:
 
@@ -161,7 +162,7 @@ Better answer:
 
 ```text
 Maybe, but only if "signed in" means scoped tools, narrow permissions, readable
-logs, human approval for consequences, and boring evidence.
+logs, human approval for consequences, and evidence a colleague can inspect.
 ```
 
 Examples to contrast:

@@ -26,7 +26,7 @@ Start by asking for a critique, not code:
 ```text
 I have a legacy timesheet UI with repeated rows for date, project, phase,
 service type, hours, and comment. The task is to fill 8 hours for each normal
-working day. What are the smallest humane improvements we can make without
+working day. What are the smallest useful improvements we can make without
 changing the backend?
 ```
 
