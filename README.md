@@ -1,0 +1,55 @@
+# Fixing Vertec With AI
+
+This repo is a shareable workshop kit for a Zühlke Camp session about improving
+painful enterprise workflows with AI-assisted engineering. The front page is a
+Reveal.js web deck styled from the provided Zühlke PowerPoint template and
+assets.
+
+The running example is a Vertec-like timesheet flow. The demo fixture is
+synthetic on purpose: it preserves the shape of the workflow without exposing
+client names, people, rates, or real entries.
+
+## What is included
+
+- A Reveal.js web deck that brings the workshop steps together.
+- A synthetic Vertec-style fixture for safe local demos.
+- v1: a basic userscript with Fill, Previous, and Next controls.
+- Markdown mini-workshops for the progressive versions of the flow.
+- Vitest and Playwright checks so the demos stay reproducible.
+
+## Run it locally
+
+```sh
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite, usually <http://127.0.0.1:5173>.
+
+Use arrow keys to move through the deck. The v1 demo is embedded as a slide.
+
+## Verify it
+
+```sh
+npm run check
+```
+
+## Workshop trail
+
+- [00 - ChatGPT and pasted DOM](docs/workshops/00-chatgpt-dom-workflow.md)
+- [01 - Basic userscript](docs/workshops/01-basic-userscript.md)
+- [02 - Templates](docs/workshops/02-templates.md)
+- [03 - UI overhaul and holidays](docs/workshops/03-ui-overhaul-holidays.md)
+- [04 - Harness, Vite, and e2e tests](docs/workshops/04-harness-vite-e2e.md)
+- [05 - Userscript to extension](docs/workshops/05-userscript-to-extension.md)
+- [06 - Direct API calls](docs/workshops/06-direct-api.md)
+- [08 - MCP server and automation](docs/workshops/08-mcp-automation.md)
+- [Talk structure notes](docs/talk-structure.md)
+- [Talk pattern sources](docs/research/talk-pattern-sources.md)
+- [Live Vertec structural audit](docs/audit/live-vertec-structural-audit.md)
+
+## Privacy rule
+
+When working with a real enterprise system, use AI to discuss structure,
+friction, and interaction patterns. Do not paste live client data, personal
+details, rates, comments, or timesheet rows into a public model or a public repo.

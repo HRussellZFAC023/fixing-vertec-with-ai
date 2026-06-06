@@ -1,0 +1,25 @@
+{
+  "name": "fixing-vertec-with-ai",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Workshop prototypes for improving a Vertec-like timesheet flow with AI-assisted development.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:e2e": "npm run build && playwright test",
+    "check": "npm run test && npm run test:e2e"
+  },
+  "dependencies": {
+    "reveal.js": "^6.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "jsdom": "^27.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.13",
+    "vitest": "^4.0.14"
+  }
+}

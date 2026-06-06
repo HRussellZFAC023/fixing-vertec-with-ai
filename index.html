@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixing Vertec With AI</title>
+  </head>
+  <body>
+    <div class="reveal zuehlke-deck">
+      <div class="slides">
+        <section
+          id="opening"
+          class="z-slide z-slide--hero"
+          data-background-image="/assets/zuehlke/hero-portrait.png"
+          data-background-size="cover"
+        >
+          <div class="z-brandbar">
+            <img src="/assets/zuehlke/zuehlke-mark.svg" alt="Zühlke" />
+            <span>Zühlke Camp</span>
+          </div>
+          <div class="hero-copy">
+            <p class="kicker">A tiny enterprise ritual, taken seriously</p>
+            <h1>Fixing Vertec with AI</h1>
+            <p class="subtitle">
+              From grumbling at a timesheet to agentic engineering patterns people can actually use.
+            </p>
+          </div>
+          <div class="stripe-block" aria-hidden="true"></div>
+          <aside class="notes">
+            Open with the joke, but keep the empathy: nobody came here because timesheets are thrilling.
+            The claim is that small admin rituals reveal the shape of future human-AI work.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--statement">
+          <div class="z-brandbar z-brandbar--dark">
+            <img src="/assets/zuehlke/zuehlke-mark.svg" alt="Zühlke" />
+            <span>Field note</span>
+          </div>
+          <h2>The enemy is not time recording.</h2>
+          <p class="statement-line">
+            The enemy is making the human act as the integration layer.
+          </p>
+          <p class="quiet">
+            The bill still has to be right. The approval still has to be fair. The human should not
+            have to become a very tired API gateway every Friday.
+          </p>
+        </section>
+
+        <section
+          class="z-slide z-slide--photo"
+          data-background-image="/assets/zuehlke/workshop-table.png"
+          data-background-size="cover"
+        >
+          <div class="photo-panel">
+            <p class="kicker">Before the build</p>
+            <h2>Do the anthropology.</h2>
+            <p>
+              Watch the task. Name the workarounds. Ask what the tool is forcing people to remember.
+              Then decide whether AI should critique, assist, test, or stay out of the way.
+            </p>
+          </div>
+          <aside class="notes">
+            This replaces the too-literal "play around first" idea. The workshop begins with noticing:
+            what is the real job, what is policy, what is tool friction, and what is just ceremony?
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--grid">
+          <div>
+            <p class="kicker">The system under the microscope</p>
+            <h2>What a Vertec-like UI asks from a person</h2>
+          </div>
+          <div class="dense-grid dense-grid--three">
+            <article>
+              <strong>Remember</strong>
+              <p>Project, phase, service type, comment policy, holidays, absences, and what counts as done.</p>
+            </article>
+            <article>
+              <strong>Translate</strong>
+              <p>Turn messy real work into the exact fields an enterprise system expects.</p>
+            </article>
+            <article>
+              <strong>Reassure</strong>
+              <p>Check that approvals, billing, vacation balance, and public holidays still line up.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="z-slide z-slide--evidence">
+          <p class="kicker">Saved snapshot, abstracted</p>
+          <h2>The UI is not malicious. It is just deeply unhelpful.</h2>
+          <div class="metric-strip">
+            <div><strong>539</strong><span>divs</span></div>
+            <div><strong>539</strong><span>inline styles</span></div>
+            <div><strong>0</strong><span>tables</span></div>
+            <div><strong>0</strong><span>role attributes</span></div>
+          </div>
+          <p class="quiet">
+            For humans, that means squinting and memory work. For agents, it means weak semantic handles
+            and brittle action plans. The accessibility problem and the automation problem are cousins.
+          </p>
+        </section>
+
+        <section class="z-slide z-slide--split">
+          <div>
+            <p class="kicker">First interaction</p>
+            <h2>ChatGPT with a tiny, sanitised DOM slice</h2>
+            <p>
+              The first move is not "build me an app". It is "help me see what is wrong and name the
+              smallest humane fix".
+            </p>
+          </div>
+          <pre><code data-trim>
+&lt;div data-vt-row data-date="2026-06-01"&gt;
+  &lt;select name="project"&gt;...&lt;/select&gt;
+  &lt;input name="hours" /&gt;
+  &lt;input name="comment" /&gt;
+&lt;/div&gt;
+
+Ask:
+"What makes this repetitive?
+ What should a tiny helper do first?"
+          </code></pre>
+        </section>
+
+        <section class="z-slide z-slide--two-col">
+          <div>
+            <p class="kicker">Then Codex</p>
+            <h2>Annotate the pain, not just the code.</h2>
+            <p>
+              Point at the UI or DOM and say what is bad: unclear affordance, duplicated memory,
+              missing holiday context, absent semantics, risky save behaviour.
+            </p>
+          </div>
+          <div class="annotation-card">
+            <span>Annotate</span>
+            <p>"This row should know what a normal day is, but the user is doing the remembering."</p>
+            <p>"Fix: prepare a reviewable draft. Do not auto-submit."</p>
+          </div>
+        </section>
+
+        <section
+          class="z-slide z-slide--chapter"
+          data-background-image="/assets/zuehlke/light-trails.jpeg"
+          data-background-size="cover"
+        >
+          <h2>The prototype ladder</h2>
+          <p>Each step makes the work more capable, and the responsibility more explicit.</p>
+        </section>
+
+        <section class="z-slide z-slide--ladder">
+          <h2>From quick relief to governed automation</h2>
+          <ol class="ladder">
+            <li><span>V1</span> Basic userscript: Fill, Previous, Next.</li>
+            <li><span>V2</span> Templates for repeated project comments.</li>
+            <li><span>V3</span> UI overhaul with vacation and UK public holiday awareness.</li>
+            <li><span>V4</span> Vite harness and e2e tests.</li>
+            <li><span>V5</span> Userscript compiler to extension.</li>
+            <li><span>V6</span> Direct API calls, if policy and evidence allow it.</li>
+            <li><span>V8</span> MCP wrapper plus Codex automation with human confirmation.</li>
+          </ol>
+        </section>
+
+        <section id="demo-v1" class="z-slide z-slide--demo">
+          <div class="demo-topline">
+            <div>
+              <p class="kicker">V1 demo</p>
+              <h2>Not smart, just humane</h2>
+            </div>
+            <button id="reload-demo" type="button">Reload</button>
+          </div>
+          <iframe
+            id="demo-frame"
+            title="Synthetic Vertec timesheet fixture"
+            src="/fixtures/vertec-synthetic.html"
+          ></iframe>
+          <aside class="notes">
+            The point is restraint. A helper that fills one selected row is easier to explain, review,
+            test, and delete than a magical agent that starts submitting time.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--workshops">
+          <p class="kicker">Participant materials</p>
+          <h2>Every step is a mini-workshop</h2>
+          <div class="workshop-list">
+            <a href="/docs/workshops/00-chatgpt-dom-workflow.md">00 ChatGPT + DOM</a>
+            <a href="/docs/workshops/01-basic-userscript.md">01 Basic userscript</a>
+            <a href="/docs/workshops/02-templates.md">02 Templates</a>
+            <a href="/docs/workshops/03-ui-overhaul-holidays.md">03 UI + holidays</a>
+            <a href="/docs/workshops/04-harness-vite-e2e.md">04 Harness + tests</a>
+            <a href="/docs/workshops/05-userscript-to-extension.md">05 Extension</a>
+            <a href="/docs/workshops/06-direct-api.md">06 Direct API</a>
+            <a href="/docs/workshops/08-mcp-automation.md">08 MCP + automation</a>
+          </div>
+        </section>
+
+        <section class="z-slide z-slide--pros">
+          <p class="kicker">Trade-offs</p>
+          <h2>No single approach wins forever.</h2>
+          <div class="tradeoff-grid">
+            <article>
+              <strong>ChatGPT critique</strong>
+              <p>Best for finding words, structure, and first requirements. Weak at proving behaviour.</p>
+            </article>
+            <article>
+              <strong>Userscript</strong>
+              <p>Best for quick humane relief. Brittle if the DOM shifts.</p>
+            </article>
+            <article>
+              <strong>Harness + tests</strong>
+              <p>Best for reproducibility. Requires discipline before the demo feels exciting.</p>
+            </article>
+            <article>
+              <strong>Direct API</strong>
+              <p>Best for robust workflows. Needs permission, observability, and policy clarity.</p>
+            </article>
+            <article>
+              <strong>MCP + automation</strong>
+              <p>Best for chat-native work. Needs confirmations and a clean audit trail.</p>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="z-slide z-slide--photo"
+          data-background-image="/assets/zuehlke/robot-hand.png"
+          data-background-size="cover"
+        >
+          <div class="photo-panel photo-panel--wide">
+            <p class="kicker">The superapp question</p>
+            <h2>Is Codex signed into everything the future?</h2>
+            <p>
+              Maybe. But the useful version is not "the AI does whatever it wants".
+              It is a trusted workbench with tools, memory, browser context, Git history,
+              approvals, and boring evidence.
+            </p>
+          </div>
+        </section>
+
+        <section class="z-slide z-slide--two-col">
+          <div>
+            <p class="kicker">Subagents</p>
+            <h2>Manage the swarm. Do not become the swarm.</h2>
+            <p>
+              Give each agent a bounded lane: research, fixture, v1, tests, docs, API investigation.
+              Keep integration, risk calls, and taste with the human lead.
+            </p>
+          </div>
+          <div class="agent-map">
+            <span>Research</span>
+            <span>Fixture</span>
+            <span>Userscript</span>
+            <span>Tests</span>
+            <span>Docs</span>
+            <span>Integration</span>
+          </div>
+        </section>
+
+        <section class="z-slide z-slide--timeline">
+          <p class="kicker">What changed over time</p>
+          <h2>From prompts to delivery systems</h2>
+          <div class="era-line">
+            <div><strong>2022</strong><span>Ask a chatbot.</span></div>
+            <div><strong>2023</strong><span>Paste code, get snippets.</span></div>
+            <div><strong>2024</strong><span>IDE agents and repo context.</span></div>
+            <div><strong>2025</strong><span>Browser agents and tool calling.</span></div>
+            <div><strong>2026</strong><span>Superapp workflows, MCP, automations, governed traces.</span></div>
+          </div>
+        </section>
+
+        <section
+          class="z-slide z-slide--closing"
+          data-background-image="/assets/zuehlke/data-wave.jpeg"
+          data-background-size="cover"
+        >
+          <div class="closing-copy">
+            <p class="kicker">Takeaway</p>
+            <h2>Make the work visible. Then make the improvement boring.</h2>
+            <p>
+              The best AI demo is not the one that looks most autonomous. It is the one a sceptical
+              teammate can inspect, run, question, and safely adapt.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

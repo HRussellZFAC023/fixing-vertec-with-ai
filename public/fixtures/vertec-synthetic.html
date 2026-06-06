@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synthetic Vertec Fixture</title>
+    <style>
+      :root {
+        color: #1d252b;
+        background: #eef3f5;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .vt-app {
+        display: grid;
+        grid-template-columns: 210px minmax(700px, 1fr);
+        min-height: 100vh;
+      }
+
+      .vt-sidebar {
+        background: #f8fafb;
+        border-right: 1px solid #b8c5cd;
+        padding: 14px 12px;
+      }
+
+      .vt-logo {
+        color: #587082;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0;
+        margin-bottom: 22px;
+        text-transform: uppercase;
+      }
+
+      .vt-nav-item {
+        border: 1px solid transparent;
+        color: #253540;
+        cursor: default;
+        margin-bottom: 5px;
+        padding: 7px 8px;
+      }
+
+      .vt-nav-item[data-active="true"] {
+        background: #e7f0f7;
+        border-color: #b5cad8;
+        font-weight: bold;
+      }
+
+      .vt-main {
+        min-width: 0;
+        padding: 14px;
+      }
+
+      .vt-titlebar {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .vt-titlebar h1 {
+        font-size: 17px;
+        margin: 0;
+      }
+
+      .vt-toolbar {
+        display: flex;
+        gap: 6px;
+      }
+
+      .vt-toolbar button {
+        background: #ffffff;
+        border: 1px solid #aebcc5;
+        border-radius: 2px;
+        color: #24323b;
+        font: inherit;
+        height: 26px;
+        padding: 0 9px;
+      }
+
+      .vt-panel {
+        background: #ffffff;
+        border: 1px solid #bac8d0;
+        margin-bottom: 12px;
+      }
+
+      .vt-panel-heading {
+        background: #e7ecef;
+        border-bottom: 1px solid #bac8d0;
+        font-weight: bold;
+        padding: 7px 9px;
+      }
+
+      .vt-grid {
+        min-width: 840px;
+      }
+
+      .vt-row,
+      .vt-grid-header {
+        display: grid;
+        grid-template-columns: 94px 190px 130px 120px 82px minmax(240px, 1fr);
+      }
+
+      .vt-grid-header {
+        background: #f4f7f8;
+        color: #4c606d;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .vt-cell {
+        border-bottom: 1px solid #d8e1e6;
+        border-right: 1px solid #d8e1e6;
+        min-height: 34px;
+        padding: 6px;
+      }
+
+      .vt-row[data-selected="true"] .vt-cell {
+        background: #fff7cf;
+      }
+
+      .vt-row[data-public-holiday="true"] .vt-cell {
+        background: #f5f1ea;
+        color: #6c5d45;
+      }
+
+      .vt-row input,
+      .vt-row select {
+        border: 1px solid #b7c4cd;
+        border-radius: 1px;
+        font: inherit;
+        min-height: 22px;
+        width: 100%;
+      }
+
+      .vt-row input[name="hours"] {
+        text-align: right;
+      }
+
+      .vt-summary {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(4, minmax(140px, 1fr));
+        padding: 10px;
+      }
+
+      .vt-summary div {
+        background: #f6f8f9;
+        border: 1px solid #d8e1e6;
+        min-height: 54px;
+        padding: 8px;
+      }
+
+      .vt-summary strong {
+        display: block;
+        font-size: 18px;
+        margin-top: 4px;
+      }
+
+      .vt-warning {
+        background: #fff4d6;
+        border: 1px solid #e7c970;
+        color: #5a4300;
+        margin-bottom: 12px;
+        padding: 9px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vt-app">
+      <nav class="vt-sidebar" aria-label="Synthetic Vertec sections">
+        <div class="vt-logo">Synthetic Vertec</div>
+        <div class="vt-nav-item" data-active="true">Services</div>
+        <div class="vt-nav-item">Expenses</div>
+        <div class="vt-nav-item">Activities</div>
+        <div class="vt-nav-item">Approvals</div>
+        <div class="vt-nav-item">Absences</div>
+        <div class="vt-nav-item">Working hours</div>
+      </nav>
+
+      <main class="vt-main">
+        <div class="vt-titlebar">
+          <h1>Services overview - June 2026</h1>
+          <div class="vt-toolbar">
+            <button type="button">New</button>
+            <button type="button">Copy</button>
+            <button type="button">Save</button>
+          </div>
+        </div>
+
+        <div class="vt-warning">
+          Fixture only: names, projects, balances, and comments are invented for the workshop.
+        </div>
+
+        <section class="vt-panel vt-timesheet" data-vt-timesheet>
+          <div class="vt-panel-heading">Weekly Table</div>
+          <div class="vt-grid" data-vt-grid>
+            <div class="vt-grid-header">
+              <div class="vt-cell">Date</div>
+              <div class="vt-cell">Project</div>
+              <div class="vt-cell">Phase</div>
+              <div class="vt-cell">Service type</div>
+              <div class="vt-cell">Hours</div>
+              <div class="vt-cell">Comment</div>
+            </div>
+
+            <div class="vt-row" data-vt-row data-date="2026-06-01" data-selected="true">
+              <div class="vt-cell">Mon 01 Jun</div>
+              <div class="vt-cell">
+                <select name="project">
+                  <option value="">Choose...</option>
+                  <option>Client Delivery Project</option>
+                  <option>Internal Enablement</option>
+                </select>
+              </div>
+              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
+              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
+              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
+              <div class="vt-cell"><input name="comment" /></div>
+            </div>
+
+            <div class="vt-row" data-vt-row data-date="2026-06-02">
+              <div class="vt-cell">Tue 02 Jun</div>
+              <div class="vt-cell">
+                <select name="project">
+                  <option value="">Choose...</option>
+                  <option>Client Delivery Project</option>
+                  <option>Internal Enablement</option>
+                </select>
+              </div>
+              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
+              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
+              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
+              <div class="vt-cell"><input name="comment" /></div>
+            </div>
+
+            <div class="vt-row" data-vt-row data-date="2026-06-03">
+              <div class="vt-cell">Wed 03 Jun</div>
+              <div class="vt-cell">
+                <select name="project">
+                  <option value="">Choose...</option>
+                  <option>Client Delivery Project</option>
+                  <option>Internal Enablement</option>
+                </select>
+              </div>
+              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
+              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
+              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
+              <div class="vt-cell"><input name="comment" /></div>
+            </div>
+
+            <div class="vt-row" data-vt-row data-date="2026-06-04">
+              <div class="vt-cell">Thu 04 Jun</div>
+              <div class="vt-cell">
+                <select name="project">
+                  <option value="">Choose...</option>
+                  <option>Client Delivery Project</option>
+                  <option>Internal Enablement</option>
+                </select>
+              </div>
+              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
+              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
+              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
+              <div class="vt-cell"><input name="comment" /></div>
+            </div>
+
+            <div class="vt-row" data-vt-row data-date="2026-06-05">
+              <div class="vt-cell">Fri 05 Jun</div>
+              <div class="vt-cell">
+                <select name="project">
+                  <option value="">Choose...</option>
+                  <option>Client Delivery Project</option>
+                  <option>Internal Enablement</option>
+                </select>
+              </div>
+              <div class="vt-cell"><input name="phase" value="Delivery" /></div>
+              <div class="vt-cell"><input name="serviceType" value="Consulting" /></div>
+              <div class="vt-cell"><input name="hours" inputmode="decimal" /></div>
+              <div class="vt-cell"><input name="comment" /></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="vt-panel" data-vt-absences>
+          <div class="vt-panel-heading">Absences and balance</div>
+          <div class="vt-summary">
+            <div>Vacation remaining<strong data-vt-vacation-balance>11.5 days</strong></div>
+            <div>UK public holidays this month<strong>0</strong></div>
+            <div>Missing work days<strong data-vt-missing-days>5</strong></div>
+            <div>Approval status<strong>Not submitted</strong></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
