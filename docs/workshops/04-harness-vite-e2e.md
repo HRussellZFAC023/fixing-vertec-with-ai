@@ -47,6 +47,8 @@ What `npm run check` does:
 
 ```text
 vitest run
+node scripts/vertec-api-dry-run.mjs --check
+node scripts/vertec-mcp-smoke.mjs
 node scripts/build-extension.mjs
 vite build && node scripts/copy-docs.mjs
 playwright test
@@ -73,8 +75,10 @@ Check:
 - Vitest runs `src/**/*.test.ts` in Node with JSDOM.
 - Playwright serves the built site at `http://127.0.0.1:5187`.
 - The e2e test enters the iframe and clicks `Fill service row`.
-- The test asserts the visible Services row value, not a private implementation
+- The test asserts the visible Services row value, not an internal implementation
   variable.
+- Later e2e checks exercise V3 planned-absence context and V6 dry-run output, so
+  the late-stage slides have real proof behind them.
 - No test needs live Vertec access.
 
 ## Prompt on screen

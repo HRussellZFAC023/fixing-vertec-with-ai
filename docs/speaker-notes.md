@@ -16,7 +16,7 @@ strategy.
 | 23-34 min | Browser agents, Atlas, and the first real wall | 15-19 |
 | 34-44 min | Personal path, ChatGPT-only DOM work, Codex Annotate, V1 | 20-24 |
 | 44-52 min | From script to harness, compiler, features, API, MCP | 25-34 |
-| 52-58 min | Consultancy, agentic engineering, slop detection, stopping | 35-40 |
+| 52-58 min | Consultancy, agentic engineering, AI-output checks, stopping | 35-40 |
 | 58-60 min | Repo, sources, close | 41-43 |
 
 ## Presenter setup
@@ -31,20 +31,22 @@ strategy.
 
 ### 1. Fixing Vertec with AI - 2 min
 
-Open with recognition. Everyone knows the small office ritual. The point is not
-that timesheets are boring. They are. The point is that we make clever people act
-as memory, policy engine, copy-paste machine, and QA for a grid every week.
+Open with the rough-deck joke: "We love Vertec." Let the room do the rest.
+
+The point is not that timesheets are boring. They are. The point is that we make
+clever people act as memory, policy engine, copy-paste machine, and QA for a grid
+every week.
 
 Set the promise: this hour starts with Vertec, then turns into a way to fix any
 awkward internal tool without handing judgement to the model.
 
-### 2. What you will actually leave with - 2 min
+### 2. What you will learn today - 2 min
 
-Frame the session as practical, not inspirational. They get a tiny Vertec fix,
-the transferable DOM-to-script trick, a view of how agents help, and a sense of
-where to stop.
+Use the skeleton's promise: what makes Vertec painful, the business case for
+making it better, Cybernetic Delivery as a method we can apply to real tools, and
+the tools and habits for the agentic world.
 
-Line: "This is not an AI sermon. It is a small investigation that gets useful."
+Line: "We are a consultancy. We fix exactly this kind of thing for a living."
 
 ### 3. Hands up - 1 min
 
@@ -214,8 +216,8 @@ This is the ChatGPT-only mini-workshop. Save the page, copy a small DOM slice,
 ask ChatGPT to critique it and draft a userscript.
 
 Stress that the value is not the first code answer. The value is turning "this
-page is cursed" into a bounded requirement with selectors, scope, and an
-acceptance check.
+bit is bad" into a bounded requirement with selectors, scope, and an acceptance
+check.
 
 ### 23. Annotate the mess before asking for code - 2 min
 
@@ -223,8 +225,7 @@ This is the Codex bridge. Annotate the Services row, object-field wall, absence
 context, public holidays, and save boundary. Then ask for the smallest change
 plus tests.
 
-Line: "The annotation is the handrail. It makes the model argue with evidence
-instead of vibes."
+Line: "Annotate first. Code second."
 
 ### 24. Fill. Next. Fill. Next - 4 min
 
@@ -255,11 +256,16 @@ Consultancy lesson: one fix is nice. A tool that makes fixes is leverage.
 
 ### 27. The mistakes mostly live outside the row - 2 min
 
-Bring back the bank holiday bug. Filling the row is not the job. Knowing whether
-the row should exist is the job.
+Bring back the bank holiday bug and now show the Absences crop. Filling the row
+is not the job. Knowing whether the row should exist is the job.
 
 Walk the features: templates, service Text rules, public holidays, absences,
 vacation balance, approval comments.
+
+Mention the live Absences finding: it is another custom Vertec grid with Date,
+until date, Type, Absence group, Description, and Hours. It mixes public-holiday
+style rows with booked absence rows. That is why V3 reports planned absences,
+vacation balance, and public holidays before V6/V8 ever think about writes.
 
 ### 28. AI confidence is not a test strategy - 2 min
 
@@ -269,44 +275,59 @@ Vitest and Playwright lets a sceptic run the same thing and get the same result.
 Tie to CDM: proof objects matter. The demo is not done because the agent sounded
 pleased with itself.
 
-### 29. Bad codebases make bad agents - 2 min
+The proof commands are:
 
-Use Ousterhout's "deep module" idea. The interface should be small and clear,
-while the messy Vertec-specific logic sits behind it.
+```text
+npm run test
+npm run test:labs
+npm run build:extension
+npm run build
+npm run test:e2e
+```
 
-Keep the agent point concrete: better structure means smaller context and less
-guesswork. A larger context window can also be a larger confusion window.
+### 29. The page gives people and agents bad handles - 2 min
 
-### 30. Steer it. Do not become the passenger - 3 min
+Use the live structural audit. Services had custom grids, no real tables, no
+forms, no labels, and no ARIA roles. Absences had even more grid rows and the
+same basic semantic problem.
 
-Knowledge-sharing slide. Move quickly through the tools:
+Do not make it a nerdy DOM slide. Make it practical: weak handles mean people
+squint, keyboard users fight focus, scripts guess selectors, and agents burn
+steps trying to infer structure.
 
-- Just talk to it: use normal language and develop feel.
-- Grill me first: let the agent interview you until the mental model appears.
-- Subagents and goals: split research, code, docs, tests.
-- Issues as a queue: give agents bounded tasks and review the PR.
-- Ralph loops: repeated focused passes with verification.
-- Reasoning levels: spend high reasoning where the problem deserves it.
-- Local models: useful when cloud AI is not allowed or privacy matters.
+### 30. Give the agent a job, a boundary, and proof - 3 min
 
-The skill is judgement. Commands are searchable.
+Knowledge-sharing slide. Move quickly through the way you actually work:
 
-### 31. Bypassing the UI is not the same as being safe - 2 min
+- Subagents for research, lab audit, and deck critique.
+- The main thread keeps taste and final edits.
+- Every useful task should end in a file, command, screenshot, or reviewable PR.
+- If the prose sounds like a conference sponsor wrote it in a lift, cut it.
+
+This is one of the slides to tailor with your own screenshots from Codex,
+Claude, GitHub, or your commit-log workflow.
+
+### 31. Bypass the UI, but stop before the write - 2 min
 
 Do not pretend we found a neat REST POST. The observed traffic was `/uisync` and
 SignalR-shaped. Session state also had two gates: Zühlke access and Vertec's own
 app login.
 
+Run `npm run lab:api` if time allows. It reads the fixture, skips the planned
+absence, drafts five workday entries, and prints `liveWrite: false`.
+
 The responsible path is read, draft, validate, confirm, write, audit. When you
 remove accidental friction, add intentional friction in the right places.
 
-### 32. A timesheet co-pilot, not a faster finger - 2 min
+### 32. Now the chat can use tools instead of guessing - 2 min
 
-Name the actual target. Evidence from commits, calendar, tickets, and chat.
-Draft entries. Check policy. Ask for approval. Write with audit.
+This is the MCP wrapper slide. Run `npm run lab:mcp` if time allows. It starts a
+real stdio MCP server, lists the tools, calls `vertec.checkSession`, prepares and
+validates a draft, proves apply is blocked without confirmation, then proves the
+demo-confirmed apply still writes nothing live.
 
 This is the answer to "is Codex signed into everything the future?" Maybe, if
-"signed in" means scoped tools, readable logs, and human confirmation.
+"signed in" means scoped tools, readable logs, dry runs, and human confirmation.
 
 ### 33. "What did I do today?" is already in your tools - 2 min
 
@@ -342,9 +363,9 @@ getting tools into users' hands, and trusted systems in complex domains.
 Use the table as consultancy method. Observe pain. Build a tiny thing. Test the
 boundary. Package the pattern.
 
-Line: "Slideware says transformation. This lets them press a button."
+Line: "Slides say transformation. A prototype lets them press a button."
 
-### 38. Learn to smell the slop - 2 min
+### 38. Spot the AI slop - 2 min
 
 Make this useful and funny. Tells include negative parallelism, em dash overuse,
 neat lists of three, generic cards and gradients, image weirdness, and prose
@@ -366,7 +387,7 @@ to-do list."
 The meta reveal. One prompt before bed became an overnight research and coding
 run. The deck and workshop repo were waiting in the morning.
 
-Then be honest: the job was reading it, cutting the slop, checking the facts,
+Then be honest: the job was reading it, cutting the rubbish, checking the facts,
 fixing tone, and owning the result. That is the talk happening inside the talk.
 
 ### 41. The whole repo, if you want it - 1 min

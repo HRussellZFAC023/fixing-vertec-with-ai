@@ -97,7 +97,7 @@ items, and verifies each drafted workday has `8.00` hours.
 ## Notes
 
 - Use your own real projects and service Text. That is the point.
-- Apply normal judgement to genuinely sensitive client contract terms or rates.
+- Use the real wording your lead expects.
 - A template is a draft. The save button remains a human problem, as tradition
   demands.
 

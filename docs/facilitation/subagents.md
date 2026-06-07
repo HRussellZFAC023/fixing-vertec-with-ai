@@ -11,7 +11,7 @@ That split helps with AI sceptics in the room, because it makes the process visi
 - Define the objective in plain English.
 - Decide which tools are allowed.
 - Review every output before it becomes a workshop instruction, code change, or operational recommendation.
-- Use common sense before delegating anything genuinely sensitive: real client, HR, or contract data, or anything that writes to production.
+- Keep production writes and final sign-off with the manager.
 
 ## Suggested agent assignments
 
@@ -129,7 +129,6 @@ Good to delegate:
 
 Keep local:
 
-- Genuinely sensitive client, contract, payroll, or HR data. Apply common sense.
 - Production writes or irreversible actions.
 - Final sign-off and accountability.
 

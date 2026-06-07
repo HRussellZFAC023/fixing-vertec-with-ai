@@ -49,6 +49,10 @@
     return rows().filter((row) => row.dataset.vtRowKind === "workday" && !rowHasHours(row)).length;
   }
 
+  function plannedAbsences() {
+    return rows().filter((row) => row.dataset.vtRowKind === "absence").length;
+  }
+
   function vacationBalance() {
     const absences = document.querySelector("[data-vt-absences]");
     const allowance = Number(absences?.dataset.vtVacationAllowance || 0);
@@ -98,15 +102,17 @@
 
   function updatePanel(holidays) {
     const missing = missingWorkDays();
+    const absences = plannedAbsences();
     const balance = vacationBalance();
 
     setSummary("[data-vt-public-holidays-count]", String(holidays.length));
+    setSummary("[data-vt-planned-absences]", String(absences));
     setSummary("[data-vt-missing-days]", String(missing));
     setSummary("[data-vt-vacation-balance]", `${balance.remaining.toFixed(1)} days`);
 
     const status = document.querySelector("[data-v3-status]");
     if (status) {
-      status.textContent = `${missing} missing work days. ${holidays.length} UK public holidays in ${monthKey()}. ${balance.remaining.toFixed(1)} vacation days remain after planned leave.`;
+      status.textContent = `${missing} missing work days. ${absences} planned absences. ${holidays.length} UK public holidays in ${monthKey()}. ${balance.remaining.toFixed(1)} vacation days remain after planned leave.`;
     }
 
     const list = document.querySelector("[data-v3-holidays]");

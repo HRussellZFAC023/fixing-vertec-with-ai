@@ -38,16 +38,12 @@ here to keep the deck readable, accessible, and easy to teach from.
 - [OpenAI Help: ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent)
   - Used to keep browser-agent claims current. The deck reflects that agent mode
     can use a visual browser, apps, files, and confirmations, while still needing
-    caution around sensitive sites, vague prompts, and prompt injection.
+    care around vague prompts and prompt injection.
 
 - [OpenAI: Introducing ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/)
   - Used for the browser-native agent discussion: Atlas can run agent mode in
     the browser, but OpenAI describes it as an early experience that can make
     mistakes on complex workflows.
-
-- [OpenAI Help: Atlas data controls and privacy](https://help.openai.com/en/articles/12574142-chatgpt-atlas-data-controls-and-privacy)
-  - Used for the safety framing around page visibility, browser memories, and
-    data controls.
 
 - [OpenAI: Codex for every role, tool, and workflow](https://openai.com/index/codex-for-every-role-tool-workflow/)
   - Used for the Codex-as-workbench section, especially plugins, Sites, and

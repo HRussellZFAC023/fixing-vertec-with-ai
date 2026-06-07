@@ -168,7 +168,7 @@ What to annotate:
 | --- | --- | --- | --- | --- |
 | V1 | Fill one selected Services row in the fixture; detect the live grid and expose the object-field wall. | `public/prototypes/v1/vertec-helper.user.js` | Immediate local relief plus real evidence. | Brittle selectors and false success. |
 | V2 | Apply a local Project/Phase/Service type/Text/Hours template. | `public/prototypes/v2/templates-helper.user.js` | Makes defaults reviewable. | Encodes bad habits. |
-| V3 | Review missing Services, vacation balance, and UK public holidays. | `public/prototypes/v3/holiday-review.user.js` | Services need context. | Policy still needs humans. |
+| V3 | Review missing Services, planned absences, vacation balance, and UK public holidays. | `public/prototypes/v3/holiday-review.user.js` | Services need context. | Policy still needs humans. |
 | V4 | Prove behavior with Vite, Vitest, and Playwright. | `src/prototypes/v1/vertec-helper.test.ts`, `tests/e2e/site.spec.ts` | Evidence beats chat confidence. | Fixtures drift. |
 | V5 | Package userscript shape into extension shape. | `dist-extension/vertec-helper/manifest.json` | Permissions become inspectable. | Deployment/governance. |
 | V6 | Build a mock direct API dry run. | `public/prototypes/v6/direct-api-dry-run.user.js` | Contract, validation, audit. | Real writes require real controls. |
@@ -182,6 +182,9 @@ Live Vertec finding to mention:
 
 - The Services grid is a custom Vertec/Qooxdoo-style div table. It is not a
   normal HTML form.
+- The Absences tab is another custom grid with Date, until date, Type, Absence
+  group, Description, and Hours. It mixes public holidays and booked absence
+  rows, so the helper needs context before drafting Services.
 - Text and Hours can be edited by driving the visible grid editor.
 - Project, Phase, and Service type are object-reference cells. A model can type
   the visible label and still fail to create a valid Vertec object reference.
@@ -219,6 +222,8 @@ For focused proof:
 
 ```sh
 npm run test
+npm run lab:api
+npm run lab:mcp
 ```
 
 For full local proof, when time allows:

@@ -20,6 +20,7 @@ const manifest = {
       run_at: "document_idle",
     },
   ],
+  permissions: [],
 };
 
 await mkdir(outDir, { recursive: true });

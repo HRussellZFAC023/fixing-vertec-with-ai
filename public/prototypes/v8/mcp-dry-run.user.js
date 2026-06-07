@@ -12,6 +12,13 @@
 
   const ROOT_ID = "vertec-helper-v8";
   const requestText = "Fill this month with 8h project delivery entries, but only as a draft.";
+  const defaultTemplate = {
+    project: "C34157, Barclaycard Website Re",
+    phase: "10_DELIVERY",
+    serviceType: "003_DAILY RATE",
+    text: "Project delivery",
+    hours: 8,
+  };
 
   if (document.getElementById(ROOT_ID)) return;
 
@@ -35,15 +42,26 @@
     return document.querySelector("[data-vt-month]")?.dataset.vtMonth || "2026-06";
   }
 
+  function vacationBalance() {
+    const absences = document.querySelector("[data-vt-absences]");
+    const allowance = Number(absences?.dataset.vtVacationAllowance || 0);
+    const used = Number(absences?.dataset.vtVacationUsed || 0);
+    const planned = Number(absences?.dataset.vtVacationPlanned || 0);
+    return { remaining: allowance - used - planned };
+  }
+
   function toolTranscript(confirmed) {
     const workdays = rows().filter((row) => row.dataset.vtRowKind === "workday");
+    const absences = rows().filter((row) => row.dataset.vtRowKind === "absence");
     const draft = workdays.map((row) => ({
       date: row.dataset.date,
-      hours: 8,
-      project: "C34157, Barclaycard Website Re",
-      phase: "10_DELIVERY",
-      serviceType: "003_DAILY RATE",
-      text: "Project delivery",
+      project: defaultTemplate.project,
+      phase: defaultTemplate.phase,
+      serviceType: defaultTemplate.serviceType,
+      text: defaultTemplate.text,
+      hours: defaultTemplate.hours,
+      source: "workshop-copy",
+      mode: "draft-only",
     }));
 
     return [
@@ -66,22 +84,25 @@
           vertecSession: "workshop-copy-only",
           canReadServices: true,
           canWriteServices: false,
-          note: "The live network check showed Vertec can fall back to its own login page; cookie replay is not an MCP auth model.",
+          plannedAbsences: absences.length,
+          vacationRemainingDays: vacationBalance().remaining,
+          liveWrite: false,
         },
       },
       {
         tool: "vertec.prepareTimesheetDraft",
         input: {
           month: monthKey(),
-          defaultHours: 8,
-          project: "C34157, Barclaycard Website Re",
-          phase: "10_DELIVERY",
-          serviceType: "003_DAILY RATE",
+          defaultHours: defaultTemplate.hours,
+          project: defaultTemplate.project,
+          phase: defaultTemplate.phase,
+          serviceType: defaultTemplate.serviceType,
           textPolicy: "required",
         },
         output: {
           entries: draft,
-          writesLiveData: false,
+          skippedPlannedAbsences: absences.length,
+          liveWrite: false,
         },
       },
       {
@@ -93,7 +114,10 @@
         },
         output: {
           ok: true,
-          warnings: ["Workshop copy has no real Vertec state.", "Human approval required."],
+          errors: [],
+          warnings: [],
+          wouldCreate: draft.length,
+          liveWrite: false,
         },
       },
       {

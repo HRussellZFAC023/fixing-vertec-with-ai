@@ -33,16 +33,6 @@ This keeps the first workshop step approachable for AI sceptics. It also shows h
   - Educational usefulness: Canvas is useful after the first critique, because participants can ask ChatGPT to organize requirements, draft code snippets, or review a small HTML/JS idea in a side-by-side editing space.
   - Workflow evolution: The interaction has moved from one-off answers toward collaborative editing and previewing, while still being user-controlled.
 
-### OpenAI: data controls and safe handling
-
-- [Temporary Chat FAQ](https://help.openai.com/en/articles/8914046-temporary-chat-faq/) - OpenAI Help Center.
-  - Educational usefulness: Good source for explaining Temporary Chat in simple terms: not in history, no memories, not used for model improvement, with limited retention for safety.
-  - Workshop use: Handy if you want a throwaway session for a quick Vertec critique.
-
-- [How your data is used to improve model performance](https://help.openai.com/en/articles/5722486-data-controls-faq) - OpenAI Help Center.
-  - Educational usefulness: Clear contrast between individual services and business products, and how the model-improvement toggles work.
-  - Workshop use: Useful background for explaining what the Zühlke workspace settings do under the hood.
-
 ### OpenAI: browser agents and Atlas
 
 - [Introducing Operator](https://openai.com/index/introducing-operator/) - OpenAI, 2025-01-23, with 2025-07-17 update.
@@ -60,10 +50,6 @@ This keeps the first workshop step approachable for AI sceptics. It also shows h
 - [Introducing ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/) - OpenAI, 2025-10-21.
   - Educational usefulness: Useful for explaining the next step in the arc: ChatGPT integrated into the browser, with page context and an agent mode in preview.
   - Workflow evolution: Atlas reduces copy/paste by letting ChatGPT work alongside pages directly, including a Vertec tab.
-
-- [ChatGPT Atlas - Data Controls and Privacy](https://help.openai.com/en/articles/12574142-chatgpt-atlas-data-controls-and-privacy) - OpenAI Help Center.
-  - Educational usefulness: Important companion source for Atlas. It covers page visibility, browser memories, browsing data controls, shared links, and training-related toggles.
-  - Workshop use: Reference for what the Atlas controls actually do, if someone wants to tune them.
 
 ### Browser inspection and UI evidence
 

@@ -6,6 +6,11 @@ Design a small review panel that catches the obvious timesheet trap: Services ar
 not the whole month. Public holidays, absences, and vacation balance exist, even
 when Vertec politely hides the plot in another corner.
 
+The live Absences tab confirmed the shape of the missing context: a separate
+custom grid with Date, until date, Type, Absence group, Description, and Hours.
+It mixes public-holiday rows with booked absences. This is the tab that explains
+why "fill every weekday" is not a requirement; it is a dare.
+
 ## What participants build
 
 - A compact review brief for missing workdays, planned leave, and public
@@ -28,6 +33,7 @@ http://127.0.0.1:5173/prototypes/runner.html?demo=v3
 Expected result:
 
 - The panel shows missing workdays.
+- It shows planned absences from the copied workflow.
 - It shows remaining vacation balance from fixture attributes.
 - It lists UK public holidays for the fixture month.
 - If the public fetch fails, it falls back to a local 2026 list.
@@ -46,6 +52,7 @@ public/fixtures/vertec-workshop-copy.html
 Check:
 
 - `missingWorkDays()` reads `[data-vt-row-kind="workday"]`.
+- `plannedAbsences()` reads `[data-vt-row-kind="absence"]`.
 - `vacationBalance()` reads `data-vt-vacation-*` attributes.
 - `loadBankHolidays()` fetches a public reference URL and has a local fallback.
 - The panel reports context; it does not approve, reject, or judge anyone's
@@ -77,7 +84,7 @@ API or HR approval.
 Then:
 
 ```text
-Critique the design for accessibility, privacy, selector brittleness, failure
+Critique the design for accessibility, selector brittleness, failure
 handling, and unsupported Vertec assumptions.
 ```
 
@@ -87,13 +94,12 @@ handling, and unsupported Vertec assumptions.
 npm run test
 ```
 
-Expected result: the v3 test reports `5` missing days, `11.5 days` vacation
-balance, and text mentioning UK public holidays.
+Expected result: the v3 test reports `5` missing days, `1` planned absence,
+`11.5 days` vacation balance, and text mentioning UK public holidays.
 
 ## Safety notes
 
-- Your own timesheet is fair game. Keep colleagues' absence *reasons* (the HR
-  bits) out of it, and remember the panel can point but not bless: policy
+- Your own timesheet is fair game. The panel can point, but policy
   interpretation still belongs to the organisation.
 
 ## Pros
@@ -110,7 +116,7 @@ balance, and text mentioning UK public holidays.
 
 ## Checklist
 
-- [ ] Missing Services, absences, balance, and public holidays are separated.
+- [ ] Missing Services, planned absences, balance, and public holidays are separated.
 - [ ] External fetch behavior is visible and has a fallback.
 - [ ] Unsupported assumptions are named.
 - [ ] Participants know what needs stakeholder approval.

@@ -28,6 +28,12 @@ http://127.0.0.1:5173/prototypes/runner.html?demo=v6
 
 Click `Build mock API request`.
 
+Or run the same proof from the command line:
+
+```sh
+npm run lab:api
+```
+
 Expected result: the panel prints JSON with:
 
 - `endpoint: "mock://vertec.local/services/bulk-draft"`
@@ -36,6 +42,7 @@ Expected result: the panel prints JSON with:
 - Services entries containing `date`, `project`, `phase`, `serviceType`,
   `hours`, and `text`.
 - `humanConfirmationRequired: true`
+- `plannedAbsencesSkipped: 1`
 - `liveWrite: false`
 
 ## Inspect
@@ -44,6 +51,8 @@ Open:
 
 ```text
 public/prototypes/v6/direct-api-dry-run.user.js
+scripts/vertec-draft-core.mjs
+scripts/vertec-api-dry-run.mjs
 src/prototypes/v1/vertec-helper.test.ts
 ```
 
@@ -53,6 +62,7 @@ Check:
 - `validatePayload()` fails missing date, project, hours, or service Text.
 - The endpoint is `mock://`, not a live Vertec URL.
 - The response says what would be created, not what was created.
+- The audit object says how many planned absences were skipped.
 - No API token is present. Tiny miracles do happen.
 
 Live discovery from the workshop account:

@@ -149,7 +149,7 @@
       .vt-summary {
         display: grid;
         gap: 8px;
-        grid-template-columns: repeat(4, minmax(140px, 1fr));
+        grid-template-columns: repeat(5, minmax(116px, 1fr));
         padding: 10px;
       }
 
@@ -315,6 +315,21 @@
               <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
               <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
             </div>
+
+            <div
+              class="vt-row"
+              data-vt-row
+              data-date="2026-06-08"
+              data-vt-row-kind="absence"
+              data-vt-absence-type="vacation"
+            >
+              <div class="vt-cell">Mon 08 Jun</div>
+              <div class="vt-cell">Planned absence</div>
+              <div class="vt-cell">Vacation</div>
+              <div class="vt-cell"></div>
+              <div class="vt-cell">Already booked on the Absences tab</div>
+              <div class="vt-cell"></div>
+            </div>
           </div>
         </section>
 
@@ -351,6 +366,7 @@
           <div class="vt-summary">
             <div>Vacation remaining<strong data-vt-vacation-balance>11.5 days</strong></div>
             <div>UK public holidays this month<strong data-vt-public-holidays-count>0</strong></div>
+            <div>Planned absences<strong data-vt-planned-absences>1</strong></div>
             <div>Missing work days<strong data-vt-missing-days>5</strong></div>
             <div>Approval status<strong>Not submitted</strong></div>
           </div>

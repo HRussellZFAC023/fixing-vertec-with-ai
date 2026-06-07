@@ -19,14 +19,14 @@ function injectV1() {
 const deck = new Reveal({
   hash: true,
   controls: true,
-  progress: true,
+  progress: false,
   slideNumber: "c/t",
   width: 1600,
   height: 900,
   margin: 0,
   center: false,
-  transition: "fade",
-  backgroundTransition: "fade",
+  transition: "none",
+  backgroundTransition: "none",
   plugins: [Notes],
 });
 

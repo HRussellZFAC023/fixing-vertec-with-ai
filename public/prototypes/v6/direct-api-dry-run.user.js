@@ -12,6 +12,13 @@
 
   const ROOT_ID = "vertec-helper-v6";
   const mockEndpoint = "mock://vertec.local/services/bulk-draft";
+  const defaultTemplate = {
+    project: "C34157, Barclaycard Website Re",
+    phase: "10_DELIVERY",
+    serviceType: "003_DAILY RATE",
+    text: "Project delivery",
+    hours: 8,
+  };
 
   if (document.getElementById(ROOT_ID)) return;
 
@@ -37,16 +44,29 @@
     return document.querySelector("[data-vt-month]")?.dataset.vtMonth || "2026-06";
   }
 
+  function vacationBalance() {
+    const absences = document.querySelector("[data-vt-absences]");
+    const allowance = Number(absences?.dataset.vtVacationAllowance || 0);
+    const used = Number(absences?.dataset.vtVacationUsed || 0);
+    const planned = Number(absences?.dataset.vtVacationPlanned || 0);
+    return { remaining: allowance - used - planned };
+  }
+
+  function plannedAbsences() {
+    return rows().filter((row) => row.dataset.vtRowKind === "absence");
+  }
+
   function buildDraftPayload() {
     const entries = rows()
       .filter((row) => row.dataset.vtRowKind === "workday")
       .map((row) => ({
         date: row.dataset.date,
-        project: field(row, "project") || "C34157, Barclaycard Website Re",
-        phase: field(row, "phase") || "10_DELIVERY",
-        serviceType: field(row, "serviceType") || "003_DAILY RATE",
-        hours: Number(field(row, "hours") || 8),
-        text: field(row, "text") || "Project delivery",
+        project: field(row, "project") || defaultTemplate.project,
+        phase: field(row, "phase") || defaultTemplate.phase,
+        serviceType: field(row, "serviceType") || defaultTemplate.serviceType,
+        hours: Number(field(row, "hours") || defaultTemplate.hours),
+        text: field(row, "text") || defaultTemplate.text,
+        source: "workshop-copy",
         mode: "draft-only",
       }));
 
@@ -59,10 +79,10 @@
       audit: {
         source: "workshop-copy",
         observedWebappTransport: "SignalR/WebSocket via /uisync, not a friendly POST /timesheet",
-        authBoundary:
-          "Zuehlke access and Vertec app session are separate; cookie replay is not an MCP auth model.",
         supportedApiAccessRequired: true,
         humanConfirmationRequired: true,
+        plannedAbsencesSkipped: plannedAbsences().length,
+        vacationRemainingDays: vacationBalance().remaining,
         liveWrite: false,
       },
     };
@@ -82,6 +102,7 @@
     return {
       ok: errors.length === 0,
       errors,
+      warnings: [],
       wouldCreate: payload.entries.length,
       liveWrite: false,
     };
@@ -160,7 +181,7 @@
     root.setAttribute("aria-label", "Vertec helper v6 direct API dry run");
     root.innerHTML = `
       <strong>v6 direct API dry run</strong>
-      <p>Prepare a local dry-run request payload without clicking through the UI or writing to a real endpoint.</p>
+      <p>Build the request we wish Vertec had, then stop at validation.</p>
       <button type="button" data-action="dry-run">Build mock API request</button>
       <pre data-v6-output>{ "status": "waiting" }</pre>
     `;

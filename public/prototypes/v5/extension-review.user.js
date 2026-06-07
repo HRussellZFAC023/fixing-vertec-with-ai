@@ -40,7 +40,7 @@
       reviewQuestions: [
         "Does the match pattern only target the Vertec webapp?",
         "Are there any powerful browser permissions?",
-        "Does the content script send page data anywhere?",
+        "Does the content script call any network endpoints?",
         "Who would approve a pilot if this were real?",
       ],
       note: "The packaged V3 helper may fetch public GOV.UK bank-holiday JSON, with no fixture data sent.",

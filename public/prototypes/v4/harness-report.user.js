@@ -28,6 +28,7 @@
 
   function report() {
     const workdayCount = document.querySelectorAll("[data-vt-row-kind='workday']").length;
+    const plannedAbsenceCount = document.querySelectorAll("[data-vt-row-kind='absence']").length;
     const selectedCount = document.querySelectorAll("[data-vt-row][data-selected='true']").length;
 
     return {
@@ -38,8 +39,9 @@
       checks: [
         { name: "local workshop copy present", ok: true },
         { name: "five workday rows available", ok: workdayCount === 5 },
+        { name: "planned absence context available", ok: plannedAbsenceCount === 1 },
         { name: "one selected row", ok: selectedCount === 1 },
-        { name: "no live Vertec access required", ok: true },
+        { name: "API and MCP dry runs stay local", ok: true },
       ],
     };
   }

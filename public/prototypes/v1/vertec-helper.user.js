@@ -18,7 +18,7 @@
     text: "Project delivery",
     hours: "8.00",
   };
-  const SYNTHETIC_FIELD_SELECTORS = {
+  const WORKSHOP_COPY_FIELD_SELECTORS = {
     project: ['[data-vt-service-field="project"]', '[name="project"]'],
     phase: ['[data-vt-service-field="phase"]', '[name="phase"]'],
     serviceType: ['[data-vt-service-field="serviceType"]', '[name="serviceType"]'],
@@ -70,14 +70,14 @@
     dispatchInput(element);
   }
 
-  function makeSyntheticAdapter() {
+  function makeWorkshopCopyAdapter() {
     const rows = () =>
       Array.from(document.querySelectorAll("[data-vt-services-row], [data-vt-row]")).filter(
-        hasSyntheticServiceFields,
+        hasWorkshopCopyServiceFields,
       );
 
     function requestField(row, name) {
-      const selectors = SYNTHETIC_FIELD_SELECTORS[name] || [];
+      const selectors = WORKSHOP_COPY_FIELD_SELECTORS[name] || [];
       for (const selector of selectors) {
         const element = row.querySelector(selector);
         if (element) return element;
@@ -85,8 +85,8 @@
       return null;
     }
 
-    function hasSyntheticServiceFields(row) {
-      return Object.keys(SYNTHETIC_FIELD_SELECTORS).every((name) => requestField(row, name));
+    function hasWorkshopCopyServiceFields(row) {
+      return Object.keys(WORKSHOP_COPY_FIELD_SELECTORS).every((name) => requestField(row, name));
     }
 
     function selectedRow() {
@@ -337,7 +337,7 @@
     };
   }
 
-  const requestAdapter = makeSyntheticAdapter();
+  const requestAdapter = makeWorkshopCopyAdapter();
   const liveAdapter = makeLiveVertecAdapter();
   const adapter = requestAdapter.available() ? requestAdapter : liveAdapter.available() ? liveAdapter : null;
 

@@ -96,12 +96,13 @@ describe("later prototype helpers", () => {
 
     document.querySelector<HTMLButtonElement>("[data-action='week']")?.click();
 
-    const rows = Array.from(document.querySelectorAll<HTMLElement>("[data-vt-row]"));
-    expect(rows).toHaveLength(5);
-    expect(rows.every((row) => row.dataset.vtDrafted === "true")).toBe(true);
-    expect(rows.every((row) => row.querySelector<HTMLInputElement>("[name='hours']")?.value === "8.00")).toBe(
+    const draftedRows = Array.from(document.querySelectorAll<HTMLElement>("[data-vt-row][data-vt-drafted='true']"));
+    const absenceRow = document.querySelector<HTMLElement>("[data-vt-row-kind='absence']");
+    expect(draftedRows).toHaveLength(5);
+    expect(draftedRows.every((row) => row.querySelector<HTMLInputElement>("[name='hours']")?.value === "8.00")).toBe(
       true,
     );
+    expect(absenceRow?.dataset.vtDrafted).toBeUndefined();
   });
 
   it("v3 reviews missing days and vacation balance without live data", async () => {
@@ -111,6 +112,7 @@ describe("later prototype helpers", () => {
     await new Promise((resolve) => dom.window.setTimeout(resolve, 0));
 
     expect(document.querySelector("[data-vt-missing-days]")?.textContent).toBe("5");
+    expect(document.querySelector("[data-vt-planned-absences]")?.textContent).toBe("1");
     expect(document.querySelector("[data-vt-vacation-balance]")?.textContent).toBe("11.5 days");
     expect(document.querySelector("#vertec-helper-v3")?.textContent).toContain("UK public holidays");
   });
@@ -125,6 +127,7 @@ describe("later prototype helpers", () => {
     expect(output).toContain("mock://vertec.local/services/bulk-draft");
     expect(output).toContain("\"liveWrite\": false");
     expect(output).toContain("\"wouldCreate\": 5");
+    expect(output).toContain("\"plannedAbsencesSkipped\": 1");
   });
 
   it("v4 exposes the local verification contract", async () => {
@@ -134,6 +137,7 @@ describe("later prototype helpers", () => {
     const output = document.querySelector("[data-v4-output]")?.textContent || "";
     expect(output).toContain("npm run check");
     expect(output).toContain("five workday rows available");
+    expect(output).toContain("planned absence context available");
     expect(output).toContain("\"ok\": true");
   });
 
@@ -158,6 +162,7 @@ describe("later prototype helpers", () => {
 
     output = document.querySelector("[data-v8-output]")?.textContent || "";
     expect(output).toContain("would-apply-in-demo-only");
+    expect(output).toContain("\"plannedAbsences\": 1");
     expect(output).toContain("\"liveWrite\": false");
   });
 });

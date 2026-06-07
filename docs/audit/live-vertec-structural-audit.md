@@ -2,6 +2,8 @@
 
 Captured on 2026-06-06 from the signed-in Vertec webapp.
 
+Updated on 2026-06-07 from the signed-in Absences tab.
+
 ## Findings
 
 - The page title identified the `Services` area.
@@ -12,6 +14,8 @@ Captured on 2026-06-06 from the signed-in Vertec webapp.
   structures.
 
 ## Structural counts
+
+### Services tab
 
 | Signal | Count |
 | --- | ---: |
@@ -26,6 +30,26 @@ Captured on 2026-06-06 from the signed-in Vertec webapp.
 | `aria-labelledby` attributes | 0 |
 | Vertec grid cell data attributes | 16 |
 | Inline `font-size: 11px` mentions | 65 |
+
+### Absences tab
+
+| Signal | Count |
+| --- | ---: |
+| `div` elements | 1705 |
+| `table` elements | 0 |
+| `form` elements | 0 |
+| `button` elements | 0 |
+| `label` elements | 0 |
+| `role` attributes | 0 |
+| `input`, `textarea`, or `select` elements | 2 |
+| Vertec custom grid widgets | 1 |
+| Vertec grid rows | 100 |
+| Vertec grid cells | 650 |
+
+The Absences grid exposed the columns Date, until date, Type, Absence group,
+Description, and Hours. The visible data model mixes public-holiday-style rows
+with booked absence rows, so a Services helper must treat absence and holiday
+context as input to the draft, not decoration around it.
 
 ## Implications for the talk
 
@@ -47,6 +71,9 @@ Captured on 2026-06-06 from the signed-in Vertec webapp.
   explicit scope, dry-run mode, audit logs, and human confirmation.
 - The absences/working-hours context belongs in the product story because
   services alone are not the whole timesheet job.
+- The Absences tab is its own custom grid, not a simple month summary. That
+  makes V3 more than a nice review panel: it is where the helper learns whether
+  a Services row should exist at all.
 
 ## Live v1 smoke check
 

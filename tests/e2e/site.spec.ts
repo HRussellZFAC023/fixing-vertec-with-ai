@@ -32,6 +32,13 @@ test("prototype runner exposes later local demos", async ({ page }) => {
   await frame.getByRole("button", { name: "Fill week" }).click();
   await expect(frame.locator("[data-vt-row][data-vt-drafted='true']")).toHaveCount(5);
 
+  await page.goto("/prototypes/runner.html?demo=v3");
+  await expect(page.getByRole("heading", { name: "V3 - UI overhaul and holiday calculator" })).toBeVisible();
+  const v3Frame = page.frameLocator("#prototype-frame");
+  await expect(v3Frame.getByText("v3 month review")).toBeVisible();
+  await expect(v3Frame.locator("[data-vt-planned-absences]")).toHaveText("1");
+  await expect(v3Frame.locator("[data-vt-vacation-balance]")).toHaveText("11.5 days");
+
   await page.goto("/prototypes/runner.html?demo=v4");
   await expect(page.getByRole("heading", { name: "V4 - Harness, Vite, and e2e tests" })).toBeVisible();
   await expect(page.frameLocator("#prototype-frame").getByText("v4 harness report")).toBeVisible();
@@ -39,6 +46,13 @@ test("prototype runner exposes later local demos", async ({ page }) => {
   await page.goto("/prototypes/runner.html?demo=v5");
   await expect(page.getByRole("heading", { name: "V5 - Userscript to extension" })).toBeVisible();
   await expect(page.frameLocator("#prototype-frame").getByText("v5 extension package review")).toBeVisible();
+
+  await page.goto("/prototypes/runner.html?demo=v6");
+  await expect(page.getByRole("heading", { name: "V6 - Direct API dry run" })).toBeVisible();
+  const v6Frame = page.frameLocator("#prototype-frame");
+  await expect(v6Frame.getByText("v6 direct API dry run")).toBeVisible();
+  await v6Frame.getByRole("button", { name: "Build mock API request" }).click();
+  await expect(v6Frame.locator("[data-v6-output]")).toContainText("\"plannedAbsencesSkipped\": 1");
 
   await page.goto("/prototypes/runner.html?demo=v8");
   await expect(page.getByRole("heading", { name: "V8 - MCP-shaped automation" })).toBeVisible();

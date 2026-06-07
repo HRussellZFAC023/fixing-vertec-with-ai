@@ -52,6 +52,46 @@ governed automation.
     reviewable engineering work. In the talk, Annotate is the bridge from vague
     complaint to bounded change.
 
+- [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+  - Pattern worth borrowing: successful agents are usually built from simple,
+    composable patterns. This supports the workshop ladder: browser agent, DOM
+    evidence, userscript, harness, API dry run, MCP tools.
+  - Short phrase worth quoting with attribution: "simple, composable patterns".
+
+- [Anthropic: Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+  - Pattern worth borrowing: agent work needs evals for real behaviours such as
+    over-engineering, not just happy-path demos. This supports the V4 harness
+    slide and the "proof objects" language.
+
+- [GitHub Blog: How to debug a web app with Playwright MCP and GitHub Copilot](https://github.blog/ai-and-ml/github-copilot/how-to-debug-a-web-app-with-playwright-mcp-and-github-copilot/)
+  - Pattern worth borrowing: give the agent repro steps, let it use a browser,
+    then review the fix. This maps cleanly to "make no mistakes" plus the local
+    e2e harness.
+
+- [GitHub Blog: The difference between coding agent and agent mode](https://github.blog/developer-skills/github/less-todo-more-done-the-difference-between-coding-agent-and-agent-mode-in-github-copilot/)
+  - Pattern worth borrowing: synchronous agent mode and asynchronous coding
+    agents are different collaboration shapes. This helps explain why one
+    thread owns taste while side agents gather research or test bounded changes.
+  - Short phrase worth quoting with attribution: "asynchronous teammate".
+
+- [Model Context Protocol introduction](https://modelcontextprotocol.io/docs/getting-started/intro)
+  - Pattern worth borrowing: MCP is the bridge from chat to narrow tools. This
+    supports the V8 move away from clicking Vertec and toward `checkSession`,
+    `prepareTimesheetDraft`, `validateDraft`, and `applyDraft`.
+
+- [OpenAI: Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/)
+  - Pattern worth borrowing: the agent loop is user input, model, tool call,
+    observation, repeat. This is the workshop mechanics under the jokes.
+
+- [OpenAI: The OpenAI Deployment Company](https://openai.com/index/openai-launches-the-deployment-company/)
+  - Pattern worth borrowing: forward deployed engineers embedded in complex
+    organisations. This reinforces the sales-side slide: build in the field,
+    make pain clickable, scale the useful bit.
+
+- [iusztinpaul/designing-real-world-ai-agents-workshop](https://github.com/iusztinpaul/designing-real-world-ai-agents-workshop)
+  - Pattern worth borrowing: a real hands-on workshop repo with MCP servers and
+    a scoped harness. Useful inspiration for making each lab self-contained.
+
 ## Structural takeaway
 
 The talk should not be eight demos in a row. A stronger shape:

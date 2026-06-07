@@ -27,9 +27,17 @@ Open:
 http://127.0.0.1:5173/prototypes/runner.html?demo=v8
 ```
 
+Or run the stdio MCP server smoke test directly:
+
+```sh
+npm run lab:mcp
+```
+
 Expected result:
 
 - The first transcript ends with `status: "blocked"`.
+- `vertec.checkSession` reports the planned absence count from the workshop
+  copy.
 - `vertec.applyDraft` reports `liveWrite: false`.
 - Clicking `Simulate approved apply (no write)` changes the transcript to
   `would-apply-in-demo-only`, still with `liveWrite: false`.
@@ -40,6 +48,9 @@ Open:
 
 ```text
 public/prototypes/v8/mcp-dry-run.user.js
+scripts/vertec-mcp-server.mjs
+scripts/vertec-mcp-smoke.mjs
+scripts/vertec-draft-core.mjs
 src/prototypes/v1/vertec-helper.test.ts
 ```
 
@@ -59,6 +70,11 @@ Check the boundary:
 - `validateDraft` checks public holidays and absences in concept.
 - `applyDraft` stays blocked until `confirmedByHuman` is true.
 - Even after simulated confirmation, `liveWrite` remains false.
+
+The command-line smoke test uses the official MCP SDK over stdio. It lists the
+tools, calls `vertec.checkSession`, prepares the draft, validates it, proves an
+unconfirmed apply is blocked, and then proves the confirmed demo apply still
+does not write live data.
 
 ## Prompt on screen
 

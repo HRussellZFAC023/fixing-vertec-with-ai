@@ -51,6 +51,13 @@ Build the local extension demo:
 npm run build:extension
 ```
 
+Run the later lab proof objects directly:
+
+```sh
+npm run lab:api
+npm run lab:mcp
+```
+
 ## Verify it
 
 ```sh
@@ -75,9 +82,8 @@ npm run check
 - [Talk pattern sources](docs/research/talk-pattern-sources.md)
 - [Live Vertec structural audit](docs/audit/live-vertec-structural-audit.md)
 
-## Working with real data
+## Working with Vertec
 
-These are Zühlke-approved tools. Pasting a real Vertec row, a screenshot, or a
-DOM slice into ChatGPT, Claude, or Codex is fine, and so is poking at your own
-current-month timesheet. Apply the usual common sense to genuinely sensitive
-client, HR, or contract data and to anything that writes to production.
+Use real rows, screenshots, and DOM from your own timesheet. That is the
+exercise. The local demos make the workshop repeatable; production writes still
+need a deliberate human click.
