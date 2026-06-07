@@ -1,21 +1,21 @@
-# 05 - Userscript To Browser Extension
+# 05 - Userscript to browser extension
 
 ## Goal
 
-Decide when a userscript has grown out of "personal helper" and into
+Work out when a userscript has grown out of "personal helper" and into
 "browser-installed thing that needs review before it starts wearing a blazer".
 
-The lab packages a userscript into an extension-shaped folder. It does
-not need live Vertec access.
+The lab packages a userscript into an extension-shaped folder. You don't need
+live Vertec access for it.
 
-## What Participants Build
+## What participants build
 
 - A migration note: userscript vs extension.
 - A permissions review in plain English.
 - A generated `manifest.json` and `content-script.js`.
 - A checklist for a small internal pilot.
 
-## Run It
+## Run it
 
 ```sh
 npm run build:extension
@@ -57,10 +57,10 @@ Check:
 - There is no `<all_urls>`.
 - There are no powerful permissions unless someone can defend them in front of
   another adult.
-- If the packaged helper fetches public GOV.UK bank holidays, that's the only
+- If the packaged helper fetches public GOV.UK bank holidays, that is the only
   thing the request needs to send.
 
-## Metadata Contrast
+## Metadata contrast
 
 Userscript shape:
 
@@ -85,7 +85,7 @@ Extension shape:
 }
 ```
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 We have a browser userscript for a Vertec Services helper.
@@ -116,9 +116,10 @@ Do not use broad host permissions.
 
 ## Notes
 
-- Browser extensions can read powerful page context. Keep the host match narrow.
-- Treat generated extension output as draft review material, not approved
-  software.
+- Browser extensions can read powerful page context, so keep the host match
+  narrow.
+- Treat generated extension output as draft review material. It is not approved
+  software yet.
 
 ## Pros
 

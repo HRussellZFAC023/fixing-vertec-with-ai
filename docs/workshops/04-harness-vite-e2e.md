@@ -1,18 +1,18 @@
-# 04 - Harness With Vite, Vitest, And Playwright
+# 04 - Harness with Vite, Vitest, and Playwright
 
 ## Goal
 
 Stop accepting "it worked in the chat window" as evidence. Build the small local
 harness that proves a Vertec helper against a local workshop copy.
 
-## What Participants Build
+## What participants build
 
 - A Vite-served fixture and prototype runner.
 - Vitest/JSDOM checks for userscript behavior.
 - Playwright checks for the browser path.
 - A concise verification contract participants can inspect.
 
-## Run It
+## Run it
 
 ```sh
 npm run dev
@@ -77,7 +77,7 @@ Check:
   variable.
 - No test needs live Vertec access.
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 Given this Vertec Services helper, design the smallest local harness.
@@ -97,7 +97,7 @@ Output:
 Don't invent an API: Vertec has no friendly REST POST, so the harness drives the DOM.
 ```
 
-## Failure Drill
+## Failure drill
 
 Ask participants where they would look if:
 

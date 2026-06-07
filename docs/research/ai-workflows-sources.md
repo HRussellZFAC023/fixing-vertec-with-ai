@@ -1,10 +1,10 @@
 # AI workflow sources for browser/UI improvement work
 
-Current as of 2026-06-06. Scope: public sources that help explain how someone can use ChatGPT, without Codex, to understand a web UI problem, inspect a page, paste a DOM slice or screenshot, ask for critique, and turn the finding into a first userscript requirement.
+Current as of 2026-06-07. Scope: public sources that help explain how someone can use ChatGPT, without Codex, to understand a web UI problem, inspect a page, paste a DOM slice or screenshot, ask for critique, and turn the finding into a first userscript requirement.
 
 ## Main arc for the workshop
 
-The useful story for "Fixing Vertec With AI" is not "the AI fixes the app while everyone claps." It is:
+The useful story for "Fixing Vertec With AI" runs the opposite way from "the AI fixes the app while everyone claps." Here it is:
 
 1. A person spots friction in a real UI.
 2. They capture a small slice of evidence: screenshot, DOM, labels, selectors, and the exact task that feels awkward.
@@ -116,6 +116,16 @@ This keeps the first workshop step approachable for AI sceptics. It also shows h
 - [Browser Use CLI docs](https://docs.browser-use.com/open-source/browser-use-cli) - Browser Use.
   - Educational usefulness: Makes the observe-act loop concrete: open a page, inspect state, click, type, take screenshots, run JavaScript.
   - Workflow evolution: Reinforces that modern browser agents need both visual evidence and structured page state. For this workshop, participants do the first "observe" step manually and safely.
+
+### Codex, connectors, and governed tool access
+
+- [OpenAI: Codex](https://openai.com/codex/) - OpenAI.
+  - Educational usefulness: Supports the Codex Annotate step and the subagent discussion. Codex is framed as a workbench for real engineering tasks, parallel agents, skills, and background work rather than a single magic prompt.
+  - Workshop use: After ChatGPT turns the DOM slice into a requirement, Codex can own the bounded code change, tests, docs, and site update.
+
+- [OpenAI: connectors and MCP](https://developers.openai.com/api/docs/guides/tools-connectors-mcp) - OpenAI API docs.
+  - Educational usefulness: Explains connectors and remote MCP servers as ways to give models access to external services, with explicit approval available for tool calls.
+  - Workshop use: This is the source behind the V8 idea: a Vertec MCP wrapper should expose narrow tools such as `checkSession`, `draftEntries`, and `applyDraft` only behind confirmation and audit.
 
 ## Suggested takeaways for the talk
 

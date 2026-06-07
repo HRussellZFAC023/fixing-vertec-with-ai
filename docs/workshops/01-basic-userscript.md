@@ -12,7 +12,7 @@ are object references. Typing their labels is not the same as selecting the
 underlying Vertec objects. This is where "make no mistakes" has its little sit
 down.
 
-## What Participants Build
+## What participants build
 
 - A userscript-style control surface mounted over the fixture.
 - Row selection using `[data-vt-row]` and `data-selected`.
@@ -28,7 +28,7 @@ Project | Phase | Service type | Text | Hours
 
 This lab is not about attendance `From`/`To` punch-in fields.
 
-## Run It
+## Run it
 
 ```sh
 npm install
@@ -79,7 +79,7 @@ Check these details:
   `[data-vt-service-field="serviceType"]`, `[data-vt-service-field="text"]`,
   and `[data-vt-service-field="hours"]`.
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 Write a browser userscript for a Vertec Services fixture.
@@ -123,7 +123,7 @@ Expected result: Vitest verifies the DOM helper in JSDOM, and Playwright clicks
 
 - The fixture is there so everyone hits the same DOM. Pasting a real row,
   screenshot, or DOM slice from your own current-month timesheet into
-  ChatGPT, Claude, or Codex is fine — that's the whole point.
+  ChatGPT, Claude, or Codex is fine. That's the whole point.
 - The live-page experiment showed the joke in useful detail: Vertec accepted
   typed Text and Hours, but object-reference columns need real object selection
   or an API boundary.

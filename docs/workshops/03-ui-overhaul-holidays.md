@@ -6,14 +6,14 @@ Design a small review panel that catches the obvious timesheet trap: Services ar
 not the whole month. Public holidays, absences, and vacation balance exist, even
 when Vertec politely hides the plot in another corner.
 
-## What Participants Build
+## What participants build
 
 - A compact review brief for missing workdays, planned leave, and public
   holidays.
 - A local panel that summarizes training Services and absence context.
 - A critique of what the panel must not infer.
 
-## Run It
+## Run it
 
 ```sh
 npm run dev
@@ -51,7 +51,7 @@ Check:
 - The panel reports context; it does not approve, reject, or judge anyone's
   health, performance, or character. Revolutionary restraint.
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 We are improving a Vertec month-review flow.
@@ -90,7 +90,7 @@ npm run test
 Expected result: the v3 test reports `5` missing days, `11.5 days` vacation
 balance, and text mentioning UK public holidays.
 
-## Safety Notes
+## Safety notes
 
 - Your own timesheet is fair game. Keep colleagues' absence *reasons* (the HR
   bits) out of it, and remember the panel can point but not bless: policy

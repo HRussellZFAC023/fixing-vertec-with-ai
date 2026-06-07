@@ -46,5 +46,5 @@ rates, and real entries.
 
 ## Design principle
 
-The enemy is not time recording. The enemy is making the human act as the
+Time recording was never the enemy. The enemy is making the human act as the
 integration layer.

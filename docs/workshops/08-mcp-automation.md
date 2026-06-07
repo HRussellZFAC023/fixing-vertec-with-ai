@@ -8,14 +8,14 @@ The lab uses an MCP-shaped transcript over local workshop-copy Services data. To
 can read copied rows, prepare a draft, validate it, and stop at confirmation.
 The default state is blocked. Very unromantic. Very good.
 
-## What Participants Build
+## What participants build
 
 - A boundary map: read-only, draft-only, approval required, never automate.
 - Tool definitions for a Vertec-like Services workflow.
 - A dry-run transcript with proposed changes and human confirmation.
 - A rejection path.
 
-## Run It
+## Run it
 
 ```sh
 npm run dev
@@ -60,7 +60,7 @@ Check the boundary:
 - `applyDraft` stays blocked until `confirmedByHuman` is true.
 - Even after simulated confirmation, `liveWrite` remains false.
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 We are designing MCP-style tools for a Vertec Services workflow.
@@ -93,7 +93,7 @@ The transcript must show evidence, proposed entries, validation warnings, and a
 blocked apply step unless a human confirms. No live writes.
 ```
 
-## Boundary Example
+## Boundary example
 
 | Action | Classification | Reason |
 | --- | --- | --- |
@@ -104,7 +104,7 @@ blocked apply step unless a human confirms. No live writes.
 | Apply to live Vertec | Human approval required | Consequence-bearing write. |
 | Infer absence reason | Never automate | Sensitive and unsupported. |
 
-## Auth Boundary
+## Auth boundary
 
 The live experiment found two separate gates:
 
@@ -142,14 +142,14 @@ That is not a failed demo. That is the demo becoming honest.
 - [Model Context Protocol authorization](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
 - [Model Context Protocol security best practices](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
 
-## Design Notes
+## Design notes
 
 - Replaying Vertec browser cookies as a server auth model is fragile: cookies
   expire and it was never a supported path. Prefer narrow, task-specific tools
   over generic browser access.
 - Dry-run output should say what data was used, what would change, and how to
-  cancel — that is what makes the transcript reviewable.
-- The one place to keep a hand on the wheel is the live write: a real apply to
+  cancel. That is what makes the transcript reviewable.
+- The one place to keep a hand on the wheel is the live write. A real apply to
   Vertec is consequence-bearing, so it stays behind human confirmation.
 
 ## Pros

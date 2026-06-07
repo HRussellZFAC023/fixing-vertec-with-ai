@@ -1,15 +1,16 @@
-# 00 - DOM Evidence To A Userscript Requirement
+# 00 - DOM evidence to a userscript requirement
 
 ## Goal
 
 Use ChatGPT without Codex to turn one ugly Vertec moment into a bounded userscript
-requirement. Not a vibe. Not "make it better". One observed problem, one local
-browser-side improvement, one acceptance check.
+requirement. Not a vibe, not a vague "make it better". You start from one observed
+problem, land on one local browser-side change, and write down one way to check it
+worked.
 
 Vertec remains the villain. The participant is a competent person currently
 being asked to reverse-engineer policy from a grid.
 
-## What Participants Produce
+## What participants produce
 
 - A DOM slice from a Services row or small panel.
 - Selector candidates for the smallest useful target.
@@ -29,7 +30,7 @@ updates. Done means [observable check].
 
 ## Exercise
 
-### 1. Inspect The Target
+### 1. Inspect the target
 
 Open the fixture, or just open your own current-month timesheet in Vertec. Both
 work.
@@ -60,12 +61,12 @@ In Chrome DevTools:
 Expected result: participants can point to the row wrapper and name the fields
 the helper is allowed to touch.
 
-### 2. Copy A Small DOM Slice
+### 2. Copy a small DOM slice
 
 Copy the row or panel. Pasting a real Vertec row, screenshot, or DOM slice into
-ChatGPT, Claude, or Codex is fine — these are Zühlke-approved tools and it's your
-own timesheet. Keep it small only because smaller context is easier to reason
-about, not out of dread.
+ChatGPT, Claude, or Codex is fine. These are Zühlke-approved tools and it's your
+own timesheet. Keep it small because smaller context is easier to reason about,
+not because anyone needs to be nervous about it.
 
 ```html
 <div class="vt-row" data-vt-row data-date="[DATE]" data-vt-row-kind="workday">
@@ -79,10 +80,10 @@ about, not out of dread.
 ```
 
 The real Vertec vocabulary is Services, Project, Phase, Service type, Text, and
-Hours. The field is `Text`; the policy around that text may still be the messy
+Hours. The field is `Text`. The policy around that text may still be the messy
 part.
 
-### 3. Ask For The Helper
+### 3. Ask for the helper
 
 Paste the DOM and ask for what you want:
 
@@ -97,13 +98,12 @@ can blast through the week.
 That's the whole prompt. You refine it by talking back to the model, like you
 actually would.
 
-The important teaching moment is not whether the first answer is brilliant. It
-probably will not be. The useful question is: did ChatGPT notice that Project,
-Phase, and Service type might be object references rather than plain text? If
-not, excellent. Vertec has successfully annoyed a language model. We can use
-that.
+The teaching moment isn't whether the first answer is brilliant. It probably
+won't be. The useful question is whether ChatGPT noticed that Project, Phase, and
+Service type might be object references rather than plain text. If it didn't,
+excellent. Vertec has now annoyed a language model too, and we can use that.
 
-### 4. Tighten The Requirement
+### 4. Tighten the requirement
 
 Keep only claims supported by the DOM and the participant's actual workflow.
 
@@ -123,7 +123,7 @@ Keep:
 - A dynamic-page note: use `MutationObserver` only if rows are redrawn after
   navigation or filtering.
 
-## Acceptance Check
+## Acceptance check
 
 By the end, each participant can say:
 

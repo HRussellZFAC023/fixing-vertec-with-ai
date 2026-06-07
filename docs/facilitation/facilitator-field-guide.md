@@ -1,25 +1,27 @@
 # Facilitator Field Guide
 
-This is the day-of path for "Fixing Vertec with AI". It connects the deck, live
-structural audit, workshop handouts, local prototypes, and subagent discussion
-into one teachable line.
+This is the day-of path for "Fixing Vertec with AI". It ties the deck, the live
+structural audit, the workshop handouts, the local prototypes, and the subagent
+discussion into one line you can teach.
 
-The claim is narrow: Vertec makes skilled people act as the integration layer
+The claim is narrow. Vertec makes skilled people act as the integration layer
 between policy, memory, billing, absences, approvals, and a grid of fields.
-Useful AI work starts by making that hidden work inspectable. In CDM terms, we
-make the artefact flow and feedback loops visible before adding capability.
-Then, very slowly, the tool earns the right to automate anything.
+Useful AI work starts by making that hidden work inspectable. In CDM terms, you
+make the artefact flow and the feedback loops visible before you add any
+capability. After that, very slowly, the tool earns the right to automate
+anything.
 
-Vertec is the villain. Participants are not. Keep that distinction clean.
+Vertec is the villain. The participants are not. Keep that distinction clean.
 
-## Audience Promise
+## Audience promise
 
 For sceptics:
 
-- No uninspectable magic demo.
+- No magic demo you can't open up and look inside.
 - Every artifact can be opened: Markdown, fixture HTML, userscript, tests, mock
   payload, extension manifest.
-- The first interaction is critique from real evidence, not delegation.
+- The first thing they do is critique from real evidence. Nobody hands work to
+  a model yet.
 - The more capable the workflow gets, the narrower the tool boundary becomes.
 
 For technical participants:
@@ -30,7 +32,7 @@ For technical participants:
 - If a teammate cannot read it, run it, and delete it, it is too early for a
   workshop lab.
 
-## Running Order
+## Running order
 
 | Time | Segment | What Happens | Artifact |
 | ---: | --- | --- | --- |
@@ -38,14 +40,14 @@ For technical participants:
 | 5-15 min | Fieldwork | Observe what the human remembers, checks, translates, or worries about. | [Empathy map](../audit/vertec-empathy-map.md) |
 | 15-25 min | Evidence and CDM lens | Show structural audit, then map it to artefact flow and feedback loops. | [Live audit](../audit/live-vertec-structural-audit.md) |
 | 25-35 min | DOM to requirement | Use a real DOM slice to produce a bounded userscript requirement. | [00 workshop](../workshops/00-chatgpt-dom-workflow.md) |
-| 35-50 min | Prototype ladder | Walk V1 to V8. Ask after each rung: what got safer, what got riskier? | Local demos |
+| 35-50 min | Feature rungs | Walk from userscript to MCP. Ask after each rung: whose work got easier, and what proof boundary changed? | Local demos |
 | 50-56 min | Subagents | Discuss managed delegation, Codex as workbench, confirmations, and logs. | [Subagent guide](subagents.md) |
 | 56-60 min | Close | Return to judgement, evidence, and narrow tools. | Reveal closing |
 
-## First Move: Fieldwork
+## First move: fieldwork
 
-Treat the opening audit like product fieldwork, not a warm-up. The target is the
-workflow, not the person coping with it.
+Treat the opening audit like product fieldwork rather than a warm-up. You are
+aiming at the workflow, not the person coping with it.
 
 Ask:
 
@@ -65,17 +67,17 @@ The enemy is not time recording. The enemy is making the human act as the integr
 
 Things observers miss:
 
-- Service Text is often policy, not prose decoration.
-- "Fill 8 hours" is incomplete without holidays, absences, half-days, project
-  switches, and approval expectations.
-- A timesheet touches billing, planning, fairness, compliance, and trust. Tiny
-  fields, large blast radius. Very enterprise.
+- Service Text is often policy doing the work of prose.
+- "Fill 8 hours" is incomplete until you add holidays, absences, half-days,
+  project switches, and the approval that someone expects to see.
+- A timesheet touches billing, planning, fairness, and trust. Tiny fields, large
+  blast radius. Very enterprise.
 - Weak semantics hurt humans, keyboard users, browser automation, and agents.
 
-## CDM Lens
+## CDM lens
 
-Keep this practical. Cybernetic Delivery is not a Scrum replacement, a tool
-rollout, or a grand AI campaign. For this session, it is a way to ask better
+Keep this practical. Cybernetic Delivery does not replace Scrum, roll out a tool,
+or run a grand AI campaign. For this session it gives you a way to ask better
 delivery questions:
 
 - What artefacts are flowing through the system: screenshot, DOM slice, network
@@ -89,13 +91,13 @@ delivery questions:
 Translated to Vertec:
 
 ```text
-Observe the grid -> capture evidence -> prototype one rung -> measure the wall -> turn the lesson into a pattern.
+Observe the grid -> capture evidence -> build one rung -> measure the wall -> turn the lesson into a pattern.
 ```
 
 The running joke is that Vertec makes the loop visible by resisting every lazy
 shortcut. Annoying, yes. Pedagogically generous, unfortunately also yes.
 
-## Tool Path
+## Tool path
 
 ### 1. ChatGPT Without Codex
 
@@ -134,7 +136,7 @@ References:
 - [MDN: MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 - [Tampermonkey documentation](https://www.tampermonkey.net/documentation.php)
 
-### 2. Codex With Annotate
+### 2. Codex with annotate
 
 Goal: turn the requirement into a bounded change.
 
@@ -160,7 +162,7 @@ What to annotate:
 - Any place where "the agent can just click it" becomes a consequence-bearing
   write.
 
-### 3. Prototype Ladder
+### 3. Feature rungs
 
 | Version | Participant Action | Inspect | Main Point | Main Risk |
 | --- | --- | --- | --- | --- |
@@ -173,27 +175,26 @@ What to annotate:
 | V8 | Show MCP-shaped automation with confirmation. | `public/prototypes/v8/mcp-dry-run.user.js` | Tool boundaries and blocked apply. | Bad boundaries scale. |
 
 The missing V7 is intentional. Ask the room what belongs there: approvals,
-observability, policy review, stakeholder pilot. Roadmaps skip numbers when
+observability, policy review, a stakeholder pilot. Roadmaps skip numbers when
 reality files a ticket.
 
 Live Vertec finding to mention:
 
-- The Services grid is a custom Vertec/Qooxdoo-style div table, not a normal
-  HTML form.
+- The Services grid is a custom Vertec/Qooxdoo-style div table. It is not a
+  normal HTML form.
 - Text and Hours can be edited by driving the visible grid editor.
 - Project, Phase, and Service type are object-reference cells. A model can type
   the visible label and still fail to create a valid Vertec object reference.
-- The HAR captured `boot/index.js` and `/uisync` SignalR/WebSocket traffic, not a
-  neat REST write request. A read-only probe of the documented REST base path
-  returned `404` on this tenant.
-- A later temporary-edit capture landed on Vertec's own login page rather than
-  the Services grid. That means MCP must check session/capabilities before
-  reading or drafting, and copied browser cookies are not a supportable auth
-  model.
-- That is the running joke and the lesson: "make no mistakes" is not enough
-  when the system hides the structure.
+- The HAR captured `boot/index.js` and `/uisync` SignalR/WebSocket traffic. There
+  was no neat REST write request to grab. A read-only probe of the documented
+  REST base path returned `404` on this tenant.
+- A later temporary-edit capture landed on Vertec's own login page instead of the
+  Services grid. So MCP has to check session and capabilities before it reads or
+  drafts, and copied browser cookies are not a supportable auth model.
+- That is the running joke and the lesson. "Make no mistakes" is not enough when
+  the system hides the structure.
 
-## Run And Verify
+## Run and verify
 
 For live demos:
 
@@ -227,10 +228,10 @@ npm run check
 npm run build:extension
 ```
 
-`npm run check` already includes the extension build and e2e run; the separate
-extension command is useful when the lab is focused on packaging.
+`npm run check` already includes the extension build and the e2e run. The separate
+extension command is handy when the lab is focused on packaging.
 
-## Superapp Discussion
+## Superapp discussion
 
 Prompt:
 
@@ -257,11 +258,11 @@ Use this contrast:
 The useful future is a workbench, not one giant assistant with a master key and a
 motivational poster.
 
-## Working With The Live Vertec Tab
+## Working with the live Vertec tab
 
 These are Zühlke tools on your own timesheet. Pasting a real Services row, a
-screenshot, or a DOM slice into ChatGPT, Claude, or Codex is fine, and filling
-your own current-month timesheet is fine to experiment with.
+screenshot, or a DOM slice into ChatGPT, Claude, or Codex is fine, and so is
+experimenting with your own current-month timesheet.
 
 - Use local workshop copies for demos, tests, and committed repo files so the
   prototypes stay reproducible.
@@ -270,7 +271,7 @@ your own current-month timesheet is fine to experiment with.
 - Anything that writes to production Vertec, or touches client / HR / contract
   data, deserves a heads-up and real controls before code runs.
 
-## Completion Checklist
+## Completion checklist
 
 - [ ] The opening makes fun of the ritual, not the participants.
 - [ ] Lab 1 uses Services rows: Project, Phase, Service type, Text, Hours.
@@ -282,7 +283,7 @@ your own current-month timesheet is fine to experiment with.
 - [ ] No lab writes to production Vertec without a heads-up.
 - [ ] The close returns to judgement, evidence, and narrow tools.
 
-## Links To Have Ready
+## Links to have ready
 
 - [Chrome DevTools: view and change the DOM](https://developer.chrome.com/docs/devtools/dom/)
 - [MDN: MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)

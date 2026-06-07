@@ -1,4 +1,4 @@
-# AGENTS.md — Fixing Vertec With AI
+# AGENTS.md: Fixing Vertec With AI
 
 Working notes for any agent (Codex, Claude, subagents) editing this repo.
 
@@ -11,7 +11,7 @@ villain. The audience includes AI sceptics and non-technical colleagues.
 
 ## Don't be paranoid
 
-The earlier drafts were wrapped in redaction theatre — "sanitize everything",
+The earlier drafts were wrapped in redaction theatre: "sanitize everything",
 long "do not paste" lists, hosts swapped to `example.invalid`, privacy notes on
 every page. Cut it out. It made the workshop read like a compliance module.
 
@@ -33,7 +33,7 @@ Keep the small amount of judgement that's actually real, stated lightly, once:
   heads-up. One calm sentence, not a warning label on every slide.
 - Accurate technical facts stay accurate. "Cookie-replay is a fragile auth model"
   is an *engineering* observation (cookies expire, it isn't a supported path),
-  not a secrecy rule — keep the truth, drop the dread.
+  not a secrecy rule. Keep the truth, drop the dread.
 
 If you're unsure whether something is a real risk or just nervous framing, assume
 it's nervous framing and relax it.

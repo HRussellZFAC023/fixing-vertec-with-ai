@@ -1,4 +1,4 @@
-# 02 - Templates And Service Text
+# 02 - Templates and service text
 
 ## Goal
 
@@ -9,14 +9,14 @@ This is not intelligence. It is a named default with a review button, which is
 already more honest than pretending the human enjoys typing the same thing for
 five days.
 
-## What Participants Build
+## What participants build
 
 - Two local templates: client delivery and internal enablement.
 - A `Fill week` action that drafts five training Services rows.
 - A `Clear` action so nobody mistakes the draft for an act of fate.
 - A checklist for what a human must review before saving.
 
-## Run It
+## Run it
 
 ```sh
 npm run dev
@@ -53,7 +53,7 @@ Check:
 - `clearDrafts()` resets draft values.
 - No persistence, token, API call, or auto-submit is present.
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 You are helping design a local Vertec Services template helper.

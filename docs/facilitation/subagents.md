@@ -1,21 +1,21 @@
-# Facilitating With Subagents
+# Facilitating with subagents
 
 ## Purpose
 
-Subagents can help a workshop manager divide the "Fixing Vertec With AI" flow into small, reviewable workstreams. The manager stays responsible for scope and final judgement; subagents help gather, draft, test, and critique.
+Subagents let a workshop manager split the "Fixing Vertec With AI" flow into small, reviewable workstreams. The manager owns scope and the final call. Subagents do the gathering, drafting, testing, and critiquing.
 
-This is especially useful for AI sceptics because it makes the process visible. Each agent has a job, a boundary, and an output that humans can inspect.
+That split helps with AI sceptics in the room, because it makes the process visible. Each agent has a job, a boundary, and an output a human can read and check.
 
-## Manager Responsibilities
+## Manager responsibilities
 
 - Define the objective in plain English.
 - Decide which tools are allowed.
 - Review every output before it becomes a workshop instruction, code change, or operational recommendation.
-- Use common sense before delegating anything genuinely sensitive — real client, HR, or contract data, or anything that writes to production.
+- Use common sense before delegating anything genuinely sensitive: real client, HR, or contract data, or anything that writes to production.
 
-## Suggested Agent Assignments
+## Suggested agent assignments
 
-### V2: Templates
+### V2: templates
 
 Delegate:
 
@@ -27,7 +27,7 @@ Keep local:
 
 - Final choice of wording for the workshop audience.
 
-### V3: UI Overhaul For Holiday Review
+### V3: UI overhaul for holiday review
 
 Delegate:
 
@@ -39,7 +39,7 @@ Keep local:
 
 - Stakeholder judgement about whether the design supports the real approval process.
 
-### V4: Harness With Vite And E2E Tests
+### V4: harness with Vite and e2e tests
 
 Delegate:
 
@@ -51,7 +51,7 @@ Keep local:
 
 - The decision to connect anything to a real environment.
 
-### V5: Userscript To Browser Extension
+### V5: userscript to browser extension
 
 Delegate:
 
@@ -63,7 +63,7 @@ Keep local:
 
 - Approval from IT, security, or system owners.
 
-### V6: Direct API Integration
+### V6: direct API integration
 
 Delegate:
 
@@ -73,9 +73,9 @@ Delegate:
 
 Keep local:
 
-- Any decision to request or use write access. Vertec gives you `/uisync` over SignalR and no friendly REST POST, so write paths are worth a deliberate decision rather than an accident.
+- Any decision to request or use write access. Vertec gives you `/uisync` over SignalR and no friendly REST POST, so a write path deserves a deliberate decision rather than happening by accident.
 
-### V8: MCP Automation
+### V8: MCP automation
 
 Delegate:
 
@@ -88,15 +88,15 @@ Keep local:
 - High-risk approval decisions and anything that could change real Vertec records without a heads-up.
 - Final governance rules for who can run or approve automation.
 
-## Delegation Pattern
+## Delegation pattern
 
 1. Manager writes the brief.
 2. Subagent produces one narrow artifact.
 3. A second subagent critiques the artifact for clarity and assumptions.
 4. Manager reviews, edits, and decides what enters the workshop.
-5. Production writes get an explicit decision, not a surprise.
+5. Production writes get an explicit decision from someone who can sign off.
 
-## Practical Prompts
+## Practical prompts
 
 Manager to drafting subagent:
 
@@ -116,11 +116,11 @@ Manager to implementation subagent, only when implementation is in scope:
 Implement only the approved local prototype. Do not modify files outside the assigned scope.
 ```
 
-## What To Delegate Vs Keep Local
+## What to delegate vs keep local
 
 Good to delegate:
 
-- Summaries of real workflows — pasting a real Vertec row, screenshot, or DOM slice into ChatGPT, Claude, or Codex is fine.
+- Summaries of real workflows. Pasting a real Vertec row, screenshot, or DOM slice into ChatGPT, Claude, or Codex is fine.
 - Prompt templates.
 - Mock data design.
 - Test scenario drafting.
@@ -129,11 +129,11 @@ Good to delegate:
 
 Keep local:
 
-- Genuinely sensitive client, contract, payroll, or HR data — apply common sense.
+- Genuinely sensitive client, contract, payroll, or HR data. Apply common sense.
 - Production writes or irreversible actions.
 - Final sign-off and accountability.
 
-## Facilitator Checklist
+## Facilitator checklist
 
 - [ ] Every agent has a narrow job and an explicit output.
 - [ ] The manager knows which files or artifacts each agent may edit.

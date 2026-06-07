@@ -7,14 +7,14 @@ Ask whether the helper should stop poking the DOM and use a proper boundary.
 The answer might be "yes, eventually". It is not "give the browser a token and
 hope Vertec develops a conscience".
 
-## What Participants Build
+## What participants build
 
 - A contract-first map for reading and drafting Services entries.
 - A mock direct API payload with training data.
 - Validation and audit fields.
 - A decision note on whether real API access is justified.
 
-## Run It
+## Run it
 
 ```sh
 npm run dev
@@ -69,15 +69,15 @@ Live discovery from the workshop account:
   browser cookies" is also not a plan. Make no mistakes, and then still check
   the tenant.
 
-## Auth Reality
+## Auth reality
 
 The live system has at least two gates:
 
-| Gate | What It Proves | Why It Matters |
+| Gate | What it proves | Why it matters |
 | --- | --- | --- |
 | Zühlke access / SSO launch | The user can reach the Vertec app entry point. | This is not the same as an active Vertec app session. |
 | Vertec app session | The Services grid is loaded and `/uisync` can connect. | Without this, automation is staring at a login form in a nice suit. |
-| Supported API credential | A service/API caller is allowed to read or write records. | Scraping browser cookies and calling that an integration is not an architecture; cookies expire and it is unsupported. |
+| Supported API credential | A service/API caller is allowed to read or write records. | Scraping browser cookies and calling that an integration is not an architecture. Cookies expire, and it is unsupported. |
 
 For a real pilot, the integration should ask system owners which supported
 surface exists:
@@ -89,7 +89,7 @@ surface exists:
 The demo therefore uses a dry-run contract. It shows the shape of the request a
 proper integration would need, not the captured webapp transport.
 
-## Prompt On Screen
+## Prompt on screen
 
 ```text
 We are considering a direct API integration for a Vertec Services workflow.
@@ -120,14 +120,15 @@ Output:
 The demo stays on the mock endpoint. No live writes yet.
 ```
 
-## Dry-Run Rules
+## Dry-run rules
 
 - The dry run should use the same field names and validation logic a real
   integration would need.
 - It must never mutate live records.
 - It must log what evidence was used.
 - It must show the exact proposed entries before any apply step.
-- It must make approval boring, explicit, and cancellable. Boring is a feature.
+- Approval must be boring and explicit, and you can cancel it. Boring is a
+  feature.
 
 ## References
 

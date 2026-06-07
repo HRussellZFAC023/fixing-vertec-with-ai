@@ -1,4 +1,4 @@
-# Live Vertec Structural Audit
+# Live Vertec structural audit
 
 Captured on 2026-06-06 from the signed-in Vertec webapp.
 
@@ -11,7 +11,7 @@ Captured on 2026-06-06 from the signed-in Vertec webapp.
 - The DOM was dominated by custom `div` UI rather than semantic form/table
   structures.
 
-## Structural Counts
+## Structural counts
 
 | Signal | Count |
 | --- | ---: |
@@ -27,7 +27,7 @@ Captured on 2026-06-06 from the signed-in Vertec webapp.
 | Vertec grid cell data attributes | 16 |
 | Inline `font-size: 11px` mentions | 65 |
 
-## Implications For The Talk
+## Implications for the talk
 
 - The human pain and agent pain are related: weak semantics make the UI harder
   to scan, harder to navigate by keyboard, and harder for browser automation to
@@ -41,14 +41,14 @@ Captured on 2026-06-06 from the signed-in Vertec webapp.
   WebSocket endpoints. The documented REST API base path returned `404` in a
   read-only probe on this tenant, so "just use the API" requires installation
   discovery and system-owner involvement.
-- A userscript helper should start with visible, reviewable assistance rather
-  than writes or submissions.
+- A userscript helper should start with visible, reviewable assistance. Writes
+  and submissions can come later.
 - Any direct API or MCP version needs stronger governance than a browser helper:
   explicit scope, dry-run mode, audit logs, and human confirmation.
 - The absences/working-hours context belongs in the product story because
   services alone are not the whole timesheet job.
 
-## Live V1 Smoke Check
+## Live v1 smoke check
 
 After the local workshop copy was renamed, the v1 userscript was also mounted
 against the real signed-in Services page. Result:
@@ -62,7 +62,7 @@ against the real signed-in Services page. Result:
 
 The smoke check stopped at detection and did not click a live write path.
 
-## Live Network/Auth Check
+## Live network/auth check
 
 A later attempt tried a temporary Services `Text` edit and immediate restore
 while watching the network. That attempt did not reach the Services grid. It
@@ -83,12 +83,12 @@ There are at least two boundaries to design for:
 1. Zühlke access/SSO launches the Vertec application.
 2. Vertec's own application session decides whether the Services grid is usable.
 
-For MCP or direct API work, the first tool should be a session/capability check,
-not `applyDraft`. If the system is at the Vertec login page, the correct output
-is blocked with instructions for a supported auth path. Cookies expire; build for
-that, not against it.
+For MCP or direct API work, the first tool should be a session/capability check
+before anything like `applyDraft` runs. If the system is at the Vertec login
+page, the correct output is to block and return instructions for a supported auth
+path. Cookies expire, so build for that case.
 
-## Next Runs
+## Next runs
 
 If a future run needs screenshots or exact selectors, just grab them from the
 signed-in Services page. Filling your own current-month timesheet is fair game to

@@ -1,18 +1,17 @@
 # Fixing Vertec With AI
 
-This repo is a shareable workshop kit for a Zühlke Camp session about improving
-painful enterprise workflows with AI-assisted engineering. The front page is a
-one-hour Reveal.js web deck styled from the provided Zühlke PowerPoint template
-and assets.
+This repo is a shareable workshop kit for a Zühlke Camp session on fixing painful
+enterprise workflows with AI-assisted engineering. The front page is a one-hour
+Reveal.js deck, styled from the Zühlke PowerPoint template and its assets.
 
-The running example is the real Vertec Services workflow, informed by a live
-structural audit and real workshop screenshots. The hands-on demos use a local
-workshop copy so participants can repeat the steps as many times as it takes
-without waiting on Vertec to load.
+The running example is the real Vertec Services workflow. It draws on a live
+structural audit and screenshots from actual workshops. The demos run against a
+local workshop copy, so participants can repeat a step as many times as they need
+without waiting for Vertec to load.
 
 ## What is included
 
-- A Reveal.js web deck that brings the workshop steps together.
+- A Reveal.js web deck that ties the workshop steps together.
 - Real Vertec screenshots and workflow evidence from the source camp deck.
 - A live V1 smoke check showing the helper mounted against the real signed-in
   Services grid.

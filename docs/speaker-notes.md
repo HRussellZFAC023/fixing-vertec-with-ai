@@ -1,74 +1,77 @@
-# Speaker Notes: Fixing Vertec With AI
+# Speaker notes: fixing Vertec with AI
 
 Target duration: 60 minutes.
 
 Audience: AI sceptics, non-technical colleagues, and technical people who want a
-practical route into agentic engineering without pretending a browser agent is a
+practical way into agentic engineering without pretending a browser agent is a
 strategy.
 
-## Run Of Show
+## Run of show
 
 | Time | Segment | Slides |
 | ---: | --- | --- |
-| 0-5 min | Opening and audience check | 1-3 |
-| 5-11 min | Fieldwork and why time recording matters | 4-6 |
-| 11-21 min | UI audit, empathy map, and CDM lens | 7-11 |
-| 21-35 min | ChatGPT-only workflow, naive browser agents, and the live V1 wall | 12-17 |
-| 35-51 min | Prototype ladder | 18-25 |
-| 51-58 min | Subagents, Codex workbench, trade-offs | 26-29 |
-| 58-60 min | Participant kit, sources, close | 30-32 |
+| 0-6 min | Opening and shared pain | 1-4 |
+| 6-16 min | Why the workflow matters | 5-10 |
+| 16-23 min | AI and Cybernetic Delivery framing | 11-14 |
+| 23-34 min | Browser agents, Atlas, and the first real wall | 15-19 |
+| 34-44 min | Personal path, ChatGPT-only DOM work, Codex Annotate, V1 | 20-24 |
+| 44-52 min | From script to harness, compiler, features, API, MCP | 25-34 |
+| 52-58 min | Consultancy, agentic engineering, slop detection, stopping | 35-40 |
+| 58-60 min | Repo, sources, close | 41-43 |
 
-## Presenter Setup
+## Presenter setup
 
-- Open the deck at `http://127.0.0.1:5173/`.
+- Open the deck at the local Vite URL, usually `http://127.0.0.1:5173/`.
 - Open speaker notes with `s` in Reveal if presenting from the browser.
-- Keep the prototype studio ready at `/#/prototype-studio`.
-- Show real Vertec rows and screenshots freely. The local workshop copy keeps the
-  demo repeatable across machines.
-- For the repeatable V1 demo, use `/#/demo-v1`, click a workshop-copy row, click `Fill service row`,
-  then stop before it starts pretending to be a product launch.
+- Keep real Vertec open for short inspection only. Do not live-save anything.
+- Keep `/#/demo-v1` ready. The embedded demo uses the local workshop copy, so the room can repeat it without writing to production.
+- Keep the mini-workshop docs ready from the final "Yours to keep" slide.
 
-## Slide Notes
+## Slide notes
 
-### 1. Fixing Vertec With AI - 2 min
+### 1. Fixing Vertec with AI - 2 min
 
-Open with recognition, not complaint. "We use Vertec because everyone knows the
-ritual. The subject is not whether timesheets are boring. They are. The subject
-is what happens when a human quietly becomes the unofficial bridge between policy,
-memory, billing, approvals, and a UI, and is then thanked for it once a year."
+Open with recognition. Everyone knows the small office ritual. The point is not
+that timesheets are boring. They are. The point is that we make clever people act
+as memory, policy engine, copy-paste machine, and QA for a grid every week.
 
-Set the promise: the hour starts with diagnosis, moves through a ChatGPT-only
-workflow, then uses Codex and small prototypes to show increasing capability and
-increasing responsibility.
+Set the promise: this hour starts with Vertec, then turns into a way to fix any
+awkward internal tool without handing judgement to the model.
 
-### 2. What You Will Learn Today - 2 min
+### 2. What you will actually leave with - 2 min
 
-Walk through the four beats: name the pain precisely, show why enterprise UI
-fights humans and agents, use cybernetic delivery as a loop, then practise
-agentic engineering without donating judgement to the machine.
+Frame the session as practical, not inspirational. They get a tiny Vertec fix,
+the transferable DOM-to-script trick, a view of how agents help, and a sense of
+where to stop.
 
-Use the phrase "workflow evidence" early. It makes the session feel practical
-rather than ideological.
+Line: "This is not an AI sermon. It is a small investigation that gets useful."
 
-### 3. Hands Up - 1 min
+### 3. Hands up - 1 min
 
-Ask who has filled in Vertec this week. Describe the response out loud for
-accessibility: "about half the room", "nearly everyone", or "a noble minority".
+Ask who has filled in Vertec this week. Describe the room out loud. This is the
+first bit of fieldwork.
 
-This is the first research moment. People are not annoyed because they dislike
-accuracy. They are annoyed because the cost of accuracy is paid in tiny manual
-acts.
+The useful observation: people do not resent accuracy. They resent paying for
+accuracy in tiny manual acts.
 
-### 4. The Vertec Interface - 2 min
+### 4. The Vertec interface - 2 min
 
-Let the screenshot breathe. Point out the main shapes: side navigation,
-week controls, attendance grid, services grid, tiny text, empty space, and
-horizontal scrolling.
+Let the screenshot sit. Say: "Isn't she beautiful?" Pause. The joke works because
+she is not.
 
-Do not dunk on the people who bought or maintain the tool. The joke is that this
-is normal enterprise software. That is the disturbing part.
+Point to the side nav, week controls, attendance fields, services grid, tiny
+text, empty space, and sideways scrolling. Do not blame the people who operate
+the tool. Blame the workflow shape.
 
-### 5. The Enemy Is Not Time Recording - 2 min
+### 5. We lose a quarter of the day to admin - 2 min
+
+Put a number on the pain, then keep it grounded. Time recording feeds billing,
+project planning, approvals, fairness, and vacation balance.
+
+The enemy line comes next, so do not make this "admin bad". The record matters.
+The friction around the record is the part we can attack.
+
+### 6. The enemy is not time recording - 2 min
 
 Use the core line:
 
@@ -76,251 +79,333 @@ Use the core line:
 The enemy is not time recording. The enemy is making the human act as the integration layer.
 ```
 
-Explain why the record matters: billing, approvals, planning, fairness, and
-vacation balance. This keeps the talk from sliding into "admin bad".
+Explain the hidden integration layer: policy, holidays, absences, approvals,
+the delivery lead's preferred wording, and which grid actually saves.
 
-### 6. Hidden Policy - 2 min
+### 7. The tool does not hold all the rules - 2 min
 
-Show the cropped guidance. The key line is that the delivery lead decides. That
-means a correct entry can depend on local context that is not in the UI.
+Show the guidance crop. The key phrase is that the delivery lead decides. That
+means the important rule may be outside the UI.
 
-This is the first big agent lesson: "fill 8 hours" is not a complete
-requirement. It omits service Text, holidays, absences, half days, and project
-policy.
+This is the first agent lesson: "fill 8 hours" is incomplete. It omits service
+Text, public holidays, absences, half days, and local project policy.
 
-### 7. Thirteen Small Frictions - 3 min
+### 8. Vertec does not follow Jakob's law - 3 min
 
-Pick five callouts from the annotated screenshot:
+Pick five callouts, not the whole screenshot. Suggested set: no clear page
+structure, manual navigation, icon-only controls, not a real table, fill
+everything by hand.
 
-- No clear page structure.
-- Manual navigation.
-- Icon-only controls.
-- Not a real table.
-- Fill everything manually.
+Bridge to automation: the same weak handles hurt humans, keyboard users,
+scripts, and agents.
 
-Then connect them: these are not just aesthetic problems. They weaken the
-handles used by humans, keyboard users, scripts, and agents.
+### 9. Weak handles make everyone work harder - 2 min
 
-### 8. Weak Handles - 2 min
+Make accessibility concrete. Labels, focus order, structure, and state are not a
+side quest. They are how work becomes legible.
 
-Make accessibility concrete. A page with labels, structure, focus order, and
-predictable controls is easier for everyone to operate and automate.
+Line: "A new joiner and a browser agent have the same problem on day one.
+Neither has the folklore yet."
 
-This is a useful moment for non-technical participants: accessibility is not a
-specialist checklist at the end. It is a way of making work legible.
+### 10. Same page, different anxieties - 2 min
 
-### 9. Empathy Map - 2 min
+Read the personas quickly. Friday backfiller, project switcher, approver, new
+joiner. Ask the room which one they are on Friday afternoon.
 
-Read the four personas quickly. Add one line: the new joiner and the AI agent
-have the same problem. Neither has the folklore, and only one of them can be sent
-on an induction day.
+Keep the empathy sharp: the participants are competent. The workflow is asking
+them to compensate for missing product decisions.
 
-Ask the room: "Which of these are you on a Friday?" Keep it quick.
+### 11. To get our evenings back - 2 min
 
-### 10. Cybernetic Delivery - 2 min
+Give the honest AI motivation. Catch mistakes, do boring repeats, remember what
+I did from commits, tickets, calendar, and chat.
 
-Use the Camp template framing, but translate it into workshop language. This is
-not a tool rollout, not a Scrum replacement, and not an AI campaign. It is a way
-to improve how a delivery system learns and adapts.
+Use the token-maxxing line if the room is warm. It lands because it is silly and
+also obviously true.
 
-The serious line: make artefact flow visible, shorten feedback loops, measure
-the system, and keep humans accountable for judgement.
+### 12. A feedback system, not a tool rollout - 2 min
 
-The less serious line: "Buy a tool and hope morale improves" has already had a
-fair trial. It went about as well as the Vertec date picker.
+Anchor in Cybernetic Delivery. In this room, CDM means: make the work visible,
+shorten feedback, measure the system, keep humans accountable for judgement.
 
-### 11. CDM Translated For Vertec - 3 min
+Link it back to Zühlke's public CDM story: AI works when it is embedded in real
+delivery, measured, and turned into repeatable patterns.
 
-Walk the room through the two graphics.
+### 13. Follow the artefacts. Then improve the loop - 3 min
 
-Artefact flow: screenshot, DOM slice, network trace, prompt, script, test,
-speaker note. These are the things moving through the system. If they are
-invisible, people compensate with memory and guesswork.
+Walk the room through artefacts: screenshot, DOM, network trace, prompt, script,
+test, speaker note. These are the things moving through the system.
 
-CDM cycle: tools, delivery, experiences, patterns, platform, community. For this
-talk, that becomes: try a tiny helper, observe the wall, capture the lesson,
-turn it into a reusable workshop step, and feed that back into the next
-prototype.
+Then walk the CDM cycle: tools, delivery, experiences, patterns, platform,
+community. Vertec is small enough to show the whole loop without needing a
+three-month transformation programme.
 
-### 12. ChatGPT, No Codex - 3 min
+### 14. Can we do better? - 1 min
 
-Teach the first mini-workshop. Paste a real screenshot or a tiny DOM slice from
-your own Services page. Ask ChatGPT to critique from three views: tired human,
-assistive-tech user, and automation script.
+This is the spine. We ask the question again and again. Each answer moves one
+rung up: browser agent, DOM prompt, userscript, packaged extension, harness,
+holiday context, API, MCP.
 
-### 13. DOM Slice - 3 min
+Stress that not everyone needs to climb every rung. Knowing where to get off is
+the skill.
 
-Explain why the snippet is tiny. It is small enough to read in one screen and
-rich enough for critique. ChatGPT can help name repetition, missing labels, risky
-assumptions, and acceptance criteria.
+### 15. First temptation: just ask the browser - 2 min
 
-The win is not code yet. The win is a better sentence describing the first fix.
+Start where a normal person starts. "Fill in my timesheet from now until the end
+of the month." No code. No project. No install. It feels like delegation.
 
-### 14. Browser Agent Attempt - 3 min
+Then set up the fall: this works for about ninety seconds before the UI starts
+charging interest.
 
-Tell the story: a browser agent can sometimes grind through the workflow, but it
-inherits the page's confusion. If the page makes humans zoom, scroll, guess, and
-choose between similar tables, the agent gets the same obstacle course with a
-token meter attached.
+### 16. Watch it grind - 3 min
 
-Line to use if it fits the room: "A browser agent is a lot of confidence wrapped
-around a mouse cursor."
+Use the real browser-agent screenshot. It did many steps, filled the wrong area,
+got slower, and eventually hit limits.
 
-### 15. The Callback - 2 min
+Line: "The one job a browser agent is built for, it could barely do. Vertec has
+achieved cross-species friction."
 
-Show the bank-holiday callback. The punchline is:
+### 17. Two agents, same wall - 2 min
+
+Compare Claude in Chrome and ChatGPT Atlas without turning it into a vendor
+fight. Atlas is a serious step forward because it brings the agent into the
+browser context. It still inherits page confusion.
+
+Use the official caveat: agent mode can act on pages, but needs confirmations,
+permissions, and supervision. More convenience creates more boundary work.
+
+### 18. The agent did exactly what we asked - 2 min
+
+Show the bank holiday callback. The punchline:
 
 ```text
 The agent did what we asked. That was the problem.
 ```
 
-Do not overplay it. The serious lesson is that policy context has to be made
-explicit before an automation boundary moves toward writing data.
+The missing thing was judgement: public holidays, leave, half days, and project
+rules.
 
-### 16. Live V1 Finding - 3 min
+### 19. "Make no mistakes" met Vertec's object fields - 3 min
 
-This is where you earn credibility with the sceptics. Say plainly: we tried the
-obvious thing on the signed-in Services page. Text and Hours could be driven
-through the visible grid editor. Project, Phase, and Service type are Vertec
-object-reference fields. Typing a label is not the same as binding the object.
+This is the credibility slide. We tried the helper against the signed-in Services
+page. Text and Hours could be driven through the visible editor. Project, Phase,
+and Service type were object references, not plain strings.
 
-Use the line:
+The lesson: a useful helper reports the wall instead of faking success. That is
+where API discovery begins.
 
-```text
-"Make no mistakes" met a field that was not really a field.
-```
+### 20. Let me show you how I got here - 30 sec
 
-The lesson is not "AI failed, everyone go home". The lesson is that V1 should
-report the wall instead of hallucinating success. V6 exists because the honest
-answer is sometimes API discovery, authentication, permissions, and audit.
+Change tone. Move from audit to personal path. This is not a sudden AI fad. It
+is a long-running habit: notice friction, add a tiny layer, then ask if the layer
+should be shared.
 
-### 17. Current Agent Reality - 2 min
+### 21. "Great, but it could be better" - 2 min
 
-Keep this factual and sourced. ChatGPT agent can use a visual browser, apps,
-files, and confirmations. Atlas brings agent mode into the browser with page
-visibility and privacy controls. Those are useful. They also make data and
-permission boundaries more important.
+Tell the JPDB and UchiDb story. A good Japanese study site lacked the context
+you wanted, so userscripts brought the context into the page.
 
-### 18. The Prototype Ladder - 1 min
+Transferable idea: do not make the human fetch context. Bring context to the
+work.
 
-Transition from diagnosis to build. Explain that the ladder is not a maturity
-model where everyone must reach V8. It is a set of stops. The skill is knowing
-where to get off.
+### 22. Save the page. Ask AI. Get a script - 2 min
 
-### 19. V1 Live Demo - 4 min
+This is the ChatGPT-only mini-workshop. Save the page, copy a small DOM slice,
+ask ChatGPT to critique it and draft a userscript.
 
-Show the local workshop copy after explaining that the userscript has already
-been tried against the signed-in Services page. Click a row and use the helper.
-Keep the demo deliberately small.
+Stress that the value is not the first code answer. The value is turning "this
+page is cursed" into a bounded requirement with selectors, scope, and an
+acceptance check.
 
-Say: "This is a button. Revolutionary. It does one thing, which is why we can
+### 23. Annotate the mess before asking for code - 2 min
+
+This is the Codex bridge. Annotate the Services row, object-field wall, absence
+context, public holidays, and save boundary. Then ask for the smallest change
+plus tests.
+
+Line: "The annotation is the handrail. It makes the model argue with evidence
+instead of vibes."
+
+### 24. Fill. Next. Fill. Next - 4 min
+
+Show `/#/demo-v1`. Click a row, click Fill, click Next. Keep it deliberately
+plain.
+
+Line: "This is a button. Revolutionary. It does one thing, which is why we can
 review it without needing a lie down."
 
-### 20. Why Userscripts - 2 min
+Remind the room: the same helper shape was tried on signed-in Vertec, and the
+object-reference wall is part of the story.
 
-Connect console snippet, userscript, harness, and extension. Bring in your
-UchiDb/userscript-compiler story here. The important lesson is taste: not every
-workflow pain needs a six-month platform project.
+### 25. A script earns its keep when it comes back tomorrow - 2 min
 
-### 21. V2 And V3 - 2 min
+Explain userscripts in normal language: JavaScript that runs on matching pages.
+Tampermonkey, Violentmonkey, or Greasemonkey make the console trick repeatable.
 
-Templates make service Text policy visible. Holiday review handles the callback
-problem before it happens. Vacation balance belongs near the decision, not in a
-separate mental tab.
+The gap: a console snippet helps me. A packaged thing helps the colleague who
+will never paste anything into DevTools, and fair enough.
 
-Ask: "What would you want this panel to warn you about before it filled a week?"
+### 26. I built a compiler, not a single extension - 2 min
 
-### 22. V4 And V5 - 2 min
+Tell the UserScript-Compiler story. Do not package one Vertec script. Build the
+generic tool that turns any userscript into Chrome, Firefox, and Safari
+extension packages.
 
-This is the credibility bit. Tests and packaging are not glamorous, and nobody
-was ever promoted for writing a fixture, but they make the demo shareable. Once
-it becomes extension-shaped, permissions, deployment, and ownership become real.
+Consultancy lesson: one fix is nice. A tool that makes fixes is leverage.
 
-### 23. V6 And V8 - 2 min
+### 27. The mistakes mostly live outside the row - 2 min
 
-Direct API calls can be the robust path, if policy allows it. MCP turns the same
-idea into chat-native tools. Both need gates: read, draft, validate, confirm,
-write.
+Bring back the bank holiday bug. Filling the row is not the job. Knowing whether
+the row should exist is the job.
 
-Make clear that bypassing the UI removes accidental friction. We then need to
-add intentional friction in the right places.
+Walk the features: templates, service Text rules, public holidays, absences,
+vacation balance, approval comments.
 
-For this tenant, the webapp traffic observed during the experiment was
-SignalR/WebSocket-shaped, and a read-only probe of the obvious REST path returned
-404. That is not a blocker for the talk; it is the talk. "Use the API" is
-discovery work, not a spell.
+### 28. AI confidence is not a test strategy - 2 min
 
-Add the second live finding: a later attempt to capture a temporary Services
-Text edit hit Vertec's own login page before the grid loaded. That gives the MCP
-story its first real tool: `vertec.checkSession`. Zühlke SSO, Vertec's app
-session, and supported API credentials are separate concerns. Copying browser
-cookies into a server is not "agentic engineering"; it is just making the
-incident report more contemporary.
+This is where the talk turns into engineering. A saved Vertec DOM fixture plus
+Vitest and Playwright lets a sceptic run the same thing and get the same result.
 
-### 24. Prototype Studio - 2 min
+Tie to CDM: proof objects matter. The demo is not done because the agent sounded
+pleased with itself.
 
-Show the links. Explain that each version uses the same local workshop copy so
-participants can compare boundaries. This makes the demos reproducible across
-machines.
+### 29. Bad codebases make bad agents - 2 min
 
-### 25. Architecture - 2 min
+Use Ousterhout's "deep module" idea. The interface should be small and clear,
+while the messy Vertec-specific logic sits behind it.
 
-Explain the five pieces: userscript UI, Vertec DOM adapter, core rules,
-integrations, tests. This is how the work becomes delegable to agents without
-turning into a blob.
+Keep the agent point concrete: better structure means smaller context and less
+guesswork. A larger context window can also be a larger confusion window.
 
-### 26. Evidence Chain - 2 min
+### 30. Steer it. Do not become the passenger - 3 min
 
-Use the "check my commit messages" idea. Git, calendar, tickets, and chat can
-produce draft service Text. The human approves. This is a better request than
-"fill my timesheet" because it starts read-only and produces reviewable text.
+Knowledge-sharing slide. Move quickly through the tools:
 
-### 27. Subagents - 2 min
+- Just talk to it: use normal language and develop feel.
+- Grill me first: let the agent interview you until the mental model appears.
+- Subagents and goals: split research, code, docs, tests.
+- Issues as a queue: give agents bounded tasks and review the PR.
+- Ralph loops: repeated focused passes with verification.
+- Reasoning levels: spend high reasoning where the problem deserves it.
+- Local models: useful when cloud AI is not allowed or privacy matters.
 
-Frame subagents as a delivery-management pattern. Research, fixtures, scripts,
-holiday rules, tests, docs, and integration can run in parallel. The human lead
-keeps taste, risk calls, and the story.
+The skill is judgement. Commands are searchable.
 
-### 28. Superapp Question - 2 min
+### 31. Bypassing the UI is not the same as being safe - 2 min
 
-Ask: "Is Codex signed into everything the future?"
+Do not pretend we found a neat REST POST. The observed traffic was `/uisync` and
+SignalR-shaped. Session state also had two gates: Zühlke access and Vertec's own
+app login.
 
-Answer: maybe, but only if "signed in" means scoped tools, permissions,
-confirmations, and traces. The silly version is an assistant with vague
-authority. The useful version is a workbench.
+The responsible path is read, draft, validate, confirm, write, audit. When you
+remove accidental friction, add intentional friction in the right places.
 
-### 29. Pros And Cons - 2 min
+### 32. A timesheet co-pilot, not a faster finger - 2 min
 
-Use the table as the decision guide. No approach wins forever. The right rung
-depends on blast radius, maintenance, proof, permissions, and policy.
+Name the actual target. Evidence from commits, calendar, tickets, and chat.
+Draft entries. Check policy. Ask for approval. Write with audit.
 
-### 30. Participant Kit - 1 min
+This is the answer to "is Codex signed into everything the future?" Maybe, if
+"signed in" means scoped tools, readable logs, and human confirmation.
 
-Point to the handouts and demos. This is what participants can take away and
-adapt.
+### 33. "What did I do today?" is already in your tools - 2 min
 
-### 31. Sources - 1 min
+Use the commit-message idea. For developers, the end-of-day helper reads Git
+history and linked tickets, drafts service Text, and asks before filling.
 
-Mention that the deck follows accessible presentation guidance: large readable
-visuals, consistent structure, speaker notes, and shareable material. The AI
-product claims are linked to current OpenAI pages.
+Read-only evidence in. Draft out. Human approves. Once it writes, the bar rises.
 
-### 32. Close - 1 min
+### 34. Each feature is its own small rung - 2 min
 
-End with: "Find the hidden integration work."
+Walk the rungs as user needs, not prototypes. Templates for the backfiller.
+Public holidays for the bank-holiday callback. House-style comments for the
+lead. Commit and Slack summaries for memory. Vacation maths near the booking.
 
-Bring it back to consultancy skill. Clients have this problem everywhere, usually
-buried in a tool nobody will admit to having chosen. The job is to spot where
-humans are bridging systems, policy, and memory, then make that work visible,
-testable, and safer.
+Ask: "Which of these would save you the most annoyance next week?"
 
-## Source Links
+### 35. This was never really about Vertec - 30 sec
 
-- [W3C WAI: Making Events Accessible](https://www.w3.org/WAI/teach-advocate/accessible-presentations/)
-- [Microsoft: Make PowerPoint presentations accessible](https://support.microsoft.com/en-us/office/make-your-powerpoint-presentations-accessible-to-people-with-disabilities-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25)
-- [TED Ideas: slide design tips](https://ideas.ted.com/6-dos-and-donts-for-next-level-slides-from-a-ted-presentation-expert/)
-- [OpenAI Academy: Working with files in ChatGPT](https://openai.com/academy/working-with-files/)
+Pivot. The timesheet is the specimen. The real skill is spotting hidden
+integration work and building something small enough to prove.
+
+### 36. This is the forward deployed move - 2 min
+
+Use the forward-deployed engineering frame carefully. The point is not copying
+Palantir. The point is going to where the workflow actually happens, building a
+small thing in the field, and feeding the pattern back.
+
+Connect to Zühlke: our public AI implementation language is about real impact,
+getting tools into users' hands, and trusted systems in complex domains.
+
+### 37. Forward deployed taste beats slideware - 2 min
+
+Use the table as consultancy method. Observe pain. Build a tiny thing. Test the
+boundary. Package the pattern.
+
+Line: "Slideware says transformation. This lets them press a button."
+
+### 38. Learn to smell the slop - 2 min
+
+Make this useful and funny. Tells include negative parallelism, em dash overuse,
+neat lists of three, generic cards and gradients, image weirdness, and prose
+that sounds like it has never been tired.
+
+Be fair: one tell proves nothing. The real point is editing. Output is raw
+material. Make it yours.
+
+### 39. Better is not always more AI - 2 min
+
+Discuss blast radius. Throwaway personal exploration can tolerate rough edges.
+Client work, billing, HR, and teammate-maintained systems cannot.
+
+Line: "A multi-agent swarm to fill three timesheet rows is a microservice for a
+to-do list."
+
+### 40. I made this talk in my sleep - 2 min
+
+The meta reveal. One prompt before bed became an overnight research and coding
+run. The deck and workshop repo were waiting in the morning.
+
+Then be honest: the job was reading it, cutting the slop, checking the facts,
+fixing tone, and owning the result. That is the talk happening inside the talk.
+
+### 41. The whole repo, if you want it - 1 min
+
+Point to the handouts. Participants can run the deck, open the scripts, inspect
+the fixture, build the extension, and read the API/MCP dry runs.
+
+Do not read every link. Say: "Take what is useful. Delete what is ridiculous.
+Send me your userscripts."
+
+### 42. The useful bits, with credit - 1 min
+
+Name the source families: Zühlke CDM and AI implementation, OpenAI agent and
+Codex docs, browser/DOM/userscript docs, Ousterhout for deep modules, Ralph and
+Peter Steinberger for agent workflows, W3C for accessible presentation practice.
+
+This is not academic cover. It is provenance.
+
+### 43. Find the hidden integration work - 1 min
+
+Close on the craft. Vertec got us into the room. The transferable skill is
+finding where humans bridge systems, policy, and memory, then building the
+smallest thing that makes that work visible, testable, and safe enough for a
+sceptical colleague to run after lunch.
+
+Final line: "Go fix something this week."
+
+## Source links
+
+- [Zühlke: Cybernetic Delivery Method case study](https://www.zuehlke.com/en/case-studies/cybernetic-delivery-method-adding-value)
+- [Zühlke: AI implementation](https://www.zuehlke.com/en/expertise/ai-implementation)
+- [Zühlke: ZenAI and governed enterprise AI](https://www.zuehlke.com/en/insights/zenai-solving-the-challenge-of-secure-scalable-enterprise-ai)
 - [OpenAI Help: ChatGPT agent](https://help.openai.com/en/articles/11752874-chatgpt-agent)
 - [OpenAI: Introducing ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/)
-- [OpenAI Help: Atlas data controls and privacy](https://help.openai.com/en/articles/12574142-chatgpt-atlas-data-controls-and-privacy)
-- [OpenAI: Codex for every role, tool, and workflow](https://openai.com/index/codex-for-every-role-tool-workflow/)
+- [OpenAI: Codex](https://openai.com/codex/)
+- [OpenAI: connectors and MCP](https://developers.openai.com/api/docs/guides/tools-connectors-mcp)
+- [Chrome DevTools: view and change the DOM](https://developer.chrome.com/docs/devtools/dom/)
+- [Tampermonkey documentation](https://www.tampermonkey.net/documentation.php)
+- [John Ousterhout: A Philosophy of Software Design](https://web.stanford.edu/~ouster/cgi-bin/aposd.php)
+- [Simon Willison on Peter Steinberger: Just Talk To It](https://simonwillison.net/2025/Oct/14/agentic-engineering/)
+- [Ralph loop](https://ralph-cli.dev/docs/core-concepts/ralph-loop/)
+- [W3C WAI: accessible presentations](https://www.w3.org/WAI/teach-advocate/accessible-presentations/)
