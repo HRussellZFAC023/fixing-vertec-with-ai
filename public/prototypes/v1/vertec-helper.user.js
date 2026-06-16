@@ -72,7 +72,7 @@
 
   function makeWorkshopCopyAdapter() {
     const rows = () =>
-      Array.from(document.querySelectorAll("[data-vt-services-row], [data-vt-row]")).filter(
+      Array.from(document.querySelectorAll("[data-vt-services-row]")).filter(
         hasWorkshopCopyServiceFields,
       );
 
@@ -98,23 +98,74 @@
       );
     }
 
+    function selectedWeek() {
+      return Number(selectedRow()?.dataset.week || 0);
+    }
+
+    function rowWeek(row) {
+      return Number(row?.dataset.week || 0);
+    }
+
+    function syncWorkshopState(row) {
+      if (row?.dataset.date && window.vtWorkshop?.setWeekForDate) {
+        window.vtWorkshop.setWeekForDate(row.dataset.date);
+      }
+      if (window.vtWorkshop?.updateSummary) {
+        window.vtWorkshop.updateSummary();
+      }
+    }
+
     function selectRow(row) {
       if (!row) return;
       rows().forEach((candidate) => {
         candidate.dataset.selected = candidate === row ? "true" : "false";
       });
+      syncWorkshopState(row);
       updateStatus();
+    }
+
+    function fillRow(row) {
+      if (!row) return false;
+      setValue(requestField(row, "project"), CONFIG.project);
+      setValue(requestField(row, "phase"), CONFIG.phase);
+      setValue(requestField(row, "serviceType"), CONFIG.serviceType);
+      setValue(requestField(row, "text"), CONFIG.text);
+      setValue(requestField(row, "hours"), CONFIG.hours);
+      row.dataset.vtDrafted = "true";
+      return true;
+    }
+
+    function fillCurrentWeek() {
+      const week = selectedWeek();
+      const filled = rows().reduce((total, row) => total + (rowWeek(row) === week && fillRow(row) ? 1 : 0), 0);
+      syncWorkshopState(selectedRow());
+      updateStatus(`Filled ${filled} service row${filled === 1 ? "" : "s"} in week ${week + 1}.`);
+    }
+
+    function moveWeek(delta) {
+      const weeks = rows().map(rowWeek);
+      const minWeek = Math.min(...weeks);
+      const maxWeek = Math.max(...weeks);
+      const nextWeek = Math.min(maxWeek, Math.max(minWeek, selectedWeek() + delta));
+      const nextRow =
+        rows().find((row) => rowWeek(row) === nextWeek && !requestField(row, "hours")?.value) ||
+        rows().find((row) => rowWeek(row) === nextWeek) ||
+        selectedRow();
+      if (window.vtWorkshop?.setWeek) window.vtWorkshop.setWeek(nextWeek);
+      selectRow(nextRow);
     }
 
     return {
       mode: "request",
-      title: "v1 Services helper",
+      title: "Services helper",
       fillLabel: "Fill service row",
+      weekLabel: "Fill current week",
       available() {
         return rows().length > 0;
       },
       selectedLabel() {
-        return selectedRow()?.dataset.date || "no selected service row";
+        const row = selectedRow();
+        return row?.dataset.date ? `${row.dataset.date}, week ${rowWeek(row) + 1}` : "no selected service row";
       },
       move(delta) {
         const allRows = rows();
@@ -124,6 +175,7 @@
         const nextIndex = Math.min(allRows.length - 1, Math.max(0, currentIndex + delta));
         selectRow(allRows[nextIndex]);
       },
+      moveWeek,
       fill() {
         const row = selectedRow();
         if (!row) {
@@ -131,19 +183,17 @@
           return;
         }
 
-        setValue(requestField(row, "project"), CONFIG.project);
-        setValue(requestField(row, "phase"), CONFIG.phase);
-        setValue(requestField(row, "serviceType"), CONFIG.serviceType);
-        setValue(requestField(row, "text"), CONFIG.text);
-        setValue(requestField(row, "hours"), CONFIG.hours);
+        fillRow(row);
+        syncWorkshopState(row);
 
         updateStatus(`Filled service row ${row.dataset.date || "selected day"} with ${CONFIG.hours}h.`);
       },
+      fillWeek: fillCurrentWeek,
       bindSelection() {
         document.addEventListener("click", (event) => {
           const target = event.target;
           if (!(target instanceof HTMLElement)) return;
-          const row = target.closest("[data-vt-row]");
+          const row = target.closest("[data-vt-services-row]");
           if (row) selectRow(row);
         });
 
@@ -298,8 +348,9 @@
 
     return {
       mode: "live",
-      title: "v1 live Vertec helper",
+      title: "Live Vertec helper",
       fillLabel: "Fill text + hours",
+      weekLabel: "Fill current week",
       available() {
         return Boolean(serviceTable());
       },
@@ -313,6 +364,9 @@
         clickElement(rows[nextIndex]);
         updateStatus();
       },
+      moveWeek(delta) {
+        this.move(delta > 0 ? 5 : -5);
+      },
       fill() {
         const row = selectedRow();
         if (!row) {
@@ -323,13 +377,16 @@
         const missing = requiredObjectFields(row);
         if (missing.length) {
           updateStatus(
-            `V1 hit Vertec's object-field wall: ${missing.join(", ")}. "Make no mistakes" did not survive contact with this grid.`,
+            `Hit Vertec's object-field wall: ${missing.join(", ")}. "Make no mistakes" did not survive contact with this grid.`,
           );
           return;
         }
 
         const error = fillLiveTextAndHours(row);
         updateStatus(error || `Filled live Text/Hours with ${CONFIG.hours}h. Check Vertec before saving.`);
+      },
+      fillWeek() {
+        updateStatus("Live week fill still needs supported object-field access. Annoying, but true.");
       },
       bindSelection() {
         updateStatus();
@@ -357,24 +414,43 @@
     const style = document.createElement("style");
     style.textContent = `
       #${ROOT_ID} {
+        align-items: center;
         background: #ffffff;
-        border: 1px solid #a8bac6;
-        border-radius: 8px;
-        box-shadow: 0 14px 34px rgba(25, 43, 55, 0.18);
+        border: 1px solid #d7e0e5;
+        border-left: 5px solid #ccff00;
         color: #1e2b34;
         display: grid;
         font: 13px/1.35 Arial, Helvetica, sans-serif;
-        gap: 10px;
-        max-width: 340px;
-        padding: 12px;
-        position: fixed;
-        right: 16px;
-        top: 16px;
+        gap: 8px;
+        grid-template-columns: 138px minmax(180px, 1fr) minmax(320px, 1.4fr) 150px;
+        max-width: none;
+        padding: 10px;
+        position: static;
+        width: 100%;
         z-index: 2147483647;
       }
 
+      #${ROOT_ID}[data-placement="floating"] {
+        box-shadow: 0 18px 42px rgba(25, 43, 55, 0.2);
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        position: fixed;
+        right: 18px;
+        top: 18px;
+      }
+
+      #${ROOT_ID} .vh-kicker {
+        display: none;
+        color: #985b9c;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
       #${ROOT_ID} strong {
-        font-size: 14px;
+        color: #25272b;
+        font-size: 15px;
       }
 
       #${ROOT_ID} p {
@@ -385,13 +461,17 @@
       #${ROOT_ID} .vh-actions {
         display: grid;
         gap: 8px;
-        grid-template-columns: 1fr 1.6fr 1fr;
+        grid-template-columns: minmax(80px, 1fr) minmax(128px, 1.3fr) minmax(80px, 1fr);
+      }
+
+      #${ROOT_ID}[data-placement="floating"] .vh-actions {
+        grid-template-columns: minmax(80px, 1fr) minmax(128px, 1.3fr) minmax(80px, 1fr);
       }
 
       #${ROOT_ID} button {
         background: #ffffff;
         border: 1px solid #9cafbd;
-        border-radius: 6px;
+        border-radius: 4px;
         color: #173241;
         cursor: pointer;
         font: inherit;
@@ -400,13 +480,25 @@
       }
 
       #${ROOT_ID} button[data-primary] {
-        background: #1769aa;
-        border-color: #1769aa;
+        background: #0099cc;
+        border-color: #0099cc;
         color: #ffffff;
       }
 
+      #${ROOT_ID} button[data-secondary] {
+        background: #25272b;
+        border-color: #25272b;
+        color: #ffffff;
+      }
+
+      @media (max-width: 980px) {
+        #${ROOT_ID} {
+          grid-template-columns: 1fr;
+        }
+      }
+
       [data-vt-row][data-selected="true"] {
-        outline: 2px solid #1769aa;
+        outline: 2px solid #0099cc;
         outline-offset: -2px;
       }
 
@@ -428,8 +520,10 @@
     const root = document.createElement("section");
     root.id = ROOT_ID;
     root.dataset.mode = adapter.mode;
-    root.setAttribute("aria-label", "Vertec helper v1");
+    root.dataset.placement = document.querySelector("[data-vt-helper-slot]") ? "inline" : "floating";
+    root.setAttribute("aria-label", "Vertec Services helper");
     root.innerHTML = `
+      <span class="vh-kicker">Draft helper</span>
       <strong>${adapter.title}</strong>
       <p data-vertec-helper-status>Looking for Services rows...</p>
       <div class="vh-actions">
@@ -437,6 +531,7 @@
         <button type="button" data-primary data-action="fill">${adapter.fillLabel}</button>
         <button type="button" data-action="next">Next</button>
       </div>
+      <button type="button" data-secondary data-action="fill-week">${adapter.weekLabel}</button>
     `;
 
     root.addEventListener("click", (event) => {
@@ -447,9 +542,13 @@
       if (action === "previous") adapter.move(-1);
       if (action === "fill") adapter.fill();
       if (action === "next") adapter.move(1);
+      if (action === "previous-week") adapter.moveWeek(-1);
+      if (action === "next-week") adapter.moveWeek(1);
+      if (action === "fill-week") adapter.fillWeek();
     });
 
-    document.body.append(root);
+    const slot = document.querySelector("[data-vt-helper-slot]");
+    (slot || document.body).append(root);
     adapter.bindSelection();
   }
 
