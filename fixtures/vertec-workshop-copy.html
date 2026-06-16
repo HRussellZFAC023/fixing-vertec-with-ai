@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertec Services Workshop Copy</title>
+    <style>
+      :root {
+        --vt-purple: #985b9c;
+        --vt-blue: #0099cc;
+        --vt-green: #00cc66;
+        --vt-lime: #ccff00;
+        --vt-orange: #ff9900;
+        --vt-red: #d71920;
+        --vt-charcoal: #25272b;
+        --vt-ink: #1d252b;
+        --vt-muted: #60727e;
+        --vt-line: #d7e0e5;
+        --vt-soft: #f4f7f8;
+        --vt-white: #ffffff;
+        color: var(--vt-ink);
+        background: #eef3f5;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .vt-app {
+        background: #f3f6f8;
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .vt-sidebar {
+        background: var(--vt-charcoal);
+        color: #ffffff;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+        padding: 14px;
+      }
+
+      .vt-brand {
+        align-items: center;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 32px minmax(0, 1fr);
+        margin-bottom: 18px;
+      }
+
+      .vt-brand img {
+        background: #ffffff;
+        height: 32px;
+        padding: 5px;
+        width: 32px;
+      }
+
+      .vt-brand strong {
+        display: block;
+        font-size: 13px;
+        line-height: 1.1;
+      }
+
+      .vt-brand span {
+        color: #c8d1d7;
+        display: block;
+        font-size: 11px;
+        margin-top: 3px;
+      }
+
+      .vt-nav {
+        display: grid;
+        gap: 7px;
+        align-content: start;
+      }
+
+      .vt-nav-item {
+        background: transparent;
+        border: 1px solid transparent;
+        color: #dce5ea;
+        display: flex;
+        justify-content: space-between;
+        min-height: 34px;
+        padding: 7px 8px;
+        text-align: left;
+      }
+
+      .vt-nav-item span:last-child {
+        color: #94a4af;
+      }
+
+      .vt-nav-item[aria-selected="true"] {
+        background: #ffffff;
+        border-color: #ffffff;
+        color: var(--vt-charcoal);
+        font-weight: 700;
+      }
+
+      .vt-sidebar-card {
+        background: rgba(255, 255, 255, 0.06);
+        border-left: 4px solid var(--vt-lime);
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .vt-sidebar-card strong {
+        color: #ffffff;
+        font-size: 13px;
+      }
+
+      .vt-sidebar-card p {
+        color: #c8d1d7;
+        line-height: 1.35;
+        margin: 0;
+      }
+
+      .vt-main {
+        min-width: 0;
+        overflow-x: hidden;
+        padding: 14px;
+      }
+
+      .vt-hero {
+        background: #ffffff;
+        border-bottom: 1px solid var(--vt-line);
+        color: var(--vt-ink);
+        display: grid;
+        gap: 14px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        margin-bottom: 12px;
+        min-height: 76px;
+        padding: 10px 0 14px;
+      }
+
+      .vt-kicker {
+        color: var(--vt-purple);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0;
+        margin: 0 0 6px;
+        text-transform: uppercase;
+      }
+
+      .vt-hero h1 {
+        font-size: 26px;
+        line-height: 1.04;
+        margin: 0;
+      }
+
+      .vt-hero p {
+        color: var(--vt-muted);
+        font-size: 13px;
+        line-height: 1.35;
+        margin: 8px 0 0;
+        max-width: 700px;
+      }
+
+      .vt-hero-actions {
+        align-items: end;
+        display: grid;
+        gap: 8px;
+      }
+
+      .vt-button {
+        background: #ffffff;
+        border: 1px solid #aebcc5;
+        color: var(--vt-ink);
+        font-weight: 700;
+        min-height: 34px;
+        padding: 0 13px;
+      }
+
+      .vt-button[data-primary="true"] {
+        background: var(--vt-blue);
+        border-color: var(--vt-blue);
+        color: #ffffff;
+      }
+
+      .vt-button[data-quiet="true"] {
+        background: #ffffff;
+        border-color: #aebcc5;
+        color: var(--vt-ink);
+      }
+
+      .vt-tab {
+        display: none;
+      }
+
+      .vt-tab[data-active="true"] {
+        display: grid;
+        gap: 14px;
+      }
+
+      .vt-dashboard {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .vt-panel {
+        background: #ffffff;
+        border: 1px solid var(--vt-line);
+        box-shadow: none;
+      }
+
+      .vt-panel-heading {
+        align-items: center;
+        background: #ffffff;
+        border-bottom: 1px solid var(--vt-line);
+        display: flex;
+        justify-content: space-between;
+        min-height: 42px;
+        padding: 9px 12px;
+      }
+
+      .vt-panel-heading strong {
+        font-size: 14px;
+      }
+
+      .vt-panel-heading span {
+        color: var(--vt-muted);
+      }
+
+      .vt-summary {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+      }
+
+      .vt-summary-card {
+        background: #ffffff;
+        border: 1px solid var(--vt-line);
+        min-height: 58px;
+        padding: 9px 10px;
+      }
+
+      .vt-summary-card span {
+        color: var(--vt-muted);
+        display: block;
+      }
+
+      .vt-summary-card strong {
+        display: block;
+        font-size: 20px;
+        line-height: 1;
+        margin-top: 8px;
+      }
+
+      .vt-summary-card[data-tone="green"] {
+        border-top: 3px solid var(--vt-green);
+      }
+
+      .vt-summary-card[data-tone="blue"] {
+        border-top: 3px solid var(--vt-blue);
+      }
+
+      .vt-summary-card[data-tone="purple"] {
+        border-top: 3px solid var(--vt-purple);
+      }
+
+      .vt-summary-card[data-tone="orange"] {
+        border-top: 3px solid var(--vt-orange);
+      }
+
+      .vt-summary-card[data-tone="red"] {
+        border-top: 3px solid var(--vt-red);
+      }
+
+      .vt-weekbar {
+        align-items: center;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: auto minmax(180px, 1fr) auto;
+        padding: 10px;
+      }
+
+      .vt-week-title {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .vt-week-title strong {
+        font-size: 16px;
+      }
+
+      .vt-week-title span {
+        color: var(--vt-muted);
+      }
+
+      .vt-week-rail {
+        display: grid;
+        gap: 6px;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        padding: 0 12px 12px;
+      }
+
+      .vt-week-chip {
+        background: #f7fafb;
+        border: 1px solid var(--vt-line);
+        color: var(--vt-muted);
+        min-height: 30px;
+      }
+
+      .vt-week-chip[aria-current="true"] {
+        background: var(--vt-charcoal);
+        border-color: var(--vt-charcoal);
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .vt-grid {
+        min-width: 0;
+        overflow: visible;
+        width: 100%;
+      }
+
+      .vt-row,
+      .vt-grid-header {
+        display: grid;
+        grid-template-columns:
+          minmax(76px, 0.8fr)
+          minmax(132px, 1.35fr)
+          minmax(84px, 0.9fr)
+          minmax(96px, 1fr)
+          minmax(150px, 1.7fr)
+          minmax(58px, 0.55fr)
+          minmax(68px, 0.7fr);
+      }
+
+      .vt-grid-header {
+        background: #f0f5f7;
+        color: #4c606d;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .vt-row[hidden] {
+        display: none;
+      }
+
+      .vt-cell {
+        align-items: center;
+        border-bottom: 1px solid var(--vt-line);
+        border-right: 1px solid var(--vt-line);
+        display: flex;
+        min-width: 0;
+        min-height: 38px;
+        padding: 5px;
+      }
+
+      .vt-row[data-selected="true"] .vt-cell {
+        background: #f7fbda;
+      }
+
+      .vt-row[data-vt-row-kind="absence"] .vt-cell {
+        background: #f7f1f8;
+      }
+
+      .vt-row[data-vt-drafted="true"] .vt-cell {
+        background: #e9f7ef;
+      }
+
+      .vt-row input,
+      .vt-row select {
+        background: #ffffff;
+        border: 1px solid #b7c4cd;
+        min-height: 24px;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .vt-row input[name="hours"] {
+        text-align: right;
+      }
+
+      .vt-pill {
+        background: #edf3f6;
+        color: #435767;
+        display: inline-flex;
+        font-size: 11px;
+        font-weight: 700;
+        min-height: 22px;
+        padding: 4px 8px;
+      }
+
+      .vt-pill[data-tone="purple"] {
+        background: #f1e7f2;
+        color: #754579;
+      }
+
+      .vt-pill[data-tone="green"] {
+        background: #ddf6ea;
+        color: #006d3b;
+      }
+
+      .vt-pill[data-tone="orange"] {
+        background: #fff1d6;
+        color: #875100;
+      }
+
+      .vt-helper-slot {
+        min-width: 0;
+      }
+
+      .vt-side-stack {
+        align-items: start;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vt-card-list {
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .vt-absence-card,
+      .vt-approval-card,
+      .vt-record {
+        background: #ffffff;
+        border: 1px solid var(--vt-line);
+        display: grid;
+        gap: 8px;
+        padding: 9px;
+      }
+
+      .vt-absence-card strong,
+      .vt-approval-card strong,
+      .vt-record strong {
+        font-size: 13px;
+      }
+
+      .vt-approval-card p,
+      .vt-record p {
+        color: var(--vt-muted);
+        line-height: 1.35;
+        margin: 0;
+      }
+
+      .vt-field-grid {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vt-field-grid label,
+      .vt-approval-row label,
+      .vt-field-full label {
+        color: #4c606d;
+        display: grid;
+        font-weight: 700;
+        gap: 4px;
+      }
+
+      .vt-field-grid input,
+      .vt-field-grid select,
+      .vt-approval-row input,
+      .vt-approval-row select,
+      .vt-field-full input,
+      .vt-field-full select,
+      .vt-field-full textarea {
+        border: 1px solid #b7c4cd;
+        min-height: 28px;
+        padding: 4px 6px;
+        width: 100%;
+      }
+
+      .vt-field-full textarea {
+        min-height: 54px;
+        resize: vertical;
+      }
+
+      .vt-approval-row {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vt-progress {
+        background: #dbe5e9;
+        height: 10px;
+        overflow: hidden;
+      }
+
+      .vt-progress span {
+        background:
+          linear-gradient(90deg, var(--vt-blue), var(--vt-green));
+        display: block;
+        height: 100%;
+        width: 0%;
+      }
+
+      .vt-filter-row,
+      .vt-command-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .vt-filter-row button,
+      .vt-command-row button {
+        background: #ffffff;
+        border: 1px solid #aebcc5;
+        color: var(--vt-ink);
+        font-weight: 700;
+        min-height: 30px;
+        padding: 0 10px;
+      }
+
+      .vt-filter-row button[aria-pressed="true"] {
+        background: var(--vt-purple);
+        border-color: var(--vt-purple);
+        color: #ffffff;
+      }
+
+      .vt-tab-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .vt-table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .vt-table th,
+      .vt-table td {
+        border-bottom: 1px solid var(--vt-line);
+        padding: 10px;
+        text-align: left;
+      }
+
+      .vt-table th {
+        background: #f0f5f7;
+        color: #4c606d;
+        font-size: 11px;
+      }
+
+      .vt-empty-state {
+        background: #ffffff;
+        border: 1px solid var(--vt-line);
+        display: grid;
+        gap: 8px;
+        min-height: 180px;
+        padding: 18px;
+        place-content: center;
+        text-align: center;
+      }
+
+      .vt-empty-state strong {
+        font-size: 16px;
+      }
+
+      .vt-empty-state p {
+        color: var(--vt-muted);
+        margin: 0;
+      }
+
+      .vt-tab-shell {
+        background: #ffffff;
+        border: 1px solid var(--vt-line);
+        box-shadow: none;
+        padding: 14px;
+      }
+
+      .vt-muted {
+        color: var(--vt-muted);
+      }
+
+      @media (max-width: 1100px) {
+        .vt-app {
+          grid-template-columns: 174px minmax(0, 1fr);
+        }
+
+        .vt-dashboard,
+        .vt-tab-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .vt-side-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .vt-summary {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vt-app">
+      <aside class="vt-sidebar">
+        <div>
+          <div class="vt-brand">
+            <img src="../assets/zuehlke/zuehlke-mark.svg" alt="" aria-hidden="true" />
+            <div>
+              <strong>Zuehlke</strong>
+              <span>Timesheets</span>
+            </div>
+          </div>
+          <nav class="vt-nav" aria-label="Vertec sections">
+            <button class="vt-nav-item" type="button" data-vt-tab-trigger="services" aria-selected="true">
+              <span>Services</span><span data-vt-nav-count="services">20</span>
+            </button>
+            <button class="vt-nav-item" type="button" data-vt-tab-trigger="expenses" aria-selected="false">
+              <span>Expenses</span><span>0</span>
+            </button>
+            <button class="vt-nav-item" type="button" data-vt-tab-trigger="activities" aria-selected="false">
+              <span>Activities</span><span>3</span>
+            </button>
+            <button class="vt-nav-item" type="button" data-vt-tab-trigger="approvals" aria-selected="false">
+              <span>Approvals</span><span data-vt-nav-count="approval">0</span>
+            </button>
+            <button class="vt-nav-item" type="button" data-vt-tab-trigger="absences" aria-selected="false">
+              <span>Absences</span><span data-vt-nav-count="absences">2</span>
+            </button>
+            <button class="vt-nav-item" type="button" data-vt-tab-trigger="working-hours" aria-selected="false">
+              <span>Working hours</span><span>154h</span>
+            </button>
+          </nav>
+        </div>
+
+      </aside>
+
+      <main class="vt-main" data-vt-month="2026-06" data-vt-country="england-and-wales">
+        <header class="vt-hero">
+          <div>
+            <p class="vt-kicker">Timesheets</p>
+            <h1>June 2026</h1>
+          </div>
+          <div class="vt-hero-actions">
+            <button class="vt-button" data-primary="true" type="button" data-vt-fill-month>
+              Draft month
+            </button>
+            <button class="vt-button" data-quiet="true" type="button" data-vt-focus-missing>
+              Missing only
+            </button>
+          </div>
+        </header>
+
+        <section class="vt-tab" data-vt-tab="services" data-active="true">
+          <div class="vt-summary" data-vt-absences data-vt-vacation-allowance="25" data-vt-vacation-used="11.5" data-vt-vacation-planned="2">
+            <div class="vt-summary-card" data-tone="green">
+              <span>Drafted work days</span>
+              <strong data-vt-drafted-days>0</strong>
+            </div>
+            <div class="vt-summary-card" data-tone="red">
+              <span>Missing work days</span>
+              <strong data-vt-missing-days>20</strong>
+            </div>
+            <div class="vt-summary-card" data-tone="purple">
+              <span>Planned absences</span>
+              <strong data-vt-planned-absences>2</strong>
+            </div>
+            <div class="vt-summary-card" data-tone="blue">
+              <span>Vacation remaining</span>
+              <strong data-vt-vacation-balance>11.5 days</strong>
+            </div>
+            <div class="vt-summary-card" data-tone="orange">
+              <span>Approval status</span>
+              <strong data-vt-approval-status>Not submitted</strong>
+            </div>
+          </div>
+
+          <div class="vt-helper-slot" data-vt-helper-slot></div>
+
+          <div class="vt-dashboard">
+            <section class="vt-panel vt-timesheet" data-vt-timesheet data-vt-services>
+              <div class="vt-panel-heading">
+                <strong>Services by week</strong>
+                <span data-vt-week-range>1 to 5 Jun</span>
+              </div>
+              <div class="vt-weekbar">
+                <button class="vt-button" type="button" data-vt-week-prev>Previous week</button>
+                <div class="vt-week-title">
+                  <strong data-vt-week-title>Week 1</strong>
+                  <span data-vt-week-summary>5 work days, 0 absences</span>
+                </div>
+                <button class="vt-button" type="button" data-vt-week-next>Next week</button>
+              </div>
+              <div class="vt-week-rail" aria-label="June week selector">
+                <button class="vt-week-chip" type="button" data-vt-week-index="0" aria-current="true">1 to 5</button>
+                <button class="vt-week-chip" type="button" data-vt-week-index="1" aria-current="false">8 to 12</button>
+                <button class="vt-week-chip" type="button" data-vt-week-index="2" aria-current="false">15 to 19</button>
+                <button class="vt-week-chip" type="button" data-vt-week-index="3" aria-current="false">22 to 26</button>
+                <button class="vt-week-chip" type="button" data-vt-week-index="4" aria-current="false">29 to 30</button>
+              </div>
+
+              <div class="vt-grid" data-vt-grid>
+                <div class="vt-grid-header">
+                  <div class="vt-cell">Date</div>
+                  <div class="vt-cell">Project</div>
+                  <div class="vt-cell">Phase</div>
+                  <div class="vt-cell">Service type</div>
+                  <div class="vt-cell">Text</div>
+                  <div class="vt-cell">Hours</div>
+                  <div class="vt-cell">State</div>
+                </div>
+
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="0" data-date="2026-06-01" data-vt-row-kind="workday" data-selected="true">
+                  <div class="vt-cell">Mon 01 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="0" data-date="2026-06-02" data-vt-row-kind="workday">
+                  <div class="vt-cell">Tue 02 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="0" data-date="2026-06-03" data-vt-row-kind="workday">
+                  <div class="vt-cell">Wed 03 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="0" data-date="2026-06-04" data-vt-row-kind="workday">
+                  <div class="vt-cell">Thu 04 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="0" data-date="2026-06-05" data-vt-row-kind="workday">
+                  <div class="vt-cell">Fri 05 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+
+                <div class="vt-row" data-vt-row data-week="1" data-date="2026-06-08" data-vt-row-kind="absence" data-vt-absence-id="absence-1" data-vt-absence-type="vacation" hidden>
+                  <div class="vt-cell" data-vt-absence-date-label>Mon 08 Jun</div>
+                  <div class="vt-cell"><span class="vt-pill" data-tone="purple">Absence</span></div>
+                  <div class="vt-cell"><select data-sync-absence="absence-1" data-sync-field="type"><option>Vacation</option><option>Training</option><option>Sick leave</option></select></div>
+                  <div class="vt-cell"><input type="date" value="2026-06-08" data-sync-absence="absence-1" data-sync-field="from" /></div>
+                  <div class="vt-cell"><input value="Booked" data-sync-absence="absence-1" data-sync-field="note" /></div>
+                  <div class="vt-cell"><input value="1.0" data-sync-absence="absence-1" data-sync-field="days" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-tone="purple">Synced</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="1" data-date="2026-06-09" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Tue 09 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="1" data-date="2026-06-10" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Wed 10 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="1" data-date="2026-06-11" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Thu 11 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="1" data-date="2026-06-12" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Fri 12 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="2" data-date="2026-06-15" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Mon 15 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="2" data-date="2026-06-16" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Tue 16 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="2" data-date="2026-06-17" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Wed 17 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="2" data-date="2026-06-18" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Thu 18 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-week="2" data-date="2026-06-19" data-vt-row-kind="absence" data-vt-absence-id="absence-2" data-vt-absence-type="vacation" hidden>
+                  <div class="vt-cell" data-vt-absence-date-label>Fri 19 Jun</div>
+                  <div class="vt-cell"><span class="vt-pill" data-tone="purple">Absence</span></div>
+                  <div class="vt-cell"><select data-sync-absence="absence-2" data-sync-field="type"><option>Vacation</option><option>Training</option><option>Sick leave</option></select></div>
+                  <div class="vt-cell"><input type="date" value="2026-06-19" data-sync-absence="absence-2" data-sync-field="from" /></div>
+                  <div class="vt-cell"><input value="Booked" data-sync-absence="absence-2" data-sync-field="note" /></div>
+                  <div class="vt-cell"><input value="1.0" data-sync-absence="absence-2" data-sync-field="days" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-tone="purple">Synced</span></div>
+                </div>
+
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="3" data-date="2026-06-22" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Mon 22 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="3" data-date="2026-06-23" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Tue 23 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="3" data-date="2026-06-24" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Wed 24 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="3" data-date="2026-06-25" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Thu 25 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="3" data-date="2026-06-26" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Fri 26 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="4" data-date="2026-06-29" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Mon 29 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+                <div class="vt-row" data-vt-row data-vt-services-row data-week="4" data-date="2026-06-30" data-vt-row-kind="workday" hidden>
+                  <div class="vt-cell">Tue 30 Jun</div>
+                  <div class="vt-cell"><select name="project" data-vt-service-field="project"><option value="">Choose...</option><option>C34157, Barclaycard Website Re</option><option>Internal Enablement</option><option>Sales support</option></select></div>
+                  <div class="vt-cell"><input name="phase" data-vt-service-field="phase" /></div>
+                  <div class="vt-cell"><input name="serviceType" data-vt-service-field="serviceType" /></div>
+                  <div class="vt-cell"><input name="text" data-vt-service-field="text" /></div>
+                  <div class="vt-cell"><input name="hours" data-vt-service-field="hours" inputmode="decimal" /></div>
+                  <div class="vt-cell"><span class="vt-pill" data-vt-row-state>Missing</span></div>
+                </div>
+              </div>
+            </section>
+
+            <div class="vt-side-stack">
+              <section class="vt-panel">
+                <div class="vt-panel-heading">
+                  <strong>Approval</strong>
+                  <span data-vt-approval-status>Not submitted</span>
+                </div>
+                <div class="vt-card-list">
+                  <div class="vt-approval-card">
+                    <div class="vt-approval-row">
+                      <label>
+                        From
+                        <input type="date" value="2026-06-01" data-approval-field="from" />
+                      </label>
+                      <label>
+                        To
+                        <input type="date" value="2026-06-30" data-approval-field="to" />
+                      </label>
+                    </div>
+                    <button class="vt-button" data-primary="true" type="button" data-vt-approval-submit>
+                      Submit approval
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="vt-panel">
+                <div class="vt-panel-heading">
+                  <strong>Absences</strong>
+                  <span data-vt-planned-absences>2</span>
+                </div>
+                <div class="vt-card-list">
+                  <div class="vt-absence-card" data-vt-absence-editor="absence-1">
+                    <strong>Absence 1</strong>
+                    <div class="vt-field-grid">
+                      <label>Type <select data-sync-absence="absence-1" data-sync-field="type"><option>Vacation</option><option>Training</option><option>Sick leave</option></select></label>
+                      <label>Days <input value="1.0" data-sync-absence="absence-1" data-sync-field="days" inputmode="decimal" /></label>
+                      <label>From <input type="date" value="2026-06-08" data-sync-absence="absence-1" data-sync-field="from" /></label>
+                      <label>To <input type="date" value="2026-06-08" data-sync-absence="absence-1" data-sync-field="to" /></label>
+                    </div>
+                    <div class="vt-field-full">
+                      <label>Note <input value="Booked" data-sync-absence="absence-1" data-sync-field="note" /></label>
+                    </div>
+                  </div>
+                  <div class="vt-absence-card" data-vt-absence-editor="absence-2">
+                    <strong>Absence 2</strong>
+                    <div class="vt-field-grid">
+                      <label>Type <select data-sync-absence="absence-2" data-sync-field="type"><option>Vacation</option><option>Training</option><option>Sick leave</option></select></label>
+                      <label>Days <input value="1.0" data-sync-absence="absence-2" data-sync-field="days" inputmode="decimal" /></label>
+                      <label>From <input type="date" value="2026-06-19" data-sync-absence="absence-2" data-sync-field="from" /></label>
+                      <label>To <input type="date" value="2026-06-19" data-sync-absence="absence-2" data-sync-field="to" /></label>
+                    </div>
+                    <div class="vt-field-full">
+                      <label>Note <input value="Booked" data-sync-absence="absence-2" data-sync-field="note" /></label>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="vt-tab" data-vt-tab="expenses">
+          <div class="vt-tab-grid">
+            <section class="vt-tab-shell">
+              <h2>Expenses</h2>
+              <div class="vt-empty-state">
+                <strong>No June expenses.</strong>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="vt-tab" data-vt-tab="activities">
+          <div class="vt-tab-grid">
+            <section class="vt-tab-shell">
+              <h2>Activities</h2>
+              <table class="vt-table">
+                <thead><tr><th>Date</th><th>Activity</th><th>Suggested action</th></tr></thead>
+                <tbody>
+                  <tr><td>02 Jun</td><td>Barclaycard delivery stand-up</td><td>Use project delivery text</td></tr>
+                  <tr><td>11 Jun</td><td>Workshop preparation</td><td>Switch to internal enablement</td></tr>
+                  <tr><td>23 Jun</td><td>Client playback</td><td>Keep delivery template</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </section>
+
+        <section class="vt-tab" data-vt-tab="approvals">
+          <div class="vt-tab-grid">
+            <section class="vt-tab-shell">
+              <h2>Approvals</h2>
+              <div class="vt-approval-card">
+                <div class="vt-field-grid">
+                  <label>From <input type="date" value="2026-06-01" data-approval-field="from" /></label>
+                  <label>To <input type="date" value="2026-06-30" data-approval-field="to" /></label>
+                </div>
+                <div class="vt-progress" aria-label="Draft completion"><span data-vt-progress-fill></span></div>
+                <button class="vt-button" data-primary="true" type="button" data-vt-approval-submit>
+                  Submit approval
+                </button>
+                <p>Current status: <strong data-vt-approval-status>Not submitted</strong></p>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="vt-tab" data-vt-tab="absences">
+          <div class="vt-tab-grid">
+            <section class="vt-tab-shell">
+              <h2>Absences</h2>
+              <div class="vt-card-list">
+                <div class="vt-absence-card" data-vt-absence-editor="absence-1">
+                  <strong>Absence 1</strong>
+                  <div class="vt-field-grid">
+                    <label>Type <select data-sync-absence="absence-1" data-sync-field="type"><option>Vacation</option><option>Training</option><option>Sick leave</option></select></label>
+                    <label>Days <input value="1.0" data-sync-absence="absence-1" data-sync-field="days" inputmode="decimal" /></label>
+                    <label>From <input type="date" value="2026-06-08" data-sync-absence="absence-1" data-sync-field="from" /></label>
+                    <label>To <input type="date" value="2026-06-08" data-sync-absence="absence-1" data-sync-field="to" /></label>
+                  </div>
+                  <div class="vt-field-full">
+                    <label>Note <input value="Booked" data-sync-absence="absence-1" data-sync-field="note" /></label>
+                  </div>
+                </div>
+                <div class="vt-absence-card" data-vt-absence-editor="absence-2">
+                  <strong>Absence 2</strong>
+                  <div class="vt-field-grid">
+                    <label>Type <select data-sync-absence="absence-2" data-sync-field="type"><option>Vacation</option><option>Training</option><option>Sick leave</option></select></label>
+                    <label>Days <input value="1.0" data-sync-absence="absence-2" data-sync-field="days" inputmode="decimal" /></label>
+                    <label>From <input type="date" value="2026-06-19" data-sync-absence="absence-2" data-sync-field="from" /></label>
+                    <label>To <input type="date" value="2026-06-19" data-sync-absence="absence-2" data-sync-field="to" /></label>
+                  </div>
+                  <div class="vt-field-full">
+                    <label>Note <input value="Booked" data-sync-absence="absence-2" data-sync-field="note" /></label>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="vt-tab" data-vt-tab="working-hours">
+          <div class="vt-tab-grid">
+            <section class="vt-tab-shell">
+              <h2>Working hours</h2>
+              <table class="vt-table">
+                <thead><tr><th>Metric</th><th>June value</th><th>Used in review</th></tr></thead>
+                <tbody>
+                  <tr><td>Contract hours</td><td>154h</td><td>Yes</td></tr>
+                  <tr><td>Service draft target</td><td>160h before absences</td><td>Yes</td></tr>
+                  <tr><td>Planned absence</td><td>2 days</td><td>Yes</td></tr>
+                  <tr><td>Public holidays</td><td data-vt-public-holidays-count>0</td><td>Yes</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        const weekMeta = [
+          { title: "Week 1", range: "1 to 5 Jun" },
+          { title: "Week 2", range: "8 to 12 Jun" },
+          { title: "Week 3", range: "15 to 19 Jun" },
+          { title: "Week 4", range: "22 to 26 Jun" },
+          { title: "Week 5", range: "29 to 30 Jun" },
+        ];
+        const template = {
+          project: "C34157, Barclaycard Website Re",
+          phase: "10_DELIVERY",
+          serviceType: "003_DAILY RATE",
+          text: "Project delivery",
+          hours: "8.00",
+        };
+        let currentWeek = 0;
+        let currentFilter = "all";
+
+        const all = (selector) => Array.from(document.querySelectorAll(selector));
+        const one = (selector) => document.querySelector(selector);
+
+        function serviceRows() {
+          return all("[data-vt-services-row]");
+        }
+
+        function rows() {
+          return all("[data-vt-row]");
+        }
+
+        function field(row, name) {
+          return row.querySelector(`[data-vt-service-field="${name}"], [name="${name}"]`);
+        }
+
+        function setText(selector, value) {
+          all(selector).forEach((node) => {
+            node.textContent = value;
+          });
+        }
+
+        function rowHasHours(row) {
+          return Boolean(field(row, "hours")?.value.trim());
+        }
+
+        function updateRowState(row) {
+          const state = row.querySelector("[data-vt-row-state]");
+          if (!state) return;
+          if (rowHasHours(row)) {
+            state.textContent = "Drafted";
+            state.dataset.tone = "green";
+            row.dataset.vtDrafted = "true";
+          } else {
+            state.textContent = "Missing";
+            delete state.dataset.tone;
+            delete row.dataset.vtDrafted;
+          }
+        }
+
+        function updateSummary() {
+          serviceRows().forEach(updateRowState);
+          const drafted = serviceRows().filter(rowHasHours).length;
+          const missing = serviceRows().length - drafted;
+          const absences = rows().filter((row) => row.dataset.vtRowKind === "absence").length;
+          setText("[data-vt-drafted-days]", String(drafted));
+          setText("[data-vt-missing-days]", String(missing));
+          setText("[data-vt-planned-absences]", String(absences));
+          setText("[data-vt-nav-count='services']", String(serviceRows().length));
+          setText("[data-vt-nav-count='absences']", String(absences));
+          all("[data-vt-progress-fill]").forEach((bar) => {
+            bar.style.width = `${serviceRows().length ? Math.round((drafted / serviceRows().length) * 100) : 0}%`;
+          });
+          applyFilter();
+        }
+
+        function applyFilter() {
+          rows().forEach((row) => {
+            const weekVisible = Number(row.dataset.week) === currentWeek;
+            const filterVisible =
+              currentFilter === "all" ||
+              (currentFilter === "missing" && row.dataset.vtRowKind === "workday" && !rowHasHours(row)) ||
+              (currentFilter === "absence" && row.dataset.vtRowKind === "absence");
+            row.hidden = !(weekVisible && filterVisible);
+          });
+        }
+
+        function updateWeekSummary() {
+          const visibleWeekRows = rows().filter((row) => Number(row.dataset.week) === currentWeek);
+          const workdays = visibleWeekRows.filter((row) => row.dataset.vtRowKind === "workday").length;
+          const absences = visibleWeekRows.filter((row) => row.dataset.vtRowKind === "absence").length;
+          const meta = weekMeta[currentWeek];
+          setText("[data-vt-week-title]", meta.title);
+          setText("[data-vt-week-range]", meta.range);
+          setText("[data-vt-week-summary]", `${workdays} work days, ${absences} absences`);
+          all("[data-vt-week-index]").forEach((button) => {
+            button.setAttribute("aria-current", String(Number(button.dataset.vtWeekIndex) === currentWeek));
+          });
+          applyFilter();
+        }
+
+        function setWeek(index) {
+          currentWeek = Math.max(0, Math.min(weekMeta.length - 1, index));
+          updateWeekSummary();
+        }
+
+        function setWeekForDate(date) {
+          const row = one(`[data-date="${date}"]`);
+          if (row?.dataset.week) setWeek(Number(row.dataset.week));
+        }
+
+        function fillRow(row) {
+          if (!row || row.dataset.vtRowKind !== "workday") return false;
+          Object.entries(template).forEach(([name, value]) => {
+            const target = field(row, name);
+            if (target) {
+              target.value = value;
+              target.dispatchEvent(new Event("input", { bubbles: true }));
+              target.dispatchEvent(new Event("change", { bubbles: true }));
+            }
+          });
+          updateSummary();
+          return true;
+        }
+
+        function fillMonth() {
+          serviceRows().forEach(fillRow);
+          selectRow(serviceRows()[serviceRows().length - 1]);
+          updateSummary();
+        }
+
+        function selectRow(row) {
+          if (!row) return;
+          serviceRows().forEach((candidate) => {
+            candidate.dataset.selected = candidate === row ? "true" : "false";
+          });
+          setWeekForDate(row.dataset.date);
+        }
+
+        function syncAbsence(source) {
+          const id = source.dataset.syncAbsence;
+          const name = source.dataset.syncField;
+          if (!id || !name) return;
+          all(`[data-sync-absence="${id}"][data-sync-field="${name}"]`).forEach((target) => {
+            if (target !== source) target.value = source.value;
+          });
+          const row = one(`[data-vt-absence-id="${id}"]`);
+          if (row) {
+            if (name === "type") {
+              row.dataset.vtAbsenceType = source.value.toLowerCase().replace(/\s+/g, "-");
+            }
+            if (name === "from") {
+              row.dataset.date = source.value;
+              const label = row.querySelector("[data-vt-absence-date-label]");
+              if (label) {
+                const date = new Date(`${source.value}T00:00:00`);
+                label.textContent = date.toLocaleDateString("en-GB", {
+                  weekday: "short",
+                  day: "2-digit",
+                  month: "short",
+                });
+              }
+            }
+          }
+          updateSummary();
+        }
+
+        function syncApproval(source) {
+          const name = source.dataset.approvalField;
+          all(`[data-approval-field="${name}"]`).forEach((target) => {
+            if (target !== source) target.value = source.value;
+          });
+        }
+
+        function submitApproval() {
+          const from = one("[data-approval-field='from']")?.value || "2026-06-01";
+          const to = one("[data-approval-field='to']")?.value || "2026-06-30";
+          setText("[data-vt-approval-status]", "Submitted");
+          setText("[data-vt-nav-count='approval']", "1");
+          document.documentElement.dataset.vtApprovedRange = `${from}:${to}`;
+        }
+
+        function switchTab(tab) {
+          all("[data-vt-tab]").forEach((panel) => {
+            panel.dataset.active = String(panel.dataset.vtTab === tab);
+          });
+          all("[data-vt-tab-trigger]").forEach((button) => {
+            button.setAttribute("aria-selected", String(button.dataset.vtTabTrigger === tab));
+          });
+        }
+
+        document.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          const tabButton = target.closest("[data-vt-tab-trigger]");
+          if (tabButton) switchTab(tabButton.dataset.vtTabTrigger);
+          if (target.closest("[data-vt-week-prev]")) setWeek(currentWeek - 1);
+          if (target.closest("[data-vt-week-next]")) setWeek(currentWeek + 1);
+          const weekButton = target.closest("[data-vt-week-index]");
+          if (weekButton) setWeek(Number(weekButton.dataset.vtWeekIndex));
+          const row = target.closest("[data-vt-services-row]");
+          if (row) selectRow(row);
+          const filter = target.closest("[data-vt-filter]");
+          if (filter) {
+            currentFilter = filter.dataset.vtFilter;
+            all("[data-vt-filter]").forEach((button) => {
+              button.setAttribute("aria-pressed", String(button === filter));
+            });
+            applyFilter();
+          }
+          if (target.closest("[data-vt-fill-month]")) fillMonth();
+          if (target.closest("[data-vt-focus-missing]")) {
+            currentFilter = currentFilter === "missing" ? "all" : "missing";
+            target.closest("[data-vt-focus-missing]").setAttribute("aria-pressed", String(currentFilter === "missing"));
+            applyFilter();
+          }
+          if (target.closest("[data-vt-approval-submit]")) submitApproval();
+        });
+
+        document.addEventListener("input", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          if (target.matches("[data-vt-service-field]")) updateSummary();
+          if (target.matches("[data-sync-absence]")) syncAbsence(target);
+          if (target.matches("[data-approval-field]")) syncApproval(target);
+        });
+
+        document.addEventListener("change", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLElement)) return;
+          if (target.matches("[data-sync-absence]")) syncAbsence(target);
+          if (target.matches("[data-approval-field]")) syncApproval(target);
+        });
+
+        window.vtWorkshop = {
+          fillMonth,
+          fillRow,
+          selectRow,
+          setWeek,
+          setWeekForDate,
+          updateSummary,
+        };
+
+        updateWeekSummary();
+        updateSummary();
+      })();
+    </script>
+  </body>
+</html>
