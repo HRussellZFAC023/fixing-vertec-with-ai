@@ -79,7 +79,7 @@
               <div class="agenda-copy">
                 <strong>Give it a loop</strong>
                 <p>
-                  Codex, Vite, tests, Tampermonkey, templates, holidays, and
+                  Agents, Vite, tests, Tampermonkey, templates, holidays, and
                   packing.
                 </p>
               </div>
@@ -624,7 +624,7 @@ DO NOT HALLUCINATE
         </section>
         <section class="z-slide z-slide--dom z-slide--evidence-pack">
           <div class="slide-heading">
-            <p class="kicker">Gathering context</p>
+            <p class="kicker">Context is king</p>
             <h2>Save the site. Inspect the console.</h2>
           </div>
           <div class="evidence-grid">
@@ -670,9 +670,9 @@ DO NOT HALLUCINATE
               <h2>Make a project before you ask for code.</h2>
             </div>
             <p class="quiet">
-              By making a project, we have a repository to gather context about
-              a give project over time, giving it any documents, external
-              connections
+              A project is a repository for context that builds up over time:
+              documents, and external sources. For those, you can use
+              connectors (or CLI instructions).
             </p>
           </div>
           <div class="project-shot-grid">
@@ -710,8 +710,8 @@ DO NOT HALLUCINATE
         </section>
         <section class="z-slide z-slide--source z-slide--live-audit">
           <div>
-            <p class="kicker">Live Vertec audit</p>
-            <h2>We can ask about details about the page</h2>
+            <p class="kicker">Vertec undressed</p>
+            <h2>We can ask about the page structure and accessibility</h2>
           </div>
           <div class="audit-proof-layout">
             <figure>
@@ -742,8 +742,11 @@ DO NOT HALLUCINATE
                 <strong>539 inline styles</strong>
                 <p>on this page</p>
               </article>
-              <article><strong>0 role attributes</strong></article>
-              <article><strong>jQuery</strong></article>
+              <article><strong>0 semantic role attributes</strong></article>
+              <article>
+                <strong>jQuery</strong>
+                <p>not surprising</p>
+              </article>
             </div>
           </div>
           <p class="quiet">No wonder the agent struggled...</p>
@@ -901,7 +904,7 @@ Except:
         <section class="z-slide z-slide--templafy-proof">
           <div>
             <p class="kicker">Another page, same pattern</p>
-            <h2>571 downloads, one tiny queue.</h2>
+            <h2>571 downloads, one tiny button.</h2>
           </div>
           <figure class="templafy-proof-shot">
             <img
@@ -937,27 +940,223 @@ Except:
             browser becomes the place where small workflow fixes can persist.
           </aside>
         </section>
+        <section class="z-slide z-slide--cdm-chapter">
+          <img
+            src="%BASE_URL%assets/zuehlke/cdm-light-architecture.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="cdm-chapter-copy">
+            <p class="kicker">Iterative refinement</p>
+            <h2>Cybernetic Delivery</h2>
+            <p>
+              Using agentic capabilities where they excel alongside our own
+              capabilities.
+            </p>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes. Anchor in the Camp language. Cybernetic Delivery
+            names the loop we just walked: observe Vertec, mark the pain, build
+            a small tool, run it, verify it, and feed the learning back into the
+            next version.
+          </aside>
+        </section>
+        <section class="z-slide z-slide--cdm-model">
+          <div class="slide-heading">
+            <p class="kicker">CDM translated for Vertec</p>
+            <h2>Understand the work, find the best AI opportunities, act, and iterate.</h2>
+          </div>
+          <div class="cdm-model-grid">
+            <div
+              class="evidence-flow"
+              aria-label="Evidence flow from evidence to proof"
+            >
+              <article>
+                <span>Evidence</span
+                ><strong>Screenshots, DOM, network traces</strong>
+              </article>
+              <article>
+                <span>Pattern</span
+                ><strong>Repeated work, knowledge sharing</strong>
+              </article>
+              <article>
+                <span>Tool</span><strong>Scripts, harness, APIs</strong>
+              </article>
+              <article>
+                <span>Proof</span
+                ><strong>Tests, audit, human review</strong>
+              </article>
+            </div>
+            <figure class="cdm-scribble">
+              <img
+                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0327-valuestream.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <figcaption>
+                Once you can see the handoffs, you can decide where an agent
+                helps.
+              </figcaption>
+            </figure>
+          </div>
+          <aside class="notes">
+            Timing: 3 minutes. Work leaves a trail: notes, tickets, designs,
+            code, tests, screenshots, DOM slices, traces, prompts, scripts. Keep
+            the bits that worked. Put them where the next person can find them.
+          </aside>
+        </section>
+        <section id="demo-v1" class="z-slide z-slide--demo">
+          <div class="demo-topline">
+            <div>
+              <p class="kicker">What Vertec could feel like</p>
+              <h2>Creating a prototype</h2>
+            </div>
+            <button id="reload-demo" type="button">Reload</button>
+          </div>
+          <iframe
+            id="demo-frame"
+            title="Vertec Services workshop copy"
+            src="%BASE_URL%fixtures/vertec-workshop-copy.html"
+          ></iframe>
+          <aside class="notes">
+            Timing: 4 minutes. The same userscript shape, running on a local
+            copy of the Services page so the whole room can repeat it without
+            writing to production. It is the version of the workflow we wish we
+            had: one row, one visible action, one result you can inspect. The
+            same helper shape was also tried against signed-in Vertec, where the
+            object fields hit the real wall. Live-along: paste the script into
+            Tampermonkey. "Who got the button to appear?"
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--build-step z-slide--agent-feedback">
+          <div class="slide-heading slide-heading--compact">
+            <div>
+              <p class="kicker">Creating a harness</p>
+              <h2>Setting up agents for automation</h2>
+            </div>
+            <p class="quiet">
+              Until now, we were the orchestrator, telling AI what to do each
+              step. Agents can do this for us.
+            </p>
+          </div>
+          <div class="build-grid">
+            <figure class="live-proof-shot">
+              <img
+                src="%BASE_URL%assets/codex-project-name.png"
+                alt="Name project dialog for an automation harness."
+              />
+              <figcaption>
+                Agents can access any website, even those which don't
+                yet have an MCP connector bridge. For example, use it to edit
+                Google Docs or sort your Yahoo Mail. I used this when carrying out our
+                user research for my app on Discord.
+              </figcaption>
+            </figure>
+            <div class="step-stack">
+              <article>
+                <span>Where this is going</span
+                ><strong>The browser will get more programmable.</strong>
+                <p>
+                  Browsers are getting easier to script. The hard part is still
+                  knowing what the page should do.
+                </p>
+              </article>
+              <article>
+                <span>Today</span
+                ><strong>Everyone is building their own agents.</strong>
+                <p>Workflows, automations, scripts, and bridges.</p>
+              </article>
+              <article>
+                <span>Near future</span
+                ><strong>ChatGPT becomes the superapp.</strong>
+                <p>
+                  It has your system context and can act without you writing
+                  the script.
+                </p>
+              </article>
+            </div>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes. Explain Tampermonkey without assuming anyone
+            knows it. A userscript manager is the small bridge between
+            chat-generated JavaScript and a real page. The joke: we made the
+            page easier for the AI by making it easier for humans first. That is
+            usually the correct order.
+          </aside>
+        </section>
+
+        <section class="z-slide z-slide--build-step">
+          <div class="slide-heading slide-heading--compact">
+            <div>
+              <p class="kicker">Understanding the page</p>
+              <h2>Agentic feedback loop</h2>
+            </div>
+            <p class="quiet">
+              Latest versions of agents maintain session state between
+              sessions.
+            </p>
+          </div>
+          <div class="build-grid build-grid--reverse agent-feedback-layout">
+            <div class="step-stack agent-feedback-steps">
+              <article>
+                <span>Browser</span
+                ><strong>Use the browser with the login.</strong>
+                <p>
+                  Chrome extension or Playwright saved auth for signed-in
+                  Vertec.
+                </p>
+              </article>
+              <article>
+                <span>Context</span
+                ><strong>Probe the page the way a userscript would.</strong>
+                <p>No need to copy-paste — agents can get the context they need.</p>
+              </article>
+              <article>
+                <span>Playwright</span
+                ><strong>Use stored auth for repeatable browser checks.</strong>
+                <p>
+                  Or use the Playwright MCP — also great for automated tests
+                  across browsers. The computer-use and Chrome skills work too.
+                </p>
+              </article>
+            </div>
+            <figure class="live-proof-shot agent-feedback-shot">
+              <img
+                src="%BASE_URL%assets/agent-browser-vertec-prompt.png"
+                alt="Agent browser prompt alongside the Vertec Services page."
+              />
+            </figure>
+          </div>
+          <aside class="notes">
+            Timing: 3 minutes. Agents can write the repo and test the local
+            harness in a browser. For signed-in Vertec, use the browser tab that
+            actually has the login: the Chrome extension path or Playwright with
+            saved auth. The useful idea is the same: inspect the DOM, run the
+            smallest probe, then verify the result instead of guessing from a
+            screenshot.
+          </aside>
+        </section>
+
+
         <section class="z-slide z-slide--build-step">
           <div class="slide-heading slide-heading--compact">
             <div>
               <p class="kicker">Now make it repeatable</p>
-              <h2>Make the button prove itself.</h2>
+              <h2>Setting up for success.</h2>
             </div>
             <p class="quiet">
-              Chat gave us a draft. Codex makes it repeatable.
+              As the script gets bigger, we will want to set up our codebase
+              in a way that allows AI to perform at its best.
             </p>
           </div>
           <div class="build-grid">
-            <pre class="build-terminal"><code data-trim>
-$ npm create vite@latest vertec-harness
-$ npm install -D vitest playwright
-
-create:
-  fixture
-  userscript
-  browser test
-  dry-run scripts
-            </code></pre>
+            <figure class="live-proof-shot">
+              <img
+                src="%BASE_URL%assets/vertec-harness-prompt.png"
+                alt="Prompt asking an agent to create a Vite harness and Playwright tests for a Vertec userscript."
+              />
+            </figure>
             <div class="step-stack">
               <article>
                 <span>Repo</span
@@ -966,83 +1165,333 @@ create:
               </article>
               <article>
                 <span>Fixture</span
-                ><strong>Make Vertec repeatable for the room.</strong>
+                ><strong>Agents should check and verify their own work before we do.</strong>
                 <p>
-                  The copy proves behaviour without touching production rows.
+                  The idea is to reduce the amount of back and forth and friction.
                 </p>
               </article>
               <article>
                 <span>First check</span
                 ><strong>Make the button appear and fill one row.</strong>
-                <p>No month fill. No saving. Earn the next feature.</p>
+                <p>
+                  In an automated, TDD-driven way so the agent understands the
+                  context.
+                </p>
               </article>
             </div>
           </div>
           <aside class="notes">
             Timing: 3 minutes. This is the step after the ChatGPT project. We
-            ask Codex to turn the idea into a small repo: Vite for the site,
+            ask an agent to turn the idea into a small repo: Vite for the site,
             Vitest for behaviour, Playwright for the browser, and a fixture so
             the room can run it without touching live Vertec. The funny bit is
             that the least glamorous step is the one that makes the whole thing
             believable.
           </aside>
         </section>
-        <section class="z-slide z-slide--source z-slide--harness">
+
+        <section class="z-slide z-slide--source z-slide--harness-result">
           <div>
-            <p class="kicker">Test driven development</p>
-            <h2>Make it rerun the check.</h2>
+            <p class="kicker">Previewing changes in real time</p>
+            <h2>The harness is running.</h2>
           </div>
-          <div class="harness-layout">
-            <div class="process-diagram" aria-label="Test loop">
+          <figure class="harness-result-shot">
+            <img
+              src="%BASE_URL%assets/vertec-harness-result.png"
+              alt="Agent completion summary showing a Vite and Playwright project setup, passing build and e2e tests, and a live Vertec row filled with C34157 for 8.00 hours."
+            />
+          </figure>
+        </section>
+
+        <section class="z-slide z-slide--evidence-chain">
+          <div>
+            <p class="kicker">Accurate comments on Vertec</p>
+            <h2>What did I do today?</h2>
+          </div>
+          <div class="today-layout">
+            <figure>
+              <img
+                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0287-today.png"
+                alt=""
+                aria-hidden="true"
+              />
+            </figure>
+            <div class="today-board">
+              <p class="quiet">
+                Some projects require accurate comments about what you achieved each
+                day. For those projects, you can use connectors to pull together
+                all the information about what you have done on a given day and
+                summarise it down to a sentence.
+              </p>
+              <div class="evidence-chain">
+                <article>
+                  <span>Evidence</span><strong>Git commits</strong>
+                </article>
+                <article>
+                  <span>Evidence</span><strong>Calendar</strong>
+                </article>
+                <article><span>Evidence</span><strong>Tickets</strong></article>
+                <article>
+                  <span>Evidence</span><strong>Chat notes</strong>
+                </article>
+                <article>
+                  <span>Draft</span><strong>Service text</strong>
+                </article>
+                <article>
+                  <span>Gate</span><strong>Human approval</strong>
+                </article>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            Timing: 2 minutes. One approved chat page can read work sources and
+            call the tools we already use. The useful question is where the
+            comment came from and whether the tool stops before the approval
+            click.
+          </aside>
+        </section>
+        <section class="z-slide z-slide--skills">
+          <div>
+            <p class="kicker">A small instruction file</p>
+            <h2>Teach the agent the Vertec rules.</h2>
+            <p class="quiet">
+              A skill is the bit you were tired of retyping, saved where the
+              agent can find it.
+            </p>
+          </div>
+          <div class="skills-layout">
+            <figure class="scribble-stage">
+              <img
+                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0185-knowhow.png"
+                alt=""
+                aria-hidden="true"
+              />
+            </figure>
+            <div class="step-stack">
               <article>
-                <span>01</span>
-                <strong>Give context</strong>
+                <span>Vertec skill</span
+                ><strong>Open the browser and fill a single day.</strong>
                 <p>
-                  Saved page. Expected row. The rules Vertec does not say out
-                  loud.
+                  Draft missing rows, flag odd cases, leave evidence, never
+                  approve.
                 </p>
               </article>
               <article>
-                <span>02</span>
-                <strong>Build one patch</strong>
-                <p>One userscript. One button. One row.</p>
+                <span>Context</span
+                ><strong>Ask the tools I already use what I did.</strong>
+                <p>
+                  Slack, GitHub, Jira, calendar. Draft the comment from
+                  evidence, not memory.
+                </p>
               </article>
               <article>
-                <span>03</span>
-                <strong>Run checks</strong>
-                <p>Vitest. Build. Playwright. Then the logged-in browser.</p>
-              </article>
-              <article>
-                <span>04</span>
-                <strong>Click it</strong>
-                <p>Open Vertec. Press the button. Read the row.</p>
-              </article>
-              <article>
-                <span>05</span>
-                <strong>Patch again</strong>
-                <p>Fix what failed. Run it again.</p>
+                <span>Caveat</span
+                ><strong>Do not install every skill you find.</strong>
+                <p>
+                  Skills add context. Too much context can throw the model off,
+                  as every request will include those skills which are available.
+                  An agent may decide to use a skill it did not really need to,
+                  wasting tokens.
+                </p>
               </article>
             </div>
-            <pre class="terminal-hero"><code data-trim>
-$ npm run check
-✓ fixture loads
-✓ button appears
-✓ object fields stay guarded
-✓ row drafts 8.00h
-✓ save path stays untouched
-            </code></pre>
           </div>
           <aside class="notes">
-            Timing: 2 minutes. This is the technical middle the sceptics
-            deserve. Without the harness, ChatGPT gave me code. With it, we can
-            run the same check tomorrow. Give it a page, make a small patch, run
-            the checks, inspect the browser, then patch again.
+            Timing: 4 minutes. This is where non-technical people can still
+            follow. If you do not know how to write a skill, ask an agent to
+            write one with you. Mention practical examples like Matt Pocock's
+            skills as inspiration, but keep the Vertec one concrete: open the
+            browser, check holidays, fill a day, draft the comment, and never
+            submit approval.
           </aside>
+        </section>
+        <section class="z-slide z-slide--skill-prompt">
+          <div class="slide-heading">
+            <p class="kicker">Creating the skill</p>
+            <h2>Make the Vertec workflow reusable.</h2>
+          </div>
+          <div class="skill-showcase">
+            <figure class="skill-showcase__image">
+              <img
+                src="%BASE_URL%assets/vertec-skill-create.png"
+                alt="Prompt asking Codex to create a Vertec timesheet skill."
+              />
+            </figure>
+            <div class="source-grid source-grid--stacked">
+              <article>
+                <strong>Prompt once</strong>
+                <p>
+                  Turn the repeated Vertec habit into a named skill:
+                  <code>vertec-timesheet</code>.
+                </p>
+              </article>
+              <article>
+                <strong>Use the right surface</strong>
+                <p>
+                  Use the in-app Browser with the signed-in Vertec tab already
+                  open on the Services page.
+                </p>
+              </article>
+              <article>
+                <strong>Start with the rule</strong>
+                <p>
+                  Check GOV.UK bank holidays first. If it is a bank holiday,
+                  no Vertec action is needed.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="z-slide z-slide--skill-run">
+          <div class="slide-heading">
+            <p class="kicker">The skill in use</p>
+            <h2>The command carries the guardrails.</h2>
+          </div>
+          <div class="skill-showcase skill-showcase--reverse">
+            <figure class="skill-showcase__image">
+              <img
+                src="%BASE_URL%assets/vertec-skill-run.png"
+                alt="Verified Vertec row for 24 June 2026 with project C34157, phase 10_DELIVERY, text development on website, and 8.00 hours."
+              />
+            </figure>
+            <div class="source-grid source-grid--stacked">
+              <article>
+                <strong>The ask</strong>
+                <p><code>/vertec 24th June</code></p>
+              </article>
+              <article>
+                <strong>The check</strong>
+                <p>
+                  Confirm the date is not an England and Wales bank holiday
+                  before touching Vertec.
+                </p>
+              </article>
+              <article>
+                <strong>The receipt</strong>
+                <p>
+                  Return the verified project, phase, comment, and hours. Stop
+                  instead of overwriting a different row.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="z-slide z-slide--source z-slide--skill-file">
+          <div>
+            <p class="kicker">What a skill actually is</p>
+            <h2>Just a markdown file</h2>
+          </div>
+          <div class="skill-file-layout">
+            <pre class="skill-tree"><code data-trim>
+---
+name: vertec-timesheet
+description: Fill one signed-in Vertec Services day.
+---
+
+# Vertec Timesheet
+
+Use the in-app Browser.
+Check GOV.UK bank holidays first.
+Fill only the requested day.
+Verify the visible row.
+Never approve or overwrite.
+            </code></pre>
+            <div class="source-grid source-grid--stacked">
+              <article>
+                <strong>Instructions</strong>
+                <p>
+                  Project defaults, comment style, holiday rules, and the exact
+                  point where the agent stops.
+                </p>
+              </article>
+              <article>
+                <strong>Tools</strong>
+                <p>
+                  Open the browser, inspect Vertec, check GOV.UK bank holidays,
+                  draft the row, leave a note.
+                </p>
+              </article>
+              <article>
+                <strong>Examples</strong>
+                <p>
+                  Show the agent what a good day looks like. Show it what a
+                  month-end warning looks like.
+                </p>
+              </article>
+            </div>
+          </div>
+          <p class="quiet">
+            Skills live in the .claude or .codex directory. Install one by
+            handing the agent a skill file, or say "add this as a skill". Good
+            examples: grill-me-with-docs, teach-me, improve-architecture,
+            nuclear code review, handoff, and codebase static-analysis.
+          </p>
+          <aside class="notes">
+            Timing: 2 minutes. A skill is a folder with instructions, examples,
+            and optional scripts. The point is that tomorrow's prompt starts
+            with yesterday's hard-won rules. The risk is context sprawl. Install
+            fewer than you think, keep them specific, and make the stopping rule
+            obvious.
+          </aside>
+        </section>
+        <section class="z-slide z-slide--automation">
+          <div>
+            <p class="kicker">Put it on a timer</p>
+            <h2>Run daily. Ask at month end.</h2>
+            <p class="quiet">
+              The schedule is simple. The stop point matters.
+            </p>
+          </div>
+          <div class="automation-flow">
+            <article>
+              <span>18:00</span><strong>Check today.</strong>
+              <p>Draft missing rows and flag anything odd.</p>
+            </article>
+            <article>
+              <span>Context</span><strong>Use the work sources.</strong>
+              <p>Slack, GitHub, Jira, calendar, and project template.</p>
+            </article>
+            <article>
+              <span>Comment</span><strong>Summarise the deliverable.</strong>
+              <p>One short sentence, strong action verb, no diary entry.</p>
+            </article>
+            <article>
+              <span>Month end</span><strong>Ask me to approve.</strong>
+              <p>The agent reports status. The person sends approval.</p>
+            </article>
+          </div>
+          <aside class="notes">
+            Timing: 3 minutes. The automation is deliberately narrow. Every
+            workday at 6pm it runs the Vertec skill. If it is the end of the
+            month, it notifies you to send approval to the line manager. It does
+            not approve for you. This is why the automation is worth having: it
+            drafts the boring rows and leaves the risky click alone.
+          </aside>
+        </section>
+        <section class="z-slide z-slide--automation-proof">
+          <div class="slide-heading">
+            <p class="kicker">Automation in practice</p>
+            <h2>Same skill. Now on a schedule.</h2>
+          </div>
+          <div class="automation-proof-layout">
+            <figure>
+              <img
+                src="%BASE_URL%assets/automation-prompt.png"
+                alt="Prompt creating an automation to run the Vertec skill every day at 6pm, ask for month-end approval, and write concise daily comments."
+              />
+            </figure>
+            <figure>
+              <img
+                src="%BASE_URL%assets/automation-created.png"
+                alt="Daily Vertec timesheet automation configuration showing active status, next run, project, custom repeat, model, and reasoning."
+              />
+            </figure>
+          </div>
         </section>
         <section class="z-slide z-slide--source z-slide--annotate">
           <div>
             <p class="kicker">Use the page as the spec</p>
-            <h2>Annotate the mess before asking for code.</h2>
+            <h2>Annotating the changes you want to make can help the agent understand.</h2>
           </div>
           <div class="annotate-layout">
             <figure>
@@ -1076,172 +1525,69 @@ $ npm run check
             </div>
           </div>
           <p class="quiet">
-            Annotate first. Code second. Future you will thank present you,
-            briefly.
+            /goal Fix every annotation from the first Vertec audit.
           </p>
           <aside class="notes">
-            Timing: 2 minutes. In Codex, browser comments and annotations turn
+            Timing: 2 minutes. With agents, browser comments and annotations turn
             visual frustration into a concrete task. This is useful for
             non-technical attendees too: you do not need to name a selector to
             say which bit of the page is wrong.
           </aside>
         </section>
-        <section class="z-slide z-slide--goal">
+        <section class="z-slide z-slide--publish-github">
+          <div class="slide-heading">
+            <p class="kicker">Publish the change</p>
+            <h2>Publish a new version to GitHub.</h2>
+          </div>
+          <figure class="publish-github-shot">
+            <img
+              src="%BASE_URL%assets/publish-version-github.png"
+              alt="Annotated Vertec page with a selected element and a note to hide a pointless element before sending the annotation."
+            />
+          </figure>
+        </section>
+        <section class="z-slide z-slide--source z-slide--agent-loop">
           <div>
-            <p class="kicker">Close the loop</p>
-            <h2>Make the agent finish the list.</h2>
-            <p class="quiet">A goal is a checklist with a finish line.</p>
+            <p class="kicker">Why agents helped here</p>
+            <h2>They can run the thing they just wrote.</h2>
           </div>
-          <div class="goal-board">
-            <article>
-              <span>/goal</span
-              ><strong
-                >Fix every annotation from the first Vertec audit.</strong
-              >
-            </article>
-            <article>
-              <span>Loop</span
-              ><strong>Change, run tests, inspect the browser, repeat.</strong>
-            </article>
-            <article>
-              <span>Stop</span
-              ><strong
-                >Rows draft correctly. Holidays are flagged. Saving still needs
-                me.</strong
-              >
-            </article>
-          </div>
-          <aside class="notes">
-            Timing: 2 minutes. This is the neat callback to the early audit
-            slide. We are not adding new requests. We are taking the same
-            problems we marked at the start and giving Codex a a finish line it
-            can prove it crossed. Goal mode is a useful mental model even if you
-            never use the command: state the outcome, keep the checks visible,
-            and stop when they pass.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--build-step">
-          <div class="slide-heading slide-heading--compact">
-            <div>
-              <p class="kicker">Can we do better?</p>
-              <h2>Let codex on the page</h2>
-            </div>
-            <p class="quiet">
-              Use the browser that is already logged in. Local harness first,
-              signed-in Vertec once.
-            </p>
-          </div>
-          <div class="build-grid build-grid--reverse">
-            <div class="step-stack">
+          <div class="agent-loop-diagram">
+            <div
+              class="loop-ring"
+              aria-label="Agent loop: write, run, inspect, repair"
+            >
               <article>
-                <span>Browser</span
-                ><strong>Use the browser with the login.</strong>
-                <p>
-                  Chrome extension or Playwright saved auth for signed-in
-                  Vertec.
-                </p>
+                <span>1</span><strong>Write</strong>
+                <p>Patch the script or the test.</p>
               </article>
               <article>
-                <span>JS</span
-                ><strong>Probe the page the way a userscript would.</strong>
-                <p>The same probe, less copy-paste.</p>
+                <span>2</span><strong>Run</strong>
+                <p>Execute the command.</p>
               </article>
               <article>
-                <span>Playwright</span
-                ><strong>Use stored auth for repeatable browser checks.</strong>
-                <p>Good for tests that should run again tomorrow.</p>
+                <span>3</span><strong>Inspect</strong>
+                <p>Open the page and read the failure.</p>
+              </article>
+              <article>
+                <span>4</span><strong>Repair</strong>
+                <p>Make the next change with evidence visible.</p>
               </article>
             </div>
-            <figure class="live-proof-shot">
-              <img
-                src="%BASE_URL%assets/live/vertec-live-services-crop.png"
-                alt="The live Vertec Services grid cropped to show the row and fields the helper needs to detect."
-              />
-              <figcaption>
-                Real Services grid detected. The check stops before saving.
-              </figcaption>
-            </figure>
-          </div>
-          <aside class="notes">
-            Timing: 3 minutes. Codex can write the repo and test the local
-            harness in a browser. For signed-in Vertec, use the browser tab that
-            actually has the login: the Chrome extension path or Playwright with
-            saved auth. The useful idea is the same: inspect the DOM, run the
-            smallest probe, then verify the result instead of guessing from a
-            screenshot.
-          </aside>
-        </section>
-        <section id="demo-v1" class="z-slide z-slide--demo">
-          <div class="demo-topline">
-            <div>
-              <p class="kicker">What Vertec could feel like</p>
-              <h2>Creating a prototype</h2>
-            </div>
-            <button id="reload-demo" type="button">Reload</button>
-          </div>
-          <iframe
-            id="demo-frame"
-            title="Vertec Services workshop copy"
-            src="%BASE_URL%fixtures/vertec-workshop-copy.html"
-          ></iframe>
-          <aside class="notes">
-            Timing: 4 minutes. The same userscript shape, running on a local
-            copy of the Services page so the whole room can repeat it without
-            writing to production. It is the version of the workflow we wish we
-            had: one row, one visible action, one result you can inspect. The
-            same helper shape was also tried against signed-in Vertec, where the
-            object fields hit the real wall. Live-along: paste the script into
-            Tampermonkey. "Who got the button to appear?"
-          </aside>
-        </section>
-        <section class="z-slide z-slide--build-step">
-          <div class="slide-heading slide-heading--compact">
-            <div>
-              <p class="kicker">Share the first fix</p>
-              <h2>Install it like a browser tool.</h2>
-            </div>
-            <p class="quiet">
-              Tampermonkey is a userscript manager: it runs small scripts on
-              sites you allow.
-            </p>
-          </div>
-          <div class="build-grid">
-            <pre class="install-proof"><code data-trim>
-// ==UserScript==
-// @match https://vertec.zuehlke.com/webapp/*
-// @grant none
-
-button.textContent = "Fill 8h";
-button.onclick = draftSelectedRow;
-
-// stop before save
+            <pre class="loop-trace"><code data-trim>
+test failed: expected 8.00h
+page shows: 0.00h
+inspect selector: service row editor
+patch event dispatch
+test passed
             </code></pre>
-            <div class="step-stack">
-              <article>
-                <span>Before</span
-                ><strong>Eleven clicks and a dropdown with opinions.</strong>
-                <p>That is the part the browser agent was suffering through.</p>
-              </article>
-              <article>
-                <span>After</span><strong>One button it can press.</strong>
-                <p>
-                  Claude or ChatGPT can now use the helper instead of wrestling
-                  the whole page.
-                </p>
-              </article>
-              <article>
-                <span>Rule</span
-                ><strong>Draft rows. Do not submit them.</strong>
-                <p>The useful part stops before the approval click.</p>
-              </article>
-            </div>
           </div>
+          <p class="quiet">Check what it plans to change and where it stops.</p>
           <aside class="notes">
-            Timing: 2 minutes. Explain Tampermonkey without assuming anyone
-            knows it. A userscript manager is the small bridge between
-            chat-generated JavaScript and a real page. The joke: we made the
-            page easier for the AI by making it easier for humans first. That is
-            usually the correct order.
+            Timing: 2 minutes. Simon Willison's useful framing is that coding
+            agents are tethered to reality because they can run code. Addy
+            Osmani's useful warning is that AI makes the burden of proof
+            explicit. For Vertec, that means tests, screenshots, and a human
+            save point. That is the part worth keeping.
           </aside>
         </section>
         <section class="z-slide z-slide--versions">
@@ -1351,91 +1697,6 @@ button.onclick = draftSelectedRow;
             leaves it alone.
           </aside>
         </section>
-        <section class="z-slide z-slide--api">
-          <div class="slide-heading">
-            <p class="kicker">Can we do better?</p>
-            <h2>A screenshot is not proof.</h2>
-          </div>
-          <div class="test-layout">
-            <pre class="test-proof"><code data-trim>
-$ npm run check
-✓ fixture loaded
-✓ helper button appeared
-✓ row drafted 8.00h
-✓ browser screenshot saved
-            </code></pre>
-            <div class="terminal-proof terminal-proof--compact">
-              <pre><code data-trim>
-npm run test
-npm run build:extension
-npm run test:e2e
-              </code></pre>
-              <div>
-                <strong>The annoying truth</strong>
-                <p>A demo is just a rumour until someone else can run it.</p>
-                <strong>The loop</strong>
-                <p>
-                  Change, test, inspect, screenshot, repeat before human review.
-                </p>
-                <strong>The room test</strong>
-                <p>
-                  Every example has a fixture, a command, and a result people
-                  can see.
-                </p>
-              </div>
-            </div>
-          </div>
-          <aside class="notes">
-            Timing: 3 minutes. This is where Codex earns the next change. It
-            writes code, runs tests, inspects the browser, sees what failed, and
-            patches the result before you review. Review still matters. It just
-            gets less like digging through rubble.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--source z-slide--agent-loop">
-          <div>
-            <p class="kicker">Why Codex helped here</p>
-            <h2>They can run the thing they just wrote.</h2>
-          </div>
-          <div class="agent-loop-diagram">
-            <div
-              class="loop-ring"
-              aria-label="Agent loop: write, run, inspect, repair"
-            >
-              <article>
-                <span>1</span><strong>Write</strong>
-                <p>Patch the script or the test.</p>
-              </article>
-              <article>
-                <span>2</span><strong>Run</strong>
-                <p>Execute the command.</p>
-              </article>
-              <article>
-                <span>3</span><strong>Inspect</strong>
-                <p>Open the page and read the failure.</p>
-              </article>
-              <article>
-                <span>4</span><strong>Repair</strong>
-                <p>Make the next change with evidence visible.</p>
-              </article>
-            </div>
-            <pre class="loop-trace"><code data-trim>
-test failed: expected 8.00h
-page shows: 0.00h
-inspect selector: service row editor
-patch event dispatch
-test passed
-            </code></pre>
-          </div>
-          <p class="quiet">Check what it plans to change and where it stops.</p>
-          <aside class="notes">
-            Timing: 2 minutes. Simon Willison's useful framing is that coding
-            agents are tethered to reality because they can run code. Addy
-            Osmani's useful warning is that AI makes the burden of proof
-            explicit. For Vertec, that means tests, screenshots, and a human
-            save point. That is the part worth keeping.
-          </aside>
-        </section>
         <section class="z-slide z-slide--versions">
           <div class="slide-heading">
             <p class="kicker">Can we do better?</p>
@@ -1476,373 +1737,24 @@ test passed
             install it. Good. That is where the risk belongs.
           </aside>
         </section>
-        <section class="z-slide z-slide--api">
+        <section class="z-slide z-slide--versions z-slide--compiler">
           <div class="slide-heading">
-            <p class="kicker">Can we do better?</p>
-            <h2>Stop clicking where a tool should write.</h2>
+            <p class="kicker">One source, many outputs</p>
+            <h2>Compile the script into a release project.</h2>
           </div>
-          <div class="api-proof-layout">
-            <pre class="api-command"><code data-trim>
-endpoint: mock://vertec.local/services/bulk-draft
-wouldCreate: 20
-liveWrite: false
-              </code></pre>
-            <div class="api-notes">
-              <article>
-                <strong>The boundary</strong>
-                <p>
-                  Read, draft, validate, ask, write, log. Keep each step named.
-                </p>
-              </article>
-              <article>
-                <strong>The receipt</strong>
-                <p>
-                  Validate skipped absences, print the audit fields, and keep
-                  <code>liveWrite</code> false.
-                </p>
-              </article>
-            </div>
-            <figure class="scribble-stage scribble-stage--small">
-              <img
-                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0241-robot_build_2.png"
-                alt=""
-                aria-hidden="true"
-              />
-            </figure>
-          </div>
-          <div class="approval-strip">
-            <span>checkSession</span>
-            <span>prepareDraft</span>
-            <span>validateAbsences</span>
-            <span>requestApply</span>
-            <span>writeApprovedRows</span>
-          </div>
+          <figure class="compiler-shot">
+            <img
+              src="%BASE_URL%assets/userscript-compiler.png"
+              alt="UserScript Compiler UI: paste a .user.js, pick Chrome, Firefox, and Safari outputs, and compile a store-ready project ZIP."
+            />
+          </figure>
           <aside class="notes">
-            Timing: 2 minutes. Run the API dry run if you want the receipt. It
-            reads the workshop copy, builds 20 draft entries, and reports
-            `liveWrite: false`. The live webapp traffic was not a neat REST
-            tutorial. REST discovery needs the system owner and a supported
-            route. So the demo teaches the contract we want before pretending we
-            have the production integration.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--architecture">
-          <div class="slide-heading">
-            <p class="kicker">Can we do better?</p>
-            <h2>Give chat tools before you give it a tiny cursor.</h2>
-          </div>
-          <p class="quiet">
-            MCP means Model Context Protocol. It lets a chat client call small
-            named tools instead of guessing its way around a web page.
-          </p>
-          <div class="mcp-layout">
-            <figure class="platform-scribble">
-              <img
-                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0264-platformbuilding.png"
-                alt=""
-                aria-hidden="true"
-              />
-            </figure>
-            <div class="architecture-map">
-              <div>checkSession</div>
-              <div>prepareDraft</div>
-              <div>validateAbsences</div>
-              <div>requestApply</div>
-              <div>write<br />Approved<br />Rows</div>
-            </div>
-          </div>
-          <aside class="notes">
-            Timing: 3 minutes. Define MCP before using it. This is where the
-            Vertec helper becomes a tool call: check session, prepare draft,
-            validate holidays, ask to apply, write only after approval. The same
-            tool can work from Codex, Claude, or another client that can call
-            MCP tools.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--skills">
-          <div>
-            <p class="kicker">A small instruction file</p>
-            <h2>Teach the agent the Vertec rules.</h2>
-            <p class="quiet">
-              A skill is the bit you were tired of retyping, saved where the
-              agent can find it.
-            </p>
-          </div>
-          <div class="skills-layout">
-            <figure class="scribble-stage">
-              <img
-                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0185-knowhow.png"
-                alt=""
-                aria-hidden="true"
-              />
-            </figure>
-            <div class="step-stack">
-              <article>
-                <span>Vertec skill</span
-                ><strong>Open the browser and fill a single day.</strong>
-                <p>
-                  Draft missing rows, flag odd cases, leave evidence, never
-                  approve.
-                </p>
-              </article>
-              <article>
-                <span>Context</span
-                ><strong>Ask the tools I already use what I did.</strong>
-                <p>
-                  Slack, GitHub, Jira, calendar. Draft the comment from
-                  evidence, not memory.
-                </p>
-              </article>
-              <article>
-                <span>Caveat</span
-                ><strong>Do not install every skill you find.</strong>
-                <p>
-                  Skills add context. Too much context becomes a very polite
-                  junk drawer.
-                </p>
-              </article>
-            </div>
-          </div>
-          <aside class="notes">
-            Timing: 4 minutes. This is where non-technical people can still
-            follow. If you do not know how to write a skill, ask Codex or Claude
-            to write one with you. Mention practical examples like Matt Pocock's
-            skills as inspiration, but keep the Vertec one concrete: open the
-            browser, check holidays, fill a day, draft the comment, and never
-            submit approval.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--source z-slide--skill-file">
-          <div>
-            <p class="kicker">What a skill actually is</p>
-            <h2>One habit, written down.</h2>
-          </div>
-          <div class="skill-file-layout">
-            <pre class="skill-tree"><code data-trim>
-vertec-timesheet/
-  SKILL.md
-  examples/
-    project-day.md
-    month-end.md
-  scripts/
-    draft-day.mjs
-    check-holidays.mjs
-  checks/
-    no-approval-write.md
-            </code></pre>
-            <div class="source-grid source-grid--stacked">
-              <article>
-                <strong>Instructions</strong>
-                <p>
-                  Project defaults, comment style, holiday rules, and the exact
-                  point where the agent stops.
-                </p>
-              </article>
-              <article>
-                <strong>Tools</strong>
-                <p>
-                  Open the browser, inspect Vertec, check GOV.UK bank holidays,
-                  draft the row, leave a note.
-                </p>
-              </article>
-              <article>
-                <strong>Examples</strong>
-                <p>
-                  Show the agent what a good day looks like. Show it what a
-                  month-end warning looks like.
-                </p>
-              </article>
-            </div>
-          </div>
-          <p class="quiet">
-            If you do not know how to write one, ask Codex to draft it. Then
-            read it. Tomorrow's weird bug will probably be in there.
-          </p>
-          <aside class="notes">
-            Timing: 2 minutes. A skill is a folder with instructions, examples,
-            and optional scripts. The point is that tomorrow's prompt starts
-            with yesterday's hard-won rules. The risk is context sprawl. Install
-            fewer than you think, keep them specific, and make the stopping rule
-            obvious.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--automation">
-          <div>
-            <p class="kicker">Put it on a timer</p>
-            <h2>Run the Vertec skill at 6pm.</h2>
-            <p class="quiet">
-              The automation uses the skill while today is still vaguely alive
-              in memory.
-            </p>
-          </div>
-          <div class="automation-flow">
-            <article>
-              <span>18:00</span><strong>Check today.</strong>
-              <p>Draft missing rows and flag anything odd.</p>
-            </article>
-            <article>
-              <span>Context</span><strong>Use the work sources.</strong>
-              <p>Commits, tickets, calendar, chat, project template.</p>
-            </article>
-            <article>
-              <span>Month end</span><strong>Tell me to send approval.</strong>
-              <p>No agent approval. That click stays with me.</p>
-            </article>
-            <article>
-              <span>Evidence</span><strong>Leave a note.</strong>
-              <p>What it drafted, what it skipped, what needs a human.</p>
-            </article>
-          </div>
-          <aside class="notes">
-            Timing: 3 minutes. The automation is deliberately narrow. Every
-            workday at 6pm it runs the Vertec skill. If it is the end of the
-            month, it notifies you to send approval to the line manager. It does
-            not approve for you. This is why the automation is worth having: it
-            drafts the boring rows and leaves the risky click alone.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--source z-slide--automation-detail">
-          <div>
-            <p class="kicker">The timer still has rules</p>
-            <h2>The schedule is simple. The stop point matters.</h2>
-          </div>
-          <div class="automation-timeline">
-            <article>
-              <span>18:00</span>
-              <strong>Run the Vertec skill.</strong>
-              <p>Look at today while the day still exists in your head.</p>
-            </article>
-            <article>
-              <span>Draft</span>
-              <strong>Prepare missing rows.</strong>
-              <p>Use the template, holidays, absences, and project rules.</p>
-            </article>
-            <article>
-              <span>Report</span>
-              <strong>Say what happened.</strong>
-              <p>Filled, skipped, odd, or needs a human look.</p>
-            </article>
-            <article class="automation-gate">
-              <span>Month end</span>
-              <strong>Ask me to approve.</strong>
-              <p>The agent stops. The person sends the approval.</p>
-            </article>
-          </div>
-          <aside class="notes">
-            Timing: 90 seconds. This detail matters because it keeps the
-            automation small enough to trust. The automation prompts the admin
-            while the day is still fresh, then sends a month-end reminder for
-            the one click we keep human.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--cdm-chapter">
-          <img
-            src="%BASE_URL%assets/zuehlke/cdm-light-architecture.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <div class="cdm-chapter-copy">
-            <p class="kicker">Cybernetic Delivery</p>
-            <h2>Shorten the loop.</h2>
-            <p>
-              Watch the work. Shorten the loop. Check the result. Keep the final
-              call with a person.
-            </p>
-          </div>
-          <aside class="notes">
-            Timing: 2 minutes. Anchor in the Camp language. Cybernetic Delivery
-            names the loop we just walked: observe Vertec, mark the pain, build
-            a small tool, run it, verify it, and feed the learning back into the
-            next version.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--cdm-model">
-          <div class="slide-heading">
-            <p class="kicker">CDM translated for Vertec</p>
-            <h2>Use the traces. Tighten the loop.</h2>
-          </div>
-          <div class="cdm-model-grid">
-            <div
-              class="evidence-flow"
-              aria-label="Evidence flow from evidence to proof"
-            >
-              <article>
-                <span>Evidence</span
-                ><strong>Screenshot, DOM, network trace</strong>
-              </article>
-              <article>
-                <span>Pattern</span
-                ><strong>Repeated row entry, hidden policy</strong>
-              </article>
-              <article>
-                <span>Tool</span><strong>Userscript, harness, API draft</strong>
-              </article>
-              <article>
-                <span>Proof</span
-                ><strong>Tests, audit notes, human review</strong>
-              </article>
-            </div>
-            <figure class="cdm-scribble">
-              <img
-                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0327-valuestream.png"
-                alt=""
-                aria-hidden="true"
-              />
-              <figcaption>
-                Once you can see the handoffs, you can decide where an agent
-                helps.
-              </figcaption>
-            </figure>
-          </div>
-          <aside class="notes">
-            Timing: 3 minutes. Work leaves a trail: notes, tickets, designs,
-            code, tests, screenshots, DOM slices, traces, prompts, scripts. Keep
-            the bits that worked. Put them where the next person can find them.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--evidence-chain">
-          <div>
-            <p class="kicker">The chat shape that works</p>
-            <h2>What did I do today?</h2>
-          </div>
-          <div class="today-layout">
-            <figure>
-              <img
-                src="%BASE_URL%assets/templafy/full/scribbles/originals/scribbles-0287-today.png"
-                alt=""
-                aria-hidden="true"
-              />
-            </figure>
-            <div class="today-board">
-              <p class="quiet">
-                Read the traces I already use, draft the text, then ask before
-                writing to Vertec.
-              </p>
-              <div class="evidence-chain">
-                <article>
-                  <span>Evidence</span><strong>Git commits</strong>
-                </article>
-                <article>
-                  <span>Evidence</span><strong>Calendar</strong>
-                </article>
-                <article><span>Evidence</span><strong>Tickets</strong></article>
-                <article>
-                  <span>Evidence</span><strong>Chat notes</strong>
-                </article>
-                <article>
-                  <span>Draft</span><strong>Service text</strong>
-                </article>
-                <article>
-                  <span>Gate</span><strong>Human approval</strong>
-                </article>
-              </div>
-            </div>
-          </div>
-          <aside class="notes">
-            Timing: 2 minutes. One approved chat page can read work sources and
-            call the tools we already use. The useful question is where the
-            comment came from and whether the tool stops before the approval
-            click.
+            Timing: 1 minute. Same source, many shapes. Paste the userscript,
+            pick the browsers, and the compiler emits the userscript, the
+            store-ready extension packages, and a standalone harness, plus the
+            review notes a store reviewer expects. The defaults are chosen for
+            review: static content scripts, native menus only when the script
+            asks for them, one submission guide.
           </aside>
         </section>
         <section class="z-slide z-slide--subagents">
@@ -1895,6 +1807,56 @@ vertec-timesheet/
             people, say merge sort. The serious bit is simple: parallel agents
             are fast, but only if someone owns the merge.
           </aside>
+        </section>
+        <section class="z-slide z-slide--agent-scaling">
+          <div class="slide-heading">
+            <p class="kicker">Parallel agent work</p>
+            <h2>More agents means more room to think.</h2>
+          </div>
+          <div class="agent-scaling-layout">
+            <figure>
+              <img
+                src="%BASE_URL%assets/worker-thread-backlog.png"
+                alt="Backlog of named Yomu reader issue worker threads."
+              />
+              <figcaption>
+                Worker threads: ask for named work items from the backlog.
+              </figcaption>
+            </figure>
+            <figure>
+              <img
+                src="%BASE_URL%assets/subagents-panel.png"
+                alt="Codex environment panel showing multiple named subagents."
+              />
+              <figcaption>
+                Subagents: ask for self-contained helpers managed by the agent runtime.
+              </figcaption>
+            </figure>
+            <div class="source-grid source-grid--stacked">
+              <article>
+                <strong>Worker threads</strong>
+                <p>
+                  Ask the lead thread to create named worker threads for each
+                  backlog slice. They are easy to identify later.
+                </p>
+              </article>
+              <article>
+                <strong>Subagents</strong>
+                <p>
+                  Ask each subagent to close itself when done. That keeps the
+                  workspace readable when many are running.
+                </p>
+              </article>
+              <article>
+                <strong>Scaling law</strong>
+                <p>
+                  Doubling agents roughly doubles total context and can almost
+                  double throughput. Claude Ultracode can coordinate up to 100
+                  subagents.
+                </p>
+              </article>
+            </div>
+          </div>
         </section>
         <section class="z-slide z-slide--chapter">
           <img
@@ -2081,54 +2043,6 @@ vertec-timesheet/
             clearer, or cheaper by hand? Do it by hand and go home.
           </aside>
         </section>
-        <section class="z-slide z-slide--future">
-          <div>
-            <p class="kicker">Where this is going</p>
-            <h2>The browser will get more programmable.</h2>
-            <p class="quiet">
-              Browsers are getting easier to script. The hard part is still
-              knowing what the page should do.
-            </p>
-          </div>
-          <div class="future-layout">
-            <div class="future-proof">
-              <strong>Today</strong>
-              <p>Userscripts. Browser JavaScript. MCP tools.</p>
-              <strong>Next</strong>
-              <p>
-                Describe the extension, inspect the result, keep the human
-                review.
-              </p>
-            </div>
-            <div class="step-stack">
-              <article>
-                <span>Today</span
-                ><strong>Userscripts and Codex browser JavaScript.</strong>
-                <p>Small, scrappy, already useful.</p>
-              </article>
-              <article>
-                <span>Next</span
-                ><strong>Packaged extensions and MCP tools.</strong>
-                <p>
-                  Reviewable tools instead of a model driving a tiny cursor.
-                </p>
-              </article>
-              <article>
-                <span>Then</span
-                ><strong>Describe the extension you need.</strong>
-                <p>
-                  The hard part will still be knowing what the workflow needs.
-                </p>
-              </article>
-            </div>
-          </div>
-          <aside class="notes">
-            Timing: 2 minutes. Keep this as a future-looking beat, not a product
-            claim. Apple and the browser vendors are making the page more
-            programmable. That does not remove the engineering work. It changes
-            where the judgement sits.
-          </aside>
-        </section>
         <section class="z-slide z-slide--superapp z-slide--night-run">
           <img
             src="%BASE_URL%assets/templafy/full/stock-imagery/technology-and-security/0056-businessman-using-laptop-on-sofa-at-night-wksrqk6awqxh1xmxyh33.jpg"
@@ -2137,89 +2051,17 @@ vertec-timesheet/
           />
           <div class="superapp-panel">
             <p class="kicker">One more thing</p>
-            <h2>The overnight run was the first draft.</h2>
+            <h2>The overnight run was the first attempt.</h2>
             <p>
               The useful work was reading it, testing it, cutting the weak bits,
               and owning the result.
             </p>
           </div>
           <aside class="notes">
-            Timing: 2 minutes. The meta reveal. The first draft of the talk and
+            Timing: 2 minutes. The meta reveal. The first version of the talk and
             workshop materials came from a long agent run. The raw output was
             material. The useful work was reading, testing, cutting, rewriting,
             and owning it. The human edit is the craft.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--workshops">
-          <div class="slide-heading">
-            <p class="kicker">Yours to keep</p>
-            <h2>The deck is the thing.</h2>
-          </div>
-          <figure class="workshop-photo">
-            <img
-              src="%BASE_URL%assets/zuehlke/workshop-table.png"
-              alt=""
-              aria-hidden="true"
-            />
-          </figure>
-          <div class="workshop-list">
-            <a href="https://hrussellzfac023.github.io/fixing-vertec-with-ai/"
-              >Live deck</a
-            >
-            <a href="https://github.com/HRussellZFAC023/fixing-vertec-with-ai"
-              >GitHub repo</a
-            >
-          </div>
-          <aside class="notes">
-            Timing: 1 minute. Keep this clean. The public repo now carries the
-            deck, the real screenshots, the local Vertec fixture, and the v1
-            helper that proves the point. The workshop trail still exists
-            locally for iteration. The audience gets the story without the attic
-            contents.
-          </aside>
-        </section>
-        <section class="z-slide z-slide--source z-slide--sources-notes">
-          <div class="slide-heading">
-            <p class="kicker">Source notes</p>
-            <h2>Sources that shaped the talk.</h2>
-          </div>
-          <div class="borrowed-layout">
-            <figure>
-              <img
-                src="%BASE_URL%assets/templafy/full/stock-imagery/people-and-work/0177-business-team-reading-an-e-mail-on-laptop-in-the-office-x8mbvbnpzlad5tnoggtv.jpg"
-                alt=""
-                aria-hidden="true"
-              />
-            </figure>
-            <div class="borrowed-list">
-              <article>
-                <span>Zühlke</span
-                ><strong
-                  >Follow evidence, shorten feedback loops, keep the final call
-                  with people.</strong
-                >
-              </article>
-              <article>
-                <span>OpenAI and Anthropic</span
-                ><strong
-                  >Agents are useful when they have tools, checks, and a clear
-                  stop point.</strong
-                >
-              </article>
-              <article>
-                <span>Workshop craft</span
-                ><strong
-                  >One visible claim. Real evidence. Do not make people read a
-                  list of links.</strong
-                >
-              </article>
-            </div>
-          </div>
-          <aside class="notes">
-            Timing: 1 minute. Do not read the links. Say what they shaped: the
-            CDM framing, Codex browser, goals, skills, automations, subagents,
-            worktrees, Playwright MCP, userscripts, and the multi-agent fan-out
-            pattern.
           </aside>
         </section>
         <section class="z-slide z-slide--closing z-slide--you-ai">

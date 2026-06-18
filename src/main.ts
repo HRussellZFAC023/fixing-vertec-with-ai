@@ -101,6 +101,8 @@ if (frame?.contentDocument?.readyState && frame.contentDocument.readyState !== "
 }
 reloadButton?.addEventListener("click", () => {
   if (frame) {
-    frame.src = fromBase("fixtures/vertec-workshop-copy.html");
+    const freshFixture = new URL(fromBase("fixtures/vertec-workshop-copy.html"), window.location.href);
+    freshFixture.searchParams.set("reload", String(Date.now()));
+    frame.src = freshFixture.toString();
   }
 });
