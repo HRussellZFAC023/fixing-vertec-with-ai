@@ -5782,8 +5782,8 @@ body,
 .publish-github-shot img {
   display: block;
   height: 590px;
-  object-fit: contain;
-  object-position: top left;
+  object-fit: cover;
+  object-position: left 28%;
   width: 100%;
 }
 
@@ -6903,6 +6903,24 @@ body,
 .z-slide--tradeoffs .sales-cards p {
   font-size: 22px;
   line-height: 1.1;
+}
+
+.z-slide--tradeoffs .sales-cards article {
+  grid-template-rows: auto auto auto;
+  padding: 24px 0 24px 28px;
+}
+
+.z-slide--tradeoffs .sales-cards article::before {
+  content: none;
+  display: none;
+}
+
+.z-slide--tradeoffs .sales-cards strong {
+  margin-top: 8px;
+}
+
+.z-slide--tradeoffs .sales-cards p {
+  margin-top: 8px;
 }
 
 /* Final title alignment: titles and subtitles own the left edge on normal slides. */
