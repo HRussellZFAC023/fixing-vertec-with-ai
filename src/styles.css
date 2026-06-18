@@ -4501,6 +4501,15 @@ body,
   margin-left: calc(var(--z-logo-size) + var(--z-header-gap));
 }
 
+#demo-v1 .demo-topline > div {
+  margin-left: 0;
+}
+
+#demo-v1::before {
+  left: auto;
+  right: var(--z-slide-x);
+}
+
 .demo-topline .kicker {
   margin-bottom: 10px;
 }
@@ -4513,6 +4522,10 @@ body,
 #reload-demo {
   align-self: start;
   background: var(--z-blue);
+}
+
+#demo-v1 #reload-demo {
+  margin-right: calc(var(--z-logo-size) + var(--z-header-gap));
 }
 
 #demo-frame {
@@ -5003,7 +5016,7 @@ body,
 
 .z-slide--real-prompt {
   align-content: start;
-  gap: 46px;
+  gap: 24px 46px;
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
 }
 
@@ -5014,11 +5027,42 @@ body,
 
 .z-slide--real-prompt pre code {
   align-content: start;
-  font-size: 22px;
-  line-height: 1.26;
-  min-height: 462px;
-  padding: 34px 40px;
+  font-size: 19px;
+  line-height: 1.16;
+  min-height: 360px;
+  padding: 26px 40px;
   white-space: pre-wrap;
+}
+
+.prompt-qr {
+  align-items: center;
+  align-self: start;
+  color: var(--z-purple);
+  display: flex;
+  gap: 22px;
+  grid-column: 2;
+  justify-self: start;
+  margin-top: -225px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.prompt-qr img {
+  background: var(--z-white);
+  border: 6px solid var(--z-purple);
+  height: 148px;
+  padding: 8px;
+  width: 148px;
+}
+
+.prompt-qr span {
+  color: var(--z-purple);
+  font-family: var(--z-font-medium);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  max-width: 220px;
+  overflow-wrap: anywhere;
 }
 
 .z-slide--live-failure {
@@ -5326,6 +5370,93 @@ body,
 
 .z-slide--real-prompt .prompt-screenshot {
   margin-top: 22px !important;
+}
+
+.z-slide--button-joke {
+  align-content: start;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+.button-joke-demo {
+  border-left: 10px solid var(--z-blue);
+  margin: 0;
+  width: 100%;
+}
+
+.button-joke-demo img {
+  display: block;
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+  object-position: left center;
+  width: 100%;
+}
+
+.button-joke-notes {
+  display: block;
+}
+
+.button-joke-notes p {
+  border-left: 8px solid var(--z-green);
+  color: var(--z-grey);
+  font-family: var(--z-font-medium);
+  font-size: 31px;
+  line-height: 1.12;
+  margin: 0;
+  max-width: none;
+  padding-left: 22px;
+}
+
+.z-slide--templafy-proof {
+  align-content: start;
+  gap: 28px;
+  grid-template-columns: 1fr;
+}
+
+.templafy-proof-shot {
+  border-left: 10px solid var(--z-purple);
+  margin: 0;
+  width: 100%;
+}
+
+.templafy-proof-shot img {
+  display: block;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: left top;
+  width: 100%;
+}
+
+.z-slide--userscript-manager {
+  align-content: start;
+  gap: 26px;
+  grid-template-columns: 1fr;
+}
+
+.userscript-manager-shot {
+  border-left: 10px solid var(--z-orange);
+  margin: 0;
+  width: 100%;
+}
+
+.userscript-manager-shot img {
+  display: block;
+  max-height: 390px;
+  object-fit: contain;
+  object-position: left top;
+  width: 100%;
+}
+
+.userscript-manager-note {
+  border-left: 8px solid var(--z-purple);
+  color: var(--z-grey);
+  font-family: var(--z-font-medium);
+  font-size: 38px;
+  line-height: 1.12;
+  margin: 0;
+  max-width: 980px;
+  padding-left: 24px;
 }
 
 .z-slide--browser-first {
@@ -5729,8 +5860,23 @@ body,
   width: 100%;
 }
 
+.journey-track article:nth-child(1) {
+  --card-image: url("/assets/camp/jp-logo.png");
+}
+
+.journey-track article:nth-child(2) {
+  --card-image: url("/assets/camp/uchisen-logo.png");
+}
+
+.journey-track article:nth-child(3) {
+  --card-image: url("/assets/camp/automation-pro.png");
+}
+
+.journey-track article:nth-child(4) {
+  --card-image: url("/assets/camp/compiler-zip.png");
+}
+
 .handle-grid article:nth-child(2),
-.journey-track article:nth-child(2),
 .tool-proof-grid article:nth-child(2),
 .source-grid:not(.source-grid--stacked) article:nth-child(2),
 .verification-grid article:nth-child(2),
@@ -5741,7 +5887,6 @@ body,
 }
 
 .handle-grid article:nth-child(3),
-.journey-track article:nth-child(3),
 .source-grid:not(.source-grid--stacked) article:nth-child(3),
 .verification-grid article:nth-child(3),
 .goal-board article:nth-child(3),
@@ -5751,7 +5896,6 @@ body,
 }
 
 .handle-grid article:nth-child(4),
-.journey-track article:nth-child(4),
 .source-grid:not(.source-grid--stacked) article:nth-child(4),
 .verification-grid article:nth-child(4),
 .automation-flow article:nth-child(4),
@@ -5760,7 +5904,7 @@ body,
 }
 
 .journey-track article:nth-child(5) {
-  --card-image: url("/assets/templafy/full/stock-imagery/ai-and-data/0332-close-up-portrait-of-software-engineer-working-on-computer-line-of-code-reflecting-in-glasses.-developer-worki-1czrckgtdzgkevg63u8e.jpg");
+  --card-image: url("/assets/camp/yomu-icon.png");
 }
 
 .handle-grid strong,
@@ -6052,8 +6196,10 @@ body,
   --failure-image: url("/assets/templafy/full/stock-imagery/people-and-work/0782-focused-woman-working-on-a-laptop-in-a-cozy-home-office-setting-1xpzdb4ybghnvkzq3wgq.jpg");
   border-top: 12px solid var(--z-blue);
   display: grid;
-  gap: 8px;
-  grid-template-rows: 150px auto auto auto;
+  column-gap: 12px;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 190px auto auto auto;
+  row-gap: 10px;
   min-height: 0;
   padding: 0 20px 20px;
 }
@@ -6062,7 +6208,8 @@ body,
   background: var(--failure-image) center / cover no-repeat;
   content: "";
   display: block;
-  height: 150px;
+  grid-column: 1 / -1;
+  height: 190px;
   left: auto;
   position: static;
   top: auto;
@@ -6089,15 +6236,18 @@ body,
 .z-slide--live-failure .failure-flow__row span,
 .z-slide--live-failure .failure-flow__row .failure-flow__label {
   font-size: 22px;
+  line-height: 1;
 }
 
 .z-slide--live-failure .failure-flow__row strong {
   font-size: 32px;
+  grid-column: 1 / -1;
   line-height: 1.02;
 }
 
 .z-slide--live-failure .failure-flow__row p:not(.failure-flow__label) {
   font-size: 21px;
+  grid-column: 1 / -1;
   line-height: 1.12;
 }
 

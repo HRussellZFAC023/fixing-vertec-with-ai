@@ -90,6 +90,11 @@ const deck = new Reveal({
 installDeckChromeReset();
 deck.initialize();
 
+if (!window.location.hash || window.location.hash === "#/3" || window.location.hash === "#/8") {
+  window.history.replaceState(null, "", "#/6");
+  deck.slide(6);
+}
+
 frame?.addEventListener("load", injectV1);
 if (frame?.contentDocument?.readyState && frame.contentDocument.readyState !== "loading") {
   injectV1();
