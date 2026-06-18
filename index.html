@@ -164,8 +164,8 @@
           </div>
           <aside class="notes">
             Timing: 2 minutes. Put a number on the pain without pretending the number is sacred.
-            Industry estimates often put poor time capture around 15 to 25% of billable time. The
-            exact figure matters less than the leak being real. The row feeds billing, planning,
+            Industry estimates often put poor time capture around 15 to 25% of billable time. Treat
+            the exact figure as a warning label, not scripture. The row feeds billing, planning,
             approval, fairness, and holiday balance. We want accurate timesheets that do not eat
             the afternoon.
           </aside>
@@ -302,9 +302,9 @@
             </div>
           </div>
           <aside class="notes">
-            Timing: 2 minutes. Replace "users are lazy" with real human situations. AI did our user
-            research here, and the complaints came back as product requirements. Read one persona in
-            a slightly wounded voice. It always lands.
+            Timing: 2 minutes. Replace "users are lazy" with real human situations. These are not
+            lab personas. They are the four people I become depending on the day, the deadline, and
+            how much I remember from Tuesday. Read one in a slightly wounded voice. It always lands.
           </aside>
         </section>
 <section class="z-slide z-slide--source z-slide--ai-motive">
@@ -422,7 +422,7 @@
           <div>
             <p class="kicker">First attempt</p>
             <h2>The obvious move: ask the browser.</h2>
-            <p>Give it the job a tired person would give it. It can click. It cannot infer Vertec folklore from a dropdown.</p>
+            <p>Give it the job a tired person would give it. It can click. It cannot know which dropdown option hides the row Vertec will actually save.</p>
           </div>
           <pre><code data-trim>
 Fill in my timesheet from now
@@ -436,11 +436,11 @@ Make no mistakes.
             </article>
             <article>
               <strong>Still guessing</strong>
-              <p>The label is not the value. The save request wants ids.</p>
+              <p>The words on screen are not the thing Vertec saves.</p>
             </article>
             <article>
               <strong>Smaller ask</strong>
-              <p>One button. One row. Then try the next annoying bit.</p>
+              <p>One row. One button. Then earn the next feature.</p>
             </article>
           </div>
           <aside class="notes">
@@ -627,8 +627,8 @@ Make no mistakes.
         </section>
 <section class="z-slide z-slide--split z-slide--prompt-lab z-slide--real-prompt">
           <div>
-            <p class="kicker">The prompt that actually helps</p>
-            <h2>Tell it what you know. Make it ask for the rest.</h2>
+            <p class="kicker">The prompt that actually helped</p>
+            <h2>Give it the page, the target row, and the stopping rule.</h2>
             <p class="plain-definition">
               A userscript is JavaScript that runs on a page you choose. Here, it means adding the
               button Vertec should have had.
@@ -638,24 +638,25 @@ Make no mistakes.
             </figure>
           </div>
           <pre><code data-trim>
-Given the attached Vertec Services HTML,
-build a userscript for our Vertec webapp.
+Given:
+  the saved Vertec Services page
+  the expected filled-in row
+  dropdowns that load from the API
 
-The expected filled-in version is attached too.
-The page loads dropdown options from the API.
+Build:
+  a userscript for this page
+  a green "Fill 8h" button
 
-Project: the project I am on today
-Hours: 8
-Text: development on website
+Defaults:
+  project: my current delivery project
+  hours: 8
+  text: development on website
 
 If Project, Phase, or Service type
-cannot be resolved to hidden ids,
-stop and ask for the save request.
+needs a hidden id:
+  stop and ask for the save request
+
 Draft only. Do not save.
-
-Replace Punch in with a green button:
-Fill 8h
-
 Make no mistakes.
           </code></pre>
           <aside class="notes">
@@ -691,27 +692,27 @@ Make no mistakes.
           <div class="failure-flow" aria-label="What the first live helper proved">
             <article class="failure-flow__row failure-flow__row--works">
               <span>01</span>
-              <p class="failure-flow__label">plain fields</p>
+              <p class="failure-flow__label">simple cells</p>
               <strong>Text and hours</strong>
-              <p>These are the easy part. Type, fire events, check the row.</p>
+              <p>Type into the grid. Fire the events. Read the row back.</p>
             </article>
             <div class="failure-flow__arrow" aria-hidden="true"></div>
             <article class="failure-flow__row failure-flow__row--breaks">
               <span>02</span>
-              <p class="failure-flow__label">reference fields</p>
+              <p class="failure-flow__label">Vertec objects</p>
               <strong>Project, phase, service type</strong>
-              <p>The label is decoration. The saved row wants the object behind it.</p>
+              <p>The label on screen is not what gets saved. Vertec wants the object id.</p>
             </article>
             <div class="failure-flow__arrow" aria-hidden="true"></div>
             <article class="failure-flow__row failure-flow__row--next">
               <span>03</span>
               <p class="failure-flow__label">next move</p>
               <strong>Watch one save</strong>
-              <p>Pick the value once. Capture the payload. Stop guessing.</p>
+              <p>Pick the value once. Capture the request. Stop guessing.</p>
             </article>
             <div class="failure-flow__trace">
               <span>what the agent needs</span>
-              <code>visible label -> hidden id -> save request</code>
+              <code>visible text -> object id -> save request</code>
             </div>
           </div>
           <aside class="notes">
@@ -766,7 +767,7 @@ Make no mistakes.
               <p class="kicker">Now make it repeatable</p>
               <h2>Make the button prove itself.</h2>
             </div>
-            <p class="quiet">Chat found the shape. Codex makes it runnable.</p>
+            <p class="quiet">Chat gave us a draft. Codex makes it repeatable.</p>
           </div>
           <div class="build-grid">
             <pre class="build-terminal"><code data-trim>
@@ -802,7 +803,7 @@ create:
               <article>
                 <span>01</span>
                 <strong>Give context</strong>
-                <p>Saved page. Expected row. Rules the UI forgot to mention.</p>
+                <p>Saved page. Expected row. The rules Vertec does not say out loud.</p>
               </article>
               <article>
                 <span>02</span>
@@ -812,7 +813,7 @@ create:
               <article>
                 <span>03</span>
                 <strong>Run checks</strong>
-                <p>Vitest. Build. Playwright. Real browser next.</p>
+                <p>Vitest. Build. Playwright. Then the logged-in browser.</p>
               </article>
               <article>
                 <span>04</span>
