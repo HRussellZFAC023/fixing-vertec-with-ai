@@ -90,12 +90,19 @@ const deck = new Reveal({
 installDeckChromeReset();
 deck.initialize();
 
+if (!window.location.hash || window.location.hash === "#/3" || window.location.hash === "#/8") {
+  window.history.replaceState(null, "", "#/6");
+  deck.slide(6);
+}
+
 frame?.addEventListener("load", injectV1);
 if (frame?.contentDocument?.readyState && frame.contentDocument.readyState !== "loading") {
   injectV1();
 }
 reloadButton?.addEventListener("click", () => {
   if (frame) {
-    frame.src = fromBase("fixtures/vertec-workshop-copy.html");
+    const freshFixture = new URL(fromBase("fixtures/vertec-workshop-copy.html"), window.location.href);
+    freshFixture.searchParams.set("reload", String(Date.now()));
+    frame.src = freshFixture.toString();
   }
 });
